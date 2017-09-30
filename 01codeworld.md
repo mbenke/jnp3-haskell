@@ -128,7 +128,7 @@ oval    = scaled(base, 2, 0.5)
 base    = solidCircle(4)
 ```
 
-:pencil: Narysuj symbol atomu (koło jako jądro i elipsy jako orbity elektroów)
+:pencil: Narysuj symbol atomu (koło jako jądro i elipsy jako orbity elektronów).
 
 ## Wyrażenia
 
@@ -147,7 +147,7 @@ rectangle(1, 4) & circle(2)
 
 Natomiast `x=1` nie jest wyrażeniem - jest definicją.
 
-## Funkcje
+### Funkcje
 
 Szczególnym rodzajem wyrażeń są *funkcje*. Podstawową operacją którą możemy wykonać przy pomocy funkcji jest zastosowanie jej do argumentów, Na przykład
 
@@ -164,7 +164,50 @@ koło = id(circle)
 program = rysuj(koło(2))
 ```
 
-:pencil: Narysuj 'gwiazdkę' złozoną z 7 wąskich prostokatów (o wymiarach `(4, 0.2)` lub podobnych)
+:pencil: Narysuj 'gwiazdkę' złozoną z 7 wąskich prostokatów (o wymiarach `(4, 0.2)` lub podobnych).
+
+### Listy
+
+* `[ 1, 2, 3, 4 ]` jest listą liczb,
+* `[ circle(2), rectangle(3,5), blank ]` jest listą obrazów.
+* `[]` jest listą pustą
+
+Funkcja `picture` buduje obraz złozony ze wszystkich elementów listy podanej jako argument
+
+```
+program = drawingOf(allThePictures)
+allThePictures = pictures([
+    solidRectangle(4, 0.4),
+    solidCircle(1.2),
+    circle(2)
+    ])
+```
+
+### Ciągi arytmetyczne
+
+Łatwo domyśleć się, jaką listę oznacza wyrażenie `[1..9]`. Podobnie możemy zapisać ine ciągi arytmetyczne,
+na przykład `[1,3..9]`. Trochę więcej myślenia wymaga `[0,2..9]`.
+
+
+### Wycinanki listowe
+
+```
+program = drawingOf(target)
+target  = pictures([ circle(r) | r <- [1, 2, 3, 4, 5] ])
+```
+
+Wyrażenie `[ circle(r) | r <- [1, 2, 3, 4, 5] ]` nazywamy - nawiązując do aksjomatu wycinania w teorii mnogości - *wycinanką* (list comprehension) - skojarzenie: ![comprehension](https://latex.codecogs.com/gif.latex?%5C%7Bcircle%28r%29%20%5Cmid%20r%5Cin%5C%7B1%2C2%2C3%2C4%2C5%5C%7D%5C%7D).
+Wartość tego wyrażenia jest  taka sama jak `[ circle(1), circle(2), circle(3), circle(4), circle(5) ]`.
+
+:question: jak myślisz, co oznacza wyrażenie `[ circle(r) | r <- [1, 2, 3, 4, 5], even r ]`
+
+Możemy również oprzeć wycinankę na kilku listach źródłowych:
+
+```
+program = drawingOf(grid)
+grid    = pictures([ translated(circle(1/2), x, y)
+                     | x <- [-9 .. 9], y <- [-9 .. 9] ])
+```
 
 # Zastrzeżenia prawne
 
