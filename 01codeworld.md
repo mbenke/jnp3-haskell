@@ -115,7 +115,41 @@ diamond = rotated(square, 45)
 square  = solidRectangle(4, 4)
 ```
 
+## Wyrażenia
 
+Z prawej strony definicji (po znaku `=`)   umieszczamy *wyrażenie*. Użycie definiowanej nazwy jest równoważne użyciu tego wyrażenia.
+Nazywamy to *przejrzystością odwołań* (referential transparency). Wyrażenia mogą być też argumentami funkcji (i obowiązuje tu podobna zasada).
+
+Przykłady wyrażeń:
+
+```
+4
+2+2
+circle(2+2)
+colored(text("Help"), red)
+rectangle(1, 4) & circle(2)
+```
+
+Natomiast `x=1` nie jest wyrażeniem - jest definicją.
+
+## Funkcje
+
+Szczególnym rodzajem wyrażeń są *funkcje*. Podstawową operacją którą możemy wykonać przy pomocy funkcji jest zastosowanie jej do argumentów, Na przykład
+
+* `rectangle` jest funkcją. Dostawszy wysokość i szerokość, produkuje obraz (prostokąt)
+* `light` jest funkcją. Dostawszy kolor, produkuje (podobny, ale jaśniejszy) kolor. 
+* `drawingOf` jest funkcją. Dostawszy  obraz, konstruuje program, który rysuje ten obraz.
+* `id` jest funkcją identycznościową
+
+Skoro funkcje są wyrażeniami to czy moga stać po prawej stronie definicji i być argumentami dla funkcji? Ależ tak:
+
+```
+rysuj = drawingOf
+koło = id(circle)
+program = rysuj(koło(2))
+```
+
+:pencil: Narysuj 'gwiazdkę' złozoną z 7 wąskich prostokatów (o wymiarach `(4, 0.2)` lub podobnych)
 
 # Zastrzeżenia prawne
 
