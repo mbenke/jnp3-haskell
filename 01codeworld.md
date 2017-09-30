@@ -32,9 +32,9 @@ NB to jest kompletny program - wypróbuj go!
 
 ##  Obrazki
 
-Wypróbuj, z róznymi wartościami:
+:pencil: Wypróbuj, z róznymi wartościami:
 
-```
+```haskell
 circle(8)
 circle(0.5)
 solidCircle(5)
@@ -46,15 +46,15 @@ text("W przedszkolu naszym nie jest źle")
 ## Łączenie figur
 
 Kombinację figur możemy stworzyć przy użyciu operatora `&`:
-```
+```haskell
 program = drawingOf(design)
 design  = solidRectangle(4, 0.4)
           & solidCircle(1.2)
           & circle(2)
 ```
-Czsem warto przy tym nazwać części:
+Czasem warto przy tym nazwać części:
 
-```
+```haskell
 program = drawingOf(design)
 design  = slot & middle & outside
 slot    = solidRectangle(4, 0.4)
@@ -64,13 +64,13 @@ outside = circle(2)
 
 ## Kolory
 
-```
+```haskell
 program  = drawingOf(redWheel)
 redWheel = colored(wheel, red)
 wheel    = solidCircle(4)
 ```
 
-```
+```haskell
 program = drawingOf(tree)
 tree    = colored(leaves, green) & colored(trunk, brown)
 leaves  = sector(0, 180, 4)
@@ -79,13 +79,44 @@ trunk   = solidRectangle(1, 4)
 
 Kolory mozna modyfikować przy pomocy funkcji `dark`, `light`, `translucent`. Wypróbuj je i przeczytaj o nich w dokumentacji.
 
-```
+```haskell
 program = drawingOf(overlap)
 overlap = colored(square,  translucent(blue))
         & colored(disk, translucent(green))
 square  = solidRectangle(5, 5)
 disk    = solidCircle(3)
 ```
+
+## Przekształcenia
+
+### Przesunięcia
+
+`translated(obraz, x, y)` daje obraz przesunięty o `x` w prawo i `y` w górę, np:
+
+```haskell
+program = drawingOf(forest)
+forest  = translated(tree, -5, 5)
+        & translated(tree,  0, 0)
+        & translated(tree,  5,-5)
+tree    = colored(leaves, green) & colored(trunk, brown)
+leaves  = sector(0, 180, 4)
+trunk   = solidRectangle(1, 4)
+```
+
+:pencil: Ćwiczenie: narysuj szachownicę (to wymaga pewnego sprytu, za chwilę zobaczymy jak to zrobić sprawniej).
+
+### Obroty
+
+`rotated(obraz, stopni)`
+
+```haskell
+program = drawingOf(diamond)
+diamond = rotated(square, 45)
+square  = solidRectangle(4, 4)
+```
+
+
+
 # Zastrzeżenia prawne
 
 Przykłady i niektóre opisy pochodzą z dokumentacji CodeWorld: https://code.world/doc.html?help/codeworld.md
