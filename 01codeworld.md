@@ -43,6 +43,8 @@ solidRectangle(8,4)
 text("W przedszkolu naszym nie jest źle")
 ```
 
+:exclamation: Zapisuj rozwiazania ćwiczeń w pliku tekstowym - będzie potrzebny później.
+
 ## Łączenie figur
 
 Kombinację figur możemy stworzyć przy użyciu operatora `&`:
@@ -115,6 +117,17 @@ program = drawingOf(diamond)
 diamond = rotated(square, 45)
 square  = solidRectangle(4, 4)
 ```
+
+### Skalowanie
+
+`scaled(obraz, pozi
+```
+program = drawingOf(oval)
+oval    = scaled(base, 2, 0.5)
+base    = solidCircle(4)
+```
+
+:pencil: Narysuj symbol atomu (koło jako jądro i elipsy jako orbity elektroów)
 
 ## Wyrażenia
 
