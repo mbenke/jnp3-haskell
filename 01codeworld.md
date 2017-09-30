@@ -209,6 +209,22 @@ grid    = pictures([ translated(circle(1/2), x, y)
                      | x <- [-9 .. 9], y <- [-9 .. 9] ])
 ```
 
+## Typy
+
+### Typy bazowe
+
+### Typy listowe
+
+### Punkty i krotki
+
+### Typy funkcyjne
+
+## Definiowanie funkcji
+
+## Rekurencja
+
+## Animacje
+
 # Zastrzeżenia prawne
 
 Przykłady i niektóre opisy pochodzą z dokumentacji CodeWorld: https://code.world/doc.html?help/codeworld.md
