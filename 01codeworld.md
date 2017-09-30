@@ -120,7 +120,8 @@ square  = solidRectangle(4, 4)
 
 ### Skalowanie
 
-`scaled(obraz, pozi
+`scaled(obraz, poziomo, pionowo)`
+
 ```
 program = drawingOf(oval)
 oval    = scaled(base, 2, 0.5)
