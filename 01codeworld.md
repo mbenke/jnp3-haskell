@@ -158,11 +158,13 @@ Szczególnym rodzajem wyrażeń są *funkcje*. Podstawową operacją którą mo�
 
 Skoro funkcje są wyrażeniami to czy moga stać po prawej stronie definicji i być argumentami dla funkcji? Ależ tak:
 
-```
+```haskell
 rysuj = drawingOf
 koło = id(circle)
 program = rysuj(koło(2))
 ```
+
+(tak, można używać polskich liter)
 
 :pencil: Narysuj 'gwiazdkę' złozoną z 7 wąskich prostokatów (o wymiarach `(4, 0.2)` lub podobnych).
 
@@ -174,7 +176,7 @@ program = rysuj(koło(2))
 
 Funkcja `picture` buduje obraz złozony ze wszystkich elementów listy podanej jako argument
 
-```
+```haskell
 program = drawingOf(allThePictures)
 allThePictures = pictures([
     solidRectangle(4, 0.4),
@@ -191,7 +193,7 @@ na przykład `[1,3..9]`. Trochę więcej myślenia wymaga `[0,2..9]`.
 
 ### Wycinanki listowe
 
-```
+```haskell
 program = drawingOf(target)
 target  = pictures([ circle(r) | r <- [1, 2, 3, 4, 5] ])
 ```
@@ -203,17 +205,87 @@ Wartość tego wyrażenia jest  taka sama jak `[ circle(1), circle(2), circle(3)
 
 Możemy również oprzeć wycinankę na kilku listach źródłowych:
 
-```
+```haskell
 program = drawingOf(grid)
 grid    = pictures([ translated(circle(1/2), x, y)
                      | x <- [-9 .. 9], y <- [-9 .. 9] ])
 ```
+:pencil: Napisz krótszy program rysujący gwiazdkę przy pomocy wycinanki.
+
+## Punkty, linie, łamane, wielokąty
+
+Dla ułatwienia możemy narysować siatkę współrzędnych:
+
+```haskell
+program = drawingOf(coordinatePlane)
+```
+
+Punkty reprezentowane są jako pary współrzędnych - na przykład `(5,5)`. 
+Łamaną mozemy skonstruowac przy pomocy funkcji `path` z lista punktów jako argumentem.
+
+```haskell
+program = drawingOf(zigzag)
+zigzag  = path([(-2, 0), (-1, 1), (0, -1), (1, 1), (2, 0)])
+```
+
+Łamaną zamkniętą możemy uzyskać przy pomocy `polygon`.
+
+:question: Spróbuj bez uruchamiania powiedzieć, co rysuje ponizszy kod:
+
+```haskell
+program = drawingOf(mystery)
+mystery = polygon(
+    [(-3, -4), (0, 5), (3, -4), (-4, 2), (4, 2), (-3, -4)])
+```
+
+:pencil: Teraz uruchom program. Czy potrafisz narysować to lepiej?
+
+:pencil: Wypróbuj też funkcje `solidPolygon` oraz `thickPolygon`. A co z `thickCircle` i `thickRectangle`?
 
 ## Typy
 
-### Typy bazowe
+Każda wartość i wyrażenie ma swój typ. Typy pojawiają się przede wsztstkim w dwóch sytuacjach:
+* w komunikatach o błędach (spróbuj napisać `program = drawingOf(42)`)
+* mozemy wskazywać typy wyrażeń i definicji 
+
+### Proste typy
+
+* `Program` jest typem zmiennej `program`,
+* `Picture` jest typem obrazów,
+* `Number` jest typem liczb (w dorosłym Haskellu uzywamy trochę dokładniejszych typów, jak `Int` i `Double`),
+* `Color` jest typem kolorów.
+
+Generalnie nazwy typów zaczynają sie z wielkiej litery, zmienych - z małej.
+
+Wskazania typu możemy dokonać przy pomocy `::` na przykład
+
+```haskell
+wheel :: Picture
+wheel = solidCircle(size)
+
+size :: Number
+size = 4
+```
+W większości wypadków deklaracje typów nie są konieczne - kompilator potrafi sam wywnioskować typy. 
+Deklaracje mają jednak co najmniej dwie zalety:
+* Są cenną dokumentacją kodu (lepszą niz komentarze - bo sprawdzaną przez kompilator).
+* Czasem pozwalają na dokładniejsze komunikaty o błędach.
 
 ### Typy listowe
+
+Jeśli ktoś spodziewał się, że typem list jest `List`, to jest w błędzie. Wszystkie elementy listy muszą być tego samego typu.
+Typ listy  o elementach typu `T` oznaczamy przez `[T]`.
+
+:question: Jakiego typu jest `[]` ?
+
+```
+program = drawingOf(circles)
+circles = pictures[ circle(r) | r <- sizes ]
+
+sizes :: [Number]
+sizes = [ 1, 2, 3, 4 ]
+```
+:question: Jakiego typu jest zmienna `circles` powyżej?
 
 ### Punkty i krotki
 
@@ -224,6 +296,16 @@ grid    = pictures([ translated(circle(1/2), x, y)
 ## Rekurencja
 
 ## Animacje
+
+# GitHub
+
+https://github.com
+
+Na tych zajeciach będziemy wykorzystywać GitHub. Jesli jeszcze nia masz konta - załóż.
+
+Materiały są dostepne w repozytorium `https://github.com/mbenke/jnp3-haskell/` (dostęp mozliwy bez zakładania konta, ale konto przyda  się za chwilę).
+
+W notatkach są błedy, takie jak literówki (niektóre umyślne). Wykonaj [fork](https://help.github.com/articles/fork-a-repo/) tego repo na swoim koncie, popraw jakiś błąd i zgłoś [pull request] https://help.github.com/articles/creating-a-pull-request-from-a-fork/
 
 # Zastrzeżenia prawne
 
