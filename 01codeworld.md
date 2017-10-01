@@ -3,7 +3,7 @@
 *Explain Like I'm 5* - czyli wyjasnij mi to jak pięciolatkowi [1].
 
 Haskell ma opinię języka trudnego i skomplikowanego, dlatego zaczniemy od kursu, nawet jeśli nie dla pięciolatków, 
-to dla uczniów szkoły podstawowej.
+to dla uczniów szkoły podstawowej (testowane z powodzeniem na 9-latkach).
 
 [1] https://www.reddit.com/r/explainlikeimfive/
 
@@ -422,7 +422,28 @@ stem = path([(0, -10), (0, 10)])
 ```
 
 :pencil: Narysuj inne fraktale - dywan Sierpińskiego, płatek Kocha, ...
+
 ## Animacje
+
+Animacja jest funkcją typu `Number -> Picture` określającą jaki obraz wyświetlić w danej chwili czasu.
+Czas jest mierzony w sekundach od uruchomienia programu.
+
+```haskell
+program = animationOf(propellor)
+propellor :: Number -> Picture
+propellor(t) = rotated(solidRectangle(10, 1), 60 * t)
+```
+
+Przykład animacji używającej translacji, rotacji i zakresu - zależnych od czasu:
+
+```haskell
+program   = animationOf(wheels)
+wheels(t) = pictures([
+    translated(rotated(tire, -60 * t), t - 10, y)
+    | y <- [0, 2 .. t]])
+tire      = circle(1) & solidRectangle(0.1, 2)
+```
+
 
 # GitHub
 
@@ -432,7 +453,7 @@ Na tych zajeciach będziemy wykorzystywać GitHub. Jesli jeszcze nia masz konta 
 
 Materiały są dostepne w repozytorium `https://github.com/mbenke/jnp3-haskell/` (dostęp mozliwy bez zakładania konta, ale konto przyda  się za chwilę).
 
-W notatkach są błedy, takie jak literówki (niektóre umyślne). Wykonaj [fork](https://help.github.com/articles/fork-a-repo/) tego repo na swoim koncie, popraw jakiś błąd i zgłoś [pull request] https://help.github.com/articles/creating-a-pull-request-from-a-fork/
+W notatkach są błedy, takie jak literówki (niektóre umyślne). Wykonaj [fork](https://help.github.com/articles/fork-a-repo/) tego repo na swoim koncie, popraw jakiś błąd i zgłoś [pull request](https://help.github.com/articles/creating-a-pull-request-from-a-fork/)
 
 # Zastrzeżenia prawne
 
