@@ -289,12 +289,139 @@ sizes = [ 1, 2, 3, 4 ]
 
 ### Punkty i krotki
 
+A co z punktami? Mozna powiedzieć, że są typu `Point`:
+
+```haskell
+program = drawingOf(path[start, end])
+
+start :: Point
+start = (0, 0)
+
+end :: Point
+end = (2, -4)
+```
+
+Wspomnieliśmy jednak, że punkty są parami liczb. Dokładniej zatem, typem punktu jest `(Number,  Number)`. Typ `Point` jest synonimem tego typu i mozna go używać zamiennie.
+
+Krotki mogą mieć różne rozmiary (w tym 0, ale nie 1) i różne typy elementów:
+
+```
+(4, red) :: (Number, Color)
+(3, "train", 10, blue) :: (Number, Text, Number, Color)
+() :: ()
+```
+Oczywiście elementem krotki może też być inna krotka, funkcja, program...
+
 ### Typy funkcyjne
+
+Funkcje oczywiście też mają typy, postaci `argument -> wynik`, na przykład
+
+```
+circle :: Number -> Picture
+rectangle :: (Number, Number) -> Picture
+translated :: (Picture, Number, Number) -> Picture
+drawingOf :: Picture -> Program
+```
 
 ## Definiowanie funkcji
 
-## Rekurencja
+Do tej pory definiowaliśmy obiekty prostych typów. Mozemy oczywiście definiować też wartości typów funkcyjnych.
+Czasem naturalne wydaje się sparametryzowanie definicji
 
+```
+program = drawingOf(scene)
+scene   = house(red)
+
+house :: Color -> Picture
+house(roofColor) = colored(roof, roofColor) & solidRectangle(6, 7)
+
+roof :: Picture
+roof = translated(thickArc(45, 135, 6, 1), 0, -2)
+```
+
+Parametr funkcji może być dowolnego typu, może to być np. obraz `
+
+```haskell
+program = drawingOf(ringOf(rectangle(1,1)))
+ringOf(p) = pictures([
+    rotated(translated(p, 5, 0), a) | a <- [45, 90 .. 360] ])
+```
+
+Parametrem albo wynikiem funkcji może też być funkcja albo program, ale to nie dla dzieci :smiling_imp:
+
+### Wyrażenia i definicje warunkowe
+
+`if...then...else`
+
+```haskell
+program  = drawingOf(thing(1) & thing(2))
+thing(n) = if n > 1 then rectangle(n, n) else circle(n)
+```
+
+Możemy też powiedzieć, że definicja obowiązuje tylko "pod warunkiem":
+
+```haskell
+program       = drawingOf(thing(1) & thing(2) & thing(3))
+thing(n)
+  | n > 2     = rectangle(n, 2)
+  | n > 1     = rectangle(n, n)
+  | otherwise = circle(n)
+```
+
+### Dopasowanie
+Czasem chcemy zdefiniować osobne zachowania dla listy pustej, jednoelementowej i innych. Na przykład:
+
+```haskell
+f :: [Number] -> Number
+f([]   ) = 42
+f([a]  ) = a + 1
+f(other) = sum(other)
+```
+
+Uwaga, pułapka:
+
+```haskell
+f(pi   ) = 1
+f(other) = 2
+```
+
+:question: jaka jest wartość `f(0)`?
+
+### Rekurencja
+
+Klasycznym przykładem definicji rekurencyjnej jest silnia:
+
+```haskell
+factorial :: Number -> Number
+factorial(0) = 1
+factorial(n) = n * factorial(n - 1)
+```
+
+Suma listy - przykład rekurencyjnej funkcji na listach:
+
+```
+program = drawingOf(circle(r))
+r = suma([1,2,3])
+suma([]) = 0
+suma(x:xs) = x + suma(xs)
+```
+
+W grafice klasycznym przykładem rekurencji są fraktale:
+
+```
+program = drawingOf(fractal(10))
+
+fractal :: Number -> Picture
+fractal(0) = stem
+fractal(n) = stem
+           & translated(part, 0,  5)
+           & translated(part, 0, -5)
+  where part = rotated(scaled(fractal(n-1), 2/3, 2/3), 90)
+
+stem = path([(0, -10), (0, 10)])
+```
+
+:pencil: Narysuj inne fraktale - dywan Sierpińskiego, płatek Kocha, ...
 ## Animacje
 
 # GitHub
