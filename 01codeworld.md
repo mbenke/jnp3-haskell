@@ -444,6 +444,9 @@ wheels(t) = pictures([
 tire      = circle(1) & solidRectangle(0.1, 2)
 ```
 
+:pencil: Napisz swoją animację - wahadło, odbijająca się piłka,...
+
+:pencil: Napisz animację pokazującą w kilkusekundowych odstepach Twoje rozwiązania poprzendich ćwiczeń (oprócz animacji).
 
 # GitHub
 
