@@ -43,7 +43,7 @@ solidRectangle(8,4)
 text("W przedszkolu naszym nie jest źle")
 ```
 
-:exclamation: Zapisuj rozwiazania ćwiczeń w pliku tekstowym - będzie potrzebny później.
+:exclamation: Zapisuj rozwiązania ćwiczeń w pliku tekstowym - będzie potrzebny później.
 
 ## Łączenie figur
 
@@ -79,7 +79,7 @@ leaves  = sector(0, 180, 4)
 trunk   = solidRectangle(1, 4)
 ```
 
-Kolory mozna modyfikować przy pomocy funkcji `dark`, `light`, `translucent`. Wypróbuj je i przeczytaj o nich w dokumentacji.
+Kolory można modyfikować przy pomocy funkcji `dark`, `light`, `translucent`. Wypróbuj je i przeczytaj o nich w dokumentacji.
 
 ```haskell
 program = drawingOf(overlap)
@@ -132,7 +132,7 @@ base    = solidCircle(4)
 
 ## Wyrażenia
 
-Z prawej strony definicji (po znaku `=`)   umieszczamy *wyrażenie*. Użycie definiowanej nazwy jest równoważne użyciu tego wyrażenia.
+Z prawej strony definicji (po znaku `=`) umieszczamy *wyrażenie*. Użycie definiowanej nazwy jest równoważne użyciu tego wyrażenia.
 Nazywamy to *przejrzystością odwołań* (referential transparency). Wyrażenia mogą być też argumentami funkcji (i obowiązuje tu podobna zasada).
 
 Przykłady wyrażeń:
@@ -289,7 +289,7 @@ sizes = [ 1, 2, 3, 4 ]
 
 ### Punkty i krotki
 
-A co z punktami? Mozna powiedzieć, że są typu `Point`:
+A co z punktami? Można powiedzieć, że są typu `Point`:
 
 ```haskell
 program = drawingOf(path[start, end])
@@ -301,7 +301,7 @@ end :: Point
 end = (2, -4)
 ```
 
-Wspomnieliśmy jednak, że punkty są parami liczb. Dokładniej zatem, typem punktu jest `(Number,  Number)`. Typ `Point` jest synonimem tego typu i mozna go używać zamiennie.
+Wspomnieliśmy jednak, że punkty są parami liczb. Dokładniej zatem, typem punktu jest `(Number,  Number)`. Typ `Point` jest synonimem tego typu i można go używać zamiennie.
 
 Krotki mogą mieć różne rozmiary (w tym 0, ale nie 1) i różne typy elementów:
 
