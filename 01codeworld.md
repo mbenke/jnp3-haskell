@@ -446,17 +446,17 @@ tire      = circle(1) & solidRectangle(0.1, 2)
 
 :pencil: Napisz swoją animację - wahadło, odbijająca się piłka,...
 
-:pencil: Napisz animację pokazującą w kilkusekundowych odstepach Twoje rozwiązania poprzendich ćwiczeń (oprócz animacji).
+:pencil: Napisz animację pokazującą w kilkusekundowych odstępach Twoje rozwiązania poprzednich ćwiczeń (oprócz animacji).
 
 # GitHub
 
 https://github.com
 
-Na tych zajeciach będziemy wykorzystywać GitHub. Jesli jeszcze nia masz konta - załóż.
+Na tych zajęciach będziemy wykorzystywać GitHub. Jeśli jeszcze nie masz konta - załóż.
 
-Materiały są dostepne w repozytorium `https://github.com/mbenke/jnp3-haskell/` (dostęp mozliwy bez zakładania konta, ale konto przyda  się za chwilę).
+Materiały są dostepne w repozytorium `https://github.com/mbenke/jnp3-haskell/` (dostęp możliwy bez zakładania konta, ale konto przyda się za chwilę).
 
-W notatkach są błedy, takie jak literówki (niektóre umyślne). Wykonaj [fork](https://help.github.com/articles/fork-a-repo/) tego repo na swoim koncie, popraw jakiś błąd i zgłoś [pull request](https://help.github.com/articles/creating-a-pull-request-from-a-fork/)
+W notatkach są błędy, takie jak literówki (niektóre umyślne). Wykonaj [fork](https://help.github.com/articles/fork-a-repo/) tego repo na swoim koncie, popraw jakiś błąd i zgłoś [pull request](https://help.github.com/articles/creating-a-pull-request-from-a-fork/)
 
 # Zastrzeżenia prawne
 
