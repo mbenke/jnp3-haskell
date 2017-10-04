@@ -246,7 +246,7 @@ mystery = polygon(
 
 Każda wartość i wyrażenie ma swój typ. Typy pojawiają się przede wsztstkim w dwóch sytuacjach:
 * w komunikatach o błędach (spróbuj napisać `program = drawingOf(42)`)
-* mozemy wskazywać typy wyrażeń i definicji 
+* możemy wskazywać typy wyrażeń i definicji 
 
 ### Proste typy
 
