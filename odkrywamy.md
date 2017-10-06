@@ -14,6 +14,17 @@ Haskell zasadniczo kompilowany, ale też interpreter: **ghci**
     Prelude> :type words
     words :: String -> [String]
 
+:pencil: Wypróbuj powyższe wyrażenia w ghci. Wypróbowuj też kolejne.
+
+Na własnym laptopie najlepiej skorzystać z narzędzia `stack`: http://haskellstack.org
+
+```
+stack setup
+stack ghci
+```
+
+Na **students** też mozna korzystać ze stack (jest zainstalowany), ale zwykle boli quota.
+
 ### Listy
 
 -   `[]` — lista pusta
@@ -453,3 +464,44 @@ Konstrukcja taka nazywa się *przekrojem* (section) operatora.
 
 Przekrojów używamy przeważnie, gdy chcemy taką funkcję przekazać do
 innej funkcji.
+
+
+## Zadania
+
+
+1. Napisz własne odpowiedniki standardowych funkcji head, tail, ++, take, drop (daj im własne nazwy)
+
+```
+Prelude> head [1,2,3]
+1
+Prelude> tail [1,2,3]
+[2,3]
+Prelude> [1,2] ++ [3,4]
+[1,2,3,4]
+Prelude> take 5 [1..10]
+[1,2,3,4,5]
+Prelude> drop 5 [1..10]
+[6,7,8,9,10]
+```
+
+2. Napisz funkcję `inits`, ktora dla danej listy da liste wszystkich jej odcinkow poczatkowych, np.
+
+    ~~~~
+    inits [1,2] == [[],[1],[1,2]]
+    ~~~~
+
+3. Napisz funkcje `partitions`, ktora dla danej listy `xs` da liste wszystkich par `(ys,zs)` takich, że  
+
+    ~~~~
+    xs == ys ++ zs
+    ~~~~
+
+4. Napisz funkcję `permutations`, ktora dla danej listy da listę wszystkich jej permutacji (dla unikniecia niejasności mozemy założyć, ze wszystkie elementy listy wejściowej sa różne)
+
+5. Napisz funkcję `nub`, ktora usunie z listy wszystkie duplikaty, np
+
+    ~~~~
+    nub [1,2,1,3,1,2,1,4] == [1,2,3,4]
+    ~~~~
+
+    Możliwe jest wiele rozwiazan, ale przyjmijmy, że funkcja `nub` pozostawia pierwsze wystąpienie danej wartości, a usuwa powtorzenia.
