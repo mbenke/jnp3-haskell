@@ -1,6 +1,6 @@
 # Plan kursu JNP3/Haskell
 
-*Uwaga:* plan jest wstępny imoże się jeszcze zmieniać
+*Uwaga:* plan jest wstępny i może się jeszcze zmieniać
 
 1. ELI5 czyli Haskell w podstawówce: https://code.world/ 
 2. Odkrywamy Haskell; Zadanie 1
