@@ -511,22 +511,17 @@ Prelude> drop 5 [1..10]
 
 :pencil: 2. Napisz funkcję `inits`, ktora dla danej listy da liste wszystkich jej odcinkow poczatkowych, np.
 
-    ~~~~
     inits [1,2] == [[],[1],[1,2]]
-    ~~~~
+   
 
 :pencil: 3. Napisz funkcje `partitions`, ktora dla danej listy `xs` da liste wszystkich par `(ys,zs)` takich, że  
 
-    ~~~~
     xs == ys ++ zs
-    ~~~~
-
+    
 :pencil: 4. Napisz funkcję `permutations`, ktora dla danej listy da listę wszystkich jej permutacji (dla unikniecia niejasności mozemy założyć, ze wszystkie elementy listy wejściowej sa różne)
 
 :pencil: 5. Napisz funkcję `nub`, ktora usunie z listy wszystkie duplikaty, np
 
-    ~~~~
     nub [1,2,1,3,1,2,1,4] == [1,2,3,4]
-    ~~~~
 
-    Możliwe jest wiele rozwiazan, ale przyjmijmy, że funkcja `nub` pozostawia pierwsze wystąpienie danej wartości, a usuwa powtorzenia.
+Możliwe jest wiele rozwiazan, ale przyjmijmy, że funkcja `nub` pozostawia pierwsze wystąpienie danej wartości, a usuwa powtorzenia.
