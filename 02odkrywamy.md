@@ -114,6 +114,8 @@ teraz
     *Main> area 2
     12.566370614359172
 
+:exclamation: Krótkie definicje możemy pisać w ghci w postaci `let triple x = 3 * x` (a w GHCi 8 również bez `let`), ale jest tu wiele pułapek także lepiej tego nie używać dopóki nie wie się dobrze co się robi.
+
 ### Program obowiązkowy: silnia
 
     fact1 n = if(n <= 0) then 
