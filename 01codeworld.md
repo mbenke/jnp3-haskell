@@ -11,8 +11,8 @@ to dla uczniów szkoły podstawowej (testowane z powodzeniem na 9-latkach).
 
 https://code.world/
 
-CodeWorld jest edukacyjnym srodowiskiem programistycznym dostępnym w przeglądarce internetowej.
-Przy użyciu prostego modelu matematycznego dla figur i przekstałceń, pozwala tworzyć rysunki, animacje, a nawet gry.
+CodeWorld jest edukacyjnym środowiskiem programistycznym dostępnym w przeglądarce internetowej.
+Przy użyciu prostego modelu matematycznego dla figur i przekształceń, pozwala tworzyć rysunki, animacje, a nawet gry.
 
 # Rysowanie
 
@@ -32,7 +32,7 @@ NB to jest kompletny program - wypróbuj go!
 
 ##  Obrazki
 
-:pencil: Wypróbuj, z róznymi wartościami:
+:pencil: Wypróbuj, z różnymi wartościami:
 
 ```haskell
 circle(8)
@@ -221,7 +221,7 @@ program = drawingOf(coordinatePlane)
 ```
 
 Punkty reprezentowane są jako pary współrzędnych - na przykład `(5,5)`. 
-Łamaną mozemy skonstruowac przy pomocy funkcji `path` z lista punktów jako argumentem.
+Łamaną mozemy skonstruować przy pomocy funkcji `path` z lista punktów jako argumentem.
 
 ```haskell
 program = drawingOf(zigzag)
