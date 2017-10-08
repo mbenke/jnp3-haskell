@@ -25,6 +25,22 @@ stack ghci
 
 Na **students** też mozna korzystać ze stack (jest zainstalowany), ale zwykle boli quota.
 
+Na Macu warto uzywać Haskell For Mac: http://haskellformac.com/
+
+### Polecenia GHCi
+
+(wystarczy jednoznaczny prefiks, często pierwsza litera, np `:h`, `:l`; sam `:` powatarza ostatnie polecenie)
+
+```
+:help
+:load <file>
+:reload
+:cd <dir>
+:info name
+:type expr
+:quit
+```
+
 ### Listy
 
 -   `[]` — lista pusta
