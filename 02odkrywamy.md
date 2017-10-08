@@ -1,6 +1,13 @@
 # Odkrywamy Haskell
 
-Haskell zasadniczo kompilowany, ale też interpreter: **ghci**
+## Literatura
+
+Christopher Allen, Julie Moronuki, *Haskell Programming from first Principles*, http://haskellbook.com/
+
+## Odkrywamy
+
+### GHCi
+Haskell zasadniczo kompilowany (standardowy kompilator nazywa się GHC - *Glasgow Haskell Compiler* albo *Glorious Haskell Compiler*), ale też interpreter: **ghci**
 
     $ ghci
     GHCi, version 7.6.2: http://www.haskell.org/ghc/  
