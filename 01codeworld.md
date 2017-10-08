@@ -221,7 +221,7 @@ program = drawingOf(coordinatePlane)
 ```
 
 Punkty reprezentowane są jako pary współrzędnych - na przykład `(5,5)`. 
-Łamaną mozemy skonstruowac przy pomocy funkcji `path` z lista punktów jako argumentem.
+Łamaną możemy skonstruować przy pomocy funkcji `path` z listą punktów jako argumentem.
 
 ```haskell
 program = drawingOf(zigzag)
