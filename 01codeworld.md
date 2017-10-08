@@ -12,7 +12,7 @@ to dla uczniów szkoły podstawowej (testowane z powodzeniem na 9-latkach).
 https://code.world/
 
 CodeWorld jest edukacyjnym srodowiskiem programistycznym dostępnym w przeglądarce internetowej.
-Przy uzyciu prostego modelu matematycznego dla figur i przekstałceń, pozwala tworzyć rysunki, animacje, a nawet gry.
+Przy użyciu prostego modelu matematycznego dla figur i przekstałceń, pozwala tworzyć rysunki, animacje, a nawet gry.
 
 # Rysowanie
 
