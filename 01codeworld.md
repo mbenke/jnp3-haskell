@@ -1,6 +1,6 @@
 # ELI5 
 
-*Explain Like I'm 5* - czyli wyjasnij mi to jak pięciolatkowi [1].
+*Explain Like I'm 5* - czyli wyjaśnij mi to jak pięciolatkowi [1].
 
 Haskell ma opinię języka trudnego i skomplikowanego, dlatego zaczniemy od kursu, nawet jeśli nie dla pięciolatków, 
 to dla uczniów szkoły podstawowej (testowane z powodzeniem na 9-latkach).
@@ -11,8 +11,8 @@ to dla uczniów szkoły podstawowej (testowane z powodzeniem na 9-latkach).
 
 https://code.world/
 
-CodeWorld jest edukacyjnym srodowiskiem programistycznym dostępnym w przeglądarce internetowej.
-Przy użyciu prostego modelu matematycznego dla figur i przekstałceń, pozwala tworzyć rysunki, animacje, a nawet gry.
+CodeWorld jest edukacyjnym środowiskiem programistycznym dostępnym w przeglądarce internetowej.
+Przy użyciu prostego modelu matematycznego dla figur i przekształceń, pozwala tworzyć rysunki, animacje, a nawet gry.
 
 # Rysowanie
 
@@ -454,7 +454,7 @@ https://github.com
 
 Na tych zajęciach będziemy wykorzystywać GitHub. Jeśli jeszcze nie masz konta - załóż.
 
-Materiały są dostepne w repozytorium `https://github.com/mbenke/jnp3-haskell/` (dostęp możliwy bez zakładania konta, ale konto przyda się za chwilę).
+Materiały są dostępne w repozytorium `https://github.com/mbenke/jnp3-haskell/` (dostęp możliwy bez zakładania konta, ale konto przyda się za chwilę).
 
 W notatkach są błędy, takie jak literówki (niektóre umyślne). Wykonaj [fork](https://help.github.com/articles/fork-a-repo/) tego repo na swoim koncie, popraw jakiś błąd i zgłoś [pull request](https://help.github.com/articles/creating-a-pull-request-from-a-fork/)
 
