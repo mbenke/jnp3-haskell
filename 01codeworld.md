@@ -325,7 +325,7 @@ drawingOf :: Picture -> Program
 
 ## Definiowanie funkcji
 
-Do tej pory definiowaliśmy obiekty prostych typów. Mozemy oczywiście definiować też wartości typów funkcyjnych.
+Do tej pory definiowaliśmy obiekty prostych typów. Możemy oczywiście definiować też wartości typów funkcyjnych.
 Czasem naturalne wydaje się sparametryzowanie definicji
 
 ```
