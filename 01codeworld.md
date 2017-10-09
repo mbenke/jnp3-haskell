@@ -32,7 +32,7 @@ NB to jest kompletny program - wypróbuj go!
 
 ##  Obrazki
 
-:pencil: Wypróbuj, z róznymi wartościami:
+:pencil: Wypróbuj, z różnymi wartościami:
 
 ```haskell
 circle(8)
@@ -221,7 +221,7 @@ program = drawingOf(coordinatePlane)
 ```
 
 Punkty reprezentowane są jako pary współrzędnych - na przykład `(5,5)`. 
-Łamaną mozemy skonstruowac przy pomocy funkcji `path` z lista punktów jako argumentem.
+Łamaną mozemy skonstruować przy pomocy funkcji `path` z lista punktów jako argumentem.
 
 ```haskell
 program = drawingOf(zigzag)
