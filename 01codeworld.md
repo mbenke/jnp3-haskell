@@ -1,6 +1,6 @@
 # ELI5 
 
-*Explain Like I'm 5* - czyli wyjasnij mi to jak pięciolatkowi [1].
+*Explain Like I'm 5* - czyli wyjaśnij mi to jak pięciolatkowi [1].
 
 Haskell ma opinię języka trudnego i skomplikowanego, dlatego zaczniemy od kursu, nawet jeśli nie dla pięciolatków, 
 to dla uczniów szkoły podstawowej (testowane z powodzeniem na 9-latkach).
@@ -11,8 +11,8 @@ to dla uczniów szkoły podstawowej (testowane z powodzeniem na 9-latkach).
 
 https://code.world/
 
-CodeWorld jest edukacyjnym srodowiskiem programistycznym dostępnym w przeglądarce internetowej.
-Przy uzyciu prostego modelu matematycznego dla figur i przekstałceń, pozwala tworzyć rysunki, animacje, a nawet gry.
+CodeWorld jest edukacyjnym środowiskiem programistycznym dostępnym w przeglądarce internetowej.
+Przy użyciu prostego modelu matematycznego dla figur i przekształceń, pozwala tworzyć rysunki, animacje, a nawet gry.
 
 # Rysowanie
 
@@ -79,7 +79,7 @@ leaves  = sector(0, 180, 4)
 trunk   = solidRectangle(1, 4)
 ```
 
-Kolory mozna modyfikować przy pomocy funkcji `dark`, `light`, `translucent`. Wypróbuj je i przeczytaj o nich w dokumentacji.
+Kolory można modyfikować przy pomocy funkcji `dark`, `light`, `translucent`. Wypróbuj je i przeczytaj o nich w dokumentacji.
 
 ```haskell
 program = drawingOf(overlap)
@@ -132,7 +132,7 @@ base    = solidCircle(4)
 
 ## Wyrażenia
 
-Z prawej strony definicji (po znaku `=`)   umieszczamy *wyrażenie*. Użycie definiowanej nazwy jest równoważne użyciu tego wyrażenia.
+Z prawej strony definicji (po znaku `=`) umieszczamy *wyrażenie*. Użycie definiowanej nazwy jest równoważne użyciu tego wyrażenia.
 Nazywamy to *przejrzystością odwołań* (referential transparency). Wyrażenia mogą być też argumentami funkcji (i obowiązuje tu podobna zasada).
 
 Przykłady wyrażeń:
@@ -223,6 +223,7 @@ program = drawingOf(coordinatePlane)
 Punkty reprezentowane są jako pary współrzędnych ‒ na przykład `(5,5)`. 
 Łamaną mozemy skonstruowac przy pomocy funkcji `path` z lista punktów jako argumentem.
 
+
 ```haskell
 program = drawingOf(zigzag)
 zigzag  = path([(-2, 0), (-1, 1), (0, -1), (1, 1), (2, 0)])
@@ -246,7 +247,7 @@ mystery = polygon(
 
 Każda wartość i wyrażenie ma swój typ. Typy pojawiają się przede wsztstkim w dwóch sytuacjach:
 * w komunikatach o błędach (spróbuj napisać `program = drawingOf(42)`)
-* mozemy wskazywać typy wyrażeń i definicji 
+* możemy wskazywać typy wyrażeń i definicji 
 
 ### Proste typy
 
@@ -289,7 +290,7 @@ sizes = [ 1, 2, 3, 4 ]
 
 ### Punkty i krotki
 
-A co z punktami? Mozna powiedzieć, że są typu `Point`:
+A co z punktami? Można powiedzieć, że są typu `Point`:
 
 ```haskell
 program = drawingOf(path[start, end])
@@ -301,7 +302,7 @@ end :: Point
 end = (2, -4)
 ```
 
-Wspomnieliśmy jednak, że punkty są parami liczb. Dokładniej zatem, typem punktu jest `(Number,  Number)`. Typ `Point` jest synonimem tego typu i mozna go używać zamiennie.
+Wspomnieliśmy jednak, że punkty są parami liczb. Dokładniej zatem, typem punktu jest `(Number,  Number)`. Typ `Point` jest synonimem tego typu i można go używać zamiennie.
 
 Krotki mogą mieć różne rozmiary (w tym 0, ale nie 1) i różne typy elementów:
 
@@ -325,7 +326,7 @@ drawingOf :: Picture -> Program
 
 ## Definiowanie funkcji
 
-Do tej pory definiowaliśmy obiekty prostych typów. Mozemy oczywiście definiować też wartości typów funkcyjnych.
+Do tej pory definiowaliśmy obiekty prostych typów. Możemy oczywiście definiować też wartości typów funkcyjnych.
 Czasem naturalne wydaje się sparametryzowanie definicji
 
 ```
@@ -455,6 +456,7 @@ https://github.com
 Na tych zajęciach będziemy wykorzystywać GitHub. Jesli jeszcze nia masz konta ‒ załóż.
 
 Materiały są dostepne w repozytorium `https://github.com/mbenke/jnp3-haskell/` (dostęp możliwy bez zakładania konta, ale konto przyda się za chwilę).
+
 
 W notatkach są błędy, takie jak literówki (niektóre umyślne). Wykonaj [fork](https://help.github.com/articles/fork-a-repo/) tego repo na swoim koncie, popraw jakiś błąd i zgłoś [pull request](https://help.github.com/articles/creating-a-pull-request-from-a-fork/)
 
