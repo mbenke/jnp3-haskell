@@ -187,7 +187,7 @@ allThePictures = pictures([
 
 ### Ciągi arytmetyczne
 
-Łatwo domyśleć się, jaką listę oznacza wyrażenie `[1..9]`. Podobnie możemy zapisać ine ciągi arytmetyczne,
+Łatwo domyśleć się, jaką listę oznacza wyrażenie `[1..9]`. Podobnie możemy zapisać inne ciągi arytmetyczne,
 na przykład `[1,3..9]`. Trochę więcej myślenia wymaga `[0,2..9]`.
 
 
