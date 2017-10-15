@@ -32,7 +32,7 @@ NB to jest kompletny program - wypróbuj go!
 
 ##  Obrazki
 
-:pencil: Wypróbuj, z róznymi wartościami:
+:pencil: Wypróbuj, z różnymi wartościami:
 
 ```haskell
 circle(8)
