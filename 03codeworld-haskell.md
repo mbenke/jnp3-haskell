@@ -8,7 +8,7 @@ Dokumentacja modułu CodeWorld: https://code.world/doc-haskell/CodeWorld.html
 import CodeWorld
 main :: Program
 main = program       -- dorosli używają main jako głównej funkcji
-type Program = IO () -- program wykonuje IO ui nie daje wartosci 
+type Program = IO () -- program wykonuje IO i nie daje wartosci 
 
 program :: Program
 program = drawingOf design
@@ -29,7 +29,7 @@ Line 10, Column 1: warning: [-Wmissing-signatures]
 
 ## Argumenty funkcji i nawiasy
 
-Jak widać na przykład w definicji `design = circle 2` nawiasy wokół argumentu nie sdą potrzebne (chyba, ze jest on wyrażeniem złożonym).
+Jak widać na przykład w definicji `design = circle 2` nawiasy wokół argumentu nie są potrzebne (chyba, ze jest on wyrażeniem złożonym).
 Nawiasy są potrzebne wokół krotek (są cześcią ich składni), na przykład
 
 ```haskell
@@ -37,7 +37,8 @@ center :: Point
 center = (0,0)
 ```
 
-Jesli funkcja potrzebuje wielu argumentów, mo żemy je przekazać jako krotkę. Ale idiomatyczny w Haskellu jest inny sposób - przekazywanie argumentów "jeden po drugim", np
+Jesli funkcja potrzebuje wielu argumentów, możemy je przekazać jako krotkę.
+Ale idiomatyczny w Haskellu jest inny sposób - przekazywanie argumentów "jeden po drugim", np
 
 ```haskell
 design :: Picture
