@@ -116,3 +116,12 @@ maze x y
  
  Zauważmy, ze teraz również sygnatury typów stają się bardziej czytelne i pomocne.
  
+## Bool
+
+Z jednym wyliczeniowym typem danych juz sie zetknęliśmy: `Bool`. Nie jest on "magiczny", ale zdefiniowany jako
+
+```haskell
+data Bool = False | True
+```
+
+Podobnie operatory takie jak `(&&)` nie są wbudowane, ale każdy mógłby je zdefiniować (spróbuj!).
