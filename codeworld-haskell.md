@@ -79,13 +79,13 @@ for ( int i = 0; i < lst.length; i++ ) {
 }
 ```
 
-W Haskellu napiszemy po prostu
+W Haskellu pracujemy raczej na całych strukturach danych i napiszemy po prostu
 
 ```haskell
 sum (map (3*) lst)
 ```
 
-W nowszych bibliotekach do C++ czy Javy znajedziemy podobne mechanizmy, ale wywodzą się one cz programowania funkcyjnego.
+W nowszych bibliotekach do C++ czy Javy znajedziemy podobne mechanizmy, ale wywodzą się one z programowania funkcyjnego.
 
 ## Animacje i typy numeryczne
 
@@ -138,7 +138,7 @@ Line 18, Column 5: warning: [-Wtype-defaults]
             | otherwise = trafficLight False
 ```
 
-Jesli mu się dokładniej przyjrzymy, zauważymy jednak, ze precyzyjnie wskazuje ono źródło problemu:
+Jeśli mu się dokładniej przyjrzymy, zauważymy jednak, ze precyzyjnie wskazuje ono źródło problemu:
 
 ```
 ...arising from the literal ‘2’ at Line 18, Column 23
@@ -151,6 +151,7 @@ trafficController t
   | round (t/3) `mod` (2::Integer) == 0 = trafficLight True
   | otherwise                = trafficLight False
 ```
+:pencil: Dodaj do animacji sygnalizatora krótką fazę żółtą.
 
 Trzy typy numeryczne, które musimy w tym momencie znać to `Int`, `Integer` oraz `Double`:
 
