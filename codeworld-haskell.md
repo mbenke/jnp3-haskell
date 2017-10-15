@@ -56,3 +56,31 @@ myRectangle = thickRectangle 0.2
 ```
 
 `myRectangle` jest funkcja oczekującą wymiarów i konstruującą prostokąt o grubości linii `0.2`.
+
+## Programowanie holistyczne
+
+Ralf Hinze:
+
+> “Functional languages excel at wholemeal programming, a term coined by Geraint Jones.
+> Wholemeal programming means to think big: work with an entire list, rather than a sequence of elements; 
+> develop a solution space, rather than an individual solution; imagine a graph, rather than a single path. 
+> The wholemeal approach often offers new insights or provides new perspectives on a given problem.
+> It is nicely complemented by the idea of projective programming: first solve a more general problem, 
+> then extract the interesting bits and pieces by transforming the general program into more specialised ones."
+
+W językach typu Java/C często skupiamy się na pojedynczych indeksach:
+
+```c
+int acc = 0;
+for ( int i = 0; i < lst.length; i++ ) {
+  acc = acc + 3 * lst[i];
+}
+```
+
+W Haskellu napiszemy po prostu
+
+```haskell
+sum (map (3*) lst)
+```
+
+W nowszych bibliotekach do C++ czy Javy znajedziemy podobne mechanizmy, ale wywodzą się one cz programowania funkcyjnego.
