@@ -80,3 +80,39 @@ drawCol :: Integer -> (Integer -> Picture)
 
 Czyli w istocie jest to funkcja jednoargumentowa o typie wyniku pasującym do typu argumentu `draw21times` (strzałka wiąze w prawo, więc nawiasy są tylko dla ilustracji).  Mechanizm zastosowania funkcji do niepełnej liczby argumentów nazywamy *cześciową aplikacją*  i jest to również ważny element budowania abstrakcji w programowaniu funkcyjnym (często w połacznieu z funkcjami wyższego rzędu).
 
+# Typy danych
+
+Przypomnijmy sobie funkcję `drawTile :: Integer -> Picture` tworzącą obraz pola na podstawie numeru jego rodzaju.
+Kod byłby czytelniejszy i mniej podatny na błędy, gdyby zamiast numerów stosowac nazwy symboliczne.
+W innych językach stosujemy konstrukcje takie jak `#define` albo `enum`; w Haskellu zaś konstrukcję `data`:
+
+```
+data Tile = Wall | Ground | Storage | Box | Blank
+```
+
+W ogólności `data` daje o wiele większe możliwosci, ale w swojej najprostszej postaci pozwala zdeinifować typ poprzez wyliczenie 
+konstruktorów jego wartości. Wartościami typu `Tile` są dokładnie te wyliczone konstruktory; nie ma problemu jak funkcja `drawTile ` ma zachowac się np. dla wartości `-1`.
+
+Rozpoznawanie konstruktorów odbywa się zwykle przez dopasowanie wzorca, 
+np. [(otwórz w CodeWorld)](https://code.world/haskell#P-M5f3eyKkHqrbfW2KObbKQ)
+
+```haskell
+drawTile :: Tile -> Picture
+drawTile Wall    = wall
+drawTile Ground  = ground
+drawTile Storage = storage
+drawTile Box     = box
+drawTile Blank   = blank
+
+maze :: Integer -> Integer -> Tile
+maze x y
+  | abs x > 4  || abs y > 4  = Blank
+  | abs x == 4 || abs y == 4 = Wall
+  | x ==  2 && y <= 0        = Wall
+  | x ==  3 && y <= 0        = Storage
+  | x >= -2 && y == 0        = Box
+  | otherwise                = Ground
+ ```
+ 
+ Zauważmy, ze teraz również sygnatury typów stają się bardziej czytelne i pomocne.
+ 
