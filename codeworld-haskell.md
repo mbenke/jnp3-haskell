@@ -198,3 +198,10 @@ Wyjątkiem są literały całkowite takie jak `1` czy `42` - mają poniekąd "wb
 
 Do porównań na wszelkich typach liczbowych (i nie tylko) możemy uzywać `==`, `/=`, `<` `<=`, `>`, `>=` `min`, `max` (oba argumenty muszą być tego samego typu)
 
+:pencil: Napisz funkcję `lights :: Integer -> Picture` taką, że `lights n` narysuje n sygnalizatorów obok siebie.
+
+:pencil: Napisz funkcję `squares :: Double -> Picture`, taką, że `squares d` narysuje obok siebie prostokąty o łacznym polu `d` przy czym wszystkie oprócz być może ostatniego będą kwadratami o boku  1.
+
+:question: Jak Twoje funkcje zachowują się dla argumentów ujemnych?
+
+
