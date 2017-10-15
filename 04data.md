@@ -93,6 +93,8 @@ data Tile = Wall | Ground | Storage | Box | Blank
 W ogólności `data` daje o wiele większe możliwosci, ale w swojej najprostszej postaci pozwala zdeinifować typ poprzez wyliczenie 
 konstruktorów jego wartości. Wartościami typu `Tile` są dokładnie te wyliczone konstruktory; nie ma problemu jak funkcja `drawTile ` ma zachowac się np. dla wartości `-1`.
 
+NB nazwy konstruktorów powinny zaczynać się od wielkiej litery (bądź dwukropka dla nazw infiksowych, złożonych z symboli)
+
 Rozpoznawanie konstruktorów odbywa się zwykle przez dopasowanie wzorca, 
 np. [(otwórz w CodeWorld)](https://code.world/haskell#P-M5f3eyKkHqrbfW2KObbKQ)
 
@@ -125,3 +127,79 @@ data Bool = False | True
 ```
 
 Podobnie operatory takie jak `(&&)` nie są wbudowane, ale każdy mógłby je zdefiniować (spróbuj!).
+
+## Więcej typów dla gry Sokoban
+
+Naszym celem jest rozszerzenie animacji o interakcję z użytkownikiem. Zacznijmy od potrzebnych typów.
+
+Piewszą rzecza, którą moglibysmy chcieć zrobic jest przesuwanie planszy (np. gdy jest większa niż nasze okno).
+Potem moze chcielibysmy przesuwać gracza po planszy. Potrzebujemy typu reprezentującego kierunki:
+
+```haskell
+data Direction = R | U | L | D
+```
+
+Potrzebujemy też typu reprezentującego pozycję. Tutaj typ wyliczeniowy juz nie wystarczy; 
+musimy też przechowywać wartości współrzędnych. Mozemy to osiągnąc przez konstruktory z parametrami, np.
+
+```haskell
+data Coord = C Integer Integer
+```
+
+(moglibyśmy użyć też pary `(Integer, Integer)`, ale dedykowane typy dają lepsze komunikaty o błędach).
+
+Konstruktor `C` (poza tym, ze może wystapić we wzorcach) zachowuje się jak funkcja typu 
+`Integer -> Integer -> Coord`, oto przykład:
+
+```haskell
+initialCoord :: Coord
+initialCoord = C 0 0
+```
+
+Wyłuskiwanie składowych typu `Coord` możemy uzyskać  przy pomocy dopasaowania wzorca.
+Na przykład mozemy potrzebowac funkcji przesuwającej obraz o podane współrzędne:
+
+```haskell
+atCoord :: Coord -> Picture -> Picture
+atCoord (C x y) pic = translated (fromIntegral x) (fromIntegral y) pic
+```
+
+`translated` bierze argumenty typu `Double`, dlatego musimy uzyć `fromIntegral`.
+
+:pencil:
+
+Napisz funkcję `adjacentCoord :: Direction -> Coord -> Coord` dającą współrzędne przesuniete o 1 w podanym kierunku.
+
+Mozesz ją przetestowac w `ghci`. Aby móc wypisywac elementy swojego typu, warto dodać do jego definicji klauzulę 
+`deriving Show`, np.
+
+```haskell
+data Coord = C Integer Integer deriving Show
+```
+
+Jesli chcesz skłonic CodeWorld aby coś wypisał możesz użyć funkcji `print` w `main`, np.
+
+```haskell
+main = print 42
+```
+
+albo (jesli zdefiniowałeś `Coord` z klauzulą `deriving Show`)
+
+```haskell
+main = print (C 1 2)
+```
+
+Innym sposobem przetestowania jest rysowanie naszego poziomu w różnych miejscach, np.
+
+```haskell
+someCoord :: Coord
+someCoord = adjacentCoord U (adjacentCoord U (adjacentCoord L initialCoord))
+
+main = drawingOf (atCoord someCoord pictureOfMaze)
+```
+
+:pencil: napisz funkcję `moveCoords :: [Coord] -> Coord -> Coord` taką aby powyższy przykład dało się zapisać krócej jako
+
+```haskell
+someCoord = moveCoords [U, U, L] initialCoord
+```
