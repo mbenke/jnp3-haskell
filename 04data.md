@@ -54,7 +54,7 @@ drawCol r c = drawTileAt r c
 
 Pomocne w zrozumieniu powyższego kodu mogą być sygnatury typów:
 
-```
+```haskell
 draw21times :: (Integer -> Picture) -> Picture
 helper :: (Integer -> Picture) -> Integer -> Picture
 drawRow :: Integer -> Picture
@@ -66,3 +66,17 @@ drawCol :: Integer -> Integer -> Picture
 
 Zauważmy, że typ `draw21Times` zawiera dwie strzałki, ale finkcja nie bierze dwóch argumentów, ale jeden, będący funkcją.
 Jest to przykład tzw. *funkcji wyższego rzędu* - to ważne pojęcie w programowaniu funkcyjnym i jeden z głównych mechanizmów abstrakcji.
+
+:pencil: przerób funkcję `draw21times` na `drawNtimes` tak aby liczba powtórzeń była argumentem i aby odliczać w dół do 0.
+
+## Częściowa aplikacja
+
+Zauważmy, że funkcja `drawCol` potrzebuje dwóch argumentów, ale używamy jej z jednym iprzekazujemy do `draw21times`. 
+Typ `drawCol` możemy zapisać jako
+
+```haskell
+drawCol :: Integer -> (Integer -> Picture)
+```
+
+Czyli w istocie jest to funkcja jednoargumentowa o typie wyniku pasującym do typu argumentu `draw21times` (strzałka wiąze w prawo, więc nawiasy są tylko dla ilustracji).  Mechanizm zastosowania funkcji do niepełnej liczby argumentów nazywamy *cześciową aplikacją*  i jest to również ważny element budowania abstrakcji w programowaniu funkcyjnym (często w połacznieu z funkcjami wyższego rzędu).
+
