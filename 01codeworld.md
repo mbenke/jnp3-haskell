@@ -253,7 +253,7 @@ Każda wartość i wyrażenie ma swój typ. Typy pojawiają się przede wsztstki
 
 * `Program` jest typem zmiennej `program`,
 * `Picture` jest typem obrazów,
-* `Number` jest typem liczb (w dorosłym Haskellu uzywamy trochę dokładniejszych typów, jak `Int` i `Double`),
+* `Number` jest typem liczb (w dorosłym Haskellu używamy trochę dokładniejszych typów, jak `Int` i `Double`),
 * `Color` jest typem kolorów.
 
 Generalnie nazwy typów zaczynają sie z wielkiej litery, zmienych ‒ z małej.
