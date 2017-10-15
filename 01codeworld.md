@@ -145,7 +145,7 @@ colored(text("Help"), red)
 rectangle(1, 4) & circle(2)
 ```
 
-Natomiast `x=1` nie jest wyrażeniem - jest definicją.
+Natomiast `x=1` nie jest wyrażeniem ‒ jest definicją.
 
 ### Funkcje
 
@@ -198,7 +198,7 @@ program = drawingOf(target)
 target  = pictures([ circle(r) | r <- [1, 2, 3, 4, 5] ])
 ```
 
-Wyrażenie `[ circle(r) | r <- [1, 2, 3, 4, 5] ]` nazywamy - nawiązując do aksjomatu wycinania w teorii mnogości - *wycinanką* (list comprehension) - skojarzenie: ![comprehension](https://latex.codecogs.com/gif.latex?%5C%7Bcircle%28r%29%20%5Cmid%20r%5Cin%5C%7B1%2C2%2C3%2C4%2C5%5C%7D%5C%7D).
+Wyrażenie `[ circle(r) | r <- [1, 2, 3, 4, 5] ]` nazywamy ‒ nawiązując do aksjomatu wycinania w teorii mnogości ‒ *wycinanką* (list comprehension) ‒ skojarzenie: ![comprehension](https://latex.codecogs.com/gif.latex?%5C%7Bcircle%28r%29%20%5Cmid%20r%5Cin%5C%7B1%2C2%2C3%2C4%2C5%5C%7D%5C%7D).
 Wartość tego wyrażenia jest  taka sama jak `[ circle(1), circle(2), circle(3), circle(4), circle(5) ]`.
 
 :question: jak myślisz, co oznacza wyrażenie `[ circle(r) | r <- [1, 2, 3, 4, 5], even r ]`
@@ -220,8 +220,9 @@ Dla ułatwienia możemy narysować siatkę współrzędnych:
 program = drawingOf(coordinatePlane)
 ```
 
-Punkty reprezentowane są jako pary współrzędnych - na przykład `(5,5)`. 
-Łamaną możemy skonstruować przy pomocy funkcji `path` z listą punktów jako argumentem.
+Punkty reprezentowane są jako pary współrzędnych ‒ na przykład `(5,5)`. 
+Łamaną mozemy skonstruowac przy pomocy funkcji `path` z lista punktów jako argumentem.
+
 
 ```haskell
 program = drawingOf(zigzag)
@@ -230,7 +231,7 @@ zigzag  = path([(-2, 0), (-1, 1), (0, -1), (1, 1), (2, 0)])
 
 Łamaną zamkniętą możemy uzyskać przy pomocy `polygon`.
 
-:question: Spróbuj bez uruchamiania powiedzieć, co rysuje ponizszy kod:
+:question: Spróbuj bez uruchamiania powiedzieć, co rysuje poniższy kod:
 
 ```haskell
 program = drawingOf(mystery)
@@ -255,7 +256,7 @@ Każda wartość i wyrażenie ma swój typ. Typy pojawiają się przede wsztstki
 * `Number` jest typem liczb (w dorosłym Haskellu uzywamy trochę dokładniejszych typów, jak `Int` i `Double`),
 * `Color` jest typem kolorów.
 
-Generalnie nazwy typów zaczynają sie z wielkiej litery, zmienych - z małej.
+Generalnie nazwy typów zaczynają sie z wielkiej litery, zmienych ‒ z małej.
 
 Wskazania typu możemy dokonać przy pomocy `::` na przykład
 
@@ -266,7 +267,7 @@ wheel = solidCircle(size)
 size :: Number
 size = 4
 ```
-W większości wypadków deklaracje typów nie są konieczne - kompilator potrafi sam wywnioskować typy. 
+W większości wypadków deklaracje typów nie są konieczne ‒ kompilator potrafi sam wywnioskować typy. 
 Deklaracje mają jednak co najmniej dwie zalety:
 * Są cenną dokumentacją kodu (lepszą niz komentarze - bo sprawdzaną przez kompilator).
 * Czasem pozwalają na dokładniejsze komunikaty o błędach.
@@ -339,7 +340,7 @@ roof :: Picture
 roof = translated(thickArc(45, 135, 6, 1), 0, -2)
 ```
 
-Parametr funkcji może być dowolnego typu, może to być np. obraz `
+Parametr funkcji może być dowolnego typu, może to być np. obraz
 
 ```haskell
 program = drawingOf(ringOf(rectangle(1,1)))
@@ -397,7 +398,7 @@ factorial(0) = 1
 factorial(n) = n * factorial(n - 1)
 ```
 
-Suma listy - przykład rekurencyjnej funkcji na listach:
+Suma listy ‒ przykład rekurencyjnej funkcji na listach:
 
 ```
 program = drawingOf(circle(r))
@@ -421,7 +422,7 @@ fractal(n) = stem
 stem = path([(0, -10), (0, 10)])
 ```
 
-:pencil: Narysuj inne fraktale - dywan Sierpińskiego, płatek Kocha, ...
+:pencil: Narysuj inne fraktale ‒ dywan Sierpińskiego, płatek Kocha, ...
 
 ## Animacje
 
@@ -434,7 +435,7 @@ propellor :: Number -> Picture
 propellor(t) = rotated(solidRectangle(10, 1), 60 * t)
 ```
 
-Przykład animacji używającej translacji, rotacji i zakresu - zależnych od czasu:
+Przykład animacji używającej translacji, rotacji i zakresu ‒ zależnych od czasu:
 
 ```haskell
 program   = animationOf(wheels)
@@ -444,7 +445,7 @@ wheels(t) = pictures([
 tire      = circle(1) & solidRectangle(0.1, 2)
 ```
 
-:pencil: Napisz swoją animację - wahadło, odbijająca się piłka,...
+:pencil: Napisz swoją animację ‒ wahadło, odbijająca się piłka,...
 
 :pencil: Napisz animację pokazującą w kilkusekundowych odstępach Twoje rozwiązania poprzednich ćwiczeń (oprócz animacji).
 
@@ -452,9 +453,10 @@ tire      = circle(1) & solidRectangle(0.1, 2)
 
 https://github.com
 
-Na tych zajęciach będziemy wykorzystywać GitHub. Jeśli jeszcze nie masz konta - załóż.
+Na tych zajęciach będziemy wykorzystywać GitHub. Jesli jeszcze nia masz konta ‒ załóż.
 
-Materiały są dostępne w repozytorium `https://github.com/mbenke/jnp3-haskell/` (dostęp możliwy bez zakładania konta, ale konto przyda się za chwilę).
+Materiały są dostepne w repozytorium `https://github.com/mbenke/jnp3-haskell/` (dostęp możliwy bez zakładania konta, ale konto przyda się za chwilę).
+
 
 W notatkach są błędy, takie jak literówki (niektóre umyślne). Wykonaj [fork](https://help.github.com/articles/fork-a-repo/) tego repo na swoim koncie, popraw jakiś błąd i zgłoś [pull request](https://help.github.com/articles/creating-a-pull-request-from-a-fork/)
 
