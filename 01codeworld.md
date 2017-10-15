@@ -156,7 +156,7 @@ Szczególnym rodzajem wyrażeń są *funkcje*. Podstawową operacją którą mo�
 * `drawingOf` jest funkcją. Dostawszy  obraz, konstruuje program, który rysuje ten obraz.
 * `id` jest funkcją identycznościową
 
-Skoro funkcje są wyrażeniami to czy moga stać po prawej stronie definicji i być argumentami dla funkcji? Ależ tak:
+Skoro funkcje są wyrażeniami to czy mogą stać po prawej stronie definicji i być argumentami dla funkcji? Ależ tak:
 
 ```haskell
 rysuj = drawingOf
@@ -166,7 +166,7 @@ program = rysuj(koło(2))
 
 (tak, można używać polskich liter)
 
-:pencil: Narysuj 'gwiazdkę' złozoną z 7 wąskich prostokatów (o wymiarach `(4, 0.2)` lub podobnych).
+:pencil: Narysuj 'gwiazdkę' złożoną z 7 wąskich prostokątów (o wymiarach `(4, 0.2)` lub podobnych).
 
 ### Listy
 
@@ -174,7 +174,7 @@ program = rysuj(koło(2))
 * `[ circle(2), rectangle(3,5), blank ]` jest listą obrazów.
 * `[]` jest listą pustą
 
-Funkcja `picture` buduje obraz złozony ze wszystkich elementów listy podanej jako argument
+Funkcja `picture` buduje obraz złożony ze wszystkich elementów listy podanej jako argument
 
 ```haskell
 program = drawingOf(allThePictures)
@@ -187,7 +187,7 @@ allThePictures = pictures([
 
 ### Ciągi arytmetyczne
 
-Łatwo domyśleć się, jaką listę oznacza wyrażenie `[1..9]`. Podobnie możemy zapisać ine ciągi arytmetyczne,
+Łatwo domyśleć się, jaką listę oznacza wyrażenie `[1..9]`. Podobnie możemy zapisać inne ciągi arytmetyczne,
 na przykład `[1,3..9]`. Trochę więcej myślenia wymaga `[0,2..9]`.
 
 
