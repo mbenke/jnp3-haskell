@@ -203,3 +203,48 @@ main = drawingOf (atCoord someCoord pictureOfMaze)
 ```haskell
 someCoord = moveCoords [U, U, L] initialCoord
 ```
+
+# Czysta interakcja
+
+Pora uczynić naszą grę interaktywną. Chcemy aby po uruchomieniu programu, poziom był wysrodkowany,
+następnie aby użytkownik mógł przesuwać go przy pomocy klawiszy strzałek.
+
+Jak mozemy modelować interakcję w świecie bez efektów ubocznych? Podobnie jak to uczyniliśmy dla animacji:
+animacja jest funkcją z czasu w obraz. Program reagujący na zdarzenia możemy przedstawić jako funkcję,
+która mając bieżący stan i zdarzenie, oblicza nowy stan:
+
+```haskell
+interactionOf :: world ->
+                (Double -> world -> world) ->
+                (Event -> world -> world) ->
+                (world -> Picture) ->
+                IO ()
+```
+
+Występujacy w tym typie typ świata `world` jest zmienną typową - mozemy uzyć w jej miejsce dowolnego typu (szerzej powiemy sobie o tym później. Jeżeli chcemy tyliko przesuwać poziom, na początek mozemy użyć `Coord`.
+
+Funkcja `interactionOf` bierze 4 argumenty:
+
+1. Początkowy stan typu `world`.
+2. Funkcję opisującą zmiany stanu z upływem czasu, typu `Double -> world -> world`.
+3. Funkcję opisującą zmiany stanu w reakcji na zdarzenia, typu `Event -> world -> world`.
+4. Funkcję przedstawiającą stan jako obraz.
+
+Takie podejście jest zbliżony do paradygmatu Model-View-Controller, ale nie używa efektów ubocznych, a tylko czystych funkcji.
+
+Prosta próba użycia `interactionOf` moze wyglądać np. tak:
+
+```haskell
+main = interactionOf initialCoord handleTime handleEvent drawState
+
+handleTime :: Double -> Coord -> Coord
+handleTime _ c = c
+
+handleEvent :: Event -> Coord -> Coord
+handleEvent e c = adjacentCoord U c
+
+drawState :: Coord -> Picture
+drawState c = atCoord c pictureOfMaze
+```
+
+To ...coś robi. Ale gdy tylko najedziemy muszą na obraz, on ucieka ... Dlaczego? Przy każdym zdarzeniu obraz przesuwa się do góry. A ruchy myszy też są zdarzeniami.
