@@ -340,3 +340,7 @@ która zasadniczo będzie działać jak `interactionOf`, ale dla zdarzenie odpow
 Zastanów się co powinno się dziać dla zdarzenia odpowiadającego puszczeniu klawisza `Esc` i opisz swój wybór w komentarzu.
 
 Zdefiniuj `walk3 :: IO ()` jako wariant `walk2` używający `resettableInteractionOf`.
+
+Termin: 10/28/2017 06:00 +0200
+
+Oddawanie prze GitHub Classroom: https://classroom.github.com/a/z2X-Jbdu
