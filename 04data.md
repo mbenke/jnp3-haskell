@@ -292,11 +292,11 @@ W tym wypadku pragma `LANGUAGE OverloadedStrings` oznacza rozszerzenie języka, 
 
 # :pencil: Sokoban 2
 
-## Ruchomy gracz
+## Etap 1: ruchomy gracz
 
-Stwórz definicję `player :: Picture` reprezentującą obraz gracza.
+Stwórz definicję `player1 :: Picture` reprezentującą figurkę gracza.
 
-Zdefiniuj `walk :: IO ()` wykorzystujące `interactionOf` aby:
+Zdefiniuj `walk1 :: IO ()` wykorzystujące `interactionOf` aby:
 * postać gracza była rysowana na obrazie poziomu 
 * początkowa pozycja gracza wypadała na pustym polu (można uzyć ustalonych współrzędnych, nie trzeba szukać pustego pola w programie)
 * klawisze strzełek przesuwały obraz gracza (obraz poziomu ma pozostac nieruchomy)
@@ -311,5 +311,14 @@ circ = colored red (solidCircle 1)
 square = colored black (solidRectangle 1 1)
 ```
 
-# Patrz w lewo...patrz w prawo
+# Etap 2: gracz skierowany
+
+Chcemy aby postać gracza patrzyła w stronę, w którą się porusza (co najmniej lewo-prawo). Zdefiniuj funkcję `player2 :: Direction -> Picture` dającą figurkę gracza skierowaną w odpowiednią stronę.
+
+Rozszerz kod z Etapu 1, definiując `walk2 :: IO()` tak, aby figurka gracze była wyświetlana odpowiednio do kierunków ruchu.
+
+:point_right: **Wskazówka:** pomyśl najpierw o typach (np. stanu świata), potem o implementacji.
+
+:exclamation: **Uwaga:** upewnij się, że po Twouich modyfikacjach funkjca `walk1` nadal działa.
+
 
