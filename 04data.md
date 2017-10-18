@@ -232,7 +232,7 @@ Funkcja `interactionOf` bierze 4 argumenty:
 
 Takie podejście jest zbliżony do paradygmatu Model-View-Controller, ale nie używa efektów ubocznych, a tylko czystych funkcji.
 
-Prosta próba użycia `interactionOf` moze wyglądać np. tak:
+Prosta próba użycia `interactionOf` moze wyglądać np. tak [(zobacz na CodeWorld)](https://code.world/haskell#PpjfIR2NrgPeBJQKfg_63Kg):
 
 ```haskell
 main = interactionOf initialCoord handleTime handleEvent drawState
@@ -248,3 +248,36 @@ drawState c = atCoord c pictureOfMaze
 ```
 
 To ...coś robi. Ale gdy tylko najedziemy muszą na obraz, on ucieka ... Dlaczego? Przy każdym zdarzeniu obraz przesuwa się do góry. A ruchy myszy też są zdarzeniami.
+
+## Zdarzenia
+
+Przyjrzyjmy się zatem typowi zdarzeń `Event`. Według [dokumentacji](https://code.world/doc-haskell/CodeWorld.html#t:Event) jest on zdefiniowany  jako `data`, mniej więcej tak:
+
+```haskell
+data Event = KeyPress Text
+           | KeyRelease Text
+           | MousePress MouseButton Point
+           | MouseRelease MouseButton Point
+           | MouseMovement Point
+```
+
+W tym momencie interesują nas zdarzenia `KeyPress`. Spróbujmy je obsłużyć:
+
+```haskell
+handleEvent :: Event -> Coord -> Coord
+handleEvent (KeyPress key) c
+    | key == "Right" = adjacentCoord R c
+    | key == "Up"    = adjacentCoord U c
+    | key == "Left"  = adjacentCoord L c
+    | key == "Down"  = adjacentCoord D c
+handleEvent _ c      = c
+```
+
+:exclamation: **Uwaga**: Aby używać stałych typu `Text` musimy w pierwszej linii programu dodać zaklęcie (pragmę)
+
+```haskell
+{-# LANGUAGE OverloadedStrings #-} 
+```
+
+Sekwencja `{- ... -}` oznacza komentarz blokowy. Sekwencja  `{-# ... #-}` oznacza pragmę, czyli wskazówkę ddla kompilatora.
+W tym wypadku pragma `LANGUAGE OverloadedStrings` oznacza rozszerzenie języka, w którym literały napisowe są przeciążone i (podobnie jak literały liczbowe) dopasowują się do oczekiwanego typu - domyślnie są typu `String`, ale tutaj chcemy ich użyc w typie `Text`.
