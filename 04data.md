@@ -319,6 +319,6 @@ Rozszerz kod z Etapu 1, definiując `walk2 :: IO()` tak, aby figurka gracze był
 
 :point_right: **Wskazówka:** pomyśl najpierw o typach (np. stanu świata), potem o implementacji.
 
-:exclamation: **Uwaga:** upewnij się, że po Twouich modyfikacjach funkjca `walk1` nadal działa.
+:exclamation: **Uwaga:** upewnij się, że po Twuich modyfikacjach funkcja `walk1` nadal działa.
 
 
