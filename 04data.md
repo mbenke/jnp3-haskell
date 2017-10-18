@@ -341,6 +341,6 @@ Zastanów się co powinno się dziać dla zdarzenia odpowiadającego puszczeniu 
 
 Zdefiniuj `walk3 :: IO ()` jako wariant `walk2` używający `resettableInteractionOf`.
 
-Termin: 10/28/2017 06:00 +0200
+Termin: 28.10.2017 06:00 UTC+0200 (0400 UTC)
 
 Oddawanie prze GitHub Classroom: https://classroom.github.com/a/z2X-Jbdu
