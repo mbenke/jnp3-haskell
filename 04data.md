@@ -311,7 +311,7 @@ circ = colored red (solidCircle 1)
 square = colored black (solidRectangle 1 1)
 ```
 
-# Etap 2: gracz skierowany
+## Etap 2: gracz skierowany
 
 Chcemy aby postać gracza patrzyła w stronę, w którą się porusza (co najmniej lewo-prawo). Zdefiniuj funkcję `player2 :: Direction -> Picture` dającą figurkę gracza skierowaną w odpowiednią stronę.
 
@@ -321,4 +321,22 @@ Rozszerz kod z Etapu 1, definiując `walk2 :: IO()` tak, aby figurka gracze był
 
 :exclamation: **Uwaga:** upewnij się, że po Twuich modyfikacjach funkcja `walk1` nadal działa.
 
+## Etap3: reset
 
+W trakcie gry przydatna będzie mozliwość rozpoczęcia poziomu od początku. 
+Ta funkcjonalność jest w gruncie rzeczy niezależna od gry, zatem zaimplemntujmy ją ogólnie. Napisz funkcję
+
+```haskell
+resettableInteractionOf ::
+    world ->
+    (Double -> world -> world) ->
+    (Event -> world -> world) ->
+    (world -> Picture) ->
+    IO ()
+```
+
+która zasadniczo będzie działać jak `interactionOf`, ale dla zdarzenie odpowiadające naciśnięciu klawisza `Esc` nie jest przekazywane dalej, ale powoduje powrót stanu gry do stanu początkowego.
+
+Zastanów się co powinno się dziać dla zdarzenia odpowiadającego puszczeniu klawisza `Esc` i opisz swój wybór w komentarzu.
+
+Zdefiniuj `walk3 :: IO ()` jako wariant `walk2` używający `resettableInteractionOf`.
