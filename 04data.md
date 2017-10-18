@@ -116,8 +116,10 @@ maze x y
   | otherwise                = Ground
  ```
  
- Zauważmy, ze teraz również sygnatury typów stają się bardziej czytelne i pomocne.
- 
+Zauważmy, ze teraz również sygnatury typów stają się bardziej czytelne i pomocne.
+
+:pencil: Przerób swój kod tak aby używał nowego typu `Tile` zamiast kodowania typów pól liczbami.
+
 ## Bool
 
 Z jednym wyliczeniowym typem danych juz sie zetknęliśmy: `Bool`. Nie jest on "magiczny", ale zdefiniowany jako
@@ -287,3 +289,27 @@ handleEvent _ c      = c
 
 Sekwencja `{- ... -}` oznacza komentarz blokowy. Sekwencja  `{-# ... #-}` oznacza pragmę, czyli wskazówkę ddla kompilatora.
 W tym wypadku pragma `LANGUAGE OverloadedStrings` oznacza rozszerzenie języka, w którym literały napisowe są przeciążone i (podobnie jak literały liczbowe) dopasowują się do oczekiwanego typu - domyślnie są typu `String`, ale tutaj chcemy ich użyc w typie `Text`.
+
+# :pencil: Sokoban 2
+
+## Ruchomy gracz
+
+Stwórz definicję `player :: Picture` reprezentującą obraz gracza.
+
+Zdefiniuj `walk :: IO ()` wykorzystujące `interactionOf` aby:
+* postać gracza była rysowana na obrazie poziomu 
+* początkowa pozycja gracza wypadała na pustym polu (można uzyć ustalonych współrzędnych, nie trzeba szukać pustego pola w programie)
+* klawisze strzełek przesuwały obraz gracza (obraz poziomu ma pozostac nieruchomy)
+* gracz przesuwał się tylko  na pola `Ground` lub `Storage` (nie wchodzimy na ściany ani pudła).
+
+Zwróć uwagę na kolejnosc elementów w `&` bądź `pictures`:
+
+```haskell
+design, square, circ :: Picture
+design =  pictures [square, circ]
+circ = colored red (solidCircle 1)
+square = colored black (solidRectangle 1 1)
+```
+
+# Patrz w lewo...patrz w prawo
+
