@@ -4,14 +4,15 @@
 
 1. ELI5 czyli Haskell w podstawówce: https://code.world/ 
 2. Odkrywamy Haskell
-3. CodeWoprld/Haskell
+3. CodeWorld/Haskell
 4. Typy algebraiczne
 5. Polimorfizm
 6. Typy z klasą
 7. IO i monady
 8. Lenistwo
 9. Funktory, funktory aplikatywne
-A. Testowanie
+10. Testowanie
+11. Funkcyjne programowanie reaktywne
 
 ## Literatura
 
