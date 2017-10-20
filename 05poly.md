@@ -90,3 +90,5 @@ startScreenInteractionOf state0 step handle draw
     draw' StartScreen = startScreen
     draw' (Running s) = draw s
 ```
+
+:pencil: Dodaj ekran startowy do swojej gry.
