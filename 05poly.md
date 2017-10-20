@@ -13,7 +13,7 @@ interactionOf :: world ->
 		 IO ()
 ```
 
-Funkcja ta jest polimorficzna: mozemy ją zastosowac używając w miejscu zmiennej `world` dowolnego typu.
+Funkcja ta jest polimorficzna: możemy ją zastosować używając w miejscu zmiennej `world` dowolnego typu.
 
 ## Parametryczność
 
@@ -30,7 +30,7 @@ jakiego typu są jej faktyczne parametry. W związku z tym informacja typowa nie
 
 :pencil: Rozważmy na przykład funkcje o następujących sygnaturach
 
-```
+```haskell
 zagadka1 :: a -> a
 zagadka2 :: a -> b -> a
 ```
@@ -39,7 +39,7 @@ ile różnych implementacji potrafisz napisać?
 
 :pencil: Trochę trudniejsze, być może do domu: co można powiedzieć o rodzinie funkcji typu
 
-```
+```haskell
 (a -> a) -> a -> a
 ```
 
