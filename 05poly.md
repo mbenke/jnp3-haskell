@@ -28,17 +28,19 @@ jakiego typu są jej faktyczne parametry. W związku z tym informacja typowa nie
 
 2. Ograniczając sposoby działania funkcji polimorficznych daje nam **twierdzenia za darmo** (*theorems for free*, termin ukuty przez Phila Wadlera a zarazem tytuł jego [słynnej pracy](https://people.mpi-sws.org/~dreyer/tor/papers/wadler.pdf)).
 
-Rozważmy na przykład funkcje o następujących sygnaturach
+:pencil: Rozważmy na przykład funkcje o następujących sygnaturach
 
 ```
 zagadka1 :: a -> a
 zagadka2 :: a -> b -> a
 ```
 
-ile róznych implementacji potrafisz napisać?
+ile różnych implementacji potrafisz napisać?
 
-Trochę trudniejsze, być może do domu: co można powiedzieć o rodzinie funkcji typu
+:pencil: Trochę trudniejsze, być może do domu: co można powiedzieć o rodzinie funkcji typu
 
 ```
 (a -> a) -> a -> a
 ```
+
+
