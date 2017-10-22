@@ -92,3 +92,99 @@ startScreenInteractionOf state0 step handle draw
 ```
 
 :pencil: Dodaj ekran startowy do swojej gry.
+
+## Interakcje całościowe
+
+Chcielibysmy teraz połączyć funkcjonalność  `startScreenInteractionOf` z funkcjonalnością `resettableInteractionOf`
+
+```haskell
+resettableInteractionOf ::
+    world ->
+    (Double -> world -> world) ->
+    (Event -> world -> world) ->
+    (world -> Picture) ->
+    IO ()
+```
+
+tak, aby nacisnięcie `ESC` wracało do ekranu startowego. Ale nie mozemy - obie te funkcje daja wynik typu `IO()` a nie biora argumentów takiego typu. Musimy spróbowac innego podejścia.
+
+Gdybyśmy mieli typ `Interaction`, opisujący interakcje, oraz funkcje
+
+```haskell
+resettable :: Interaction -> Interaction
+withStartScreen :: Interaction -> Interaction
+```
+
+moglibyśmy uzyskać pożądany efekt przy pomocy ich złożenia. Potrzebowalibyśmy jeszcze funkcji
+
+```haskell
+runInteraction :: Interaction -> IO ()
+```
+
+Jak możemy zdefiniować taki typ `Interaction` ? 
+
+Na razie obrazek, zeby zasugerować rozwiązanie, ale jeszcze go nie zdradzać:
+
+![Cat in a box with a cat in a box](https://i.redd.it/k5mjhyewkxdz.jpg)
+
+Musimy opakować argumenty funkcji `interactionOf` wewnątrz typu `Interaction`:
+
+```haskell
+data Interaction world = Interaction
+        world
+	(Double -> world -> world)
+	(Event -> world -> world)
+	(world -> Picture)
+```
+Zwróćmy uwagę, że dla pełnej ogólności typ świata `world` musi być parametrem typu `Interaction`.
+
+Implementacja funkcji `resettable` nie przedstawia większych trudności - musimy po prostu wypakowac potrzebne wartości
+przy pomocy dopasowania wzorca:
+
+```haskell
+resetable :: Interaction s -> Interaction s
+resetable (Interaction state0 step handle draw)
+  = Interaction state0 step handle' draw
+  where handle' (KeyPress key) _ | key == "Esc" = state0
+        handle' e s = handle e s
+```
+
+Implementacja (a conajmniej zapisanie typu) funkcji `withStartScreen` wymaga chwili namysłu. Zauważmy, że funkcjonalność tę osiagliśmy przez rozszerzenie stanu świata:
+
+```haskell
+data SSState world = StartScreen | Running world
+```
+
+Sygnatura naszej funkcji moze wyglądać tak:
+
+```haskell
+withStartScreen :: Interaction s -> Interaction (SSState s)
+```
+
+a implementacja np. tak:
+
+```haskell
+withStartScreen (Interaction state0 step handle draw)
+  = Interaction state0' step' handle' draw'
+  where
+    state0' = StartScreen
+
+    step' _ StartScreen = StartScreen
+    step' t (Running s) = Running (step t s)
+
+    handle' (KeyPress key) StartScreen
+         | key == " "                  = Running state0
+    handle' _              StartScreen = StartScreen
+    handle' e              (Running s) = Running (handle e s)
+
+    draw' StartScreen = startScreen
+    draw' (Running s) = draw s
+ ```
+ 
+ Do kompletu potzebujemy jeszcze funkcji `runInteraction`.
+ 
+ :pencil: Napisz funkcję `runInteraction :: Interaction s -> IO ()`
+ 
+ :pencil: Przepisz funkcje `walk2` i `walk3` ze swojego rozwiązania tak aby używały funkcji `runInteraction` i `resettable`.
+ 
+ :pencil: Napisz funkcję `walk4 :: IO ()` rozszerzającą `walk3` o ekran startowy.
