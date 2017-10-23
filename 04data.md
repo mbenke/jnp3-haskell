@@ -319,7 +319,7 @@ Rozszerz kod z Etapu 1, definiując `walk2 :: IO()` tak, aby figurka gracze był
 
 :point_right: **Wskazówka:** pomyśl najpierw o typach (np. stanu świata), potem o implementacji.
 
-:exclamation: **Uwaga:** upewnij się, że po Twuich modyfikacjach funkcja `walk1` nadal działa.
+:exclamation: **Uwaga:** upewnij się, że po Twoich modyfikacjach funkcja `walk1` nadal działa.
 
 ## Etap3: reset
 
@@ -343,4 +343,4 @@ Zdefiniuj `walk3 :: IO ()` jako wariant `walk2` używający `resettableInteracti
 
 Termin: 28.10.2017 06:00 UTC+0200 (0400 UTC)
 
-Oddawanie prze GitHub Classroom: https://classroom.github.com/a/z2X-Jbdu
+Oddawanie przez GitHub Classroom: https://classroom.github.com/a/z2X-Jbdu
