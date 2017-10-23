@@ -200,7 +200,7 @@ someCoord = adjacentCoord U (adjacentCoord U (adjacentCoord L initialCoord))
 main = drawingOf (atCoord someCoord pictureOfMaze)
 ```
 
-:pencil: napisz funkcję `moveCoords :: [Coord] -> Coord -> Coord` taką aby powyższy przykład dało się zapisać krócej jako
+:pencil: napisz funkcję `moveCoords :: [Direction] -> Coord -> Coord` taką aby powyższy przykład dało się zapisać krócej jako
 
 ```haskell
 someCoord = moveCoords [U, U, L] initialCoord
