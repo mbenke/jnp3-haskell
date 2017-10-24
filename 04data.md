@@ -134,15 +134,15 @@ Podobnie operatory takie jak `(&&)` nie są wbudowane, ale każdy mógłby je zd
 
 Naszym celem jest rozszerzenie animacji o interakcję z użytkownikiem. Zacznijmy od potrzebnych typów.
 
-Piewszą rzecza, którą moglibysmy chcieć zrobic jest przesuwanie planszy (np. gdy jest większa niż nasze okno).
-Potem moze chcielibysmy przesuwać gracza po planszy. Potrzebujemy typu reprezentującego kierunki:
+Piewszą rzecza, którą moglibyśmy chcieć zrobic jest przesuwanie planszy (np. gdy jest większa niż nasze okno).
+Potem moze chcielibyśmy przesuwać gracza po planszy. Potrzebujemy typu reprezentującego kierunki:
 
 ```haskell
 data Direction = R | U | L | D
 ```
 
-Potrzebujemy też typu reprezentującego pozycję. Tutaj typ wyliczeniowy juz nie wystarczy; 
-musimy też przechowywać wartości współrzędnych. Mozemy to osiągnąc przez konstruktory z parametrami, np.
+Potrzebujemy też typu reprezentującego pozycję. Tutaj typ wyliczeniowy już nie wystarczy; 
+musimy też przechowywać wartości współrzędnych. Możemy to osiągnąć przez konstruktory z parametrami, np.
 
 ```haskell
 data Coord = C Integer Integer
@@ -150,7 +150,7 @@ data Coord = C Integer Integer
 
 (moglibyśmy użyć też pary `(Integer, Integer)`, ale dedykowane typy dają lepsze komunikaty o błędach).
 
-Konstruktor `C` (poza tym, ze może wystapić we wzorcach) zachowuje się jak funkcja typu 
+Konstruktor `C` (poza tym, że może wystapić we wzorcach) zachowuje się jak funkcja typu 
 `Integer -> Integer -> Coord`, oto przykład:
 
 ```haskell
@@ -158,8 +158,8 @@ initialCoord :: Coord
 initialCoord = C 0 0
 ```
 
-Wyłuskiwanie składowych typu `Coord` możemy uzyskać  przy pomocy dopasaowania wzorca.
-Na przykład mozemy potrzebowac funkcji przesuwającej obraz o podane współrzędne:
+Wyłuskiwanie składowych typu `Coord` możemy uzyskać przy pomocy dopasowania wzorca.
+Na przykład możemy potrzebować funkcji przesuwającej obraz o podane współrzędne:
 
 ```haskell
 atCoord :: Coord -> Picture -> Picture
