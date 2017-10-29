@@ -188,3 +188,9 @@ withStartScreen (Interaction state0 step handle draw)
  :pencil: Przepisz funkcje `walk2` i `walk3` ze swojego rozwiązania tak aby używały funkcji `runInteraction` i `resettable`.
  
  :pencil: Napisz funkcję `walk4 :: IO ()` rozszerzającą `walk3` o ekran startowy.
+
+# :pencil: Zadanie - Sokoban 3
+
+https://github.com/jnp3-haskell-2017/sokoban-3
+
+Oddawanie przez https://classroom.github.com/a/u-4j34C1
