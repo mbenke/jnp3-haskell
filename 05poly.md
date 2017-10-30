@@ -194,3 +194,5 @@ withStartScreen (Interaction state0 step handle draw)
 https://github.com/jnp3-haskell-2017/sokoban-3
 
 Oddawanie przez https://classroom.github.com/a/u-4j34C1
+
+Termin: 04.11.2017 06:00 UTC+0100
