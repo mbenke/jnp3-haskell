@@ -114,9 +114,73 @@ instance Eq Coord where
 
 ### Domyślne implementacje
 
+Klasa `Eq` ma dwie metody: `(==))` i `(/=)`. Ponieważ każdą mozna łatwo wyrazić przez negację drugiej, wystarczy podać jedną z nich.
+
+Definiując klasę mozemy podac domyślną implementację 
+
+```haskell
+class  Eq a  where
+    (==), (/=) :: a -> a -> Bool
+        -- Minimal complete definition:
+        --      (==) or (/=)
+    x /= y     =  not (x == y)
+    x == y     =  not (x /= y)
+```
+
 ### instance Eq Tile
 
+Wspomniana funkcja `comp` bywała dosyć nudna:
+
+```haskell
+comp :: Tile -> Tile -> Bool
+comp Wall Wall = True
+comp Ground Ground = True
+comp Storage Storage = True
+comp Box Box = True
+comp Blank Blank = True
+comp _ _ = False
+```
+
+Definicja równości byłaby równie nudna; na szczęście Haskell potrafi wygenerowac takie nudne definicje klas standardowych automatycznie:
+
+```haskell
+data Tile = Wall | Ground | Storage | Box | Blank deriving Eq
+```
+
+albo jeśli chcemy więcej niz jedną klasę
+
+```haskell
+data Tile = Wall | Ground | Storage | Box | Blank deriving (Eq, Show)
+```
+
 ### Równość (nie) dla wszystkich
+
+```haskell
+data Interaction world = Interaction
+        world
+	(Double -> world -> world)
+	(Event -> world -> world)
+	(world -> Picture)
+    deriving Eq
+ ```
+ 
+Niestety jako, że równość na funkcjach jest w ogólnosci nierozstrzygalna, nie uda nam się zdefiniować jej np. dla typu `Interaction`
+
+```
+error:
+    • No instance for (Eq (world -> Picture))
+        arising from the fourth field of ‘Interaction’
+          (type ‘world -> Picture’)
+```
+
+Oczywiście możemy zdefiniować funkcję, która nie będzie prawdziwą równoscia, np
+
+```haskell
+instance Eq Interaction where
+  _ == _ = False
+```
+
+Niekoniecznie jest to jednak dobry pomysł; zwykle zakładamy, że równośc ma pewne własności, np. że jest co najmniej relacją równoważnosci.
 
 ## Zalety klas
 
