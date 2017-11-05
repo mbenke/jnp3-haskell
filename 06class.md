@@ -334,4 +334,69 @@ class  (Eq a, Show a) => Num a  where
     divMod n d       =  if signum r == - signum d then (q-1, r+d) else qr
                         where qr@(q,r) = quotRem n d
 ```
-## Zadanie: Sokoban 4
+
+# Zadanie: Sokoban 4
+
+## Etap 0
+
+Stwórz kilka poziomów. Mozna pomóc sobie http://sokobano.de/wiki
+
+```haskell
+data Maze = Maze Coord (Coord -> Tile) 
+mazes :: [Maze]
+mazes = …
+badMazes :: [Maze]
+badMazes = …
+```
+
+`mazes` powinno zawierać "dobre" poziomy, `badMazes` - nierozwiązywalne (np. miejsce docelowe całkowicie otoczone ścianami)
+
+## Etap 1 - funkcje polimorficzne
+
+Zdefiniuj kilka funkcji na listach (niektóre być może zostały zdefiniowane juz wcześniej).
+
+```
+elemList :: Eq a => a -> [a] -> Bool
+appendList :: [a] -> [a] -> [a]
+listLength :: [a] -> Integer
+filterList :: (a -> Bool) -> [a] -> [a]
+nth :: [a] -> Integer -> a
+mapList :: (a -> b) -> [a] -> [b]
+andList :: [Bool] -> Bool
+allList :: (a-> Bool) -> [a] -> Bool
+foldList :: (a -> b -> b) -> b -> [a] -> b
+```
+Bonus: wyraź pozostałe funkcje przy użyciu `foldList`
+
+## Etap 2 - wyszukiwanie w grafie
+
+Zaimplementuj funkcję 
+
+```haskell
+isGraphClosed :: Eq a => a -> (a -> List a) -> (a -> Bool) -> Bool
+isGraphClosed initial neighbours isOk = ...
+```
+gdzie parametry mają następujące znaczenie:
+
+* `initial` - wierzchołek początkowy
+* `neighbours` - funkcja dajaca listę sąsiadów danego wierzchołka
+* `isOk` - predykat mówiący, czy wierzchołek jest dobry (cokolwiek to znaczy).
+
+Funkcja `isGraphClosed` ma dawać wynik `True` wtw wszystkie wierzchołki osiągalne z początkowego są dobre.
+Należy pamiętać, ze graf może mieć cykle.
+
+Napisz funkcję
+```haskell
+reachable :: Eq a => a -> a -> (a -> List a) -> Bool
+reachable v initial neighbours = ...
+```
+
+dającą `True` wtw gdy wierzchołek `v` jest osiągalny z wierzchołka `initial`
+
+Napisz funkcję
+```haskell
+allReachable :: Eq a => [a] -> a -> (a -> List a) -> Bool
+reachable vs initial neighbours = ...
+```
+
+dajacą `True` wtw gdy wszystkie wierzchołki z listy `vs` są osiagalne z `initial`. W tej funkcji nie używaj rekurencji, a tylko innych funkcji zdefiniowanych wcześniej.
