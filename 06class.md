@@ -186,6 +186,65 @@ Niekoniecznie jest to jednak dobry pomysł; zwykle zakładamy, że równośc ma 
 
 ## Przykład: Undo
 
+Powiedzmy, ze chcemy dodac do gry możliwośc wycofania ruchu (np. przy dojściu z pudłem do ściany).
+
+```haskell
+data WithUndo a = WithUndo a (List a)
+
+withUndo :: Interaction a -> Interaction (WithUndo a)
+withUndo (Interaction state0 step handle draw)
+  = Interaction state0' step' handle' draw'
+  where
+    state0' = WithUndo state0 Empty
+
+    step' t (WithUndo s stack) = WithUndo (step t s) stack
+
+    handle' (KeyPress key) (WithUndo s stack) | key == "U"
+      = case stack of Entry s' stack' -> WithUndo s' stack'
+                      Empty           -> WithUndo s Empty
+    handle' e              (WithUndo s stack)
+       = WithUndo (handle e s) (Entry s stack)
+
+    draw' (WithUndo s _) = draw s
+```
+
+Co jest źle z tym kodem?
+
+Wskazówka:
+
+![Events! There's just too many of them](https://i.imgflip.com/1yu2i3.jpg)
+
+Powinniśmy wkładać na stos tylko zdarzenia, które mają efekt:
+
+```haskell
+    handle' (KeyPress key) (WithUndo s stack) | key == "U"
+      = case stack of Entry s' stack' -> WithUndo s' stack'
+                      Empty           -> WithUndo s Empty
+    handle' e              (WithUndo s stack)
+       | s' == s = WithUndo s stack
+       | otherwise = WithUndo (handle e s) (Entry s stack)
+      where s' = handle e s
+```
+
+Teraz jednak potykamy się o
+```
+No instance for (Eq a) arising from a use of ‘==’
+```
+
+nasza funkcja nie działa dla wszystkich typów stanu, ale tylko tych z równością:
+
+```haskell
+withUndo :: Eq a => Interaction a -> Interaction (WithUndo a)
+```
+
+teraz mamy inny problem - brak równosci dla typu `State`:
+
+```
+No instance for (Eq State) arising from a use of ‘withUndo’
+```
+
+:pencil: Zdefiniuj wszystkie potrzebne instancje `Eq` (być może przy pomocy deriving) i uruchom kod używający `withUndo`.
+
 ## Inne ważne klasy
 
 ```haskell
