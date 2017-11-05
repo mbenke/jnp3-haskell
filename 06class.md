@@ -332,6 +332,10 @@ class  (Eq a, Show a) => Num a  where
 
 # Zadanie: Sokoban 4
 
+https://classroom.github.com/a/_LNnNla0
+
+Termin: 18.11.2017 06:00 UTC+1
+
 ## Etap 0
 
 Stwórz kilka poziomów. Mozna pomóc sobie http://sokobano.de/wiki
