@@ -192,19 +192,14 @@ Powiedzmy, ze chcemy dodac do gry możliwośc wycofania ruchu (np. przy dojściu
 data WithUndo a = WithUndo a (List a)
 
 withUndo :: Interaction a -> Interaction (WithUndo a)
-withUndo (Interaction state0 step handle draw)
-  = Interaction state0' step' handle' draw'
-  where
+withUndo (Interaction state0 step handle draw) = Interaction state0' step' handle' draw' where
     state0' = WithUndo state0 Empty
-
     step' t (WithUndo s stack) = WithUndo (step t s) stack
-
     handle' (KeyPress key) (WithUndo s stack) | key == "U"
       = case stack of Entry s' stack' -> WithUndo s' stack'
                       Empty           -> WithUndo s Empty
     handle' e              (WithUndo s stack)
        = WithUndo (handle e s) (Entry s stack)
-
     draw' (WithUndo s _) = draw s
 ```
 
