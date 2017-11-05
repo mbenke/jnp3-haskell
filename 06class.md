@@ -188,4 +188,91 @@ Niekoniecznie jest to jednak dobry pomysł; zwykle zakładamy, że równośc ma 
 
 ## Inne ważne klasy
 
+```haskell
+class  (Eq a) => Ord a  where
+    compare              :: a -> a -> Ordering
+    (<), (<=), (>=), (>) :: a -> a -> Bool
+    max, min             :: a -> a -> a
+
+        -- Minimal complete definition:
+        --      (<=) or compare
+        -- Using compare can be more efficient for complex types.
+    compare x y
+         | x == y    =  EQ
+         | x <= y    =  LT
+         | otherwise =  GT
+
+    x <= y           =  compare x y /= GT
+    x <  y           =  compare x y == LT
+    x >= y           =  compare x y /= LT
+    x >  y           =  compare x y == GT
+
+-- note that (min x y, max x y) = (x,y) or (y,x)
+    max x y 
+         | x <= y    =  y
+         | otherwise =  x
+    min x y
+         | x <= y    =  x
+         | otherwise =  y
+
+-- Enumeration and Bounded classes
+
+
+class  Enum a  where
+    succ, pred       :: a -> a
+    toEnum           :: Int -> a
+    fromEnum         :: a -> Int
+    enumFrom         :: a -> [a]             -- [n..]
+    enumFromThen     :: a -> a -> [a]        -- [n,n'..]
+    enumFromTo       :: a -> a -> [a]        -- [n..m]
+    enumFromThenTo   :: a -> a -> a -> [a]   -- [n,n'..m]
+
+        -- Minimal complete definition:
+        --      toEnum, fromEnum
+--
+-- NOTE: these default methods only make sense for types
+-- 	 that map injectively into Int using fromEnum
+--	 and toEnum.
+    succ             =  toEnum . (+1) . fromEnum
+    pred             =  toEnum . (subtract 1) . fromEnum
+    enumFrom x       =  map toEnum [fromEnum x ..]
+    enumFromTo x y   =  map toEnum [fromEnum x .. fromEnum y]
+    enumFromThen x y =  map toEnum [fromEnum x, fromEnum y ..]
+    enumFromThenTo x y z = 
+                        map toEnum [fromEnum x, fromEnum y .. fromEnum z]
+
+
+class  Bounded a  where
+    minBound         :: a
+    maxBound         :: a
+
+-- Numeric classes
+
+
+class  (Eq a, Show a) => Num a  where
+    (+), (-), (*)    :: a -> a -> a
+    negate           :: a -> a
+    abs, signum      :: a -> a
+    fromInteger      :: Integer -> a
+
+        -- Minimal complete definition:
+        --      All, except negate or (-)
+    x - y            =  x + negate y
+    negate x         =  0 - x
+    
+    class  (Real a, Enum a) => Integral a  where
+    quot, rem        :: a -> a -> a   
+    div, mod         :: a -> a -> a
+    quotRem, divMod  :: a -> a -> (a,a)
+    toInteger        :: a -> Integer
+
+        -- Minimal complete definition:
+        --      quotRem, toInteger
+    n `quot` d       =  q  where (q,r) = quotRem n d
+    n `rem` d        =  r  where (q,r) = quotRem n d
+    n `div` d        =  q  where (q,r) = divMod n d
+    n `mod` d        =  r  where (q,r) = divMod n d
+    divMod n d       =  if signum r == - signum d then (q-1, r+d) else qr
+                        where qr@(q,r) = quotRem n d
+```
 ## Zadanie: Sokoban 4
