@@ -395,3 +395,56 @@ reachable vs initial neighbours = ...
 ```
 
 dajacą `True` wtw gdy wszystkie wierzchołki z listy `vs` są osiagalne z `initial`. W tej funkcji nie używaj rekurencji, a tylko innych funkcji zdefiniowanych wcześniej.
+
+## Etap 4 - sprawdzanie poziomów
+
+Korzystając z funkcji z poprzedniego etapu, zaimplementuj funkcje
+
+```haskell
+isClosed :: Maze -> Bool
+isSane :: Maze -> Bool
+```
+
+* `isClosed` - pozycja startowa `Ground` lub `Storage`, żadna osiągalna (z pozycji startowej) nie jest `Blank`
+* `isSane` - liczba osiągalnych `Storage` jest niemniejsza od liczby osiągalnych skrzyń.
+
+Sprawdź, które poziomy z list `mazes` oraz `badMazes` sa zamknięte i rozsądne. Do wizualizacji mozna uzyć następującej funkcji
+
+```haskell
+pictureOfBools :: [Bool] -> Picture
+pictureOfBools xs = translated (-fromIntegral k /2) (fromIntegral k) (go 0 xs)
+  where n = length xs
+        k = findK 0 -- k is the integer square of n
+        findK i | i * i >= n = i
+                | otherwise  = findK (i+1)
+        go _ [] = blank
+        go i (b:bs) =
+          translated (fromIntegral (i `mod` k))
+                     (-fromIntegral (i `div` k))
+                     (pictureOfBool b)
+          & go (i+1) bs
+
+        pictureOfBool True =  colored green (solidCircle 0.4)
+        pictureOfBool False = colored red   (solidCircle 0.4)
+        
+main :: IO()
+main = drawingOf(pictureOfBools (map even [1..49::Int]))
+```
+
+Zdefiniuj `etap4 :: Picture`  jako wizualizację wyników dla wszystkich poziomów. Użyj tej wizualizacji jako ekranu startowego w kolejnym etapie.
+
+## Etap 5 - wieleopoziomowy Sokoban
+
+Przerób funkcje wyszukujące skrzynie i `isWinning` z poprzedniego etapu tak aby używaly osiągalnych skrzyń. 
+Odpowiednio przerób funkcję rysującą - w ten sposób będzie mozna rysowac poziomy różnych rozmiarów.
+
+Przerób swoją grę z poprzedniego zadania tak aby gra składała się z kolejnych poziomów z listy `mazes`, rozdzielonych ekranami 'Poziom ukończony, liczba ruchów: N'
+
+```haskell
+etap5 :: IO()
+main = etap5
+```
+
+`etap5` powinien używać także  `withUndo`, `withStartScreen` oraz `resettable`.
+
+
