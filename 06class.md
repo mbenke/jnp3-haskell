@@ -346,6 +346,8 @@ badMazes = …
 
 `mazes` powinno zawierać "dobre" poziomy, `badMazes` - nierozwiązywalne (np. miejsce docelowe całkowicie otoczone ścianami)
 
+Aby szybciej uzyskać większą liczbe poziomów, mozesz też wymienić się poziomami z innymi bądź dodać swoje poziomy jako pull request.
+
 ## Etap 1 - funkcje polimorficzne
 
 Zdefiniuj kilka funkcji na listach (niektóre być może zostały zdefiniowane juz wcześniej).
