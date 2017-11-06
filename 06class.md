@@ -223,13 +223,13 @@ data WithUndo a = WithUndo a (List a)
 
 withUndo :: Interaction a -> Interaction (WithUndo a)
 withUndo (Interaction state0 step handle draw) = Interaction state0' step' handle' draw' where
-    state0' = WithUndo state0 Empty
+    state0' = WithUndo state0 []
     step' t (WithUndo s stack) = WithUndo (step t s) stack
     handle' (KeyPress key) (WithUndo s stack) | key == "U"
-      = case stack of Entry s' stack' -> WithUndo s' stack'
-                      Empty           -> WithUndo s Empty
+      = case stack of s':stack' -> WithUndo s' stack'
+                      []          -> WithUndo s []
     handle' e              (WithUndo s stack)
-       = WithUndo (handle e s) (Entry s stack)
+       = WithUndo (handle e s) (s:stack)
     draw' (WithUndo s _) = draw s
 ```
 
@@ -243,8 +243,8 @@ Powinniśmy wkładać na stos tylko zdarzenia, które mają efekt:
 
 ```haskell
     handle' (KeyPress key) (WithUndo s stack) | key == "U"
-      = case stack of Entry s' stack' -> WithUndo s' stack'
-                      Empty           -> WithUndo s Empty
+      = case stack of s':stack' -> WithUndo s' stack'
+                      []        -> WithUndo s []
     handle' e              (WithUndo s stack)
        | s' == s = WithUndo s stack
        | otherwise = WithUndo (handle e s) (Entry s stack)
@@ -404,7 +404,7 @@ Bonus: wyraź pozostałe funkcje przy użyciu `foldList`
 Zaimplementuj funkcję 
 
 ```haskell
-isGraphClosed :: Eq a => a -> (a -> List a) -> (a -> Bool) -> Bool
+isGraphClosed :: Eq a => a -> (a -> [a]) -> (a -> Bool) -> Bool
 isGraphClosed initial neighbours isOk = ...
 ```
 gdzie parametry mają następujące znaczenie:
@@ -418,7 +418,7 @@ Należy pamiętać, ze graf może mieć cykle.
 
 Napisz funkcję
 ```haskell
-reachable :: Eq a => a -> a -> (a -> List a) -> Bool
+reachable :: Eq a => a -> a -> (a -> [a]) -> Bool
 reachable v initial neighbours = ...
 ```
 
@@ -426,7 +426,7 @@ dającą `True` wtw gdy wierzchołek `v` jest osiągalny z wierzchołka `initial
 
 Napisz funkcję
 ```haskell
-allReachable :: Eq a => [a] -> a -> (a -> List a) -> Bool
+allReachable :: Eq a => [a] -> a -> (a -> [a]) -> Bool
 reachable vs initial neighbours = ...
 ```
 
