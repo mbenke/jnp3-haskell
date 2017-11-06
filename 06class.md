@@ -184,6 +184,36 @@ Niekoniecznie jest to jednak dobry pomysł; zwykle zakładamy, że równośc ma 
 
 ## Zalety klas
 
+### Przeciążanie
+
+Zamiast wymyślać osobną nazwę dla każdego typu (`eqInt`, `eqInteger`, `eqTile`, `eqCoord`) możemy wszędzie używać `(==)`
+
+### Algorytmy generyczne
+
+Rozważmy funkcję
+
+```haskell
+moveFromTo :: Coord -> Coord -> Coord -> Coord
+moveFromTo c1 c2 c | c1 == c   = c2
+                   | otherwise = c
+```
+
+Nie ma w niej (prawie) nic specyficznego dla `Coord`. Funkcja ta może działać dla dowolnego typu z równością:
+
+```haskell
+moveFromTo :: Eq a => a -> a -> a -> a
+moveFromTo c1 c2 c | c1 == c   = c2
+                   | otherwise = c
+```
+
+Ta funkcja nie jest może imponująca, ale mechanizm klas pozwala na znacznie bardziej skomplikowane konstrukcje.
+
+### Rozwiązywanie instancji
+
+Gdy używamy funkcji przeciązonej, odnalezienie właściwej instancji (implementacji metod).\
+Jak zobaczymy, w obecności polimorfizmu może to być nietrywialne (wymagać odnalezienia innych instancji i tak dalej).
+W sumie kompilator Haskella zawiera w sobie mini-Prolog.
+
 ## Przykład: Undo
 
 Powiedzmy, ze chcemy dodac do gry możliwośc wycofania ruchu (np. przy dojściu z pudłem do ściany).
