@@ -49,7 +49,7 @@ handleEvent (KeyPress key) (State dir (C x y) boxList) --(State pict (C x y) _)
  
 # Typy z klasą
 
-Wiele osób w rozwiazaniu ostatniego zadania pisało kod postaci
+Wiele osób w rozwiązaniu ostatniego zadania pisało kod postaci
 
 ```haskell
 if comp (lvl c) Box then Ground else  (lvl c)
@@ -73,7 +73,7 @@ Otóż równość ma typ
 (==) :: forall a.Eq a => a -> a -> Bool
 ```
 
-co nalezy rozumieć jakoa `a -> a -> Bool` dla wszystkich typów `a` należących do klasy `Eq`.
+co nalezy rozumieć jako `a -> a -> Bool` dla wszystkich typów `a` należących do klasy `Eq`.
 Warto zauważyć, że nie jest to polimorfizm parametryczny: równość nie działa dla wszystkich typów tak samo (czasami mówi się w tym wypadku o polimorfiźmie *ad hoc*
 
 Klasę należy tu rozumiec jako zbiór typów (dokładniej relację na typach, w tym wypadku jednoargumentową).
@@ -100,7 +100,7 @@ Klasa `Eq` ma dwie metody: `(==))` i `(/=)`. Aby typ przynależał do tej klasy,
 Ponieważ każdą mozna łatwo wyrazić przez negację drugiej, wystarczy podać jedną z nich.
 
 Metody dla standardowych typów są zdefiniowane w Prelude (bibliotece standardowej, zawsze domyślnie importowanej).
-Czasami te implementacje są warunkowe: np. równosc na parach jest definiowana pod warunkiem istnienia równosci na argumentach.
+Czasami te implementacje są warunkowe: np. równość na parach jest definiowana pod warunkiem istnienia równosci na argumentach.
 
 
 ### instance Eq Coord
@@ -116,7 +116,7 @@ instance Eq Coord where
 
 Klasa `Eq` ma dwie metody: `(==))` i `(/=)`. Ponieważ każdą mozna łatwo wyrazić przez negację drugiej, wystarczy podać jedną z nich.
 
-Definiując klasę mozemy podac domyślną implementację 
+Definiując klasę możemy podać domyślną implementację 
 
 ```haskell
 class  Eq a  where
@@ -141,13 +141,13 @@ comp Blank Blank = True
 comp _ _ = False
 ```
 
-Definicja równości byłaby równie nudna; na szczęście Haskell potrafi wygenerowac takie nudne definicje klas standardowych automatycznie:
+Definicja równości byłaby równie nudna; na szczęście Haskell potrafi wygenerować takie nudne definicje klas standardowych automatycznie:
 
 ```haskell
 data Tile = Wall | Ground | Storage | Box | Blank deriving Eq
 ```
 
-albo jeśli chcemy więcej niz jedną klasę
+albo jeśli chcemy więcej niż jedną klasę
 
 ```haskell
 data Tile = Wall | Ground | Storage | Box | Blank deriving (Eq, Show)
@@ -164,7 +164,7 @@ data Interaction world = Interaction
     deriving Eq
  ```
  
-Niestety jako, że równość na funkcjach jest w ogólnosci nierozstrzygalna, nie uda nam się zdefiniować jej np. dla typu `Interaction`
+Niestety jako, że równość na funkcjach jest w ogólności nierozstrzygalna, nie uda nam się zdefiniować jej np. dla typu `Interaction`
 
 ```
 error:
@@ -180,7 +180,7 @@ instance Eq Interaction where
   _ == _ = False
 ```
 
-Niekoniecznie jest to jednak dobry pomysł; zwykle zakładamy, że równośc ma pewne własności, np. że jest co najmniej relacją równoważnosci.
+Niekoniecznie jest to jednak dobry pomysł; zwykle zakładamy, że równość ma pewne własności, np. że jest co najmniej relacją równoważnosci.
 
 ## Zalety klas
 
@@ -210,13 +210,13 @@ Ta funkcja nie jest może imponująca, ale mechanizm klas pozwala na znacznie ba
 
 ### Rozwiązywanie instancji
 
-Gdy używamy funkcji przeciązonej, odnalezienie właściwej instancji (implementacji metod).\
+Gdy używamy funkcji przeciążonej, odnalezienie właściwej instancji (implementacji metod).\
 Jak zobaczymy, w obecności polimorfizmu może to być nietrywialne (wymagać odnalezienia innych instancji i tak dalej).
 W sumie kompilator Haskella zawiera w sobie mini-Prolog.
 
 ## Przykład: Undo
 
-Powiedzmy, ze chcemy dodac do gry możliwośc wycofania ruchu (np. przy dojściu z pudłem do ściany).
+Powiedzmy, że chcemy dodac do gry możliwośc wycofania ruchu (np. przy dojściu z pudłem do ściany).
 
 ```haskell
 data WithUndo a = WithUndo a (List a)
@@ -262,7 +262,7 @@ nasza funkcja nie działa dla wszystkich typów stanu, ale tylko tych z równoś
 withUndo :: Eq a => Interaction a -> Interaction (WithUndo a)
 ```
 
-teraz mamy inny problem - brak równosci dla typu `State`:
+teraz mamy inny problem - brak równości dla typu `State`:
 
 ```
 No instance for (Eq State) arising from a use of ‘withUndo’
