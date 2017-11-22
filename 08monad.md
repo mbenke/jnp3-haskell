@@ -152,3 +152,88 @@ teraz:
 
     *Applicative> (+) <$> Just 2 <*> Just 3
     Just 5
+
+### Obliczenia funkcyjne
+
+Możemy zdefiniować typ, którego wartościami będą obliczenia,
+z operacjami:
+
+-   Obliczenie czyste (daje jakąś wartość, nie ma efektów ubocznych)
+
+-   Sekwencjonowanie obliczeń:
+
+    `obliczenie -> (wynik -> obliczenie) -> obliczenie`
+
+-   Operacje pierwotne (np. wczytaj, wypisz, etc.)
+
+Mechanizm wykonywania obliczeń (“interpreter”, maszyna wirtualna)
+
+### Klasa Monad czyli programowalny średnik
+
+```haskell
+class Monad obliczenie where 
+  return :: a -> obliczenie a 
+  (>>=) :: obliczenie a -> (a -> obliczenie b) -> obliczenie b
+```
+
+-   Klasa **Monad** jest klasą konstruktorową (jak **Functor**).
+
+-   Gdy **m** jest instancja **Monad**, to **m a** jest typem obliczeń o
+    wyniku typu **a**.
+
+-   **return x** jest czystym obliczeniem dającym wynik **x**
+
+-   Operator `(>>=)` (zwany “bind”) sekwencjonuje obliczenia
+    (“programowalny średnik”)
+
+*Monads: just a fancy name for scripting your semicolons
+(via @TacticalGrace, inspired by @donsbot)*
+
+![image](monad.jpg)
+
+### Klasa Monad
+
+Jeżeli kolejne obliczenie nie korzysta z wyniku (a tylko z efektu)
+poprzedniego, możemy użyć operatora `(>>)`
+
+    o1 >> o2 = o1 >>= \_ -> o2
+
+    print A >> print B
+
+Ponadto czasami wygodniej jest zapisywać złożenie obliczeń w kolejności
+analogicznej do złożenia funkcji:
+
+    f =<< o = o >>= f
+
+### Najprostszy efekt: brak efektu
+
+Najprostsza monadą jest **Identity**
+(moduł **Control.Monad.Identity** w bibliotece standardowej)
+
+newtype Identity a = Identity [ runIdentity :: a ]{}
+
+instance Monad Identity where return a = Identity a – return = id
+(Identity x) &gt;&gt;= f = f x – x &gt;&gt;= f = f x
+
+### Trzy prawa monadyki
+
+Każda monada musi spełniać następujące prawa:
+
+       1. (return x) >>= f == f x
+       2. m >>= return == m
+       3. (f >=> g) >=> h == f >=> (g >=> h)
+    gdzie f >=> g = (\x -> (f x >>= g))
+
+Pierwsze dwa prawa mówią, że *return* nie ma efektów.
+
+Trzecie prawo mówi, że sekwencjonowanie obliczeń jest łączne,
+czyli w pewnym sensie, że
+
+     (o1;o2);o3 === o1;(o2;o3)
+
+…i możemy je traktować jako sekwencję `o1;o2;o3`
+
+Podobnie jak zapis $a+b+c$ jest jednoznaczny dzięki łączności dodawania.
+
+![image](monadlaws.jpg)
+
