@@ -79,3 +79,76 @@ Jeśli chcemy opakować istniejacy typ w nowy konstruktor typu, mozemy uzyć kon
 
 **newtype** działa niemal identycznie jak **data** z jednym konstruktorem(ale efektywniej; 
 pakowanie/odpakowywanie odbywa się w czasie kompilacji a nie wykonania).
+
+### Klasy konstruktorowe
+
+Typy polimorficzne jak **\[a\]** czy **Tree a** mogą być instancjami klas (przeważnie pod warunkiem, ze **a** jest też instancją odpowiedniej klasy)…
+
+    data Tree a = Leaf a | Branch (Tree a) (Tree a) 
+      deriving Show
+
+    instance Eq a => Eq (Tree a) where
+      Leaf x == Leaf y = x == y
+      Branch l r == Branch l' r' = (l==l')&&(r==r')
+
+
+…ale są też klasy, których instancjami są nie typy, a *konstruktory typów*. Na przykład funkcję **map** możemy uogólnić na inne pojemniki:
+
+    -- Klasa Functor jest zdefiniowana w Prelude
+    -- class  Functor t  where
+    --    fmap :: (a -> b) -> t a -> t b
+
+    (<$>) :: Functor f => (a -> b) -> f a -> f b
+    (<$>) = fmap
+
+    instance Functor Tree where
+     fmap f (Leaf a) = Leaf $ f a
+     fmap f (Branch l r) = Branch (fmap f l)(fmap f r)
+
+    *Tree> negate <$> Leaf 6
+    Leaf (-6)
+
+
+
+-   Typy takie jak **Tree** czy listy są pojemnikami przechowującymi obiekty
+
+-   Instancja **Eq(Tree a)** mówi o własnościach pojemnika z zawartością
+
+-   Instancja **Functor Tree** mówi o własnościach samego pojemnika, *niezależnie od zawartości*
+
+
+
+    import Prelude hiding(Functor(..))
+
+    class Functor f where
+      fmap :: (a -> b) -> (f a -> f b)
+
+    -- [] poniżej oznacza konstruktor *typu* dla list
+    instance Functor [] where
+      fmap = map
+
+    instance Functor Maybe where
+      fmap f (Just x) = Just (f x)
+      fmap f Nothing = Nothing
+
+### Applicative
+
+Chcemy dodać dwie liczby opakowane w **Maybe**
+
+    *Applicative> :t (+1) <$> Just 5
+    (+1) <$> Just 5 :: Num b => Maybe b
+    *Applicative> :t (+) <$> Just 5 
+    (+) <$> Just 5 :: Num a => Maybe (a -> a)
+
+czyli nie możemy napisać `(+) <$> Just 2 <$> Just 3`
+
+W ogólności Functor nie wystarczy, potrzeba
+
+    class (Functor f) => Applicative f where
+        pure  :: a -> f a
+        (<*>) :: f (a -> b) -> f a -> f b
+
+teraz:
+
+    *Applicative> (+) <$> Just 2 <*> Just 3
+    Just 5
