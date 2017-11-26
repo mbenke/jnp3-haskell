@@ -514,3 +514,11 @@ Warning:
     - this will become an error in GHC 7.10, 
     under the Applicative-Monad Proposal.
 ```
+
+:pencil: Napisz własną implementację funkcji
+
+```haskell
+sequence :: Monad m => [m a] -> m [a] 
+mapM :: Monad m => (a -> m b) -> [a] -> m [b]
+forM :: Monad m => [a] -> (a -> m b) -> m [b]
+```
