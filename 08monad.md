@@ -153,6 +153,29 @@ teraz:
     *Applicative> (+) <$> Just 2 <*> Just 3
     Just 5
 
+Do klasy `Applicative` jeszcze wrócimy później.
+
+:pencil: Rozważmy trochę iny typ drzew:
+
+```haskell
+data Tree a = Empty | Node a (Tree a) (Tree a)
+```
+Stwórz dla niego instancje klas `Eq`, `Show`, `Functor` (bez używania `deriving`).
+
+:pencil:  Zdefiniuj klasę Pointed (funkcyjnych pojemników z singletonem)
+
+```haskell
+class Functor f => Pointed f where
+  pure :: a -> f a
+```
+
+i jej instancje dla list, `Maybe`, `Tree`:
+
+```haskell
+instance Pointed Maybe where
+instance Pointed [] where ...
+instance Pointed Tree where
+```
 ### Obliczenia funkcyjne
 
 Możemy zdefiniować typ, którego wartościami będą obliczenia,
