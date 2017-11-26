@@ -4,13 +4,14 @@ Rozwiązanie problemu I/O jest oparte na typach i klasach. Musimy powiedzieć o 
 
 ## Typy algebraiczne
 
-    data Tree a = Leaf a | Branch (Tree a) (Tree a)
+```haskell
+data Tree a = Leaf a | Branch (Tree a) (Tree a)
 
-    mapTree :: (a->b) -> Tree a -> Tree b
-    mapTree f (Leaf a) = Leaf (f a)
-    mapTree f (Branch l r) = Branch (m l) (m r) where
-      m = mapTree f
-
+mapTree :: (a->b) -> Tree a -> Tree b
+mapTree f (Leaf a) = Leaf (f a)
+mapTree f (Branch l r) = Branch (m l) (m r) where
+m = mapTree f
+```
 **Leaf** jest 1-argumentowym konstruktorem,
 **Branch** — 2-argumentowym. Per analogiam mówimy, że **Tree** jest jednoargumentowym *konstruktorem typu*:
 
@@ -21,6 +22,7 @@ Rozwiązanie problemu I/O jest oparte na typach i klasach. Musimy powiedzieć o 
 
 Dwa przydatne typy (predefiniowane w Prelude):
 
+```haskell
     data Maybe a = Nothing | Just a
     data Either a b = Left a | Right b
     -- Prelude> head []
@@ -35,17 +37,20 @@ Dwa przydatne typy (predefiniowane w Prelude):
     safeHead2 :: [a] -> Either String a
     safeHead2 [] = Left "Empty list"
     safeHead2 (x:xs) = Right x
+```
 
 ### Synonimy
 
 Czasem przydatne jest wprowadzenie własnej nazwy (synonimu) dla jakiegoś typu.
 
+```haskell
     type Name = String
     type Possibly = Either Name
-
+    
     safeHead3 :: [a] -> Possibly a
     safeHead3 [] = Left "Empty list"
     safeHead3 (x:xs) = Right x
+```
 
 Synonim **nie jest** konstruktorem typu; jest identyczny z nazywanym typem.
 
@@ -53,14 +58,18 @@ Synonim **nie jest** konstruktorem typu; jest identyczny z nazywanym typem.
 
 Spójrzmy na definicje
 
+```haskell
     data Point = Pt Float Float
     pointx                  :: Point -> Float
     pointx (Pt x _)         =  x
     pointy ...
+```
 
 Definicja **pointx** jest “oczywista”; możemy krócej:
 
+```haskell
     data Point = Pt {pointx, pointy :: Float}
+```
 
 W jednej linii definiujemy typ **Point**, konstruktor **Pt**
 oraz funkcje **pointx** i **pointy**.
@@ -69,13 +78,17 @@ oraz funkcje **pointx** i **pointy**.
 
 Jeśli chcemy opakować istniejacy typ w nowy konstruktor typu, mozemy uzyć konstrukcji **newtype**:
 
+```haskell
     newtype Identity a = Identity { runIdentity :: a } 
       deriving (Eq, Show)
+```
 
+```
     *Newtype> Identity "Ala"
     Identity {runIdentity = "Ala"}
     *Newtype> runIdentity it
     "Ala"
+```
 
 **newtype** działa niemal identycznie jak **data** z jednym konstruktorem(ale efektywniej; 
 pakowanie/odpakowywanie odbywa się w czasie kompilacji a nie wykonania).
@@ -84,16 +97,18 @@ pakowanie/odpakowywanie odbywa się w czasie kompilacji a nie wykonania).
 
 Typy polimorficzne jak **\[a\]** czy **Tree a** mogą być instancjami klas (przeważnie pod warunkiem, ze **a** jest też instancją odpowiedniej klasy)…
 
+```haskell
     data Tree a = Leaf a | Branch (Tree a) (Tree a) 
       deriving Show
 
     instance Eq a => Eq (Tree a) where
       Leaf x == Leaf y = x == y
       Branch l r == Branch l' r' = (l==l')&&(r==r')
-
+```
 
 …ale są też klasy, których instancjami są nie typy, a *konstruktory typów*. Na przykład funkcję **map** możemy uogólnić na inne pojemniki:
 
+```haskell
     -- Klasa Functor jest zdefiniowana w Prelude
     -- class  Functor t  where
     --    fmap :: (a -> b) -> t a -> t b
@@ -104,10 +119,12 @@ Typy polimorficzne jak **\[a\]** czy **Tree a** mogą być instancjami klas (prz
     instance Functor Tree where
      fmap f (Leaf a) = Leaf $ f a
      fmap f (Branch l r) = Branch (fmap f l)(fmap f r)
+```
 
+```
     *Tree> negate <$> Leaf 6
     Leaf (-6)
-
+```
 
 
 -   Typy takie jak **Tree** czy listy są pojemnikami przechowującymi obiekty
@@ -117,7 +134,7 @@ Typy polimorficzne jak **\[a\]** czy **Tree a** mogą być instancjami klas (prz
 -   Instancja **Functor Tree** mówi o własnościach samego pojemnika, *niezależnie od zawartości*
 
 
-
+```haskell
     import Prelude hiding(Functor(..))
 
     class Functor f where
@@ -130,6 +147,7 @@ Typy polimorficzne jak **\[a\]** czy **Tree a** mogą być instancjami klas (prz
     instance Functor Maybe where
       fmap f (Just x) = Just (f x)
       fmap f Nothing = Nothing
+```
 
 ### Applicative
 
@@ -144,9 +162,11 @@ czyli nie możemy napisać `(+) <$> Just 2 <$> Just 3`
 
 W ogólności Functor nie wystarczy, potrzeba
 
+```haskell
     class (Functor f) => Applicative f where
         pure  :: a -> f a
         (<*>) :: f (a -> b) -> f a -> f b
+```
 
 teraz:
 
@@ -176,6 +196,7 @@ instance Pointed Maybe where
 instance Pointed [] where ...
 instance Pointed Tree where
 ```
+
 ### Obliczenia funkcyjne
 
 Możemy zdefiniować typ, którego wartościami będą obliczenia,
@@ -233,10 +254,13 @@ analogicznej do złożenia funkcji:
 Najprostsza monadą jest **Identity**
 (moduł **Control.Monad.Identity** w bibliotece standardowej)
 
-newtype Identity a = Identity [ runIdentity :: a ]{}
+```haskell
+newtype Identity a = Identity { runIdentity :: a }
 
-instance Monad Identity where return a = Identity a – return = id
-(Identity x) &gt;&gt;= f = f x – x &gt;&gt;= f = f x
+instance Monad Identity where 
+  return a = Identity a     -- return = id
+  (Identity x) >>= f = f x  -- x >>= f = f x
+```
 
 ### Trzy prawa monadyki
 
@@ -256,7 +280,7 @@ czyli w pewnym sensie, że
 
 …i możemy je traktować jako sekwencję `o1;o2;o3`
 
-Podobnie jak zapis $a+b+c$ jest jednoznaczny dzięki łączności dodawania.
+Podobnie jak zapis `a+b+c` jest jednoznaczny dzięki łączności dodawania.
 
 ![image](monadlaws.jpg)
 
