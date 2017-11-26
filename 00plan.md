@@ -7,12 +7,13 @@
 3. CodeWorld/Haskell
 4. Typy algebraiczne
 5. Polimorfizm
-6. Typy z klasą
-7. IO i monady
-8. Lenistwo
-9. Funktory, funktory aplikatywne
-10. Testowanie
-11. Funkcyjne programowanie reaktywne
+6. Typy z klasą - 6.11
+7. IO  - 20.11
+8. Funktory, monady - 27.11
+9. Lenistwo - 4.12
+10 Testowanie - 11.12
+11. Funktory aplikatywne - 8.1
+12. Funkcyjne programowanie reaktywne - 15.1
 
 ## Literatura
 
