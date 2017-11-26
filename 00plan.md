@@ -11,7 +11,7 @@
 7. IO  - 20.11
 8. Funktory, monady - 27.11
 9. Lenistwo - 4.12
-10 Testowanie - 11.12
+10. Testowanie - 11.12
 11. Funktory aplikatywne - 8.1
 12. Funkcyjne programowanie reaktywne - 15.1
 
