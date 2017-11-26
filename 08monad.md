@@ -284,3 +284,233 @@ Podobnie jak zapis `a+b+c` jest jednoznaczny dzięki łączności dodawania.
 
 ![image](monadlaws.jpg)
 
+
+## Prosty efekt: obliczenia zawodne
+
+**Cel:** chcemy modelować obliczenia, które czasem czasem zawodzą
+
+**Środek:** monada `Maybe`
+
+```haskell
+instance Monad Maybe where 
+  return = Just 
+  Nothing >>= k = Nothing 
+  Just x >>= k = k x
+```
+
+-   Obliczenie, które nie daje wyniku: `Nothing`
+
+-   Obliczenie, które daje wynik x: `Just x`
+
+-   Jeśli pierwsze obliczenie zawodzi, to cała sekwencja zawodzi
+
+```
+> import Text.Read
+> :t readMaybe
+readMaybe :: Read a => String -> Maybe a
+> :t readEither
+readEither :: Read a => String -> Either String a
+
+> do {n <- readMaybe “ala” ; return (n+1) }
+Nothing
+> do {n <- readMaybe “41” ; return (n+1) }
+Just 42
+```
+
+Możemy oczywiście korzystać z **Maybe** bez mechanizmu monad:
+
+```haskell
+case obliczenie1 of
+  Nothing -> Nothing 
+  Just x -> case obliczenie2 of
+    Nothing -> Nothing 
+    Just y -> obliczenie3
+```
+
+Monada pozwala nam to zapisać zgrabniej:
+
+```haskell
+obliczenie1 >>= (\x -> obliczenie2 >>= (\y -> obliczenie3))
+```
+
+albo
+
+```haskell
+do { x <- obliczenie1; y <- obliczenie2; obliczenie3 }
+```
+
+### Obsługa błędów
+
+Przeważnie w wypadku błedu chcemy mieć więcej informacji niż tylko, że
+obliczenie zawiodło: komunikat o błedzie.
+
+Możemy do tego wykorzystać typ **Either**:
+
+```haskell
+instance Monad (Either error) where 
+  return = Right 
+  (Left e)  >>= _ = Left e 
+  (Right x) >>= k = k x
+```
+
+```
+> Left “error” >> return 3 Left “error”
+> do [n <- readEither “41” ; return (n+1) ]{} Right 42
+```
+
+### Obsługa błędów: MonadError
+
+Możemy też abstrakcyjnie zdefiniować protokół obsługi błędów:
+
+```haskell
+class (Monad m) => MonadError e m | m -> e where 
+  throwError :: e -> m a 
+  catchError :: m a -> (e -> m a) -> m a
+
+instance MonadError e (Either e) ...
+```
+
+Klasa **MonadError** jest zdefiniowana w module
+**Control.Monad.Except** z pakietu `mtl`. Jesli go nie ma, to:
+
+```
+stack install mtl
+```
+
+albo
+
+```
+cabal install mtl
+```
+
+### Klasy wieloparametrowe
+
+Powiedzmy, ze chcemy zdefiniować klasę kolekcji
+
+```haskell
+class Collection c where
+  insert :: e -> c -> c
+  member :: e -> c -> Bool
+
+instance Eq a => Collection [a] where
+     insert x xs = x:xs
+     member = elem
+```
+to się niestety nie skompiluje (co to jest “`e`” w Collection?)
+
+### Klasy wieloparametrowe
+
+```haskell
+{-# LANGUAGE MultiParamTypeClasses #-}
+{-# LANGUAGE FlexibleInstances #-} 
+class Collection c e where
+  insert :: e -> c -> c
+  member :: e -> c -> Bool
+
+instance Eq a => Collection [a] a where
+     insert = (:)
+     member = elem
+```
+
+NB musimy użyć rozszerzeń wykraczających poza standard Haskell 2010, stąd pragmy.
+
+### Zależności funkcyjne (functional dependencies)
+
+Typ kolekcji determinuje typ elementu
+
+Można to wyrazić przez *zależności funkcyjne*:
+
+```haskell
+{-# LANGUAGE FunctionalDependencies #-}
+class Collection c e | c -> e where
+  insert :: e -> c -> c
+  member :: e -> c -> Bool
+```
+  
+Skojarzenie z bazami danych jest słuszne.
+
+Inny przykład
+
+```haskell
+class Mult a b c | a b -> c where
+  (|*) :: a -> b -> c
+```
+
+Innym rozwiązaniem są rodziny typów
+
+```haskell
+{-# LANGUAGE TypeFamilies, MultiParamTypeClasses #-}
+
+class Collection c where
+    type Elem c
+    insert :: Elem c -> c ->c
+
+class Mul a b where
+    type MulResult a b
+    mul :: a -> b -> MulResult a b
+```
+
+###  **MonadError** — przykład
+
+```haskell
+data ParseError = Err { location::Int, reason::String} 
+instance Error ParseError ... 
+type ParseMonad = Either ParseError 
+parseHexDigit :: Char -> Int -> ParseMonad Integer 
+parseHex :: String -> ParseMonad Integer 
+toString :: Integer -> ParseMonad String
+
+-- zamień notację szesnastkową na dziesietną
+convert :: String -> String 
+convert s = str where 
+  (Right str) = tryParse s ‘catchError‘ printError 
+  tryParse s = parseHex s >>= toString
+  printError (Err loc msg) = return (concat ["At index ",show loc,":",msg])
+```
+
+:pencil: Uzupełnij brakujące definicje.
+
+## Użyteczne kombinatory monadyczne
+
+w module `Control.Monad`:
+
+```haskell
+mapM :: Monad m => (a -> m b) -> [a] -> m [b]
+mapM_ :: Monad m => (a -> m b) -> [a] -> m ()
+forM :: Monad m => [a] -> (a -> m b) -> m [b]
+forM_ :: Monad m => [a] -> (a -> m b) -> m ()
+sequence :: Monad m => [m a] -> m [a]
+sequence_ :: Monad m => [m a] -> m ()
+liftM :: Monad m => (a1->r) -> m a1 -> m r -- fmap
+liftM2 :: Monad m => (a1->a2->r) 
+                  -> m a1 -> m a2 -> m r 
+```
+
+na przykład:
+
+```
+void(forM [1..7] print)
+forM_ ['1'..'7'] putChar >> putStrLn ""
+liftM2 (+) (readMaybe "40") (readMaybe "2")
+```
+
+### `Monad` jest podklasą `Applicative` (od niedawna)}
+
+```haskell
+class Applicative m => Monad m where ...
+```
+Zauważmy że
+
+```haskell
+ap :: Monad m => m (a -> b) -> m a -> m b
+ap mf ma = do { f <- mf; a <- ma; return (f a) }
+```
+
+stąd w nowszych wersjach GHC możemy zobaczyć komunikat typu
+
+```
+Warning:
+‘Parser’ is an instance of Monad but not Applicative 
+    - this will become an error in GHC 7.10, 
+    under the Applicative-Monad Proposal.
+```
