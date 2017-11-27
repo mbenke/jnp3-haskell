@@ -175,6 +175,8 @@ teraz:
 
 Do klasy `Applicative` jeszcze wrócimy później.
 
+### Ćwiczenia
+
 :pencil: Rozważmy trochę iny typ drzew:
 
 ```haskell
@@ -182,8 +184,20 @@ data Tree a = Empty | Node a (Tree a) (Tree a)
 ```
 Stwórz dla niego instancje klas `Eq`, `Show`, `Functor` (bez używania `deriving`).
 
-:pencil:  Zdefiniuj klasę Pointed (funkcyjnych pojemników z singletonem)
+:pencil: Rozważmy typy
+```haskell
+data TypeA a b
+    = C1 a b
+    | C2 [Maybe (a -> b)]
 
+data TypeB f g a b
+    = C3 (f a)
+    | C4 (g b)
+    | C5 (g (g [b]))
+```
+Zdefiniuj dla nich odpowiednie instancje `Functor`.
+
+:pencil:  Zdefiniuj klasę Pointed (funkcyjnych pojemników z singletonem)
 ```haskell
 class Functor f => Pointed f where
   pure :: a -> f a
@@ -450,7 +464,7 @@ class Mul a b where
     mul :: a -> b -> MulResult a b
 ```
 
-###  **MonadError** — przykład
+###  **MonadError** — przykład i ćwiczenie
 
 ```haskell
 data ParseError = Err { location::Int, reason::String} 
@@ -514,6 +528,8 @@ Warning:
     - this will become an error in GHC 7.10, 
     under the Applicative-Monad Proposal.
 ```
+
+### Ćwiczenia
 
 :pencil: Napisz własną implementację funkcji
 
