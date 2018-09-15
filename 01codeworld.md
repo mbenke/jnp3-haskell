@@ -406,10 +406,12 @@ factorial(n) = n * factorial(n - 1)
 Suma listy ‒ przykład rekurencyjnej funkcji na listach:
 
 ```
-program = drawingOf(circle(r))
+program = drawNumber(r)
 r = suma([1,2,3])
 suma([]) = 0
 suma(x:xs) = x + suma(xs)
+
+drawNumber(n) = drawingOf(lettering(printed(n)))
 ```
 
 W grafice klasycznym przykładem rekurencji są fraktale:
