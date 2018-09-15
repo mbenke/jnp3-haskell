@@ -7,8 +7,8 @@ Dokumentacja modułu CodeWorld: https://code.world/doc-haskell/CodeWorld.html
 ```haskell
 import CodeWorld
 main :: Program
-main = program       -- dorosli używają main jako głównej funkcji
-type Program = IO () -- program wykonuje IO i nie daje wartosci 
+main = program       -- dorośli używają main jako głównej funkcji
+type Program = IO () -- program wykonuje IO i nie daje wartości 
 
 program :: Program
 program = drawingOf design
@@ -45,10 +45,10 @@ design :: Picture
 design = rectangle 4 8
 ```
 
-Funkcja `rectangle` ma typ `Double -> Double -> Picture`, co nalezy rozumieć jako funkcję o argumencie typu `Double`
+Funkcja `rectangle` ma typ `Double -> Double -> Picture`, co należy rozumieć jako funkcję o argumencie typu `Double`
 i wyniku typu (funkcyjnego) `Double -> Picture`. Funkcje mogą być wynikami (jak i argumentami funkcji).
 
-Zaletą takiego podejścia, jest to, ze niem usimy podawac wszystkich argumentów od razu, na przykład
+Zaletą takiego podejścia, jest to, że nie musimy podawac wszystkich argumentów od razu, na przykład
 
 ```
 -- thickRectangle :: Double -> Double -> Double
@@ -145,7 +145,7 @@ Jeśli mu się dokładniej przyjrzymy, zauważymy jednak, ze precyzyjnie wskazuj
 ...arising from the literal ‘2’ at Line 18, Column 23
 ```
 
-możemy go uniknąć, wskazujac typ literalu `2':
+możemy go uniknąć, wskazujac typ literału `2':
 
 ```haskell
 trafficController t
@@ -190,7 +190,7 @@ pi^2
 * Dzielenie całkowite z resztą to `div` i `mod` (oraz `quot` i `rem`)
 * Dla typów zmiennoprzecinkowych działa potęgowanie `(**)` oraz operacje takie jak `sin`, `cos`,`tan`,` sqrt`.
 
-Większość operacji binarnych wymaga aby argumenty  były tego samego typu; `i*pi` nie zadziała jesli i jest typu `Int`.
+Większość operacji binarnych wymaga aby argumenty były tego samego typu; `i*pi` nie zadziała jesli i jest typu `Int`.
 Konwersje typów musimy wykonywac explicite:
 
 * `fromIntegral` konwertuje z typów całkowitych do dowolnego typu liczbowego
