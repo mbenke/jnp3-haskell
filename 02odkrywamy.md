@@ -30,9 +30,9 @@ stack setup
 stack ghci
 ```
 
-Na **students** też mozna korzystać ze stack (jest zainstalowany), ale zwykle boli quota.
+Na **students** też można korzystać ze stack (jest zainstalowany), ale zwykle boli quota.
 
-Na Macu warto uzywać Haskell For Mac: http://haskellformac.com/
+Na Macu warto używać Haskell For Mac: http://haskellformac.com/
 
 ### Polecenia GHCi
 
@@ -69,6 +69,7 @@ Prelude> [1,3..10]
 Prelude> take 4 [0..9]
 [0,1,2,3]
 ```
+
 ### Napisy
 
 Napisy są listami znaków
@@ -89,8 +90,7 @@ W matematyce często tworzymy zbiory przy pomocy aksjomatu wycinania:
 
 { 3x | x∈{1,...,10\} x mod 2 = 1}
 
-Podobnie
-możemy tworzyć listy w Haskellu:
+Podobnie możemy tworzyć listy w Haskellu:
 
     > [3*x | x <- [1..10], mod x 2 == 1]
     [3,9,15,21,27]
@@ -121,7 +121,7 @@ teraz
     *Main> area 2
     12.566370614359172
 
-:exclamation: Krótkie definicje możemy pisać w ghci w postaci `let triple x = 3 * x` (a w GHCi 8 również bez `let`), ale jest tu wiele pułapek także lepiej tego nie używać dopóki nie wie się dobrze co się robi.
+:exclamation: Krótkie definicje możemy pisać w ghci w postaci `let triple x = 3 * x` (a w GHCi 8 również bez `let`), ale jest tu wiele pułapek, także lepiej tego nie używać dopóki nie wie się dobrze co się robi.
 
 ### Program obowiązkowy: silnia
 
@@ -244,7 +244,7 @@ W ogólności **case** ma postać
 
     case e of { wzorzec1 -> e1;...; wzorzec_n -> e_n }
 
-…i oznacza: *“przeanalizuj wyrażenie e i w zalezności od tego, do
+…i oznacza: *“przeanalizuj wyrażenie e i w zależności od tego, do
 którego z wzorców pasuje, daj odpowiedni wynik”*
 
 ### Układ czyli wcięcia mają znaczenie
