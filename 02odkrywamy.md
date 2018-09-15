@@ -228,7 +228,7 @@ Podstawowe rodzaje wyrażeń w Haskellu to:
 
 -   wyrażenie λ (funkcja anonimowa).
 
--   konstruktory (na kolejnym wykładzie)
+-   konstruktory (na kolejnycyh zajęciach)
 
 ### Wyrażenie case
 
@@ -524,4 +524,4 @@ Prelude> drop 5 [1..10]
 
     nub [1,2,1,3,1,2,1,4] == [1,2,3,4]
 
-Możliwe jest wiele rozwiazan, ale przyjmijmy, że funkcja `nub` pozostawia pierwsze wystąpienie danej wartości, a usuwa powtorzenia.
+Możliwe jest wiele rozwiazan, ale przyjmijmy, że funkcja `nub` pozostawia pierwsze wystąpienie danej wartości, a usuwa powtórzenia.
