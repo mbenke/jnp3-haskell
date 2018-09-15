@@ -164,6 +164,7 @@ Skoro funkcje są wyrażeniami to czy mogą stać po prawej stronie definicji i 
 
 ```haskell
 rysuj = drawingOf
+id(x) = x
 koło = id(circle)
 program = rysuj(koło(2))
 ```
