@@ -16,6 +16,10 @@ Przy użyciu prostego modelu matematycznego dla figur i przekształceń, pozwala
 
 # Rysowanie
 
+```haskell
+program = drawingOf(codeWorldLogo)
+```
+
 ## Definicje
 
 Program jest zbiorem (kolejność nie ma znaczenia) definicji.  Na przykład
