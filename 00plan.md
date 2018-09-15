@@ -2,18 +2,18 @@
 
 *Uwaga:* plan jest wstępny i może się jeszcze zmieniać
 
-1. ELI5 czyli Haskell w podstawówce: https://code.world/ 
-2. Odkrywamy Haskell
-3. CodeWorld/Haskell
-4. Typy algebraiczne
-5. Polimorfizm
-6. Typy z klasą - 6.11
-7. IO  - 20.11
-8. Funktory, monady - 27.11
-9. Lenistwo - 4.12
-10. Testowanie - 11.12
-11. Funktory aplikatywne - 8.1
-12. Funkcyjne programowanie reaktywne - 15.1
+1. ELI5 czyli Haskell w podstawówce: https://code.world/ (8.10)
+2. Odkrywamy Haskell (15.10)
+3. CodeWorld/Haskell (22.10)
+4. Typy algebraiczne (29.10)
+5. Polimorfizm (5.11)
+6. Typy z klasą - (12.11)
+7. I/O - (19.11)
+8. Funktory, monady - (26.11)
+9. Lenistwo (3.12)
+10. Testowanie (10.12)
+11. Funktory aplikatywne (17.12)
+12. Funkcyjne programowanie reaktywne (7.1)
 
 ## Literatura
 
