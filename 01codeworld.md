@@ -40,7 +40,7 @@ circle(0.5)
 solidCircle(5)
 rectangle(4,8)
 solidRectangle(8,4)
-text("W przedszkolu naszym nie jest źle")
+lettering("W przedszkolu naszym nie jest źle")
 ```
 
 :exclamation: Zapisuj rozwiązania ćwiczeń w pliku tekstowym - będzie potrzebny później.
@@ -141,7 +141,7 @@ Przykłady wyrażeń:
 4
 2+2
 circle(2+2)
-colored(text("Help"), red)
+colored(lettering("Help"), red)
 rectangle(1, 4) & circle(2)
 ```
 
