@@ -465,7 +465,7 @@ Na tych zajęciach będziemy wykorzystywać GitHub. Jesli jeszcze nia masz konta
 Materiały są dostepne w repozytorium `https://github.com/mbenke/jnp3-haskell/` (dostęp możliwy bez zakładania konta, ale konto przyda się za chwilę).
 
 
-W notatkach są błędy, takie jak literówki (niektóre umyślne). Wykonaj [fork](https://help.github.com/articles/fork-a-repo/) tego repo na swoim koncie, popraw jakiś błąd i zgłoś [pull request](https://help.github.com/articles/creating-a-pull-request-from-a-fork/)
+W notatkach są błędy, takie jak literówki (niektóre umyślne). Wykonaj [fork](https://help.github.com/articles/fork-a-repo/) tego repo na swoim koncie, popraw jakiś błąd (albo zaproponuj ulepszenie) i zgłoś [pull request](https://help.github.com/articles/creating-a-pull-request-from-a-fork/)
 
 # Zastrzeżenia prawne
 
