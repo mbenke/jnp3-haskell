@@ -226,12 +226,12 @@ program = drawingOf(coordinatePlane)
 ```
 
 Punkty reprezentowane są jako pary współrzędnych ‒ na przykład `(5,5)`. 
-Łamaną mozemy skonstruowac przy pomocy funkcji `path` z lista punktów jako argumentem.
+Łamaną mozemy skonstruowac przy pomocy funkcji `polyline` z lista punktów jako argumentem.
 
 
 ```haskell
 program = drawingOf(zigzag)
-zigzag  = path([(-2, 0), (-1, 1), (0, -1), (1, 1), (2, 0)])
+zigzag  = polyline([(-2, 0), (-1, 1), (0, -1), (1, 1), (2, 0)])
 ```
 
 Łamaną zamkniętą możemy uzyskać przy pomocy `polygon`.
@@ -298,7 +298,7 @@ sizes = [ 1, 2, 3, 4 ]
 A co z punktami? Można powiedzieć, że są typu `Point`:
 
 ```haskell
-program = drawingOf(path[start, end])
+program = drawingOf(polyline[start, end])
 
 start :: Point
 start = (0, 0)
@@ -424,7 +424,7 @@ fractal(n) = stem
            & translated(part, 0, -5)
   where part = rotated(scaled(fractal(n-1), 2/3, 2/3), 90)
 
-stem = path([(0, -10), (0, 10)])
+stem = polyline([(0, -10), (0, 10)])
 ```
 
 :pencil: Narysuj inne fraktale ‒ dywan Sierpińskiego, płatek Kocha, ...
