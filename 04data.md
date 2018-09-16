@@ -37,7 +37,7 @@ drawCol = drawTileAt ? ?
 ```
 
 Mamy tu drobny problem: w definicji `drawCol` musimy znać numer wiersza i kolumny.
-Możemy poczuć pokusę aby użyć `n`, ale nie jest ono w zasięgu (jest lokalne w fukcji helper).
+Możemy poczuć pokusę aby użyć `n`, ale nie jest ono w zasięgu (jest lokalne w fukcji `helper`).
 
 Zatem `helper` musi przekazać bieżące `n` do `something`. Podobnie `drawRow` musi poinformować `drawRow`, w którym wierszu ma rysować:
 
@@ -71,20 +71,20 @@ Jest to przykład tzw. *funkcji wyższego rzędu* - to ważne pojęcie w program
 
 ## Częściowa aplikacja
 
-Zauważmy, że funkcja `drawCol` potrzebuje dwóch argumentów, ale używamy jej z jednym iprzekazujemy do `draw21times`. 
+Zauważmy, że funkcja `drawCol` potrzebuje dwóch argumentów, ale używamy jej z jednym i przekazujemy do `draw21times`. 
 Typ `drawCol` możemy zapisać jako
 
 ```haskell
 drawCol :: Integer -> (Integer -> Picture)
 ```
 
-Czyli w istocie jest to funkcja jednoargumentowa o typie wyniku pasującym do typu argumentu `draw21times` (strzałka wiąze w prawo, więc nawiasy są tylko dla ilustracji).  Mechanizm zastosowania funkcji do niepełnej liczby argumentów nazywamy *cześciową aplikacją*  i jest to również ważny element budowania abstrakcji w programowaniu funkcyjnym (często w połacznieu z funkcjami wyższego rzędu).
+Czyli w istocie jest to funkcja jednoargumentowa o typie wyniku pasującym do typu argumentu `draw21times` (strzałka wiąze w prawo, więc nawiasy są tylko dla ilustracji).  Mechanizm zastosowania funkcji do niepełnej liczby argumentów nazywamy *częściową aplikacją*  i jest to również ważny element budowania abstrakcji w programowaniu funkcyjnym (często w połaczeniu z funkcjami wyższego rzędu).
 
 # Typy danych
 
 Przypomnijmy sobie funkcję `drawTile :: Integer -> Picture` tworzącą obraz pola na podstawie numeru jego rodzaju.
 Kod byłby czytelniejszy i mniej podatny na błędy, gdyby zamiast numerów stosowac nazwy symboliczne.
-W innych językach stosujemy konstrukcje takie jak `#define` albo `enum`; w Haskellu zaś konstrukcję `data`:
+W innych językach stosujemy konstrukcje takie jak `#define` albo `enum`, w Haskellu zaś konstrukcję `data`:
 
 ```
 data Tile = Wall | Ground | Storage | Box | Blank
@@ -116,13 +116,13 @@ maze x y
   | otherwise                = Ground
  ```
  
-Zauważmy, ze teraz również sygnatury typów stają się bardziej czytelne i pomocne.
+Zauważmy, że teraz również sygnatury typów stają się bardziej czytelne i pomocne.
 
 :pencil: Przerób swój kod tak aby używał nowego typu `Tile` zamiast kodowania typów pól liczbami.
 
 ## Bool
 
-Z jednym wyliczeniowym typem danych juz sie zetknęliśmy: `Bool`. Nie jest on "magiczny", ale zdefiniowany jako
+Z jednym wyliczeniowym typem danych już się zetknęliśmy: `Bool`. Nie jest on "magiczny", ale zdefiniowany jako
 
 ```haskell
 data Bool = False | True
@@ -134,8 +134,8 @@ Podobnie operatory takie jak `(&&)` nie są wbudowane, ale każdy mógłby je zd
 
 Naszym celem jest rozszerzenie animacji o interakcję z użytkownikiem. Zacznijmy od potrzebnych typów.
 
-Piewszą rzecza, którą moglibyśmy chcieć zrobic jest przesuwanie planszy (np. gdy jest większa niż nasze okno).
-Potem moze chcielibyśmy przesuwać gracza po planszy. Potrzebujemy typu reprezentującego kierunki:
+Piewszą rzecza, którą moglibyśmy chcieć zrobić jest przesuwanie planszy (np. gdy jest większa niż nasze okno).
+Potem może chcielibyśmy przesuwać gracza po planszy. Potrzebujemy typu reprezentującego kierunki:
 
 ```haskell
 data Direction = R | U | L | D
@@ -172,20 +172,20 @@ atCoord (C x y) pic = translated (fromIntegral x) (fromIntegral y) pic
 
 Napisz funkcję `adjacentCoord :: Direction -> Coord -> Coord` dającą współrzędne przesuniete o 1 w podanym kierunku.
 
-Mozesz ją przetestowac w `ghci`. Aby móc wypisywac elementy swojego typu, warto dodać do jego definicji klauzulę 
+Możesz ją przetestować w `ghci`. Aby móc wypisywac elementy swojego typu, warto dodać do jego definicji klauzulę 
 `deriving Show`, np.
 
 ```haskell
 data Coord = C Integer Integer deriving Show
 ```
 
-Jesli chcesz skłonic CodeWorld aby coś wypisał możesz użyć funkcji `print` w `main`, np.
+Jeśli chcesz skłonić CodeWorld aby coś wypisał możesz użyć funkcji `print` w `main`, np.
 
 ```haskell
 main = print 42
 ```
 
-albo (jesli zdefiniowałeś `Coord` z klauzulą `deriving Show`)
+albo (jeśli zdefiniowałeś `Coord` z klauzulą `deriving Show`)
 
 ```haskell
 main = print (C 1 2)
@@ -205,6 +205,7 @@ main = drawingOf (atCoord someCoord pictureOfMaze)
 ```haskell
 someCoord = moveCoords [U, U, L] initialCoord
 ```
+
 ## Terminologia
 
 * typ, w którym żaden z konstruktorów nie ma argumentów nazywamy *typem wyliczeniowym* (ang. *enumeration type*);
@@ -214,10 +215,10 @@ someCoord = moveCoords [U, U, L] initialCoord
 
 # Czysta interakcja
 
-Pora uczynić naszą grę interaktywną. Chcemy aby po uruchomieniu programu, poziom był wysrodkowany,
-następnie aby użytkownik mógł przesuwać go przy pomocy klawiszy strzałek.
+Pora uczynić naszą grę interaktywną. Chcemy aby po uruchomieniu programu, poziom był wyśrodkowany,
+a następnie, aby użytkownik mógł przesuwać go przy pomocy klawiszy strzałek.
 
-Jak mozemy modelować interakcję w świecie bez efektów ubocznych? Podobnie jak to uczyniliśmy dla animacji:
+Jak możemy modelować interakcję w świecie bez efektów ubocznych? Podobnie jak to uczyniliśmy dla animacji:
 animacja jest funkcją z czasu w obraz. Program reagujący na zdarzenia możemy przedstawić jako funkcję,
 która mając bieżący stan i zdarzenie, oblicza nowy stan:
 
@@ -229,7 +230,7 @@ interactionOf :: world ->
                 IO ()
 ```
 
-Występujacy w tym typie typ świata `world` jest zmienną typową - mozemy uzyć w jej miejsce dowolnego typu (szerzej powiemy sobie o tym później. Jeżeli chcemy tyliko przesuwać poziom, na początek mozemy użyć `Coord`.
+Występujacy w tym typie typ świata `world` jest zmienną typową - możemy użyć w jej miejsce dowolnego typu (szerzej powiemy sobie o tym później. Jeżeli chcemy tyliko przesuwać poziom, na początek możemy użyć `Coord`.
 
 Funkcja `interactionOf` bierze 4 argumenty:
 
@@ -240,7 +241,7 @@ Funkcja `interactionOf` bierze 4 argumenty:
 
 Takie podejście jest zbliżony do paradygmatu Model-View-Controller, ale nie używa efektów ubocznych, a tylko czystych funkcji.
 
-Prosta próba użycia `interactionOf` moze wyglądać np. tak [(zobacz na CodeWorld)](https://code.world/haskell#PpjfIR2NrgPeBJQKfg_63Kg):
+Prosta próba użycia `interactionOf` może wyglądać np. tak [(zobacz na CodeWorld)](https://code.world/haskell#PpjfIR2NrgPeBJQKfg_63Kg):
 
 ```haskell
 main = interactionOf initialCoord handleTime handleEvent drawState
@@ -287,7 +288,7 @@ handleEvent _ c      = c
 {-# LANGUAGE OverloadedStrings #-} 
 ```
 
-Sekwencja `{- ... -}` oznacza komentarz blokowy. Sekwencja  `{-# ... #-}` oznacza pragmę, czyli wskazówkę ddla kompilatora.
+Sekwencja `{- ... -}` oznacza komentarz blokowy. Sekwencja  `{-# ... #-}` oznacza pragmę, czyli wskazówkę dla kompilatora.
 W tym wypadku pragma `LANGUAGE OverloadedStrings` oznacza rozszerzenie języka, w którym literały napisowe są przeciążone i (podobnie jak literały liczbowe) dopasowują się do oczekiwanego typu - domyślnie są typu `String`, ale tutaj chcemy ich użyc w typie `Text`.
 
 # :pencil: Sokoban 2
@@ -297,9 +298,9 @@ W tym wypadku pragma `LANGUAGE OverloadedStrings` oznacza rozszerzenie języka, 
 Stwórz definicję `player1 :: Picture` reprezentującą figurkę gracza.
 
 Zdefiniuj `walk1 :: IO ()` wykorzystujące `interactionOf` aby:
-* postać gracza była rysowana na obrazie poziomu 
-* początkowa pozycja gracza wypadała na pustym polu (można uzyć ustalonych współrzędnych, nie trzeba szukać pustego pola w programie)
-* klawisze strzełek przesuwały obraz gracza (obraz poziomu ma pozostac nieruchomy)
+* postać gracza była rysowana na obrazie poziomu;
+* początkowa pozycja gracza wypadała na pustym polu (można uzyć ustalonych współrzędnych, nie trzeba szukać pustego pola w programie);
+* klawisze strzałek przesuwały obraz gracza (obraz poziomu ma pozostać nieruchomy);
 * gracz przesuwał się tylko  na pola `Ground` lub `Storage` (nie wchodzimy na ściany ani pudła).
 
 Zwróć uwagę na kolejnosc elementów w `&` bądź `pictures`:
@@ -341,6 +342,6 @@ Zastanów się co powinno się dziać dla zdarzenia odpowiadającego puszczeniu 
 
 Zdefiniuj `walk3 :: IO ()` jako wariant `walk2` używający `resettableInteractionOf`.
 
-Termin: 28.10.2017 06:00 UTC+0200 (0400 UTC)
+FIXME Termin: 28.10.2017 06:00 UTC+0200 (0400 UTC)
 
 Oddawanie przez GitHub Classroom: https://classroom.github.com/a/z2X-Jbdu
