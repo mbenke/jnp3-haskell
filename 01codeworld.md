@@ -460,7 +460,7 @@ tire      = circle(1) & solidRectangle(0.1, 2)
 
 https://github.com
 
-Na tych zajęciach będziemy wykorzystywać GitHub. Jesli jeszcze nia masz konta ‒ załóż.
+Na tych zajęciach będziemy wykorzystywać GitHub. Jeśli jeszcze nia masz konta ‒ załóż.
 
 Materiały są dostepne w repozytorium `https://github.com/mbenke/jnp3-haskell/` (dostęp możliwy bez zakładania konta, ale konto przyda się za chwilę).
 
