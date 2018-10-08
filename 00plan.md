@@ -2,6 +2,8 @@
 
 *Uwaga:* plan jest wstępny i może się jeszcze zmieniać
 
+## Laboratoria
+
 1. ELI5 czyli Haskell w podstawówce: https://code.world/ (8.10)
 2. Odkrywamy Haskell (15.10)
 3. CodeWorld/Haskell (22.10)
@@ -14,6 +16,17 @@
 10. Testowanie (17.12)
 11. Funktory aplikatywne (7.1)
 12. Funkcyjne programowanie reaktywne (14.1)
+
+## Programy zaliczeniowe
+
+1. CodeWorld - termin 20.10
+2. Sokoban 1 - termin 27.10
+3. Sokoban 2 - termin 10.11
+4. Sokoban 3 - termin 17.11
+5. Sokoban 4 - termin 24.11
+6. Sokoban 5 - termin 01.12
+
+FIXME - to jeszcze nie wszystkie programy
 
 ## Literatura
 
