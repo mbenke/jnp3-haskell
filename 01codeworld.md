@@ -467,6 +467,8 @@ Materiały są dostepne w repozytorium `https://github.com/mbenke/jnp3-haskell/`
 
 W notatkach są błędy, takie jak literówki (niektóre umyślne). Wykonaj [fork](https://help.github.com/articles/fork-a-repo/) tego repo na swoim koncie, popraw jakiś błąd (albo zaproponuj ulepszenie) i zgłoś [pull request](https://help.github.com/articles/creating-a-pull-request-from-a-fork/)
 
+Zadania nalezy oddawać poprzez GitHub Classroom. Na rozgrzewka, programy z dzisiejszych zajęć należy oddać poprzez link https://classroom.github.com/a/vOxhO1_n
+
 # Zastrzeżenia prawne
 
 Przykłady i niektóre opisy pochodzą z dokumentacji CodeWorld: https://code.world/doc.html?help/codeworld.md
