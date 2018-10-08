@@ -226,7 +226,7 @@ program = drawingOf(coordinatePlane)
 ```
 
 Punkty reprezentowane są jako pary współrzędnych ‒ na przykład `(5,5)`. 
-Łamaną mozemy skonstruowac przy pomocy funkcji `polyline` z lista punktów jako argumentem.
+Łamaną mozemy skonstruować przy pomocy funkcji `polyline` z lista punktów jako argumentem.
 
 
 ```haskell
