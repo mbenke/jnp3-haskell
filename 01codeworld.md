@@ -1,8 +1,8 @@
-# ELI5 
+# ELI5
 
 *Explain Like I'm 5* - czyli wyjaśnij mi to jak pięciolatkowi [1].
 
-Haskell ma opinię języka trudnego i skomplikowanego, dlatego zaczniemy od kursu, nawet jeśli nie dla pięciolatków, 
+Haskell ma opinię języka trudnego i skomplikowanego, dlatego zaczniemy od kursu, nawet jeśli nie dla pięciolatków,
 to dla uczniów szkoły podstawowej (testowane z powodzeniem na 9-latkach).
 
 [1] https://www.reddit.com/r/explainlikeimfive/
@@ -156,7 +156,7 @@ Natomiast `x=1` nie jest wyrażeniem ‒ jest definicją.
 Szczególnym rodzajem wyrażeń są *funkcje*. Podstawową operacją którą możemy wykonać przy pomocy funkcji jest zastosowanie jej do argumentów, Na przykład
 
 * `rectangle` jest funkcją. Dostawszy wysokość i szerokość, produkuje obraz (prostokąt)
-* `light` jest funkcją. Dostawszy kolor, produkuje (podobny, ale jaśniejszy) kolor. 
+* `light` jest funkcją. Dostawszy kolor, produkuje (podobny, ale jaśniejszy) kolor.
 * `drawingOf` jest funkcją. Dostawszy  obraz, konstruuje program, który rysuje ten obraz.
 * `id` jest funkcją identycznościową
 
@@ -225,7 +225,7 @@ Dla ułatwienia możemy narysować siatkę współrzędnych:
 program = drawingOf(coordinatePlane)
 ```
 
-Punkty reprezentowane są jako pary współrzędnych ‒ na przykład `(5,5)`. 
+Punkty reprezentowane są jako pary współrzędnych ‒ na przykład `(5,5)`.
 Łamaną mozemy skonstruowac przy pomocy funkcji `polyline` z lista punktów jako argumentem.
 
 
@@ -252,7 +252,7 @@ mystery = polygon(
 
 Każda wartość i wyrażenie ma swój typ. Typy pojawiają się przede wsztstkim w dwóch sytuacjach:
 * w komunikatach o błędach (spróbuj napisać `program = drawingOf(42)`)
-* możemy wskazywać typy wyrażeń i definicji 
+* możemy wskazywać typy wyrażeń i definicji
 
 ### Proste typy
 
@@ -272,7 +272,7 @@ wheel = solidCircle(size)
 size :: Number
 size = 4
 ```
-W większości wypadków deklaracje typów nie są konieczne ‒ kompilator potrafi sam wywnioskować typy. 
+W większości wypadków deklaracje typów nie są konieczne ‒ kompilator potrafi sam wywnioskować typy.
 Deklaracje mają jednak co najmniej dwie zalety:
 * Są cenną dokumentacją kodu (lepszą niz komentarze - bo sprawdzaną przez kompilator).
 * Czasem pozwalają na dokładniejsze komunikaty o błędach.
@@ -467,7 +467,7 @@ Materiały są dostepne w repozytorium `https://github.com/mbenke/jnp3-haskell/`
 
 W notatkach są błędy, takie jak literówki (niektóre umyślne). Wykonaj [fork](https://help.github.com/articles/fork-a-repo/) tego repo na swoim koncie, popraw jakiś błąd (albo zaproponuj ulepszenie) i zgłoś [pull request](https://help.github.com/articles/creating-a-pull-request-from-a-fork/)
 
-Zadania nalezy oddawać poprzez GitHub Classroom. Na rozgrzewka, programy z dzisiejszych zajęć należy oddać poprzez link https://classroom.github.com/a/vOxhO1_n
+Zadania należy oddawać poprzez GitHub Classroom. Na rozgrzewkę, programy z dzisiejszych zajęć należy oddać poprzez link https://classroom.github.com/a/vOxhO1_n
 
 # Zastrzeżenia prawne
 
