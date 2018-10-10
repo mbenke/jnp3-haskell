@@ -108,9 +108,9 @@ tree    = colored(leaves, green) & colored(trunk, brown)
 leaves  = sector(0, 180, 4)
 trunk   = solidRectangle(1, 4)
 ```
-:pencil: narysuj sygnalizator drogowy ('światła' - zielone i czerwone kółko wewnątrz prostokąta)
+:pencil: Narysuj sygnalizator drogowy ('światła' - zielone i czerwone kółko wewnątrz prostokąta)
 
-:pencil: narysuj szachownicę (to wymaga pewnego sprytu, za chwilę zobaczymy jak to zrobić sprawniej).
+:pencil: Narysuj szachownicę (to wymaga pewnego sprytu, za chwilę zobaczymy jak to zrobić sprawniej).
 
 ### Obroty
 
