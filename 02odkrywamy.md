@@ -36,7 +36,7 @@ Na Macu warto używać Haskell For Mac: http://haskellformac.com/
 
 ### Polecenia GHCi
 
-(wystarczy jednoznaczny prefiks, często pierwsza litera, np `:h`, `:l`; sam `:` powatarza ostatnie polecenie)
+(wystarczy jednoznaczny prefiks, często pierwsza litera, np `:h`, `:l`; sam `:` powtarza ostatnie polecenie)
 
 ```
 :help
@@ -103,6 +103,9 @@ liczbie generatorów i filtrów, np.
     > [(x,y) | x<-[1..5],y<-[1,2,3],x+y == 5,x*y == 6]
     [(2,3),(3,2)]
 
+:pencil: Stwórz wycinankę, która da w wyniku listę trójek pitagorejskich o składowych do 100.
+Spróbuj wyeliminować powtórzenia.
+
 ### Definiowanie funkcji
 
 Stwórzmy plik `e01.hs`
@@ -122,6 +125,8 @@ teraz
     12.566370614359172
 
 :exclamation: Krótkie definicje możemy pisać w ghci w postaci `let triple x = 3 * x` (a w GHCi 8 również bez `let`), ale jest tu wiele pułapek, także lepiej tego nie używać dopóki nie wie się dobrze co się robi.
+
+:pencil: używając wycinanki z poprzedniego ćwiczenia, napisz funkcję taką, że `triples n` da trójki pitagorejskie o składowych do `n`.
 
 ### Program obowiązkowy: silnia
 
@@ -156,7 +161,8 @@ Także silnię możemy zdefiniować w ten sposób:
 
     fact3 0 = 1
     fact3 n = n * fact3 (n-1)
-
+    
+:pencil: Napisz funkcję obliczającą iloczyn listy będącej jej argumentem. Wyraź silnię w kategoriach tej funkcji.
 ### Typy
 
 Każda wartość ma swój typ
@@ -509,19 +515,19 @@ Prelude> drop 5 [1..10]
 [6,7,8,9,10]
 ```
 
-:pencil: 2. Napisz funkcję `inits`, ktora dla danej listy da liste wszystkich jej odcinkow poczatkowych, np.
+:pencil: 2. Napisz funkcję `inits`, która dla danej listy da listę wszystkich jej odcinków początkowych, np.
 
     inits [1,2] == [[],[1],[1,2]]
    
 
-:pencil: 3. Napisz funkcje `partitions`, ktora dla danej listy `xs` da liste wszystkich par `(ys,zs)` takich, że  
+:pencil: 3. Napisz funkcje `partitions`, która dla danej listy `xs` da listę wszystkich par `(ys,zs)` takich, że  
 
     xs == ys ++ zs
     
-:pencil: 4. Napisz funkcję `permutations`, ktora dla danej listy da listę wszystkich jej permutacji (dla unikniecia niejasności mozemy założyć, ze wszystkie elementy listy wejściowej sa różne)
+:pencil: 4. Napisz funkcję `permutations`, która dla danej listy da listę wszystkich jej permutacji (dla unikniecia niejasności mozemy założyć, ze wszystkie elementy listy wejściowej sa różne)
 
-:pencil: 5. Napisz funkcję `nub`, ktora usunie z listy wszystkie duplikaty, np
+:pencil: 5. Napisz funkcję `nub`, która usunie z listy wszystkie duplikaty, np
 
     nub [1,2,1,3,1,2,1,4] == [1,2,3,4]
 
-Możliwe jest wiele rozwiazan, ale przyjmijmy, że funkcja `nub` pozostawia pierwsze wystąpienie danej wartości, a usuwa powtórzenia.
+Możliwe jest wiele rozwiazań, ale przyjmijmy, że funkcja `nub` pozostawia pierwsze wystąpienie danej wartości, a usuwa powtórzenia.
