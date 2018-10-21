@@ -152,6 +152,8 @@ trafficController t
   | round (t/3) `mod` (2::Integer) == 0 = trafficLight True
   | otherwise                = trafficLight False
 ```
+:pencil: Czy potrafisz zapisać to zwięźlej, eliminując powtórzenia (`...trafficLight True ...trafficLight False`)
+
 :pencil: Dodaj do animacji sygnalizatora krótką fazę żółtą.
 
 Trzy typy numeryczne, które musimy w tym momencie znać to `Int`, `Integer` oraz `Double`:
