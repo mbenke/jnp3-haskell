@@ -1,4 +1,4 @@
-# CodeWorld/Haskell
+﻿# CodeWorld/Haskell
 
 https://code.world/haskell
 
@@ -30,14 +30,14 @@ Line 10, Column 1: warning: [-Wmissing-signatures]
 ## Argumenty funkcji i nawiasy
 
 Jak widać na przykład w definicji `design = circle 2` nawiasy wokół argumentu nie są potrzebne (chyba, ze jest on wyrażeniem złożonym).
-Nawiasy są potrzebne wokół krotek (są cześcią ich składni), na przykład
+Nawiasy są potrzebne wokół krotek (są częścią ich składni), na przykład
 
 ```haskell
 center :: Point
 center = (0,0)
 ```
 
-Jesli funkcja potrzebuje wielu argumentów, możemy je przekazać jako krotkę.
+Jeśli funkcja potrzebuje wielu argumentów, możemy je przekazać jako krotkę.
 Ale idiomatyczny w Haskellu jest inny sposób - przekazywanie argumentów "jeden po drugim", np
 
 ```haskell
@@ -48,7 +48,7 @@ design = rectangle 4 8
 Funkcja `rectangle` ma typ `Double -> Double -> Picture`, co należy rozumieć jako funkcję o argumencie typu `Double`
 i wyniku typu (funkcyjnego) `Double -> Picture`. Funkcje mogą być wynikami (jak i argumentami funkcji).
 
-Zaletą takiego podejścia, jest to, że nie musimy podawac wszystkich argumentów od razu, na przykład
+Zaletą takiego podejścia, jest to, że nie musimy podawać wszystkich argumentów od razu, na przykład
 
 ```
 -- thickRectangle :: Double -> Double -> Double
@@ -86,11 +86,11 @@ W Haskellu pracujemy raczej na całych strukturach danych i napiszemy po prostu
 sum (map (3*) lst)
 ```
 
-W nowszych bibliotekach do C++ czy Javy znajedziemy podobne mechanizmy, ale wywodzą się one z programowania funkcyjnego.
+W nowszych bibliotekach do C++ czy Javy znajdziemy podobne mechanizmy, ale wywodzą się one z programowania funkcyjnego.
 
 ## Animacje i typy numeryczne
 
-Przypomnijmy sobie rysunek sygnalizatora ulicznego. Możemy zapisac go np. tak:
+Przypomnijmy sobie rysunek sygnalizatora ulicznego. Możemy zapisać go np. tak:
 
 ```haskell
 import CodeWorld
@@ -121,7 +121,7 @@ main :: IO ()
 main = animationOf trafficController
 ```
 
-Przy okazji zobaczymy groźnie wyglądajace ostrzeżenie:
+Przy okazji zobaczymy groźnie wyglądające ostrzeżenie:
 
 ```
 Line 18, Column 5: warning: [-Wtype-defaults]
@@ -145,7 +145,7 @@ Jeśli mu się dokładniej przyjrzymy, zauważymy jednak, ze precyzyjnie wskazuj
 ...arising from the literal ‘2’ at Line 18, Column 23
 ```
 
-możemy go uniknąć, wskazujac typ literału `2':
+możemy go uniknąć, wskazując typ literału `2':
 
 ```haskell
 trafficController t
@@ -190,8 +190,8 @@ pi^2
 * Dzielenie całkowite z resztą to `div` i `mod` (oraz `quot` i `rem`)
 * Dla typów zmiennoprzecinkowych działa potęgowanie `(**)` oraz operacje takie jak `sin`, `cos`,`tan`,` sqrt`.
 
-Większość operacji binarnych wymaga aby argumenty były tego samego typu; `i*pi` nie zadziała jesli i jest typu `Int`.
-Konwersje typów musimy wykonywac explicite:
+Większość operacji binarnych wymaga aby argumenty były tego samego typu; `i*pi` nie zadziała jeśli i jest typu `Int`.
+Konwersje typów musimy wykonywać explicite:
 
 * `fromIntegral` konwertuje z typów całkowitych do dowolnego typu liczbowego
 * `round`, `floor`, `ceiling` konwertują z typów zmiennoprzecinkowych do całkowitych
@@ -202,7 +202,7 @@ Do porównań na wszelkich typach liczbowych (i nie tylko) możemy uzywać `==`,
 
 :pencil: Napisz funkcję `lights :: Integer -> Picture` taką, że `lights n` narysuje n sygnalizatorów obok siebie.
 
-:pencil: Napisz funkcję `squares :: Double -> Picture`, taką, że `squares d` narysuje obok siebie prostokąty o łacznym polu `d` przy czym wszystkie oprócz być może ostatniego będą kwadratami o boku  1.
+:pencil: Napisz funkcję `squares :: Double -> Picture`, taką, że `squares d` narysuje obok siebie prostokąty o łącznym polu `d` przy czym wszystkie oprócz być może ostatniego będą kwadratami o boku  1.
 
 :question: Jak Twoje funkcje zachowują się dla argumentów ujemnych?
 
@@ -230,7 +230,7 @@ Zdefiniuj funkcje `wall,ground, storage, box :: Picture`, tworzące obrazy odpow
 
 Zdefiniuj funkcję 
 `drawTile :: Integer -> Picture` taką że `drawTile n` daje obraz pola numeru n według listy powyżej.
-Funkcja powinna zachowywac się sensownie również dla argumentów spoza zakresu.
+Funkcja powinna zachowywać się sensownie również dla argumentów spoza zakresu.
 
 Poziom możemy reprezentować jako funkcję typu `Integer -> Integer -> Integer`,
 która otrzymawszy dwie współrzędne daje rodzaj pola, które znajduje się w podanym miejscu.
@@ -250,6 +250,6 @@ maze x y
 ```
 
 Zdefiniuj obraz `pictureOfMaze :: Picture`, który rysuje powyższy poziom dla współrzędnych x,y z zakresu `[-10..10]`,
-wykorzystujac obrazy dane przez funkcję `drawTile` przesunięte w odpowiednie miejsca.
+wykorzystując obrazy dane przez funkcję `drawTile` przesunięte w odpowiednie miejsca.
 
 Oddawanie zadania poprzez GitHub Classroom: https://classroom.github.com/a/HZF7-yvJ
