@@ -47,14 +47,14 @@ ile różnych implementacji potrafisz napisać?
 
 Polimorficzne, mogą być nie tylko funkcje, ale i typy danych. W poprzednim tygodniu pisaliśmy wariant funkcji `interactionOf`
 pozwalający na cofnięcie poziomu do stanu początkowego. Spróbujmy teraz rozszerzyć tę funkcję o wyświetlanie ekranu startowego 
-i rozpoczynanie właściwej gry po naciśnięciu spacji. Na początek możemy stworzyć bardzo prostry ekran startowy:
+i rozpoczynanie właściwej gry po naciśnięciu spacji. Na początek możemy stworzyć bardzo prosty ekran startowy:
 
 ```haskell
 startScreen :: Picture
 startScreen = scaled 3 3 (text "Sokoban!")
 ```
 
-Musimy wiedzieć czy jestesmy na ekranie startowym czy też gra już się toczy.  Najprosciej zapamiętać tę informację w stanie
+Musimy wiedzieć czy jestesmy na ekranie startowym czy też gra już się toczy.  Najprościej zapamiętać tę informację w stanie
 
 ```haskell
 data SSState = StartScreen | Running world
@@ -142,8 +142,8 @@ Implementacja funkcji `resettable` nie przedstawia większych trudności - musim
 przy pomocy dopasowania wzorca:
 
 ```haskell
-resetable :: Interaction s -> Interaction s
-resetable (Interaction state0 step handle draw)
+resettable :: Interaction s -> Interaction s
+resettable (Interaction state0 step handle draw)
   = Interaction state0 step handle' draw
   where handle' (KeyPress key) _ | key == "Esc" = state0
         handle' e s = handle e s
@@ -181,7 +181,7 @@ withStartScreen (Interaction state0 step handle draw)
     draw' (Running s) = draw s
  ```
  
- Do kompletu potzebujemy jeszcze funkcji `runInteraction`.
+ Do kompletu potrzebujemy jeszcze funkcji `runInteraction`.
  
  :pencil: Napisz funkcję `runInteraction :: Interaction s -> IO ()`
  
