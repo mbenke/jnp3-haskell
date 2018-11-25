@@ -362,9 +362,9 @@ class  (Eq a, Show a) => Num a  where
 
 # Zadanie: Sokoban 4
 
-https://classroom.github.com/a/_LNnNla0
+https://classroom.github.com/a/m-vSQ8-b
 
-Termin: 18.11.2017 06:00 UTC+1
+Termin: 8.12.2018 06:00 UTC+1
 
 ## Etap 0
 
