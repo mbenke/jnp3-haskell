@@ -219,7 +219,7 @@ W sumie kompilator Haskella zawiera w sobie mini-Prolog.
 Powiedzmy, że chcemy dodac do gry możliwośc wycofania ruchu (np. przy dojściu z pudłem do ściany).
 
 ```haskell
-data WithUndo a = WithUndo a (List a)
+data WithUndo a = WithUndo a [a]
 
 withUndo :: Interaction a -> Interaction (WithUndo a)
 withUndo (Interaction state0 step handle draw) = Interaction state0' step' handle' draw' where
