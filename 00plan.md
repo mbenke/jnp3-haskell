@@ -8,14 +8,14 @@
 2. Odkrywamy Haskell (15.10)
 3. CodeWorld/Haskell (22.10)
 4. Typy algebraiczne (5.11)
-5. Polimorfizm (12.11)
-6. Typy z klasą - (19.11)
-7. I/O - (26.11)
-8. Funktory, monady - (3.12)
-9. Lenistwo (10.12)
-10. Testowanie (17.12)
-11. Funktory aplikatywne (7.1)
-12. Funkcyjne programowanie reaktywne (14.1)
+5. Polimorfizm (19.11)
+6. Typy z klasą - (26.11)
+7. I/O - (3.12)
+8. Funktory, monady - (10.12)
+9. Testowanie (17.12)
+10. Lenistwo (7.1)
+11. Funktory aplikatywne (14.1)
+12. Funkcyjne programowanie reaktywne (21.1)
 
 ## Programy zaliczeniowe
 
