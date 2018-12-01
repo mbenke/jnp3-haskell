@@ -247,7 +247,7 @@ Powinniśmy wkładać na stos tylko zdarzenia, które mają efekt:
                       []        -> WithUndo s []
     handle' e              (WithUndo s stack)
        | s' == s = WithUndo s stack
-       | otherwise = WithUndo (handle e s) (Entry s stack)
+       | otherwise = WithUndo (handle e s) (s:stack)
       where s' = handle e s
 ```
 
