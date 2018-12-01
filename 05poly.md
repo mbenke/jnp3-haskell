@@ -51,7 +51,7 @@ i rozpoczynanie właściwej gry po naciśnięciu spacji. Na początek możemy st
 
 ```haskell
 startScreen :: Picture
-startScreen = scaled 3 3 (text "Sokoban!")
+startScreen = scaled 3 3 (lettering "Sokoban!")
 ```
 
 Musimy wiedzieć czy jestesmy na ekranie startowym czy też gra już się toczy.  Najprościej zapamiętać tę informację w stanie
