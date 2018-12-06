@@ -14,13 +14,13 @@ Dla większości programistów jest ona niezauważalna, jak dla molierowskiego p
 
 Otóż gdy w języku gorliwym funkcja
 
-```
+``` haskell
 k x y = x
 ```
 
 użyta zostanie w wyrażeniu
 
-```
+``` haskell
 k 42 (fib 1234567)
 ```
 
@@ -36,7 +36,7 @@ W Haskellu obowiązuje taki własnie paradygmat. Dlaczego jednak wszystkie języ
 
 - W przypadku gorliwej ewaluacji łatwiej przewidzieć sposób i kolejność realizacji efektów ubocznych; rozważmy np.
 
-```
+``` haskell
 main = f (print 1) (print 2)
 ```
 
@@ -84,13 +84,13 @@ add (a:as) (b:bs) = (a+b) : add as bs
 
 :pencil: W podobny sposób zdefiniuj strumień wszystkich liczb Fibonacciego
 
-```
+``` haskell
 take 20 fibs
 [0,1,1,2,3,5,8,13,21,34,55,89,144,233,377,610,987,1597,2584,4181]
 (0.01 secs, 141,984 bytes)
 ```
 
-Kró†ka definicja strumienia liczb pierwszych
+Krótka definicja strumienia liczb pierwszych
 
 ``` haskell
 x -/ p = x `mod` p > 0
@@ -106,10 +106,12 @@ mozna ją usprawnić...
 
 :pencil: Uzupełnij definicję
 
-```
+``` haskell
 primes3 :: [Int]
 primes3 = 2:[x | x <- xs, isPrime x] where
   xs = ...
   isPrime x = all (x -/) (factorsToTry x)
   factorsToTry x = ...
 ```
+
+tak by sprawdzać tylko dzielniki `x` nie większe od pierwiastka `x` (ale używamy tylko arytmetyki całkowitej).
