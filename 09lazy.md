@@ -39,5 +39,7 @@ main = f (print 1) (print 2)
 ```
 
 W przypadku gorliwej ewaluacji możemy się spodziewać że przed wywołaniem `f` wypisane zostanie 1 i 2 (chociaż nie każdy język zagwarantuje nam kolejność). 
-
 W przypadku leniwej ewaluacji nie wiemy kiedy i czy w ogóle cokolwiek zostanie wypisane.
+
+Wyzwaniem jakie stanęło przed twórcami Haskella było więc wymyślenie sposobu włączenia do języka efektów ubocznych w sposób uporządkowany tak aby programista mógł je kontrolować i nie naruszały one zasadniczej czystości języka. Po kilku iteracjach (strumienie? kontynuacje? monady!) znaleźli rozwiązanie: poznany przez nas niedawno typ IO. Przy okazji okazało się, że monady pozwalają na dokładniejszą kontrolę efektów niż "wszystko albo nic".
+
