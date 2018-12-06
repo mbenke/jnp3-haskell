@@ -89,3 +89,27 @@ take 20 fibs
 [0,1,1,2,3,5,8,13,21,34,55,89,144,233,377,610,987,1597,2584,4181]
 (0.01 secs, 141,984 bytes)
 ```
+
+Kró†ka definicja strumienia liczb pierwszych
+
+``` haskell
+x -/ p = x `mod` p > 0
+
+primes1 :: [Integer]
+primes1 = sieve [2..] where
+  sieve (p:xs) = p : sieve [x | x<-xs, x -/ p]  
+```
+
+mozna ją usprawnić...
+
+:pencil: Zmodyfikuj tę definicję biorąc pod uwagę, że wszystkie liczby pierwsze powyżej 2 są nieparzyste
+
+:pencil: Uzupełnij definicję
+
+```
+primes3 :: [Int]
+primes3 = 2:[x | x <- xs, isPrime x] where
+  xs = ...
+  isPrime x = all (x -/) (factorsToTry x)
+  factorsToTry x = ...
+```
