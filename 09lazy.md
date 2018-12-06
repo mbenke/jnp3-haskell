@@ -28,7 +28,7 @@ przed wywołaniem funkcji `k`, obliczone zostaną jej argumenty: `42` (już obli
 Praca ta zostanie wykonana na darmo, albowiem `k` nie uzywa swojego drugiego argumentu.
 
 Alternatywą dla gorliwej ewaluacji jest *leniwa ewaluacja* - wartości argumentów są obliczane kiedy (i o ile w ogóle są potrzebne). 
-W Haskellu obowiązuje taki własnie paradygmat. Dlaczego jednak wszystkie języki go ie uzywaja? Przyczyny są dwojakiego rodzaju:
+W Haskellu obowiązuje taki własnie paradygmat. Dlaczego jednak wszystkie języki go nie używają? Przyczyny są dwojakiego rodzaju:
 
 - Implementacja leniwej ewaluacji jest trudniejsza - do funkcji nie przekazujemy wartości, ale domknięcie, które pozwoli ją obliczyć.
 
