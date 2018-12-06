@@ -27,6 +27,8 @@ k 42 (fib 1234567)
 przed wywołaniem funkcji `k`, obliczone zostaną jej argumenty: `42` (już obliczone) i `fib 1234567` (dużo pracy).
 Praca ta zostanie wykonana na darmo, albowiem `k` nie uzywa swojego drugiego argumentu.
 
+## Leniwa ewaluacja
+
 Alternatywą dla gorliwej ewaluacji jest *leniwa ewaluacja* - wartości argumentów są obliczane kiedy (i o ile w ogóle są potrzebne). 
 W Haskellu obowiązuje taki własnie paradygmat. Dlaczego jednak wszystkie języki go nie używają? Przyczyny są dwojakiego rodzaju:
 
@@ -43,3 +45,47 @@ W przypadku leniwej ewaluacji nie wiemy kiedy i czy w ogóle cokolwiek zostanie 
 
 Wyzwaniem jakie stanęło przed twórcami Haskella było więc wymyślenie sposobu włączenia do języka efektów ubocznych w sposób uporządkowany tak aby programista mógł je kontrolować i nie naruszały one zasadniczej czystości języka. Po kilku iteracjach (strumienie? kontynuacje? monady!) znaleźli rozwiązanie: poznany przez nas niedawno typ IO. Przy okazji okazało się, że monady pozwalają na dokładniejszą kontrolę efektów niż "wszystko albo nic".
 
+## Strumienie
+
+Używamy GHC w wersji co najmniej 8.2, np.
+```
+/home/students/inf/PUBLIC/MRJP/ghc-8.2.2/bin/ghci
+```
+
+```
+> nats = [0..]
+> few = take 5
+> few nats
+[0,1,2,3,4]
+
+> evens = [x | x <- nats, even x]
+> few evens
+[0,2,4,6,8]
+
+> odds = map (+1) evens
+> few odds
+[1,3,5,7,9]
+
+> from n = n:from(n+1)
+> nats = from 0
+
+> let p1 = zip evens odds
+> few p1
+[(0,1),(2,3),(4,5),(6,7),(8,9)]
+
+add (a:as) (b:bs) = (a+b) : add as bs
+> few $ add evens odds
+[1,5,9,13,17]
+
+> let p3 = add nats (tail nats)
+> few p3
+???
+```
+
+:pencil: W podobny sposób zdefiniuj strumień wszystkich liczb Fibonacciego
+
+```
+take 20 fibs
+[0,1,1,2,3,5,8,13,21,34,55,89,144,233,377,610,987,1597,2584,4181]
+(0.01 secs, 141,984 bytes)
+```
