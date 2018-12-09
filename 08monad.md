@@ -14,6 +14,7 @@ W ML czesto preferowany jest `foldl` (jako ogonowy); w Haskellu raczej używamy 
 
 Więcej: https://wiki.haskell.org/Foldr_Foldl_Foldl' (ale to raczej po zajęciach o leniwej ewaluacji).
 
+
 # I/O - co jest pod maską?
 
 Rozwiązanie problemu I/O jest oparte na typach i klasach. Musimy powiedzieć o nich coś więcej, do I/O wrócimy za chwilę.
@@ -89,6 +90,45 @@ Definicja **pointx** jest “oczywista”; możemy krócej:
 
 W jednej linii definiujemy typ **Point**, konstruktor **Pt**
 oraz funkcje **pointx** i **pointy**.
+
+Na przyklad zamiast 
+``` haskell
+-- typ świata  gracz kierunek  boxy    mapa    xDim      yDim      lvlNum  movNum 
+data State = S Coord Direction [Coord] MazeMap [Integer] [Integer] Integer Integer
+```
+
+można
+
+``` haskell
+data State = S {
+  stPlayer :: Pos,
+  stDir    :: Direction,
+  stBoxes  :: [Coord],
+  stMap    :: MazeMap,
+  stXdim   :: [Integer],
+  stYdim   :: [Integer],
+  stLevel  :: Integer,
+  stMove   :: Integer
+}
+```
+
+Oprócz wartościowej dokumentacji uzyskujemy też funkcje pozwalające wyłuskiwać poszczególne składowe, np.
+
+``` haskell
+stPlayer :: State -> Pos
+```
+
+oraz możliwość łatwiejszego zapisywania modyfikacji składowych, np. zamiast
+
+``` haskell
+foo s@(S c _ b mm xd yd n mn) = S c D b mm xd yd n (mn+1)
+```
+
+wystarczy
+
+``` haskell
+foo s = s { stDir = D, stMove = stMove s + 1  }
+```
 
 ### Opakowywanie typów: **newtype**
 
