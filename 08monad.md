@@ -564,7 +564,7 @@ forM_ ['1'..'7'] putChar >> putStrLn ""
 liftM2 (+) (readMaybe "40") (readMaybe "2")
 ```
 
-### `Monad` jest podklasą `Applicative` (od niedawna)}
+### `Monad` jest podklasą `Applicative` (od niedawna)
 
 ```haskell
 class Applicative m => Monad m where ...
