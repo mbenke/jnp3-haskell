@@ -12,6 +12,8 @@ foldl f z (x:xs) = foldl (f z x) xs
 
 W ML czesto preferowany jest `foldl` (jako ogonowy); w Haskellu raczej używamy `foldr`.
 
+Więcej: https://wiki.haskell.org/Foldr_Foldl_Foldl' (ale to raczej po zajęciach o leniwej ewaluacji).
+
 # I/O - co jest pod maską?
 
 Rozwiązanie problemu I/O jest oparte na typach i klasach. Musimy powiedzieć o nich coś więcej, do I/O wrócimy za chwilę.
