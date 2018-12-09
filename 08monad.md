@@ -1,3 +1,17 @@
+# Zaszłości
+
+* `isGraphClosed` - https://gist.github.com
+* `nth` przy użyciu `foldr` - https://github.com/mbenke/jnp3-haskell/blob/master/Code/fold/fold-nth.hs
+
+## `foldl` i `foldr`
+
+```
+foldr f z (x:xs) = f x (foldr f z xs)
+foldl f z (x:xs) = foldl (f z x) xs
+```
+
+W ML czesto preferowany jest `foldl` (jako ogonowy); w Haskellu raczej używamy `foldr`.
+
 # I/O - co jest pod maską?
 
 Rozwiązanie problemu I/O jest oparte na typach i klasach. Musimy powiedzieć o nich coś więcej, do I/O wrócimy za chwilę.
