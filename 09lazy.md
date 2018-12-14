@@ -69,7 +69,7 @@ Używamy GHC w wersji co najmniej 8.2, np.
 > from n = n:from(n+1)
 > nats = from 0
 
-> let p1 = zip evens odds
+> p1 = zip evens odds
 > few p1
 [(0,1),(2,3),(4,5),(6,7),(8,9)]
 
@@ -77,7 +77,7 @@ add (a:as) (b:bs) = (a+b) : add as bs
 > few $ add evens odds
 [1,5,9,13,17]
 
-> let p3 = add nats (tail nats)
+> p3 = add nats (tail nats)
 > few p3
 ???
 ```
