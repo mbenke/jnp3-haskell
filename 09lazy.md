@@ -47,17 +47,24 @@ Wyzwaniem jakie stanęło przed twórcami Haskella było więc wymyślenie sposo
 
 ## Strumienie
 
-Używamy GHC w wersji co najmniej 8.2, np.
+**Uwaga:** używamy GHC w wersji co najmniej 8.2, np.
 ```
 /home/students/inf/PUBLIC/MRJP/ghc-8.2.2/bin/ghci
 ```
+
+Jedną z ciekawych możliwości, jakie daje leniwa ewaluacja jest programowanie z (potencjalnie) nieskończonymi strukturami danych. Jedną z takich struktur są strumienie, czyli leniwe listy.
+
+Możemy na przykład zdefiniować strumień wszystkich liczb naturalnych:
 
 ```
 > nats = [0..]
 > few = take 5
 > few nats
 [0,1,2,3,4]
+```
+Potem możemy wybrać ze strumienia  tylko parzyste:
 
+```
 > evens = [x | x <- nats, even x]
 > few evens
 [0,2,4,6,8]
@@ -65,7 +72,26 @@ Używamy GHC w wersji co najmniej 8.2, np.
 > odds = map (+1) evens
 > few odds
 [1,3,5,7,9]
+```
+:pencil: Zaproponuj inny sposób zdefiniowania strumieni liczb parzystych/nieparzystych
 
+Leniwa ewaluacja oznacza, że argumenty wyliczane są tylko kiedy są potrzebne i tylko w takim stopniu w jakim są potrzebne.
+W praktyce, ewaluacja jest sterowana przez dopasowanie wzorca. W naszym przykładzie oznacza to, że lista obliczona zostanie 
+dopiero gdy dopasowanie wzorca w funkcji `take` sprawdzi czy mamy do czynienia z listą pustą czy niepustą:
+
+```
+take n _      | n <= 0 =  []
+take _ []              =  []
+take n (x:xs)          =  x : take (n-1) xs
+```
+
+Przy czym sama głowa i ogon listy (`x` i `xs`) nie zostaną obliczone dopóki nie wykonamy na nich dopasowania wzorca.
+
+W interpreterze wypisanie wartości wymaga oczywiście wyliczenie wszystkich jej elementów.
+
+Strumień liczb naturalnych możemy też zdefiniować bezpośrednio przy pomocy
+
+```
 > from n = n:from(n+1)
 > nats = from 0
 
