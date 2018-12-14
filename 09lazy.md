@@ -1,3 +1,5 @@
+# Wskazówka do zadania
+
 # Lenistwo
 
 Haskell jest językiem *leniwym* (lazy, non-strict). Co to oznacza? 
@@ -141,3 +143,5 @@ primes3 = 2:[x | x <- xs, isPrime x] where
 ```
 
 tak by sprawdzać tylko dzielniki `x` nie większe od pierwiastka `x` (ale używamy tylko arytmetyki całkowitej).
+
+## Lenistwo, `reverse`,`foldr` i `foldl`
