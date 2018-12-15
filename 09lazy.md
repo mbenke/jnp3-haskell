@@ -144,6 +144,23 @@ tak by sprawdzać tylko dzielniki `x` nie większe od pierwiastka `x` (ale używ
 
 ## Lenistwo, `reverse`,`foldr` i `foldl`
 
+Z oczywistych względów do strumieni nie możemy stosować `reverse`. Z podobnych powodów, nie możemy stosować `foldl`, 
+który "moralnie" odwraca listę:
+
+```
+> foldl (flip (:)) [] [1..5]
+[5,4,3,2,1]
+```
+
+Mozemy za to z powodzeniem stosować `foldr` (z leniwą operacją):
+
+```
+> take 5 (foldr (:) [] [1..])
+[1,2,3,4,5]
+```
+
+W ogólności, przy leniwych operacjach zwykle lepiej stosowac `foldl` zaś przy gorliwych - `foldl'`, który jest gorliwą wersją `foldl`.
+
 # Wskazówka do zadania - listy różnicowe
 
 Reprezentacja list pozwalająca na efektywniejszą konkatenację: listę `xs :: [T]` reprezentujemy jako funkcję `f :: [T] -> [T]`
