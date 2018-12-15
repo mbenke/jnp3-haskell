@@ -1,5 +1,3 @@
-# Wskazówka do zadania
-
 # Lenistwo
 
 Haskell jest językiem *leniwym* (lazy, non-strict). Co to oznacza? 
@@ -145,3 +143,40 @@ primes3 = 2:[x | x <- xs, isPrime x] where
 tak by sprawdzać tylko dzielniki `x` nie większe od pierwiastka `x` (ale używamy tylko arytmetyki całkowitej).
 
 ## Lenistwo, `reverse`,`foldr` i `foldl`
+
+# Wskazówka do zadania - listy różnicowe
+
+Reprezentacja list pozwalająca na efektywniejszą konkatenację: listę `xs :: [T]` reprezentujemy jako funkcję `f :: [T] -> [T]`
+taką, że `f ys = xs ++ ys`; patrz np. `Data.DList` w pakiecie `dlist`:
+
+``` haskell
+newtype DList a = DL { unDL :: [a] -> [a] }
+
+-- | Convert a list to a dlist
+fromList    :: [a] -> DList a
+fromList    = DL . (++)
+
+-- | Convert a dlist to a list
+toList      :: DList a -> [a]
+toList      = ($[]) . unDL
+
+empty :: DList
+empty = DL id
+```
+:pencil: napisz funkcje `cons` i `snoc`  (doklejenie elementu na początku i końcu) oraz `append`
+
+``` haskell
+cons :: a -> DList a -> DList a
+snoc :: DList a -> a -> DList a
+append :: DList a -> DList a -> DList a
+```
+
+Ponieważ przy rysowaniu często uzywamy składania obrazów, podobną szuczkę możemy zastosować w zadaniu:
+
+``` haskell 
+type DrawFun = Integer -> Integer -> Char
+type Picture = DrawFun -> DrawFun
+blank = id
+(&) = (.)
+```
+
