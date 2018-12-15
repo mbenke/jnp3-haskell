@@ -116,6 +116,18 @@ take 20 fibs
 (0.01 secs, 141,984 bytes)
 ```
 
+:pencil: Zdefniuj funkcję `merge` tak, aby
+
+```
+> take 5 (merge evens odds)
+[0,1,2,3,4]
+```
+
+:pencil:
+Zdefiniuj funkcję `union`, która dla dwóch rosnących strumieni da ich sumę teoriomnogościową. Czy zadziała też dla strumieni niemalejących?
+
+## Liczby pierwsze
+
 Krótka definicja strumienia liczb pierwszych
 
 ``` haskell
