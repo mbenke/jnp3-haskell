@@ -147,7 +147,6 @@ listOf gen = sized $ \n ->
 generate :: Gen a -> IO a
 sample :: Show a => Gen a -> IO ()
 ```
-```
 
 ## Generator drzew
 
