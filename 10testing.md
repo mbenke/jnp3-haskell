@@ -194,3 +194,75 @@ Leaf 0
 Branch (Branch (Branch (Leaf 17) (Leaf 14)) (Leaf 4)) (Leaf 3)
 Branch (Leaf (-9)) (Branch (Leaf 2) (Leaf (-9)))
 ```
+
+## Implikacja
+
+Spróbujmy przetestować własność indeksowania list
+
+``` haskell
+prop_index1 :: [Int] -> Int -> Bool
+prop_index1 xs n = xs !! n == head (drop n xs)
+```
+
+Niestety:
+```
+λ> quickCheck prop_index1
+*** Failed! Exception: 'Prelude.!!: index too large' (after 1 test):
+[]
+0
+```
+
+ta własność nie jest prawdziwa dla wszystkich `n` a tylko takich w zakresie długości listy.
+
+Mozemy spróbowac poradzić sobie tak:
+
+``` haskell
+prop_index2 :: [Int] -> Int -> Bool
+prop_index2 xs n = not (n >= 0 && n < length xs) || (xs !! n == head (drop n xs))
+```
+
+wydaje się, ze to działa...
+```
+λ> quickCheck prop_index2
++++ OK, passed 100 tests.
+```
+
+...ale nie wiemy ile i czy jakiekolwiek testy przeszły do drugiego składnika alternatywy. Potrzebujemy prawdziwej implikacji
+
+``` haskell
+prop_index3 :: [Int] -> Int -> Property
+prop_index3 xs n = (n >= 0 && n < length xs) ==> xs !! n == head (drop n xs)
+```
+
+Funkcja
+``` haskell
+(==>) :: Testable prop => Bool -> prop -> Property
+```
+
+działa w ten sposób, że jeśli poprzednik implikacji jest fałszywy,
+to przypadek testowy zostaje odrzucony. Testy są kontynuowane tak długo,
+aż znaleziona zostanie odpowiednia liczba przypadków spełniających warunki.
+
+## Problem z implikacją
+
+``` haskell
+prop_insert1 :: Int -> [Int] -> Property
+prop_insert1 x xs = isSorted xs ==> isSorted (insert x xs)
+```
+
+```
+> quickCheck prop_insert1
+*** Gave up! Passed only 62 tests.
+```
+
+Przy dłuższych listach, prawdopodobieństwo trafienia na posortowaną jest nikłe.
+W takiej sytuacji możemy uzyć `forAll`:
+
+```
+prop_insert2 :: Int -> Property
+prop_insert2 x = forAll orderedList (\xs -> isSorted (insert x xs))
+```
+
+gdzie `orderedList` jest generatorem dającym tylko listy uporządkowane.
+
+
