@@ -12,10 +12,9 @@
 6. Typy z klasą - (26.11)
 7. I/O - (3.12)
 8. Funktory, monady - (10.12)
-9. Testowanie (17.12)
-10. Lenistwo (7.1)
-11. Funktory aplikatywne (14.1)
-12. Funkcyjne programowanie reaktywne (21.1)
+9. Lenistwo (17.12)
+10. Testowanie (7.1)
+11. Soczewki (14.1)
 
 ## Programy zaliczeniowe
 
@@ -24,9 +23,8 @@
 3. Sokoban 2 - termin 10.11
 4. Sokoban 3 - termin 17.11
 5. Sokoban 4 - termin 24.11
-6. Sokoban 5 - termin 01.12
-
-FIXME - to jeszcze nie wszystkie programy
+6. Sokoban 5 - termin 20.12
+7. Supply - termin 19.1
 
 ## Literatura
 
