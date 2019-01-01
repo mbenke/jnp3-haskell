@@ -1,4 +1,4 @@
-module Supply where
+module Main where
 import Test.QuickCheck
 
 infixr 5 :>
