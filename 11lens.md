@@ -37,7 +37,7 @@ setAtomX :: Double -> Atom -> Atom
 setAtomX x a = setPoint (setX x (_point a)) a
 ```
 
-Zauważmy, że `setAtomX` oprócz setterów, korzysta także z gettea `_point`;
+Zauważmy, że `setAtomX` oprócz setterów, korzysta także z gettera `_point`;
 oba rodzaje funkcji są powiązane, jeśli zatem chcemy stworzyć ogólny
 mechanizm, warto zająć się nimi wspólnie.
 
@@ -134,7 +134,7 @@ x = mkLens _x setX
 y = mkLens _y setY
 ```
 
-Teraz możemy wyrazić złożenie soczewek tak, aby kazdej znich używało raz:
+Teraz możemy wyrazić złożenie soczewek tak, aby kazdej z nich używało raz:
 
 ``` haskell
 comp :: Lens a b -> Lens b c -> Lens a c
@@ -307,4 +307,4 @@ comp :: Lens a b -> Lens b c -> Lens a c
 comp l1 l2 = l1 . l2
 ```
 
-:pencil: Wypróbuj opisane tu definicje soczewek na typach `Arom` i `Point` (albo innych, np. typach stanu z Sokobana).
+:pencil: Wypróbuj opisane tu definicje soczewek na typach `Atom` i `Point` (albo innych, np. typach stanu z Sokobana).
