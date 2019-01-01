@@ -266,3 +266,6 @@ prop_insert2 x = forAll orderedList (\xs -> isSorted (insert x xs))
 gdzie `orderedList` jest generatorem dającym tylko listy uporządkowane.
 
 
+# Zadanie
+
+Zadanie podsumowujące: https://classroom.github.com/a/FsdSHep3
