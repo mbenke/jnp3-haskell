@@ -22,7 +22,7 @@ program = drawingOf(codeWorldLogo)
 
 ## Definicje
 
-Program jest zbiorem (kolejność nie ma znaczenia) definicji.  Na przykład
+Program jest zbiorem (kolejność nie ma znaczenia) definicji.  Na przykład:
 
 ```haskell
 program = drawingOf(wheel)
@@ -32,7 +32,7 @@ wheel   = circle(2)
 NB to jest kompletny program - wypróbuj go!
 
  Wykonanie programu w środowisku CodeWorld zaczyna się od definicji `program`
- (w "dorosłym" Haskellu wykonanie zaczyna się od definicji `main` ale zasada jest ta sama).
+ (w "dorosłym" Haskellu wykonanie zaczyna się od definicji `main`, ale zasada jest ta sama).
 
 ##  Obrazki
 
@@ -47,7 +47,7 @@ solidRectangle(8,4)
 lettering("W przedszkolu naszym nie jest źle")
 ```
 
-:exclamation: Zapisuj rozwiązania ćwiczeń w pliku tekstowym - będzie potrzebny później.
+:exclamation: Zapisuj rozwiązania ćwiczeń w pliku tekstowym ‒ będzie potrzebny później.
 
 ## Łączenie figur
 
@@ -108,13 +108,13 @@ tree    = colored(leaves, green) & colored(trunk, brown)
 leaves  = sector(0, 180, 4)
 trunk   = solidRectangle(1, 4)
 ```
-:pencil: narysuj sygnalizator drogowy ('światła' - zielone i czerwone kółko wewnątrz prostokąta)
+:pencil: narysuj sygnalizator drogowy ('światła' ‒ zielone i czerwone kółka wewnątrz prostokąta)
 
 :pencil: narysuj szachownicę (to wymaga pewnego sprytu, za chwilę zobaczymy jak to zrobić sprawniej).
 
 ### Obroty
 
-`rotated(obraz, stopni)`
+`rotated(obraz, stopnie)`
 
 ```haskell
 program = drawingOf(diamond)
@@ -153,12 +153,12 @@ Natomiast `x=1` nie jest wyrażeniem ‒ jest definicją.
 
 ### Funkcje
 
-Szczególnym rodzajem wyrażeń są *funkcje*. Podstawową operacją którą możemy wykonać przy pomocy funkcji jest zastosowanie jej do argumentów, Na przykład
+Szczególnym rodzajem wyrażeń są *funkcje*. Podstawową operacją którą możemy wykonać przy pomocy funkcji jest zastosowanie jej do argumentów, na przykład:
 
-* `rectangle` jest funkcją. Dostawszy wysokość i szerokość, produkuje obraz (prostokąt)
-* `light` jest funkcją. Dostawszy kolor, produkuje (podobny, ale jaśniejszy) kolor.
+* `rectangle` jest funkcją. Dostawszy wysokość i szerokość, produkuje obraz (prostokąt).
+* `light` jest funkcją. Dostawszy kolor, produkuje (podobny, ale jaśniejszy) kolor;.
 * `drawingOf` jest funkcją. Dostawszy  obraz, konstruuje program, który rysuje ten obraz.
-* `id` jest funkcją identycznościową
+* `id` jest funkcją identycznościową.
 
 Skoro funkcje są wyrażeniami to czy mogą stać po prawej stronie definicji i być argumentami dla funkcji? Ależ tak:
 
@@ -177,9 +177,9 @@ program = rysuj(koło(2))
 
 * `[ 1, 2, 3, 4 ]` jest listą liczb,
 * `[ circle(2), rectangle(3,5), blank ]` jest listą obrazów.
-* `[]` jest listą pustą
+* `[]` jest listą pustą.
 
-Funkcja `picture` buduje obraz złożony ze wszystkich elementów listy podanej jako argument
+Funkcja `pictures` buduje obraz złożony ze wszystkich elementów listy podanej jako argument:
 
 ```haskell
 program = drawingOf(allThePictures)
@@ -206,7 +206,7 @@ target  = pictures([ circle(r) | r <- [1, 2, 3, 4, 5] ])
 Wyrażenie `[ circle(r) | r <- [1, 2, 3, 4, 5] ]` nazywamy ‒ nawiązując do aksjomatu wycinania w teorii mnogości ‒ *wycinanką* (list comprehension) ‒ skojarzenie: ![comprehension](https://latex.codecogs.com/gif.latex?%5C%7Bcircle%28r%29%20%5Cmid%20r%5Cin%5C%7B1%2C2%2C3%2C4%2C5%5C%7D%5C%7D).
 Wartość tego wyrażenia jest  taka sama jak `[ circle(1), circle(2), circle(3), circle(4), circle(5) ]`.
 
-:question: jak myślisz, co oznacza wyrażenie `[ circle(r) | r <- [1, 2, 3, 4, 5], even r ]`
+:question: Jak myślisz, co oznacza wyrażenie `[ circle(r) | r <- [1, 2, 3, 4, 5], even r ]`?
 
 Możemy również oprzeć wycinankę na kilku listach źródłowych:
 
@@ -225,8 +225,8 @@ Dla ułatwienia możemy narysować siatkę współrzędnych:
 program = drawingOf(coordinatePlane)
 ```
 
-Punkty reprezentowane są jako pary współrzędnych ‒ na przykład `(5,5)`. 
-Łamaną mozemy skonstruować przy pomocy funkcji `polyline` z lista punktów jako argumentem.
+Punkty reprezentowane są jako pary współrzędnych ‒ na przykład `(5,5)`.
+Łamaną mozemy skonstruować przy pomocy funkcji `polyline` z listą punktów jako argumentem.
 
 ```haskell
 program = drawingOf(zigzag)
@@ -249,7 +249,7 @@ mystery = polygon(
 
 ## Typy
 
-Każda wartość i wyrażenie ma swój typ. Typy pojawiają się przede wsztstkim w dwóch sytuacjach:
+Każda wartość i wyrażenie ma swój typ. Typy pojawiają się przede wszystkim w dwóch sytuacjach:
 * w komunikatach o błędach (spróbuj napisać `program = drawingOf(42)`)
 * możemy wskazywać typy wyrażeń i definicji
 
@@ -273,7 +273,7 @@ size = 4
 ```
 W większości wypadków deklaracje typów nie są konieczne ‒ kompilator potrafi sam wywnioskować typy.
 Deklaracje mają jednak co najmniej dwie zalety:
-* Są cenną dokumentacją kodu (lepszą niz komentarze - bo sprawdzaną przez kompilator).
+* Są cenną dokumentacją kodu (lepszą niz komentarze ‒ bo sprawdzaną przez kompilator).
 * Czasem pozwalają na dokładniejsze komunikaty o błędach.
 
 ### Typy listowe
@@ -306,7 +306,7 @@ end :: Point
 end = (2, -4)
 ```
 
-Wspomnieliśmy jednak, że punkty są parami liczb. Dokładniej zatem, typem punktu jest `(Number,  Number)`. Typ `Point` jest synonimem tego typu i można go używać zamiennie.
+Wspomnieliśmy jednak, że punkty są parami liczb. Dokładniej zatem, typem punktu jest `(Number,  Number)`. Typ `Point` jest synonimem tego typu i można ich używać zamiennie.
 
 Krotki mogą mieć różne rozmiary (w tym 0, ale nie 1) i różne typy elementów:
 
@@ -315,11 +315,11 @@ Krotki mogą mieć różne rozmiary (w tym 0, ale nie 1) i różne typy element�
 (3, "train", 10, blue) :: (Number, Text, Number, Color)
 () :: ()
 ```
-Oczywiście elementem krotki może też być inna krotka, funkcja, program...
+Oczywiście elementem krotki może też być inna krotka, funkcja, program, ...
 
 ### Typy funkcyjne
 
-Funkcje oczywiście też mają typy, postaci `argument -> wynik`, na przykład
+Funkcje oczywiście też mają typy, postaci `argument -> wynik`, na przykład:
 
 ```
 circle :: Number -> Picture
@@ -331,7 +331,7 @@ drawingOf :: Picture -> Program
 ## Definiowanie funkcji
 
 Do tej pory definiowaliśmy obiekty prostych typów. Możemy oczywiście definiować też wartości typów funkcyjnych.
-Czasem naturalne wydaje się sparametryzowanie definicji
+Czasem naturalne wydaje się sparametryzowanie definicji:
 
 ```
 program = drawingOf(scene)
@@ -344,7 +344,7 @@ roof :: Picture
 roof = translated(thickArc(45, 135, 6, 1), 0, -2)
 ```
 
-Parametr funkcji może być dowolnego typu, może to być np. obraz
+Parametr funkcji może być dowolnego typu, może to być np. obraz:
 
 ```haskell
 program = drawingOf(ringOf(rectangle(1,1)))
@@ -451,7 +451,7 @@ wheels(t) = pictures([
 tire      = circle(1) & solidRectangle(0.1, 2)
 ```
 
-:pencil: Napisz swoją animację ‒ wahadło, odbijająca się piłka,...
+:pencil: Napisz swoją animację ‒ wahadło, odbijająca się piłka, ...
 
 :pencil: Napisz animację pokazującą w kilkusekundowych odstępach Twoje rozwiązania poprzednich ćwiczeń (oprócz animacji).
 
@@ -464,12 +464,12 @@ Na tych zajęciach będziemy wykorzystywać GitHub. Jeśli jeszcze nia masz kont
 Materiały są dostepne w repozytorium `https://github.com/mbenke/jnp3-haskell/` (dostęp możliwy bez zakładania konta, ale konto przyda się za chwilę).
 
 
-W notatkach są błędy, takie jak literówki (niektóre umyślne). Wykonaj [fork](https://help.github.com/articles/fork-a-repo/) tego repo na swoim koncie, popraw jakiś błąd (albo zaproponuj ulepszenie) i zgłoś [pull request](https://help.github.com/articles/creating-a-pull-request-from-a-fork/)
+W notatkach są błędy, takie jak literówki (niektóre umyślne). Wykonaj [fork](https://help.github.com/articles/fork-a-repo/) tego repo na swoim koncie, popraw jakiś błąd (albo zaproponuj ulepszenie) i zgłoś [pull request](https://help.github.com/articles/creating-a-pull-request-from-a-fork/).
 
-Zadania należy oddawać poprzez GitHub Classroom. Na rozgrzewkę, programy z dzisiejszych zajęć należy oddać poprzez link https://classroom.github.com/a/vOxhO1_n
+Zadania należy oddawać poprzez GitHub Classroom. Na rozgrzewkę, programy z dzisiejszych zajęć należy oddać poprzez link https://classroom.github.com/a/vOxhO1_n.
 
 # Zastrzeżenia prawne
 
-Przykłady i niektóre opisy pochodzą z dokumentacji CodeWorld: https://code.world/doc.html?help/codeworld.md
+Przykłady i niektóre opisy pochodzą z dokumentacji CodeWorld: https://code.world/doc.html?help/codeworld.md.
 
-CodeWorld jest dostępny na licencji Apache: https://github.com/google/codeworld/blob/master/LICENSE
+CodeWorld jest dostępny na licencji Apache: https://github.com/google/codeworld/blob/master/LICENSE.
