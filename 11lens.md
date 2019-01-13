@@ -106,7 +106,7 @@ zauważmy, że `over` używa soczewki dwukrotnie: raz do odczytania wartości
 i drugi raz do jej ustawienia. Z kolei, ponieważ `over` jest używane przez `comp`,
 większe zagnieżdzenie szybko doprowadzi do wyraźnych nieefektywności.
 
-Cóż zatem począć?  Na przykład Uczynić `over` funkcją podstawową:
+Cóż zatem począć?  Na przykład uczynić `over` funkcją podstawową:
 
 ``` haskell
 data Lens a b = Lens { view :: a -> b
@@ -118,7 +118,7 @@ data Lens a b = Lens { view :: a -> b
 Do budowania soczewek przyda się funkcja pomocnicza, która zaoszczędzi nam
 pisania `over` za każdym razem na nowo:
 
-```
+``` haskell
 mkLens :: (a -> b) -> (b -> a -> a) -> Lens a b
 mkLens view set = Lens view set over
   where over f a = set (f (view a)) a
@@ -134,7 +134,7 @@ x = mkLens _x setX
 y = mkLens _y setY
 ```
 
-Teraz możemy wyrazić złożenie soczewek tak, aby kazdej z nich używało raz:
+Teraz możemy wyrazić złożenie soczewek tak, aby każdej z nich używało raz:
 
 ``` haskell
 comp :: Lens a b -> Lens b c -> Lens a c
@@ -154,7 +154,7 @@ set' l x = over l (const x)
 ## Soczewki van Laarhovena
 
 Teraz mamy jeszcze jeden problem - trudność używania soczewek z monadami;
-na przykład ponizszy kod się nie typuje:
+na przykład poniższy kod się nie typuje:
 
 ``` haskell
 askX :: Atom -> IO Atom
@@ -176,7 +176,7 @@ Dostaniemy komunikat o błędzie
       In the expression: over (point `comp` x) askUser a
 ```
 
-Moglibyśmy próbować to naprawić, przez uzycie `view` przed wykonaniem IO,
+Moglibyśmy próbować to naprawić, przez użycie `view` przed wykonaniem IO,
 a `set` po nim, ale to znowu oznacza dwukrotne zagłębianie się w strukturę.
 
 Zamiast tego możemy uzyć wariantu `over` pozwalającego na IO:
@@ -300,7 +300,7 @@ Mozemy zatem zdefiniować
 type Lens a b = forall t . Functor t => (b -> t b) -> (a -> t a)
 ```
 
-Co ciekawe, teraz soczewki są funkcjami i złozenie soczewek jest po prostu złożeniem funkcji:
+Co ciekawe, teraz soczewki są funkcjami i złożenie soczewek jest po prostu złożeniem funkcji:
 
 ``` haskell
 comp :: Lens a b -> Lens b c -> Lens a c
