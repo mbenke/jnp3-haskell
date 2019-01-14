@@ -1,17 +1,5 @@
 module Lens2 where
-
-data Atom = Atom { _element :: String, _point :: Point }
-data Point = Point { _x :: Double, _y :: Double }
-
-setPoint :: Point -> Atom -> Atom
-setPoint p a = a { _point = p }
-
-setElement :: String -> Atom -> Atom
-setElement e a = a { _element = e }
-
-setX, setY:: Double -> Point -> Point
-setX x p = p { _x = x }
-setY y p = p { _y = y }
+import Atom
 
 data Lens a b = Lens { view :: a -> b
                      , set :: b -> a -> a
@@ -36,7 +24,10 @@ comp l1 l2 = Lens { view = (view l2 . view l1)
                   , set = (\c -> over l1 (set l2 c))
                   , over = (over l1 . over l2)
                   }
-             
+
 
 set' :: Lens a b -> b -> a -> a
 set' l x = over l (const x)
+
+moveAtom :: Atom -> Atom
+moveAtom = over (point `comp` x) (+1)

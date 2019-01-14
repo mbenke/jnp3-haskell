@@ -1,21 +1,8 @@
 module Lens1 where
-
-data Atom = Atom { _element :: String, _point :: Point }
-data Point = Point { _x :: Double, _y :: Double }
+import Atom
 
 getAtomX :: Atom -> Double
 getAtomX = _x . _point
-
-setPoint :: Point -> Atom -> Atom
-setPoint p a = a { _point = p }
-
-setElement :: String -> Atom -> Atom
-setElement e a = a { _element = e }
-
-setX, setY:: Double -> Point -> Point
-setX x p = p { _x = x }
-setY y p = p { _y = y }
-
 
 -- setAtomX :: Double -> Atom -> Atom
 -- setAtomX x a = setPoint (setX x (_point a)) a
