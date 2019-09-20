@@ -4,27 +4,27 @@
 
 ## Laboratoria
 
-1. ELI5 czyli Haskell w podstawówce: https://code.world/ (8.10)
-2. Odkrywamy Haskell (15.10)
-3. CodeWorld/Haskell (22.10)
-4. Typy algebraiczne (5.11)
-5. Polimorfizm (19.11)
-6. Typy z klasą - (26.11)
-7. I/O - (3.12)
-8. Funktory, monady - (10.12)
-9. Lenistwo (17.12)
-10. Testowanie (7.1)
-11. Soczewki (14.1)
+1. ELI5 czyli Haskell w podstawówce: https://code.world/ (14.10)
+2. Odkrywamy Haskell (21.10)
+3. CodeWorld/Haskell (28.10)
+4. Typy algebraiczne (4.11)
+5. Polimorfizm (18.11)
+6. Typy z klasą - (25.11)
+7. I/O - (2.12)
+8. Funktory, monady - (9.12)
+9. Lenistwo (16.12)
+10. Testowanie (13.1)
+11. Soczewki (20.1)
 
 ## Programy zaliczeniowe
 
-1. CodeWorld - termin 20.10
-2. Sokoban 1 - termin 27.10
-3. Sokoban 2 - termin 10.11
-4. Sokoban 3 - termin 17.11
+1. CodeWorld - termin 26.10
+2. Sokoban 1 - termin 02.11
+3. Sokoban 2 - termin 09.11
+4. Sokoban 3 - termin 16.11
 5. Sokoban 4 - termin 24.11
-6. Sokoban 5 - termin 20.12
-7. Supply - termin 19.1
+6. Sokoban 5 - termin 14.12
+7. Supply - termin 18.1
 
 ## Literatura
 
