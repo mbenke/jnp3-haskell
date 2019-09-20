@@ -470,6 +470,6 @@ Zadania należy oddawać poprzez GitHub Classroom. Na rozgrzewkę, programy z dz
 
 # Zastrzeżenia prawne
 
-Przykłady i niektóre opisy pochodzą z dokumentacji CodeWorld: https://code.world/doc.html?help/codeworld.md.
+Niektóre przyklady i opisy pochodzą z dokumentacji CodeWorld: https://code.world/doc.html?help/codeworld.md.
 
 CodeWorld jest dostępny na licencji Apache: https://github.com/google/codeworld/blob/master/LICENSE.
