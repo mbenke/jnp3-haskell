@@ -84,7 +84,7 @@ leaves  = sector(0, 180, 4)
 trunk   = solidRectangle(1, 4)
 ```
 
-Kolory można modyfikować przy pomocy funkcji `dark`, `light`, `translucent`. Wypróbuj je i przeczytaj o nich w dokumentacji.
+Kolory można modyfikować przy pomocy funkcji `dark`, `light`, `translucent`. Wypróbuj je i przeczytaj o nich w [dokumentacji](https://code.world/doc.html?shelf=help/codeworld.shelf).
 
 ```haskell
 program = drawingOf(overlap)
