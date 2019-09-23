@@ -88,11 +88,11 @@ Kolory można modyfikować przy pomocy funkcji `dark`, `light`, `translucent`. W
 
 ```haskell
 program = drawingOf(overlap)
-overlap = colored(square,  translucent(blue))
-        & colored(disk, translucent(green))
-square  = solidRectangle(5, 5)
-disk    = solidCircle(3)
+overlap = square & disk
+square  = colored (solidRectangle(5, 5), translucent(blue))
+disk    = colored(solidCircle(3), green)
 ```
+:pencil: Sprawdź co się stanie, jeśli zmienimy definicję `overlap` na `disk & square`.
 
 ## Przekształcenia
 
