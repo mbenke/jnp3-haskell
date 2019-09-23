@@ -75,6 +75,7 @@ program  = drawingOf(redWheel)
 redWheel = colored(wheel, red)
 wheel    = solidCircle(4)
 ```
+:pencil: Dodaj do powyższego obrazu obramowanie, tak, aby całość przypominała flagę Japonii.
 
 ```haskell
 program = drawingOf(tree)
