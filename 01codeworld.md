@@ -436,9 +436,9 @@ Animacja jest funkcją typu `Number -> Picture` określającą jaki obraz wyświ
 Czas jest mierzony w sekundach od uruchomienia programu.
 
 ```haskell
-program = animationOf(propellor)
-propellor :: Number -> Picture
-propellor(t) = rotated(solidRectangle(10, 1), 60 * t)
+program = animationOf(propeller)
+propeller :: Number -> Picture
+propeller(t) = rotated(solidRectangle(10, 1), 60 * t)
 ```
 
 Przykład animacji używającej translacji, rotacji i zakresu ‒ zależnych od czasu:
