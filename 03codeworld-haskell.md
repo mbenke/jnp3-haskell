@@ -125,37 +125,6 @@ main :: IO ()
 main = animationOf trafficController
 ```
 
-Przy okazji zobaczymy groźnie wyglądajace ostrzeżenie:
-
-```
-Line 18, Column 5: warning: [-Wtype-defaults]
-    • Defaulting the following constraints to type ‘Integer’
-        (Eq a0) arising from a use of ‘==’ at Line 18, Column 5-28
-        (Integral a0) arising from a use of ‘mod’ at Line 18, Column 5-23
-        (Num a0) arising from the literal ‘2’ at Line 18, Column 23
-    • In the expression: round (t / 3) `mod` 2 == 0
-      In a stmt of a pattern guard for
-                     an equation for ‘trafficController’:
-        round (t / 3) `mod` 2 == 0
-      In an equation for ‘trafficController’:
-          trafficController t
-            | round (t / 3) `mod` 2 == 0 = trafficLight True
-            | otherwise = trafficLight False
-```
-
-Jeśli mu się dokładniej przyjrzymy, zauważymy jednak, ze precyzyjnie wskazuje ono źródło problemu:
-
-```
-...arising from the literal ‘2’ at Line 18, Column 23
-```
-
-możemy go uniknąć, wskazujac typ literału `2':
-
-```haskell
-trafficController t
-  | round (t/3) `mod` (2::Integer) == 0 = trafficLight True
-  | otherwise                = trafficLight False
-```
 :pencil: Czy potrafisz zapisać to zwięźlej, eliminując powtórzenia (`...trafficLight True ...trafficLight False`)
 
 :pencil: Dodaj do animacji sygnalizatora krótką fazę żółtą.
