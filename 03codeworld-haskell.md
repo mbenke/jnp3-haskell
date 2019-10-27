@@ -112,6 +112,10 @@ Aby światła się zmieniały co jakiś czas, możemy użyć takiej animacji
 [(zobacz na CodeWorld)](https://code.world/haskell#Ph3vruxsOVmcnYG0D2NGG0Q)
 
 ```haskell
+trafficLight :: Bool -> Picture
+trafficLight True  = botCircle green & topCircle black & frame
+trafficLight False = botCircle black & topCircle red   & frame
+
 trafficController :: Double -> Picture
 trafficController t
   | round (t/3) `mod` 2 == 0 = trafficLight True
