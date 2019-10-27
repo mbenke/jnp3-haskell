@@ -129,6 +129,8 @@ main = animationOf trafficController
 
 :pencil: Dodaj do animacji sygnalizatora krótką fazę żółtą.
 
+### Typy numeryczne
+
 Trzy typy numeryczne, które musimy w tym momencie znać to `Int`, `Integer` oraz `Double`:
 
 * `Int` to maszynowe liczby całkowite (gwarantowany zakres co najmniej `2^29`, w praktyce obecnie zwykle `2^63`)
