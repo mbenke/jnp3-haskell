@@ -76,14 +76,14 @@ W językach typu Java/C często skupiamy się na pojedynczych indeksach:
 ```c
 int acc = 0;
 for ( int i = 0; i < lst.length; i++ ) {
-  acc = acc + 3 * lst[i];
+  acc = acc + lst[i] * lst[i];
 }
 ```
 
 W Haskellu pracujemy raczej na całych strukturach danych i napiszemy po prostu
 
 ```haskell
-sum (map (3*) lst)
+sum (map (\x -> x * x) lst)
 ```
 
 W nowszych bibliotekach do C++ czy Javy znajedziemy podobne mechanizmy, ale wywodzą się one z programowania funkcyjnego.
