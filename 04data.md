@@ -259,6 +259,9 @@ drawState :: Coord -> Picture
 drawState c = atCoord c pictureOfMaze
 ```
 
+NB w nowszych wersjach CodeWorld zamiast `interactionOf` zalecane jest uzycie podobnej funkcji `activityOf`
+np. tak [(zobacz na CodeWorld)](https://code.world/haskell#PeuoT_5CFDf2ZHNCQksMcHQ).
+
 To ...coś robi. Ale gdy tylko najedziemy muszą na obraz, on ucieka ... Dlaczego? Przy każdym zdarzeniu obraz przesuwa się do góry. A ruchy myszy też są zdarzeniami.
 
 ## Zdarzenia
@@ -331,19 +334,18 @@ W trakcie gry przydatna będzie mozliwość rozpoczęcia poziomu od początku.
 Ta funkcjonalność jest w gruncie rzeczy niezależna od gry, zatem zaimplemntujmy ją ogólnie. Napisz funkcję
 
 ```haskell
-resettableInteractionOf ::
+resettableActivityOf ::
     world ->
-    (Double -> world -> world) ->
     (Event -> world -> world) ->
     (world -> Picture) ->
     IO ()
 ```
 
-która zasadniczo będzie działać jak `interactionOf`, ale dla zdarzenie odpowiadające naciśnięciu klawisza `Esc` nie jest przekazywane dalej, ale powoduje powrót stanu gry do stanu początkowego.
+która zasadniczo będzie działać jak `activityOf`, ale dla zdarzenie odpowiadające naciśnięciu klawisza `Esc` nie jest przekazywane dalej, ale powoduje powrót stanu gry do stanu początkowego.
 
 Zastanów się co powinno się dziać dla zdarzenia odpowiadającego puszczeniu klawisza `Esc` i opisz swój wybór w komentarzu.
 
-Zdefiniuj `walk3 :: IO ()` jako wariant `walk2` używający `resettableInteractionOf`.
+Zdefiniuj `walk3 :: IO ()` jako wariant `walk2` używający `resettableActivityOf`.
 
 Termin: 16.11.2019 godzina 06:00
 
