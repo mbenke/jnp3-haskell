@@ -61,17 +61,17 @@ drawRow :: Integer -> Picture
 drawCol :: Integer -> Integer -> Picture
 ```
 
-(NB najbardziej ogólny typ `draw21times` jest bardziej skomplikowany: 
+(NB najbardziej ogólny typ `draw21times` jest bardziej skomplikowany:
 `forall a. (Eq a, Num a) => (a -> Picture) -> Picture` - wrócimy do tego później.)
 
-Zauważmy, że typ `draw21Times` zawiera dwie strzałki, ale finkcja nie bierze dwóch argumentów, ale jeden, będący funkcją.
+Zauważmy, że typ `draw21Times` zawiera dwie strzałki, ale funkcja nie bierze dwóch argumentów, ale jeden, będący funkcją.
 Jest to przykład tzw. *funkcji wyższego rzędu* - to ważne pojęcie w programowaniu funkcyjnym i jeden z głównych mechanizmów abstrakcji.
 
 :pencil: przerób funkcję `draw21times` na `drawNtimes` tak aby liczba powtórzeń była argumentem i aby odliczać w dół do 0.
 
 ## Częściowa aplikacja
 
-Zauważmy, że funkcja `drawCol` potrzebuje dwóch argumentów, ale używamy jej z jednym i przekazujemy do `draw21times`. 
+Zauważmy, że funkcja `drawCol` potrzebuje dwóch argumentów, ale używamy jej z jednym i przekazujemy do `draw21times`.
 Typ `drawCol` możemy zapisać jako
 
 ```haskell
@@ -90,12 +90,12 @@ W innych językach stosujemy konstrukcje takie jak `#define` albo `enum`, w Hask
 data Tile = Wall | Ground | Storage | Box | Blank
 ```
 
-W ogólności `data` daje o wiele większe możliwosci, ale w swojej najprostszej postaci pozwala zdeinifować typ poprzez wyliczenie 
+W ogólności `data` daje o wiele większe możliwosci, ale w swojej najprostszej postaci pozwala zdeinifować typ poprzez wyliczenie
 konstruktorów jego wartości. Wartościami typu `Tile` są dokładnie te wyliczone konstruktory; nie ma problemu jak funkcja `drawTile ` ma zachowac się np. dla wartości `-1`.
 
 NB nazwy konstruktorów powinny zaczynać się od wielkiej litery (bądź dwukropka dla nazw infiksowych, złożonych z symboli)
 
-Rozpoznawanie konstruktorów odbywa się zwykle przez dopasowanie wzorca, 
+Rozpoznawanie konstruktorów odbywa się zwykle przez dopasowanie wzorca,
 np. [(otwórz w CodeWorld)](https://code.world/haskell#P-M5f3eyKkHqrbfW2KObbKQ)
 
 ```haskell
@@ -115,7 +115,7 @@ maze x y
   | x >= -2 && y == 0        = Box
   | otherwise                = Ground
  ```
- 
+
 Zauważmy, że teraz również sygnatury typów stają się bardziej czytelne i pomocne.
 
 :pencil: Przerób swój kod tak aby używał nowego typu `Tile` zamiast kodowania typów pól liczbami.
@@ -141,7 +141,7 @@ Potem może chcielibyśmy przesuwać gracza po planszy. Potrzebujemy typu reprez
 data Direction = R | U | L | D
 ```
 
-Potrzebujemy też typu reprezentującego pozycję. Tutaj typ wyliczeniowy już nie wystarczy; 
+Potrzebujemy też typu reprezentującego pozycję. Tutaj typ wyliczeniowy już nie wystarczy;
 musimy też przechowywać wartości współrzędnych. Możemy to osiągnąć przez konstruktory z parametrami, np.
 
 ```haskell
@@ -150,7 +150,7 @@ data Coord = C Integer Integer
 
 (moglibyśmy użyć też pary `(Integer, Integer)`, ale dedykowane typy dają lepsze komunikaty o błędach).
 
-Konstruktor `C` (poza tym, że może wystapić we wzorcach) zachowuje się jak funkcja typu 
+Konstruktor `C` (poza tym, że może wystapić we wzorcach) zachowuje się jak funkcja typu
 `Integer -> Integer -> Coord`, oto przykład:
 
 ```haskell
@@ -172,7 +172,7 @@ atCoord (C x y) pic = translated (fromIntegral x) (fromIntegral y) pic
 
 Napisz funkcję `adjacentCoord :: Direction -> Coord -> Coord` dającą współrzędne przesuniete o 1 w podanym kierunku.
 
-Możesz ją przetestować w `ghci`. Aby móc wypisywac elementy swojego typu, warto dodać do jego definicji klauzulę 
+Możesz ją przetestować w `ghci`. Aby móc wypisywac elementy swojego typu, warto dodać do jego definicji klauzulę
 `deriving Show`, np.
 
 ```haskell
@@ -285,7 +285,7 @@ handleEvent _ c      = c
 :exclamation: **Uwaga**: Aby używać stałych typu `Text` musimy w pierwszej linii programu dodać zaklęcie (pragmę)
 
 ```haskell
-{-# LANGUAGE OverloadedStrings #-} 
+{-# LANGUAGE OverloadedStrings #-}
 ```
 
 Sekwencja `{- ... -}` oznacza komentarz blokowy. Sekwencja  `{-# ... #-}` oznacza pragmę, czyli wskazówkę dla kompilatora.
@@ -324,7 +324,7 @@ Rozszerz kod z Etapu 1, definiując `walk2 :: IO()` tak, aby figurka gracze był
 
 ## Etap3: reset
 
-W trakcie gry przydatna będzie mozliwość rozpoczęcia poziomu od początku. 
+W trakcie gry przydatna będzie mozliwość rozpoczęcia poziomu od początku.
 Ta funkcjonalność jest w gruncie rzeczy niezależna od gry, zatem zaimplemntujmy ją ogólnie. Napisz funkcję
 
 ```haskell
@@ -342,6 +342,6 @@ Zastanów się co powinno się dziać dla zdarzenia odpowiadającego puszczeniu 
 
 Zdefiniuj `walk3 :: IO ()` jako wariant `walk2` używający `resettableInteractionOf`.
 
-Termin: 10.11.2018 godzina 06:00 
+Termin: 10.11.2018 godzina 06:00
 
 Oddawanie przez GitHub Classroom: https://classroom.github.com/a/fUfA19nH
