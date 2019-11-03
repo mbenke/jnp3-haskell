@@ -35,9 +35,8 @@ W trakcie gry przydatna będzie mozliwość rozpoczęcia poziomu od początku.
 Ta funkcjonalność jest w gruncie rzeczy niezależna od gry, zatem zaimplemntujmy ją ogólnie. Napisz funkcję
 
 ```haskell
-resettableInteractionOf ::
+resettableActivityOf ::
     world ->
-    (Double -> world -> world) ->
     (Event -> world -> world) ->
     (world -> Picture) ->
     IO ()
@@ -47,4 +46,4 @@ która zasadniczo będzie działać jak `interactionOf`, ale dla zdarzenie odpow
 
 Zastanów się co powinno się dziać dla zdarzenia odpowiadającego puszczeniu klawisza `Esc` i opisz swój wybór w komentarzu.
 
-Zdefiniuj `walk3 :: IO ()` jako wariant `walk2` używający `resettableInteractionOf`.
+Zdefiniuj `walk3 :: IO ()` jako wariant `walk2` używający `resettableActivityOf`.
