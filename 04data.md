@@ -99,7 +99,7 @@ konstruktorów jego wartości. Wartościami typu `Tile` są dokładnie te wylicz
 NB nazwy konstruktorów powinny zaczynać się od wielkiej litery (bądź dwukropka dla nazw infiksowych, złożonych z symboli)
 
 Rozpoznawanie konstruktorów odbywa się zwykle przez dopasowanie wzorca,
-np. [(otwórz w CodeWorld)](https://code.world/haskell#P-M5f3eyKkHqrbfW2KObbKQ)
+np. [(otwórz w CodeWorld)](https://code.world/haskell#PyLFDKyPJl6N6iP0d5DhLAg)
 
 ```haskell
 drawTile :: Tile -> Picture
