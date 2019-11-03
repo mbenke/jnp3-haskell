@@ -275,6 +275,7 @@ data Event = KeyPress Text
            | PointerRelease Point
            | PointerMovement Point
            | TimePassing Double
+           | TextEntry Text  -- syntetyczne zdarzenie wprowadzenia znaku, np "Ą"
 ```
 
 W tym momencie interesują nas zdarzenia `KeyPress`. Spróbujmy je obsłużyć:
