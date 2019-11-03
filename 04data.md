@@ -61,8 +61,11 @@ drawRow :: Integer -> Picture
 drawCol :: Integer -> Integer -> Picture
 ```
 
-(NB najbardziej ogólny typ `draw21times` jest bardziej skomplikowany:
-`forall a. (Eq a, Num a) => (a -> Picture) -> Picture` - wrócimy do tego później.)
+NB najbardziej ogólny typ `draw21times` jest bardziej skomplikowany:
+```haskell
+forall a. (Eq a, Num a) => (a -> Picture) -> Picture
+```
+wrócimy do tego później.
 
 Zauważmy, że typ `draw21Times` zawiera dwie strzałki, ale funkcja nie bierze dwóch argumentów, ale jeden, będący funkcją.
 Jest to przykład tzw. *funkcji wyższego rzędu* - to ważne pojęcie w programowaniu funkcyjnym i jeden z głównych mechanizmów abstrakcji.
