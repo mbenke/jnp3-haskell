@@ -271,9 +271,10 @@ Przyjrzyjmy się zatem typowi zdarzeń `Event`. Według [dokumentacji](https://c
 ```haskell
 data Event = KeyPress Text
            | KeyRelease Text
-           | MousePress MouseButton Point
-           | MouseRelease MouseButton Point
-           | MouseMovement Point
+           | PointerPress Point
+           | PointerRelease Point
+           | PointerMovement Point
+           | TimePassing Double
 ```
 
 W tym momencie interesują nas zdarzenia `KeyPress`. Spróbujmy je obsłużyć:
