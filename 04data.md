@@ -226,31 +226,26 @@ animacja jest funkcją z czasu w obraz. Program reagujący na zdarzenia możemy 
 która mając bieżący stan i zdarzenie, oblicza nowy stan:
 
 ```haskell
-interactionOf :: world ->
-                (Double -> world -> world) ->
-                (Event -> world -> world) ->
-                (world -> Picture) ->
-                IO ()
+activityOf :: world ->
+              (Event -> world -> world) ->
+              (world -> Picture) ->
+              IO ()
 ```
 
 Występujacy w tym typie typ świata `world` jest zmienną typową - możemy użyć w jej miejsce dowolnego typu (szerzej powiemy sobie o tym później. Jeżeli chcemy tyliko przesuwać poziom, na początek możemy użyć `Coord`.
 
-Funkcja `interactionOf` bierze 4 argumenty:
+Funkcja `activityOf` bierze 3 argumenty:
 
 1. Początkowy stan typu `world`.
-2. Funkcję opisującą zmiany stanu z upływem czasu, typu `Double -> world -> world`.
-3. Funkcję opisującą zmiany stanu w reakcji na zdarzenia, typu `Event -> world -> world`.
-4. Funkcję przedstawiającą stan jako obraz.
+2. Funkcję opisującą zmiany stanu w reakcji na zdarzenia, typu `Event -> world -> world`.
+3. Funkcję przedstawiającą stan jako obraz.
 
 Takie podejście jest zbliżony do paradygmatu Model-View-Controller, ale nie używa efektów ubocznych, a tylko czystych funkcji.
 
-Prosta próba użycia `interactionOf` może wyglądać np. tak [(zobacz na CodeWorld)](https://code.world/haskell#PpjfIR2NrgPeBJQKfg_63Kg):
+Prosta próba użycia `activityOf` może wyglądać np. tak [(zobacz na CodeWorld)](https://code.world/haskell#PeuoT_5CFDf2ZHNCQksMcHQ):
 
 ```haskell
-main = interactionOf initialCoord handleTime handleEvent drawState
-
-handleTime :: Double -> Coord -> Coord
-handleTime _ c = c
+main = interactionOf initial handleEvent drawState
 
 handleEvent :: Event -> Coord -> Coord
 handleEvent e c = adjacentCoord U c
@@ -259,8 +254,7 @@ drawState :: Coord -> Picture
 drawState c = atCoord c pictureOfMaze
 ```
 
-NB w nowszych wersjach CodeWorld zamiast `interactionOf` zalecane jest uzycie podobnej funkcji `activityOf`
-np. tak [(zobacz na CodeWorld)](https://code.world/haskell#PeuoT_5CFDf2ZHNCQksMcHQ).
+Nawiasem mówiąc, w starszych wersjach CodeWorld występowała funkcja `interactionOf`, biorąca jako dodatkowy parametr funkcję opisującą zmiany stanu z upływem czasu, typu `Double -> world -> world`. Obecnie upływ czasu traktowany jest jako jedno ze zdarzeń.
 
 To ...coś robi. Ale gdy tylko najedziemy muszą na obraz, on ucieka ... Dlaczego? Przy każdym zdarzeniu obraz przesuwa się do góry. A ruchy myszy też są zdarzeniami.
 
@@ -297,7 +291,7 @@ handleEvent _ c      = c
 ```
 
 Sekwencja `{- ... -}` oznacza komentarz blokowy. Sekwencja  `{-# ... #-}` oznacza pragmę, czyli wskazówkę dla kompilatora.
-W tym wypadku pragma `LANGUAGE OverloadedStrings` oznacza rozszerzenie języka, w którym literały napisowe są przeciążone i (podobnie jak literały liczbowe) dopasowują się do oczekiwanego typu - domyślnie są typu `String`, ale tutaj chcemy ich użyc w typie `Text`.
+W tym wypadku pragma `LANGUAGE OverloadedStrings` oznacza rozszerzenie języka, w którym literały napisowe są przeciążone i (podobnie jak literały liczbowe) dopasowują się do oczekiwanego typu - domyślnie są typu `String`, ale tutaj chcemy ich użyć w typie `Text`.
 
 # :pencil: Sokoban 2
 
@@ -322,7 +316,7 @@ square = colored black (solidRectangle 1 1)
 
 ## Etap 2: gracz skierowany
 
-Chcemy aby postać gracza patrzyła w stronę, w którą się porusza (co najmniej lewo-prawo). Zdefiniuj funkcję `player2 :: Direction -> Picture` dającą figurkę gracza skierowaną w odpowiednią stronę.
+Chcemy aby postać gracza patrzyła w stronę, w którą się porusza. Zdefiniuj funkcję `player2 :: Direction -> Picture` dającą figurkę gracza skierowaną w odpowiednią stronę.
 
 Rozszerz kod z Etapu 1, definiując `walk2 :: IO()` tak, aby figurka gracze była wyświetlana odpowiednio do kierunków ruchu.
 
