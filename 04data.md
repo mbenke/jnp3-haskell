@@ -245,7 +245,7 @@ Takie podejście jest zbliżony do paradygmatu Model-View-Controller, ale nie u�
 Prosta próba użycia `activityOf` może wyglądać np. tak [(zobacz na CodeWorld)](https://code.world/haskell#PeuoT_5CFDf2ZHNCQksMcHQ):
 
 ```haskell
-main = interactionOf initial handleEvent drawState
+main = activityOf initial handleEvent drawState
 
 handleEvent :: Event -> Coord -> Coord
 handleEvent e c = adjacentCoord U c
@@ -299,7 +299,7 @@ W tym wypadku pragma `LANGUAGE OverloadedStrings` oznacza rozszerzenie języka, 
 
 Stwórz definicję `player1 :: Picture` reprezentującą figurkę gracza.
 
-Zdefiniuj `walk1 :: IO ()` wykorzystujące `interactionOf` aby:
+Zdefiniuj `walk1 :: IO ()` wykorzystujące `activityOf` aby:
 * postać gracza była rysowana na obrazie poziomu;
 * początkowa pozycja gracza wypadała na pustym polu (można uzyć ustalonych współrzędnych, nie trzeba szukać pustego pola w programie);
 * klawisze strzałek przesuwały obraz gracza (obraz poziomu ma pozostać nieruchomy);
