@@ -4,7 +4,7 @@
 
 Stwórz definicję `player1 :: Picture` reprezentującą figurkę gracza.
 
-Zdefiniuj `walk1 :: IO ()` wykorzystujące `interactionOf` aby:
+Zdefiniuj `walk1 :: IO ()` wykorzystujące `activityOf` aby:
 * postać gracza była rysowana na obrazie poziomu;
 * początkowa pozycja gracza wypadała na pustym polu (można uzyć ustalonych współrzędnych, nie trzeba szukać pustego pola w programie);
 * klawisze strzałek przesuwały obraz gracza (obraz poziomu ma pozostać nieruchomy);
