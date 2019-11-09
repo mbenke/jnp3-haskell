@@ -3,14 +3,13 @@
 Polimorfizm (z gr. wielopostaciowość) to w odniesieniu do funkcji możliwość działania na obiektach różnych typów.
 W tym miejscu zajmiemy się podstawową formą polimorfizmu - polimorfizmem parametrycznym.
 
-Przypomnijmy funkcję `interactionOf`:
+Przypomnijmy funkcję `activityOf`:
 
 ```haskell
-interactionOf :: world ->
-                 (Double -> world -> world) ->
-		 (Event -> world -> world) ->
-		 (world -> Picture) ->
-		 IO ()
+activityOf :: world ->
+	      (Event -> world -> world) ->
+	      (world -> Picture) ->
+              IO ()
 ```
 
 Funkcja ta jest polimorficzna: możemy ją zastosować używając w miejscu zmiennej `world` dowolnego typu.
@@ -21,7 +20,7 @@ Ważne aby pamiętać, ze możliwosc wyboru typu lezy po stronie **wywołująceg
 Oznacza to, że implementacja funkcji musi działać dla **wszystkich** typów.
 Co więcej, musi działać **dla wszystkich typów tak samo**.
 
-Dlaczego parametrycznośc jest ważna?
+Dlaczego parametryczność jest ważna?
 
 1. Umożliwia *wycieranie typów*. Skoro funkcja wywoływana działa dla każdego typu tak samo, nie potrzebuje informacji 
 jakiego typu są jej faktyczne parametry. W związku z tym informacja typowa nie jest potrzebna w trakcie wykonania, a jedynie w trakcie kompilacji.
@@ -70,17 +69,14 @@ data SSState world = StartScreen | Running world
 Teraz możemy zaimplementować:
 
 ```haskell
-startScreenInteractionOf ::
-    world -> (Double -> world -> world) ->
-    (Event -> world -> world) -> (world -> Picture) ->
+startScreenActivityOf ::
+    (Event -> world -> world) -> 
+    (world -> Picture) ->
     IO ()
-startScreenInteractionOf state0 step handle draw
-  = interactionOf state0' step' handle' draw'
+startScreenInteractionOf state0 handle draw
+  = interactionOf state0' handle' draw'
   where
     state0' = StartScreen
-
-    step' _ StartScreen = StartScreen
-    step' t (Running s) = Running (step t s)
 
     handle' (KeyPress key) StartScreen
          | key == " "                  = Running state0
@@ -95,12 +91,11 @@ startScreenInteractionOf state0 step handle draw
 
 ## Interakcje całościowe
 
-Chcielibysmy teraz połączyć funkcjonalność  `startScreenInteractionOf` z funkcjonalnością `resettableInteractionOf`
+Chcielibysmy teraz połączyć funkcjonalność  `startScreenActivityOf` z funkcjonalnością `resettableActivityOf`
 
 ```haskell
-resettableInteractionOf ::
+resettableActivityOf ::
     world ->
-    (Double -> world -> world) ->
     (Event -> world -> world) ->
     (world -> Picture) ->
     IO ()
@@ -108,48 +103,47 @@ resettableInteractionOf ::
 
 tak, aby nacisnięcie `ESC` wracało do ekranu startowego. Ale nie mozemy - obie te funkcje daja wynik typu `IO()` a nie biora argumentów takiego typu. Musimy spróbowac innego podejścia.
 
-Gdybyśmy mieli typ `Interaction`, opisujący interakcje, oraz funkcje
+Gdybyśmy mieli typ `Activity`, opisujący interakcje, oraz funkcje
 
 ```haskell
-resettable :: Interaction -> Interaction
-withStartScreen :: Interaction -> Interaction
+resettable :: Activity -> Activity
+withStartScreen :: Activity -> Activity
 ```
 
 moglibyśmy uzyskać pożądany efekt przy pomocy ich złożenia. Potrzebowalibyśmy jeszcze funkcji
 
 ```haskell
-runInteraction :: Interaction -> IO ()
+runActivity :: Activity -> IO ()
 ```
 
-Jak możemy zdefiniować taki typ `Interaction` ? 
+Jak możemy zdefiniować taki typ `Activity` ? 
 
 Na razie obrazek, zeby zasugerować rozwiązanie, ale jeszcze go nie zdradzać:
 
 ![Cat in a box with a cat in a box](https://i.redd.it/k5mjhyewkxdz.jpg)
 
-Musimy opakować argumenty funkcji `interactionOf` wewnątrz typu `Interaction`:
+Musimy opakować argumenty funkcji `activityOf` wewnątrz typu `Activity`:
 
 ```haskell
-data Interaction world = Interaction
+data Activity world = Activity
         world
-	(Double -> world -> world)
 	(Event -> world -> world)
 	(world -> Picture)
 ```
-Zwróćmy uwagę, że dla pełnej ogólności typ świata `world` musi być parametrem typu `Interaction`.
+Zwróćmy uwagę, że dla pełnej ogólności typ świata `world` musi być parametrem typu `Activity`.
 
 Implementacja funkcji `resettable` nie przedstawia większych trudności - musimy po prostu wypakowac potrzebne wartości
 przy pomocy dopasowania wzorca:
 
 ```haskell
-resettable :: Interaction s -> Interaction s
-resettable (Interaction state0 step handle draw)
-  = Interaction state0 step handle' draw
+resettable :: Activity s -> Activity s
+resettable (Activity state0 handle draw)
+  = Interaction state0 handle' draw
   where handle' (KeyPress key) _ | key == "Esc" = state0
         handle' e s = handle e s
 ```
 
-Implementacja (a conajmniej zapisanie typu) funkcji `withStartScreen` wymaga chwili namysłu. Zauważmy, że funkcjonalność tę osiagliśmy przez rozszerzenie stanu świata:
+Implementacja (a conajmniej zapisanie typu) funkcji `withStartScreen` wymaga chwili namysłu. Zauważmy, że funkcjonalność tę osiagnęliśmy przez rozszerzenie stanu świata:
 
 ```haskell
 data SSState world = StartScreen | Running world
@@ -158,19 +152,16 @@ data SSState world = StartScreen | Running world
 Sygnatura naszej funkcji moze wyglądać tak:
 
 ```haskell
-withStartScreen :: Interaction s -> Interaction (SSState s)
+withStartScreen :: Activity s -> Activity (SSState s)
 ```
 
 a implementacja np. tak:
 
 ```haskell
-withStartScreen (Interaction state0 step handle draw)
-  = Interaction state0' step' handle' draw'
+withStartScreen (Activity state0 handle draw)
+  = Activity state0' handle' draw'
   where
     state0' = StartScreen
-
-    step' _ StartScreen = StartScreen
-    step' t (Running s) = Running (step t s)
 
     handle' (KeyPress key) StartScreen
          | key == " "                  = Running state0
@@ -181,11 +172,11 @@ withStartScreen (Interaction state0 step handle draw)
     draw' (Running s) = draw s
  ```
  
- Do kompletu potrzebujemy jeszcze funkcji `runInteraction`.
+ Do kompletu potrzebujemy jeszcze funkcji `runActivity`.
  
- :pencil: Napisz funkcję `runInteraction :: Interaction s -> IO ()`
+ :pencil: Napisz funkcję `runActivity :: Activity s -> IO ()`
  
- :pencil: Przepisz funkcje `walk2` i `walk3` ze swojego rozwiązania tak aby używały funkcji `runInteraction` i `resettable`.
+ :pencil: Przepisz funkcje `walk2` i `walk3` ze swojego rozwiązania tak aby używały funkcji `runActivity` i `resettable`.
  
  :pencil: Napisz funkcję `walk4 :: IO ()` rozszerzającą `walk3` o ekran startowy.
 
@@ -193,6 +184,6 @@ withStartScreen (Interaction state0 step handle draw)
 
 https://github.com/jnp3-haskell-2018/sokoban-3
 
-Oddawanie przez https://classroom.github.com/a/-SaOJf3w
+FIXME Oddawanie przez https://classroom.github.com/a/-SaOJf3w
 
-Termin: 01.12.2017 06:00 UTC+0100
+FIXME Termin: 01.12.2017 06:00 UTC+0100

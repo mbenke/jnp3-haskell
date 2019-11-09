@@ -61,17 +61,20 @@ drawRow :: Integer -> Picture
 drawCol :: Integer -> Integer -> Picture
 ```
 
-(NB najbardziej ogólny typ `draw21times` jest bardziej skomplikowany: 
-`forall a. (Eq a, Num a) => (a -> Picture) -> Picture` - wrócimy do tego później.)
+NB najbardziej ogólny typ `draw21times` jest bardziej skomplikowany:
+```haskell
+forall a. (Eq a, Num a) => (a -> Picture) -> Picture
+```
+wrócimy do tego później.
 
-Zauważmy, że typ `draw21Times` zawiera dwie strzałki, ale finkcja nie bierze dwóch argumentów, ale jeden, będący funkcją.
+Zauważmy, że typ `draw21Times` zawiera dwie strzałki, ale funkcja nie bierze dwóch argumentów, ale jeden, będący funkcją.
 Jest to przykład tzw. *funkcji wyższego rzędu* - to ważne pojęcie w programowaniu funkcyjnym i jeden z głównych mechanizmów abstrakcji.
 
 :pencil: przerób funkcję `draw21times` na `drawNtimes` tak aby liczba powtórzeń była argumentem i aby odliczać w dół do 0.
 
 ## Częściowa aplikacja
 
-Zauważmy, że funkcja `drawCol` potrzebuje dwóch argumentów, ale używamy jej z jednym i przekazujemy do `draw21times`. 
+Zauważmy, że funkcja `drawCol` potrzebuje dwóch argumentów, ale używamy jej z jednym i przekazujemy do `draw21times`.
 Typ `drawCol` możemy zapisać jako
 
 ```haskell
@@ -90,13 +93,13 @@ W innych językach stosujemy konstrukcje takie jak `#define` albo `enum`, w Hask
 data Tile = Wall | Ground | Storage | Box | Blank
 ```
 
-W ogólności `data` daje o wiele większe możliwosci, ale w swojej najprostszej postaci pozwala zdeinifować typ poprzez wyliczenie 
+W ogólności `data` daje o wiele większe możliwosci, ale w swojej najprostszej postaci pozwala zdeinifować typ poprzez wyliczenie
 konstruktorów jego wartości. Wartościami typu `Tile` są dokładnie te wyliczone konstruktory; nie ma problemu jak funkcja `drawTile ` ma zachowac się np. dla wartości `-1`.
 
 NB nazwy konstruktorów powinny zaczynać się od wielkiej litery (bądź dwukropka dla nazw infiksowych, złożonych z symboli)
 
-Rozpoznawanie konstruktorów odbywa się zwykle przez dopasowanie wzorca, 
-np. [(otwórz w CodeWorld)](https://code.world/haskell#P-M5f3eyKkHqrbfW2KObbKQ)
+Rozpoznawanie konstruktorów odbywa się zwykle przez dopasowanie wzorca,
+np. [(otwórz w CodeWorld)](https://code.world/haskell#PyLFDKyPJl6N6iP0d5DhLAg)
 
 ```haskell
 drawTile :: Tile -> Picture
@@ -115,7 +118,7 @@ maze x y
   | x >= -2 && y == 0        = Box
   | otherwise                = Ground
  ```
- 
+
 Zauważmy, że teraz również sygnatury typów stają się bardziej czytelne i pomocne.
 
 :pencil: Przerób swój kod tak aby używał nowego typu `Tile` zamiast kodowania typów pól liczbami.
@@ -141,7 +144,7 @@ Potem może chcielibyśmy przesuwać gracza po planszy. Potrzebujemy typu reprez
 data Direction = R | U | L | D
 ```
 
-Potrzebujemy też typu reprezentującego pozycję. Tutaj typ wyliczeniowy już nie wystarczy; 
+Potrzebujemy też typu reprezentującego pozycję. Tutaj typ wyliczeniowy już nie wystarczy;
 musimy też przechowywać wartości współrzędnych. Możemy to osiągnąć przez konstruktory z parametrami, np.
 
 ```haskell
@@ -150,7 +153,7 @@ data Coord = C Integer Integer
 
 (moglibyśmy użyć też pary `(Integer, Integer)`, ale dedykowane typy dają lepsze komunikaty o błędach).
 
-Konstruktor `C` (poza tym, że może wystapić we wzorcach) zachowuje się jak funkcja typu 
+Konstruktor `C` (poza tym, że może wystapić we wzorcach) zachowuje się jak funkcja typu
 `Integer -> Integer -> Coord`, oto przykład:
 
 ```haskell
@@ -172,7 +175,7 @@ atCoord (C x y) pic = translated (fromIntegral x) (fromIntegral y) pic
 
 Napisz funkcję `adjacentCoord :: Direction -> Coord -> Coord` dającą współrzędne przesuniete o 1 w podanym kierunku.
 
-Możesz ją przetestować w `ghci`. Aby móc wypisywac elementy swojego typu, warto dodać do jego definicji klauzulę 
+Możesz ją przetestować w `ghci`. Aby móc wypisywac elementy swojego typu, warto dodać do jego definicji klauzulę
 `deriving Show`, np.
 
 ```haskell
@@ -223,31 +226,26 @@ animacja jest funkcją z czasu w obraz. Program reagujący na zdarzenia możemy 
 która mając bieżący stan i zdarzenie, oblicza nowy stan:
 
 ```haskell
-interactionOf :: world ->
-                (Double -> world -> world) ->
-                (Event -> world -> world) ->
-                (world -> Picture) ->
-                IO ()
+activityOf :: world ->
+              (Event -> world -> world) ->
+              (world -> Picture) ->
+              IO ()
 ```
 
 Występujacy w tym typie typ świata `world` jest zmienną typową - możemy użyć w jej miejsce dowolnego typu (szerzej powiemy sobie o tym później. Jeżeli chcemy tyliko przesuwać poziom, na początek możemy użyć `Coord`.
 
-Funkcja `interactionOf` bierze 4 argumenty:
+Funkcja `activityOf` bierze 3 argumenty:
 
 1. Początkowy stan typu `world`.
-2. Funkcję opisującą zmiany stanu z upływem czasu, typu `Double -> world -> world`.
-3. Funkcję opisującą zmiany stanu w reakcji na zdarzenia, typu `Event -> world -> world`.
-4. Funkcję przedstawiającą stan jako obraz.
+2. Funkcję opisującą zmiany stanu w reakcji na zdarzenia, typu `Event -> world -> world`.
+3. Funkcję przedstawiającą stan jako obraz.
 
 Takie podejście jest zbliżony do paradygmatu Model-View-Controller, ale nie używa efektów ubocznych, a tylko czystych funkcji.
 
-Prosta próba użycia `interactionOf` może wyglądać np. tak [(zobacz na CodeWorld)](https://code.world/haskell#PpjfIR2NrgPeBJQKfg_63Kg):
+Prosta próba użycia `activityOf` może wyglądać np. tak [(zobacz na CodeWorld)](https://code.world/haskell#PeuoT_5CFDf2ZHNCQksMcHQ):
 
 ```haskell
-main = interactionOf initialCoord handleTime handleEvent drawState
-
-handleTime :: Double -> Coord -> Coord
-handleTime _ c = c
+main = activityOf initial handleEvent drawState
 
 handleEvent :: Event -> Coord -> Coord
 handleEvent e c = adjacentCoord U c
@@ -255,6 +253,8 @@ handleEvent e c = adjacentCoord U c
 drawState :: Coord -> Picture
 drawState c = atCoord c pictureOfMaze
 ```
+
+Nawiasem mówiąc, w starszych wersjach CodeWorld występowała funkcja `interactionOf`, biorąca jako dodatkowy parametr funkcję opisującą zmiany stanu z upływem czasu, typu `Double -> world -> world`. Obecnie upływ czasu traktowany jest jako jedno ze zdarzeń.
 
 To ...coś robi. Ale gdy tylko najedziemy muszą na obraz, on ucieka ... Dlaczego? Przy każdym zdarzeniu obraz przesuwa się do góry. A ruchy myszy też są zdarzeniami.
 
@@ -265,9 +265,11 @@ Przyjrzyjmy się zatem typowi zdarzeń `Event`. Według [dokumentacji](https://c
 ```haskell
 data Event = KeyPress Text
            | KeyRelease Text
-           | MousePress MouseButton Point
-           | MouseRelease MouseButton Point
-           | MouseMovement Point
+           | PointerPress Point
+           | PointerRelease Point
+           | PointerMovement Point
+           | TimePassing Double
+           | TextEntry Text  -- syntetyczne zdarzenie wprowadzenia znaku, np "Ą"
 ```
 
 W tym momencie interesują nas zdarzenia `KeyPress`. Spróbujmy je obsłużyć:
@@ -285,11 +287,11 @@ handleEvent _ c      = c
 :exclamation: **Uwaga**: Aby używać stałych typu `Text` musimy w pierwszej linii programu dodać zaklęcie (pragmę)
 
 ```haskell
-{-# LANGUAGE OverloadedStrings #-} 
+{-# LANGUAGE OverloadedStrings #-}
 ```
 
 Sekwencja `{- ... -}` oznacza komentarz blokowy. Sekwencja  `{-# ... #-}` oznacza pragmę, czyli wskazówkę dla kompilatora.
-W tym wypadku pragma `LANGUAGE OverloadedStrings` oznacza rozszerzenie języka, w którym literały napisowe są przeciążone i (podobnie jak literały liczbowe) dopasowują się do oczekiwanego typu - domyślnie są typu `String`, ale tutaj chcemy ich użyc w typie `Text`.
+W tym wypadku pragma `LANGUAGE OverloadedStrings` oznacza rozszerzenie języka, w którym literały napisowe są przeciążone i (podobnie jak literały liczbowe) dopasowują się do oczekiwanego typu - domyślnie są typu `String`, ale tutaj chcemy ich użyć w typie `Text`.
 
 # :pencil: Sokoban 2
 
@@ -297,7 +299,7 @@ W tym wypadku pragma `LANGUAGE OverloadedStrings` oznacza rozszerzenie języka, 
 
 Stwórz definicję `player1 :: Picture` reprezentującą figurkę gracza.
 
-Zdefiniuj `walk1 :: IO ()` wykorzystujące `interactionOf` aby:
+Zdefiniuj `walk1 :: IO ()` wykorzystujące `activityOf` aby:
 * postać gracza była rysowana na obrazie poziomu;
 * początkowa pozycja gracza wypadała na pustym polu (można uzyć ustalonych współrzędnych, nie trzeba szukać pustego pola w programie);
 * klawisze strzałek przesuwały obraz gracza (obraz poziomu ma pozostać nieruchomy);
@@ -314,7 +316,7 @@ square = colored black (solidRectangle 1 1)
 
 ## Etap 2: gracz skierowany
 
-Chcemy aby postać gracza patrzyła w stronę, w którą się porusza (co najmniej lewo-prawo). Zdefiniuj funkcję `player2 :: Direction -> Picture` dającą figurkę gracza skierowaną w odpowiednią stronę.
+Chcemy aby postać gracza patrzyła w stronę, w którą się porusza. Zdefiniuj funkcję `player2 :: Direction -> Picture` dającą figurkę gracza skierowaną w odpowiednią stronę.
 
 Rozszerz kod z Etapu 1, definiując `walk2 :: IO()` tak, aby figurka gracze była wyświetlana odpowiednio do kierunków ruchu.
 
@@ -324,24 +326,23 @@ Rozszerz kod z Etapu 1, definiując `walk2 :: IO()` tak, aby figurka gracze był
 
 ## Etap3: reset
 
-W trakcie gry przydatna będzie mozliwość rozpoczęcia poziomu od początku. 
+W trakcie gry przydatna będzie mozliwość rozpoczęcia poziomu od początku.
 Ta funkcjonalność jest w gruncie rzeczy niezależna od gry, zatem zaimplemntujmy ją ogólnie. Napisz funkcję
 
 ```haskell
-resettableInteractionOf ::
+resettableActivityOf ::
     world ->
-    (Double -> world -> world) ->
     (Event -> world -> world) ->
     (world -> Picture) ->
     IO ()
 ```
 
-która zasadniczo będzie działać jak `interactionOf`, ale dla zdarzenie odpowiadające naciśnięciu klawisza `Esc` nie jest przekazywane dalej, ale powoduje powrót stanu gry do stanu początkowego.
+która zasadniczo będzie działać jak `activityOf`, ale dla zdarzenie odpowiadające naciśnięciu klawisza `Esc` nie jest przekazywane dalej, ale powoduje powrót stanu gry do stanu początkowego.
 
 Zastanów się co powinno się dziać dla zdarzenia odpowiadającego puszczeniu klawisza `Esc` i opisz swój wybór w komentarzu.
 
-Zdefiniuj `walk3 :: IO ()` jako wariant `walk2` używający `resettableInteractionOf`.
+Zdefiniuj `walk3 :: IO ()` jako wariant `walk2` używający `resettableActivityOf`.
 
-Termin: 10.11.2018 godzina 06:00 
+Termin: 16.11.2019 godzina 06:00
 
-Oddawanie przez GitHub Classroom: https://classroom.github.com/a/fUfA19nH
+Oddawanie przez GitHub Classroom: https://classroom.github.com/a/rCxATghe

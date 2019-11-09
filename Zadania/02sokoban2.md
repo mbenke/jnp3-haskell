@@ -4,7 +4,7 @@
 
 Stwórz definicję `player1 :: Picture` reprezentującą figurkę gracza.
 
-Zdefiniuj `walk1 :: IO ()` wykorzystujące `interactionOf` aby:
+Zdefiniuj `walk1 :: IO ()` wykorzystujące `activityOf` aby:
 * postać gracza była rysowana na obrazie poziomu;
 * początkowa pozycja gracza wypadała na pustym polu (można uzyć ustalonych współrzędnych, nie trzeba szukać pustego pola w programie);
 * klawisze strzałek przesuwały obraz gracza (obraz poziomu ma pozostać nieruchomy);
@@ -35,9 +35,8 @@ W trakcie gry przydatna będzie mozliwość rozpoczęcia poziomu od początku.
 Ta funkcjonalność jest w gruncie rzeczy niezależna od gry, zatem zaimplemntujmy ją ogólnie. Napisz funkcję
 
 ```haskell
-resettableInteractionOf ::
+resettableActivityOf ::
     world ->
-    (Double -> world -> world) ->
     (Event -> world -> world) ->
     (world -> Picture) ->
     IO ()
@@ -47,4 +46,4 @@ która zasadniczo będzie działać jak `interactionOf`, ale dla zdarzenie odpow
 
 Zastanów się co powinno się dziać dla zdarzenia odpowiadającego puszczeniu klawisza `Esc` i opisz swój wybór w komentarzu.
 
-Zdefiniuj `walk3 :: IO ()` jako wariant `walk2` używający `resettableInteractionOf`.
+Zdefiniuj `walk3 :: IO ()` jako wariant `walk2` używający `resettableActivityOf`.
