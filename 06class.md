@@ -156,21 +156,21 @@ data Tile = Wall | Ground | Storage | Box | Blank deriving (Eq, Show)
 ### Równość (nie) dla wszystkich
 
 ```haskell
-data Interaction world = Interaction
+data Activity world = Activity
         world
-	(Double -> world -> world)
 	(Event -> world -> world)
 	(world -> Picture)
     deriving Eq
  ```
  
-Niestety jako, że równość na funkcjach jest w ogólności nierozstrzygalna, nie uda nam się zdefiniować jej np. dla typu `Interaction`
+Niestety jako, że równość na funkcjach jest w ogólności nierozstrzygalna, nie uda nam się zdefiniować jej np. dla typu `Activity`
 
 ```
 error:
-    • No instance for (Eq (world -> Picture))
-        arising from the fourth field of ‘Interaction’
+    • Could not deduce (Eq (world -> Picture))
+        arising from the third field of ‘Activity’
           (type ‘world -> Picture’)
+      from the context: Eq world
 ```
 
 Oczywiście możemy zdefiniować funkcję, która nie będzie prawdziwą równoscia, np
@@ -216,15 +216,14 @@ W sumie kompilator Haskella zawiera w sobie mini-Prolog.
 
 ## Przykład: Undo
 
-Powiedzmy, że chcemy dodac do gry możliwośc wycofania ruchu (np. przy dojściu z pudłem do ściany).
+Powiedzmy, że chcemy dodac do gry możliwość wycofania ruchu (np. przy dojściu z pudłem do ściany).
 
 ```haskell
 data WithUndo a = WithUndo a [a]
 
-withUndo :: Interaction a -> Interaction (WithUndo a)
-withUndo (Interaction state0 step handle draw) = Interaction state0' step' handle' draw' where
+withUndo :: Activity a -> Activity (WithUndo a)
+withUndo (Activity state0 step handle draw) = Activity state0' handle' draw' where
     state0' = WithUndo state0 []
-    step' t (WithUndo s stack) = WithUndo (step t s) stack
     handle' (KeyPress key) (WithUndo s stack) | key == "U"
       = case stack of s':stack' -> WithUndo s' stack'
                       []          -> WithUndo s []
@@ -259,7 +258,7 @@ No instance for (Eq a) arising from a use of ‘==’
 nasza funkcja nie działa dla wszystkich typów stanu, ale tylko tych z równością:
 
 ```haskell
-withUndo :: Eq a => Interaction a -> Interaction (WithUndo a)
+withUndo :: Eq a => Activity a -> Activity (WithUndo a)
 ```
 
 teraz mamy inny problem - brak równości dla typu `State`:
@@ -362,9 +361,10 @@ class  (Eq a, Show a) => Num a  where
 
 # Zadanie: Sokoban 4
 
-https://classroom.github.com/a/m-vSQ8-b
+FIXME https://classroom.github.com/a/m-vSQ8-b
 
-Termin: 8.12.2018 06:00 UTC+1
+Termin: 
+7.12.2019 06:00 UTC+1
 
 ## Etap 0
 
