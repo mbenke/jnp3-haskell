@@ -22,8 +22,8 @@
 2. Sokoban 1 (28.10) - termin 09.11
 3. Sokoban 2 (04.11) - termin 16.11
 4. Sokoban 3 (18.11) - termin 23.11
-5. Sokoban 4 (25.11) - termin 9.12
-6. Sokoban 5 (02.12) - termin 16.12
+5. Sokoban 4 (25.11) - termin 7.12
+6. Sokoban 5 (02.12) - termin 14.12
 7. Supply (16.12) - termin 18.1
 
 ## Literatura
