@@ -186,4 +186,4 @@ https://github.com/jnp3-haskell-2018/sokoban-3
 
 FIXME Oddawanie przez https://classroom.github.com/a/-SaOJf3w
 
-FIXME Termin: 01.12.2017 06:00 UTC+0100
+Termin: 30.11.2019 06:00 UTC+0100
