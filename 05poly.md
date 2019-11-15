@@ -16,7 +16,7 @@ Funkcja ta jest polimorficzna: możemy ją zastosować używając w miejscu zmie
 
 ## Parametryczność
 
-Ważne aby pamiętać, ze możliwosc wyboru typu lezy po stronie **wywołującego**. 
+Ważne aby pamiętać, ze możliwość wyboru typu leży po stronie **wywołującego**. 
 Oznacza to, że implementacja funkcji musi działać dla **wszystkich** typów.
 Co więcej, musi działać **dla wszystkich typów tak samo**.
 
@@ -25,7 +25,7 @@ Dlaczego parametryczność jest ważna?
 1. Umożliwia *wycieranie typów*. Skoro funkcja wywoływana działa dla każdego typu tak samo, nie potrzebuje informacji 
 jakiego typu są jej faktyczne parametry. W związku z tym informacja typowa nie jest potrzebna w trakcie wykonania, a jedynie w trakcie kompilacji.
 
-2. Ograniczając sposoby działania funkcji polimorficznych daje nam **twierdzenia za darmo** (*theorems for free*, termin ukuty przez Phila Wadlera a zarazem tytuł jego [słynnej pracy](https://people.mpi-sws.org/~dreyer/tor/papers/wadler.pdf)).
+2. Ograniczając sposoby działania funkcji polimorficznych, daje nam **twierdzenia za darmo** (*theorems for free*, termin ukuty przez Phila Wadlera a zarazem tytuł jego [słynnej pracy](https://people.mpi-sws.org/~dreyer/tor/papers/wadler.pdf)).
 
 :pencil: Rozważmy na przykład funkcje o następujących sygnaturach
 
