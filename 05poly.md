@@ -44,9 +44,10 @@ ile różnych implementacji potrafisz napisać?
 
 ## Polimorficzne typy danych
 
-Polimorficzne, mogą być nie tylko funkcje, ale i typy danych. W poprzednim tygodniu pisaliśmy wariant funkcji `interactionOf`
-pozwalający na cofnięcie poziomu do stanu początkowego. Spróbujmy teraz rozszerzyć tę funkcję o wyświetlanie ekranu startowego 
-i rozpoczynanie właściwej gry po naciśnięciu spacji. Na początek możemy stworzyć bardzo prosty ekran startowy:
+Polimorficzne, mogą być nie tylko funkcje, ale i typy danych. W poprzednim tygodniu pisaliśmy wariant funkcji `activityOf`
+pozwalający na cofnięcie poziomu do stanu początkowego. 
+Spróbujmy teraz rozszerzyć tę funkcję o wyświetlanie ekranu startowego i rozpoczynanie właściwej gry po naciśnięciu spacji.
+Na początek możemy stworzyć bardzo prosty ekran startowy:
 
 ```haskell
 startScreen :: Picture
@@ -73,8 +74,8 @@ startScreenActivityOf ::
     (Event -> world -> world) -> 
     (world -> Picture) ->
     IO ()
-startScreenInteractionOf state0 handle draw
-  = interactionOf state0' handle' draw'
+startScreenActivityOf state0 handle draw
+  = activityOf state0' handle' draw'
   where
     state0' = StartScreen
 
