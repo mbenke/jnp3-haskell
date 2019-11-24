@@ -361,7 +361,7 @@ class  (Eq a, Show a) => Num a  where
 
 # Zadanie: Sokoban 4
 
-FIXME https://classroom.github.com/a/m-vSQ8-b
+https://classroom.github.com/a/-qW76S8B
 
 Termin: 
 7.12.2019 06:00 UTC+1
