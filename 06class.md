@@ -210,7 +210,7 @@ Ta funkcja nie jest może imponująca, ale mechanizm klas pozwala na znacznie ba
 
 ### Rozwiązywanie instancji
 
-Gdy używamy funkcji przeciążonej, odnalezienie właściwej instancji (implementacji metod).\
+Gdy używamy funkcji przeciążonej, odnalezienie właściwej instancji (implementacji metod) jest zadaniem kompilatora.
 Jak zobaczymy, w obecności polimorfizmu może to być nietrywialne (wymagać odnalezienia innych instancji i tak dalej).
 W sumie kompilator Haskella zawiera w sobie mini-Prolog.
 
