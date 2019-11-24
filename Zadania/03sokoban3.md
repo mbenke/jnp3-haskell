@@ -15,7 +15,7 @@ Zdefiniuj typ stanu gry `State`, przechowujący
 * wybrany z góry kierunek
 * pozycje skrzyń odczytane z definicji poziomu
 
-Ostatni punkt jest nieco kontrowersyjny, ale możemy ząłozyc, ze poziom, jak poprzendio mieści się w zakresie współrzędnych `[-10..10]`.
+Ostatni punkt jest nieco kontrowersyjny, ale możemy założyć, że poziom, jak poprzednio mieści się w zakresie współrzędnych `[-10..10]`.
 
 Obliczoną wartość `initialBoxes` mozna przetestować np. tak:
 
@@ -71,7 +71,7 @@ handleEvent :: Event -> State -> State
 ```
 
 Reaguj tylko na klawisze strzałek oznaczające ruchy. Ruch moze się powieść lub nie.
-Ruch jest udany jęśli w kierunku ruchu jest `Ground`, `Storage` lub `Box` - w tym ostatnim wypadku jesli za skrzynią jest dostępne miejsce. Udany ruch skutkuje odpowiednią zmianą stanu.
+Ruch jest udany jeśli w kierunku ruchu jest `Ground`, `Storage` lub `Box` - w tym ostatnim wypadku jesli za skrzynią jest dostępne miejsce. Udany ruch skutkuje odpowiednią zmianą stanu.
 
 Do obsługi listy skrzyń moze być pomocna standardowa funkcja
 

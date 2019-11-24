@@ -6,7 +6,7 @@ Stwórz definicję `player1 :: Picture` reprezentującą figurkę gracza.
 
 Zdefiniuj `walk1 :: IO ()` wykorzystujące `activityOf` aby:
 * postać gracza była rysowana na obrazie poziomu;
-* początkowa pozycja gracza wypadała na pustym polu (można uzyć ustalonych współrzędnych, nie trzeba szukać pustego pola w programie);
+* początkowa pozycja gracza wypadała na pustym polu (można użyć ustalonych współrzędnych, nie trzeba szukać pustego pola w programie);
 * klawisze strzałek przesuwały obraz gracza (obraz poziomu ma pozostać nieruchomy);
 * gracz przesuwał się tylko  na pola `Ground` lub `Storage` (nie wchodzimy na ściany ani pudła).
 
@@ -23,7 +23,7 @@ square = colored black (solidRectangle 1 1)
 
 Chcemy aby postać gracza patrzyła w stronę, w którą się porusza (co najmniej lewo-prawo). Zdefiniuj funkcję `player2 :: Direction -> Picture` dającą figurkę gracza skierowaną w odpowiednią stronę.
 
-Rozszerz kod z Etapu 1, definiując `walk2 :: IO()` tak, aby figurka gracze była wyświetlana odpowiednio do kierunków ruchu.
+Rozszerz kod z Etapu 1, definiując `walk2 :: IO()` tak, aby figurka gracza była wyświetlana odpowiednio do kierunków ruchu.
 
 :point_right: **Wskazówka:** pomyśl najpierw o typach (np. stanu świata), potem o implementacji.
 
@@ -31,7 +31,7 @@ Rozszerz kod z Etapu 1, definiując `walk2 :: IO()` tak, aby figurka gracze był
 
 ## Etap3: reset
 
-W trakcie gry przydatna będzie mozliwość rozpoczęcia poziomu od początku. 
+W trakcie gry przydatna będzie możliwość rozpoczęcia poziomu od początku.
 Ta funkcjonalność jest w gruncie rzeczy niezależna od gry, zatem zaimplemntujmy ją ogólnie. Napisz funkcję
 
 ```haskell
