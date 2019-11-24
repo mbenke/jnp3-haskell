@@ -13,7 +13,7 @@ Zdefiniuj typ stanu gry `State`, przechowujący
 
 * wybrana z góry pozycja (jak poprzednio)
 * wybrany z góry kierunek
-* pozycje skrzy odczytane z definicji poziomu
+* pozycje skrzyń odczytane z definicji poziomu
 
 Ostatni punkt jest nieco kontrowersyjny, ale możemy ząłozyc, ze poziom, jak poprzendio mieści się w zakresie współrzędnych `[-10..10]`.
 
