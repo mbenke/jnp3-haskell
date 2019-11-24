@@ -54,7 +54,6 @@ Uzupełnij
 
 ```haskell
 removeBoxes maze = f . maze where f = -- ...
-addBoxes maze = f . maze where f = -- ...
 ```
 
 # Etap 4: rysowanie stanu
