@@ -16,16 +16,16 @@ Funkcja ta jest polimorficzna: możemy ją zastosować używając w miejscu zmie
 
 ## Parametryczność
 
-Ważne aby pamiętać, ze możliwość wyboru typu leży po stronie **wywołującego**. 
+Ważne aby pamiętać, że możliwość wyboru typu leży po stronie **wywołującego**. 
 Oznacza to, że implementacja funkcji musi działać dla **wszystkich** typów.
 Co więcej, musi działać **dla wszystkich typów tak samo**.
 
 Dlaczego parametryczność jest ważna?
 
-1. Umożliwia *wycieranie typów*. Skoro funkcja wywoływana działa dla każdego typu tak samo, nie potrzebuje informacji 
+1. Umożliwia *wycieranie typów*. Skoro funkcja wywoływana działa dla każdego typu tak samo, nie potrzebuje informacji, 
 jakiego typu są jej faktyczne parametry. W związku z tym informacja typowa nie jest potrzebna w trakcie wykonania, a jedynie w trakcie kompilacji.
 
-2. Ograniczając sposoby działania funkcji polimorficznych, daje nam **twierdzenia za darmo** (*theorems for free*, termin ukuty przez Phila Wadlera a zarazem tytuł jego [słynnej pracy](https://people.mpi-sws.org/~dreyer/tor/papers/wadler.pdf)).
+2. Ograniczenie sposobów działania funkcji polimorficznych daje nam **twierdzenia za darmo** (*theorems for free*, termin ukuty przez Phila Wadlera, a zarazem tytuł jego [słynnej pracy](https://people.mpi-sws.org/~dreyer/tor/papers/wadler.pdf)).
 
 :pencil: Rozważmy na przykład funkcje o następujących sygnaturach
 
@@ -44,7 +44,7 @@ ile różnych implementacji potrafisz napisać?
 
 ## Polimorficzne typy danych
 
-Polimorficzne, mogą być nie tylko funkcje, ale i typy danych. W poprzednim tygodniu pisaliśmy wariant funkcji `activityOf`
+Polimorficzne mogą być nie tylko funkcje, ale i typy danych. W poprzednim tygodniu pisaliśmy wariant funkcji `activityOf`
 pozwalający na cofnięcie poziomu do stanu początkowego. 
 Spróbujmy teraz rozszerzyć tę funkcję o wyświetlanie ekranu startowego i rozpoczynanie właściwej gry po naciśnięciu spacji.
 Na początek możemy stworzyć bardzo prosty ekran startowy:
@@ -60,8 +60,8 @@ Musimy wiedzieć czy jestesmy na ekranie startowym czy też gra już się toczy.
 data SSState = StartScreen | Running world
 ```
 
-Niestety przy takim kodzie, dostaniemy komunikat o błędzie `Not in scope: type variable ‘world’`. Istotnie, co to jest `world`? 
-Mozemy uczynic go *parametrem typu*:
+Niestety przy takim kodzie dostaniemy komunikat o błędzie `Not in scope: type variable ‘world’`. Istotnie, co to jest `world`? 
+Możemy uczynić go *parametrem typu*:
 
 ```haskell
 data SSState world = StartScreen | Running world
@@ -92,7 +92,7 @@ startScreenActivityOf state0 handle draw
 
 ## Interakcje całościowe
 
-Chcielibysmy teraz połączyć funkcjonalność  `startScreenActivityOf` z funkcjonalnością `resettableActivityOf`
+Chcielibyśmy teraz połączyć funkcjonalność  `startScreenActivityOf` z funkcjonalnością `resettableActivityOf`
 
 ```haskell
 resettableActivityOf ::
@@ -102,7 +102,7 @@ resettableActivityOf ::
     IO ()
 ```
 
-tak, aby nacisnięcie `ESC` wracało do ekranu startowego. Ale nie mozemy - obie te funkcje daja wynik typu `IO()` a nie biora argumentów takiego typu. Musimy spróbowac innego podejścia.
+tak, aby nacisnięcie `ESC` wracało do ekranu startowego. Ale nie możemy - obie te funkcje daja wynik typu `IO()` a nie biorą argumentów takiego typu. Musimy spróbowac innego podejścia.
 
 Gdybyśmy mieli typ `Activity`, opisujący interakcje, oraz funkcje
 
@@ -133,7 +133,7 @@ data Activity world = Activity
 ```
 Zwróćmy uwagę, że dla pełnej ogólności typ świata `world` musi być parametrem typu `Activity`.
 
-Implementacja funkcji `resettable` nie przedstawia większych trudności - musimy po prostu wypakowac potrzebne wartości
+Implementacja funkcji `resettable` nie przedstawia większych trudności - musimy po prostu wypakować potrzebne wartości
 przy pomocy dopasowania wzorca:
 
 ```haskell
@@ -144,13 +144,13 @@ resettable (Activity state0 handle draw)
         handle' e s = handle e s
 ```
 
-Implementacja (a conajmniej zapisanie typu) funkcji `withStartScreen` wymaga chwili namysłu. Zauważmy, że funkcjonalność tę osiagnęliśmy przez rozszerzenie stanu świata:
+Implementacja (a co najmniej zapisanie typu) funkcji `withStartScreen` wymaga chwili namysłu. Zauważmy, że funkcjonalność tę osiagnęliśmy przez rozszerzenie stanu świata:
 
 ```haskell
 data SSState world = StartScreen | Running world
 ```
 
-Sygnatura naszej funkcji moze wyglądać tak:
+Sygnatura naszej funkcji może wyglądać tak:
 
 ```haskell
 withStartScreen :: Activity s -> Activity (SSState s)
