@@ -6,59 +6,59 @@ Która funkcja jest czytelniejsza?
 
 ```haskell
 handleEvent :: Event -> State -> State
-handleEvent (KeyPress e) state@(coord, direction, boxes) = 
-     if isWinning state then state 
+handleEvent (KeyPress e) state@(coord, direction, boxes) =
+     if isWinning state then state
      else
       (newCord, Just dir, adjacentBoxes boxes newCord dir)
    where
      newCord = adjacentCoordIfAccesible dir coord curMaze
      dir     = textToDir e
      curMaze = addBoxes boxes (removeBoxes myMaze)
-     
+
 handleEvent _ state = state
 ```
 
 czy
 
 ```haskell
-handleEvent :: Event -> State -> State      
-handleEvent (KeyPress key) (State dir (C x y) boxList) --(State pict (C x y) _) 
-      | isWinning (State dir (C x y) boxList) = (State R (C x y) boxList) 
-      | key == "Right" && (empty levelNow (C (x+1) y)) = (State R (C (x+1) y) boxList) 
-      | key == "Up" && (empty levelNow (C x (y+1))) = (State U (C x (y+1)) boxList) 
-      | key == "Left" && (empty levelNow (C (x-1) y))  = (State L (C (x-1) y) boxList) 
-      | key == "Down" && (empty levelNow (C x (y-1))) = (State D (C x (y-1)) boxList) 
-      | key == "Right" 
+handleEvent :: Event -> State -> State
+handleEvent (KeyPress key) (State dir (C x y) boxList) --(State pict (C x y) _)
+      | isWinning (State dir (C x y) boxList) = (State R (C x y) boxList)
+      | key == "Right" && (empty levelNow (C (x+1) y)) = (State R (C (x+1) y) boxList)
+      | key == "Up" && (empty levelNow (C x (y+1))) = (State U (C x (y+1)) boxList)
+      | key == "Left" && (empty levelNow (C (x-1) y))  = (State L (C (x-1) y) boxList)
+      | key == "Down" && (empty levelNow (C x (y-1))) = (State D (C x (y-1)) boxList)
+      | key == "Right"
         && ((comp (levelNow (C (x+1) y)) Box)
         && (empty levelNow (C (x+2) y))) = (State R (C (x+1) y) (moveTheBox (C (x+1) y) R boxList))
-      | key == "Up" 
-        && ((comp (levelNow (C x (y+1))) Box) 
-        && (empty levelNow (C x (y+2)))) = (State U  (C x (y+1)) (moveTheBox (C x (y+1)) U boxList)) 
-      | key == "Left" 
-        && ((comp (levelNow (C (x-1) y)) Box) 
-        && (empty levelNow (C (x-2) y)))  = (State L (C (x-1) y) (moveTheBox (C (x-1) y) L boxList)) 
-      | key == "Down" 
-        && ((comp (levelNow (C x (y-1))) Box) 
-        && (empty levelNow (C x (y-2)))) = (State D (C x (y-1)) (moveTheBox (C x (y-1)) D boxList)) 
+      | key == "Up"
+        && ((comp (levelNow (C x (y+1))) Box)
+        && (empty levelNow (C x (y+2)))) = (State U  (C x (y+1)) (moveTheBox (C x (y+1)) U boxList))
+      | key == "Left"
+        && ((comp (levelNow (C (x-1) y)) Box)
+        && (empty levelNow (C (x-2) y)))  = (State L (C (x-1) y) (moveTheBox (C (x-1) y) L boxList))
+      | key == "Down"
+        && ((comp (levelNow (C x (y-1))) Box)
+        && (empty levelNow (C x (y-2)))) = (State D (C x (y-1)) (moveTheBox (C x (y-1)) D boxList))
     where
        levelNow :: Coord -> Tile
        levelNow = addBoxes boxList (removeBoxes maze2)
        empty :: (Coord -> Tile) -> Coord -> Bool
        empty lvl c = if ((comp (lvl c) Ground) || ((comp (lvl c) Storage))) then True else False
  ```
- 
+
 # Typy z klasą
 
 Wiele osób w rozwiązaniu ostatniego zadania pisało kod postaci
 
 ```haskell
-if comp (lvl c) Box then Ground else  (lvl c)
+if comp (lvl c) Box then Ground else (lvl c)
 ```
 
 prawdopodobnie chcieli napisać
 
 ```haskell
-if  (lvl c) == Box then Ground else  (lvl c)
+if  (lvl c) == Box then Ground else (lvl c)
 ```
 
 ale natknęli się na komunikat
@@ -76,7 +76,7 @@ Otóż równość ma typ
 co nalezy rozumieć jako `a -> a -> Bool` dla wszystkich typów `a` należących do klasy `Eq`.
 Warto zauważyć, że nie jest to polimorfizm parametryczny: równość nie działa dla wszystkich typów tak samo (czasami mówi się w tym wypadku o polimorfiźmie *ad hoc*
 
-Klasę należy tu rozumiec jako zbiór typów (dokładniej relację na typach, w tym wypadku jednoargumentową).
+Klasę należy tu rozumieć jako zbiór typów (dokładniej relację na typach, w tym wypadku jednoargumentową).
 
 ## Klasa Eq
 
@@ -95,9 +95,9 @@ instance Eq Word -- Defined in ‘GHC.Classes’
 …
 ```
 
-Klasa `Eq` ma dwie metody: `(==))` i `(/=)`. Aby typ przynależał do tej klasy, należy podać ich implementację. 
+Klasa `Eq` ma dwie metody: `(==))` i `(/=)`. Aby typ przynależał do tej klasy, należy podać ich implementację.
 
-Ponieważ każdą mozna łatwo wyrazić przez negację drugiej, wystarczy podać jedną z nich.
+Ponieważ każdą można łatwo wyrazić przez negację drugiej, wystarczy podać jedną z nich.
 
 Metody dla standardowych typów są zdefiniowane w Prelude (bibliotece standardowej, zawsze domyślnie importowanej).
 Czasami te implementacje są warunkowe: np. równość na parach jest definiowana pod warunkiem istnienia równosci na argumentach.
@@ -116,7 +116,7 @@ instance Eq Coord where
 
 Klasa `Eq` ma dwie metody: `(==))` i `(/=)`. Ponieważ każdą mozna łatwo wyrazić przez negację drugiej, wystarczy podać jedną z nich.
 
-Definiując klasę możemy podać domyślną implementację 
+Definiując klasę możemy podać domyślną implementację
 
 ```haskell
 class  Eq a  where
@@ -162,7 +162,7 @@ data Activity world = Activity
 	(world -> Picture)
     deriving Eq
  ```
- 
+
 Niestety jako, że równość na funkcjach jest w ogólności nierozstrzygalna, nie uda nam się zdefiniować jej np. dla typu `Activity`
 
 ```
@@ -216,7 +216,7 @@ W sumie kompilator Haskella zawiera w sobie mini-Prolog.
 
 ## Przykład: Undo
 
-Powiedzmy, że chcemy dodac do gry możliwość wycofania ruchu (np. przy dojściu z pudłem do ściany).
+Powiedzmy, że chcemy dodać do gry możliwość wycofania ruchu (np. przy dojściu z pudłem do ściany).
 
 ```haskell
 data WithUndo a = WithUndo a [a]
@@ -291,7 +291,7 @@ class  (Eq a) => Ord a  where
     x >  y           =  compare x y == GT
 
 -- note that (min x y, max x y) = (x,y) or (y,x)
-    max x y 
+    max x y
          | x <= y    =  y
          | otherwise =  x
     min x y
@@ -321,7 +321,7 @@ class  Enum a  where
     enumFrom x       =  map toEnum [fromEnum x ..]
     enumFromTo x y   =  map toEnum [fromEnum x .. fromEnum y]
     enumFromThen x y =  map toEnum [fromEnum x, fromEnum y ..]
-    enumFromThenTo x y z = 
+    enumFromThenTo x y z =
                         map toEnum [fromEnum x, fromEnum y .. fromEnum z]
 
 
@@ -342,9 +342,9 @@ class  (Eq a, Show a) => Num a  where
         --      All, except negate or (-)
     x - y            =  x + negate y
     negate x         =  0 - x
-    
+
     class  (Real a, Enum a) => Integral a  where
-    quot, rem        :: a -> a -> a   
+    quot, rem        :: a -> a -> a
     div, mod         :: a -> a -> a
     quotRem, divMod  :: a -> a -> (a,a)
     toInteger        :: a -> Integer
@@ -363,15 +363,15 @@ class  (Eq a, Show a) => Num a  where
 
 https://classroom.github.com/a/-qW76S8B
 
-Termin: 
+Termin:
 7.12.2019 06:00 UTC+1
 
-## Etap 0
+## Etap 1
 
 Stwórz kilka poziomów. Mozna pomóc sobie http://sokobano.de/wiki
 
 ```haskell
-data Maze = Maze Coord (Coord -> Tile) 
+data Maze = Maze Coord (Coord -> Tile)
 mazes :: [Maze]
 mazes = …
 badMazes :: [Maze]
@@ -382,9 +382,9 @@ badMazes = …
 
 Aby szybciej uzyskać większą liczbe poziomów, mozesz też wymienić się poziomami z innymi bądź dodać swoje poziomy jako pull request.
 
-## Etap 1 - funkcje polimorficzne
+## Etap 2 - funkcje polimorficzne
 
-Zdefiniuj kilka funkcji na listach (niektóre być może zostały zdefiniowane juz wcześniej).
+Zdefiniuj kilka funkcji na listach (niektóre być może zostały zdefiniowane już wcześniej).
 
 ```
 elemList :: Eq a => a -> [a] -> Bool
@@ -399,9 +399,9 @@ foldList :: (a -> b -> b) -> b -> [a] -> b
 ```
 Bonus: wyraź pozostałe funkcje przy użyciu `foldList`
 
-## Etap 2 - wyszukiwanie w grafie
+## Etap 3 - wyszukiwanie w grafie
 
-Zaimplementuj funkcję 
+Zaimplementuj funkcję
 
 ```haskell
 isGraphClosed :: Eq a => a -> (a -> [a]) -> (a -> Bool) -> Bool
@@ -410,7 +410,7 @@ isGraphClosed initial neighbours isOk = ...
 gdzie parametry mają następujące znaczenie:
 
 * `initial` - wierzchołek początkowy
-* `neighbours` - funkcja dajaca listę sąsiadów danego wierzchołka
+* `neighbours` - funkcja dająca listę sąsiadów danego wierzchołka
 * `isOk` - predykat mówiący, czy wierzchołek jest dobry (cokolwiek to znaczy).
 
 Funkcja `isGraphClosed` ma dawać wynik `True` wtw wszystkie wierzchołki osiągalne z początkowego są dobre.
@@ -427,7 +427,7 @@ dającą `True` wtw gdy wierzchołek `v` jest osiągalny z wierzchołka `initial
 Napisz funkcję
 ```haskell
 allReachable :: Eq a => [a] -> a -> (a -> [a]) -> Bool
-reachable vs initial neighbours = ...
+allReachable vs initial neighbours = ...
 ```
 
 dajacą `True` wtw gdy wszystkie wierzchołki z listy `vs` są osiagalne z `initial`. W tej funkcji nie używaj rekurencji, a tylko innych funkcji zdefiniowanych wcześniej.
@@ -448,7 +448,7 @@ Sprawdź, które poziomy z list `mazes` oraz `badMazes` sa zamknięte i rozsądn
 
 ```haskell
 pictureOfBools :: [Bool] -> Picture
-pictureOfBools xs = translated (-fromIntegral k /2) (fromIntegral k) (go 0 xs)
+pictureOfBools xs = translated (-fromIntegral k / 2) (fromIntegral k) (go 0 xs)
   where n = length xs
         k = findK 0 -- k is the integer square of n
         findK i | i * i >= n = i
@@ -462,7 +462,7 @@ pictureOfBools xs = translated (-fromIntegral k /2) (fromIntegral k) (go 0 xs)
 
         pictureOfBool True =  colored green (solidCircle 0.4)
         pictureOfBool False = colored red   (solidCircle 0.4)
-        
+
 main :: IO()
 main = drawingOf(pictureOfBools (map even [1..49::Int]))
 ```
@@ -471,8 +471,8 @@ Zdefiniuj `etap4 :: Picture`  jako wizualizację wyników dla wszystkich poziom�
 
 ## Etap 5 - wieleopoziomowy Sokoban
 
-Przerób funkcje wyszukujące skrzynie i `isWinning` z poprzedniego etapu tak aby używaly osiągalnych skrzyń. 
-Odpowiednio przerób funkcję rysującą - w ten sposób będzie mozna rysowac poziomy różnych rozmiarów.
+Przerób funkcje wyszukujące skrzynie i `isWinning` z poprzedniego etapu tak aby używały osiągalnych skrzyń.
+Odpowiednio przerób funkcję rysującą - w ten sposób będzie mozna rysować poziomy różnych rozmiarów.
 
 Przerób swoją grę z poprzedniego zadania tak aby gra składała się z kolejnych poziomów z listy `mazes`, rozdzielonych ekranami 'Poziom ukończony, liczba ruchów: N'
 
