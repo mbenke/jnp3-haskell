@@ -4,7 +4,7 @@
 -- foldr f z [] = z
 -- foldr f z (x:xs) = f x (foldr f z xs)
 
-safe_nth :: [a] -> Int -> Maybe a -- b ~ (Int -> MAybe a)
+safe_nth :: [a] -> Int -> Maybe a -- b ~ (Int -> Maybe a)
 safe_nth = foldr f z where
   z :: Int -> Maybe a
   z _ = Nothing
