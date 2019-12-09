@@ -63,7 +63,7 @@ Czasem przydatne jest wprowadzenie własnej nazwy (synonimu) dla jakiegoś typu.
 ```haskell
     type Name = String
     type Possibly = Either Name
-    
+
     safeHead3 :: [a] -> Possibly a
     safeHead3 [] = Left "Empty list"
     safeHead3 (x:xs) = Right x
@@ -91,9 +91,9 @@ Definicja **pointx** jest “oczywista”; możemy krócej:
 W jednej linii definiujemy typ **Point**, konstruktor **Pt**
 oraz funkcje **pointx** i **pointy**.
 
-Na przyklad zamiast 
+Na przyklad zamiast
 ``` haskell
--- typ świata  gracz kierunek  boxy    mapa    xDim      yDim      lvlNum  movNum 
+-- typ świata  gracz kierunek  boxy    mapa    xDim      yDim      lvlNum  movNum
 data State = S Coord Direction [Coord] MazeMap [Integer] [Integer] Integer Integer
 ```
 
@@ -135,7 +135,7 @@ foo s = s { stDir = D, stMove = stMove s + 1  }
 Jeśli chcemy opakować istniejacy typ w nowy konstruktor typu, mozemy uzyć konstrukcji **newtype**:
 
 ```haskell
-    newtype Identity a = Identity { runIdentity :: a } 
+    newtype Identity a = Identity { runIdentity :: a }
       deriving (Eq, Show)
 ```
 
@@ -146,7 +146,7 @@ Jeśli chcemy opakować istniejacy typ w nowy konstruktor typu, mozemy uzyć kon
     "Ala"
 ```
 
-**newtype** działa niemal identycznie jak **data** z jednym konstruktorem(ale efektywniej; 
+**newtype** działa niemal identycznie jak **data** z jednym konstruktorem(ale efektywniej;
 pakowanie/odpakowywanie odbywa się w czasie kompilacji a nie wykonania).
 
 ### Klasy konstruktorowe
@@ -154,7 +154,7 @@ pakowanie/odpakowywanie odbywa się w czasie kompilacji a nie wykonania).
 Typy polimorficzne jak **\[a\]** czy **Tree a** mogą być instancjami klas (przeważnie pod warunkiem, ze **a** jest też instancją odpowiedniej klasy)…
 
 ```haskell
-    data Tree a = Leaf a | Branch (Tree a) (Tree a) 
+    data Tree a = Leaf a | Branch (Tree a) (Tree a)
       deriving Show
 
     instance Eq a => Eq (Tree a) where
@@ -211,7 +211,7 @@ Chcemy dodać dwie liczby opakowane w **Maybe**
 
     *Applicative> :t (+1) <$> Just 5
     (+1) <$> Just 5 :: Num b => Maybe b
-    *Applicative> :t (+) <$> Just 5 
+    *Applicative> :t (+) <$> Just 5
     (+) <$> Just 5 :: Num a => Maybe (a -> a)
 
 czyli nie możemy napisać `(+) <$> Just 2 <$> Just 3`
@@ -228,8 +228,6 @@ teraz:
 
     *Applicative> (+) <$> Just 2 <*> Just 3
     Just 5
-
-Do klasy `Applicative` jeszcze wrócimy później.
 
 ### Ćwiczenia
 
@@ -256,7 +254,7 @@ Zdefiniuj dla nich odpowiednie instancje `Functor`.
 :pencil:  Zdefiniuj klasę Pointed (funkcyjnych pojemników z singletonem)
 ```haskell
 class Functor f => Pointed f where
-  pure :: a -> f a
+ ppure :: a -> f a
 ```
 
 i jej instancje dla list, `Maybe`, `Tree`:
@@ -285,8 +283,8 @@ Mechanizm wykonywania obliczeń (“interpreter”, maszyna wirtualna)
 ### Klasa Monad czyli programowalny średnik
 
 ```haskell
-class Monad obliczenie where 
-  return :: a -> obliczenie a 
+class Monad obliczenie where
+  return :: a -> obliczenie a
   (>>=) :: obliczenie a -> (a -> obliczenie b) -> obliczenie b
 ```
 
@@ -304,8 +302,6 @@ class Monad obliczenie where
 (via @TacticalGrace, inspired by @donsbot)*
 
 ![image](monad.jpg)
-
-### Klasa Monad
 
 Jeżeli kolejne obliczenie nie korzysta z wyniku (a tylko z efektu)
 poprzedniego, możemy użyć operatora `(>>)`
@@ -327,10 +323,33 @@ Najprostsza monadą jest **Identity**
 ```haskell
 newtype Identity a = Identity { runIdentity :: a }
 
-instance Monad Identity where 
+instance Monad Identity where
   return a = Identity a     -- return = id
   (Identity x) >>= f = f x  -- x >>= f = f x
 ```
+
+### `Monad` jest podklasą `Applicative` (w nowszych wersjach)
+
+```haskell
+class Applicative m => Monad m where ...
+```
+
+Dlatego żeby stworzyć instancję `Monad` wymagana jest instancja `Applicative` (a zatem także Functor). Dlatego możemy zobaczyć błąd
+
+```
+Code/monad/Identity.hs:5:10: error:
+    • No instance for (Applicative Identity)
+        arising from the superclasses of an instance declaration
+    • In the instance declaration for ‘Monad Identity’
+```
+
+Zauważmy jednak, że
+
+```haskell
+ap :: Monad m => m (a -> b) -> m a -> m b
+ap mf ma = do { f <- mf; a <- ma; return (f a) }
+```
+:pencil: Napisz instancje `Functor`, `Applicative` dla Identity.
 
 ### Trzy prawa monadyki
 
@@ -362,9 +381,9 @@ Podobnie jak zapis `a+b+c` jest jednoznaczny dzięki łączności dodawania.
 **Środek:** monada `Maybe`
 
 ```haskell
-instance Monad Maybe where 
-  return = Just 
-  Nothing >>= k = Nothing 
+instance Monad Maybe where
+  return = Just
+  Nothing >>= k = Nothing
   Just x >>= k = k x
 ```
 
@@ -391,9 +410,9 @@ Możemy oczywiście korzystać z **Maybe** bez mechanizmu monad:
 
 ```haskell
 case obliczenie1 of
-  Nothing -> Nothing 
+  Nothing -> Nothing
   Just x -> case obliczenie2 of
-    Nothing -> Nothing 
+    Nothing -> Nothing
     Just y -> obliczenie3
 ```
 
@@ -417,9 +436,9 @@ obliczenie zawiodło: komunikat o błedzie.
 Możemy do tego wykorzystać typ **Either**:
 
 ```haskell
-instance Monad (Either error) where 
-  return = Right 
-  (Left e)  >>= _ = Left e 
+instance Monad (Either error) where
+  return = Right
+  (Left e)  >>= _ = Left e
   (Right x) >>= k = k x
 ```
 
@@ -427,118 +446,6 @@ instance Monad (Either error) where
 > Left “error” >> return 3 Left “error”
 > do [n <- readEither “41” ; return (n+1) ]{} Right 42
 ```
-
-### Obsługa błędów: MonadError
-
-Możemy też abstrakcyjnie zdefiniować protokół obsługi błędów:
-
-```haskell
-class (Monad m) => MonadError e m | m -> e where 
-  throwError :: e -> m a 
-  catchError :: m a -> (e -> m a) -> m a
-
-instance MonadError e (Either e) ...
-```
-
-Klasa **MonadError** jest zdefiniowana w module
-**Control.Monad.Except** z pakietu `mtl`. Jesli go nie ma, to:
-
-```
-stack install mtl
-```
-
-albo
-
-```
-cabal install mtl
-```
-
-### Klasy wieloparametrowe
-
-Powiedzmy, ze chcemy zdefiniować klasę kolekcji
-
-```haskell
-class Collection c where
-  insert :: e -> c -> c
-  member :: e -> c -> Bool
-
-instance Eq a => Collection [a] where
-     insert x xs = x:xs
-     member = elem
-```
-to się niestety nie skompiluje (co to jest “`e`” w Collection?)
-
-### Klasy wieloparametrowe
-
-```haskell
-{-# LANGUAGE MultiParamTypeClasses #-}
-{-# LANGUAGE FlexibleInstances #-} 
-class Collection c e where
-  insert :: e -> c -> c
-  member :: e -> c -> Bool
-
-instance Eq a => Collection [a] a where
-     insert = (:)
-     member = elem
-```
-
-NB musimy użyć rozszerzeń wykraczających poza standard Haskell 2010, stąd pragmy.
-
-### Zależności funkcyjne (functional dependencies)
-
-Typ kolekcji determinuje typ elementu
-
-Można to wyrazić przez *zależności funkcyjne*:
-
-```haskell
-{-# LANGUAGE FunctionalDependencies #-}
-class Collection c e | c -> e where
-  insert :: e -> c -> c
-  member :: e -> c -> Bool
-```
-  
-Skojarzenie z bazami danych jest słuszne.
-
-Inny przykład
-
-```haskell
-class Mult a b c | a b -> c where
-  (|*) :: a -> b -> c
-```
-
-Innym rozwiązaniem są rodziny typów
-
-```haskell
-{-# LANGUAGE TypeFamilies, MultiParamTypeClasses #-}
-
-class Collection c where
-    type Elem c
-    insert :: Elem c -> c ->c
-
-class Mul a b where
-    type MulResult a b
-    mul :: a -> b -> MulResult a b
-```
-
-###  **MonadError** — przykład i ćwiczenie
-
-```haskell
-data ParseError = Err { location::Int, reason::String} 
-instance Error ParseError ... 
-type ParseMonad = Either ParseError 
-parseHexDigit :: Char -> Int -> ParseMonad Integer 
-parseHex :: String -> ParseMonad Integer 
-toString :: Integer -> ParseMonad String
-
--- zamień notację szesnastkową na dziesietną
-convert :: String -> String 
-convert s = str where 
-  (Right str) = tryParse s ‘catchError‘ printError 
-  tryParse s = parseHex s >>= toString
-  printError (Err loc msg) = return (concat ["At index ",show loc,":",msg])
-```
-
-:pencil: Uzupełnij brakujące definicje.
 
 ## Użyteczne kombinatory monadyczne
 
@@ -552,8 +459,8 @@ forM_ :: Monad m => [a] -> (a -> m b) -> m ()
 sequence :: Monad m => [m a] -> m [a]
 sequence_ :: Monad m => [m a] -> m ()
 liftM :: Monad m => (a1->r) -> m a1 -> m r -- fmap
-liftM2 :: Monad m => (a1->a2->r) 
-                  -> m a1 -> m a2 -> m r 
+liftM2 :: Monad m => (a1->a2->r)
+                  -> m a1 -> m a2 -> m r
 ```
 
 na przykład:
@@ -564,33 +471,10 @@ forM_ ['1'..'7'] putChar >> putStrLn ""
 liftM2 (+) (readMaybe "40") (readMaybe "2")
 ```
 
-### `Monad` jest podklasą `Applicative` (od niedawna)
-
-```haskell
-class Applicative m => Monad m where ...
-```
-Zauważmy że
-
-```haskell
-ap :: Monad m => m (a -> b) -> m a -> m b
-ap mf ma = do { f <- mf; a <- ma; return (f a) }
-```
-
-stąd w nowszych wersjach GHC możemy zobaczyć komunikat typu
-
-```
-Warning:
-‘Parser’ is an instance of Monad but not Applicative 
-    - this will become an error in GHC 7.10, 
-    under the Applicative-Monad Proposal.
-```
-
-### Ćwiczenia
-
 :pencil: Napisz własną implementację funkcji
 
 ```haskell
-sequence :: Monad m => [m a] -> m [a] 
+sequence :: Monad m => [m a] -> m [a]
 mapM :: Monad m => (a -> m b) -> [a] -> m [b]
 forM :: Monad m => [a] -> (a -> m b) -> m [b]
 ```
