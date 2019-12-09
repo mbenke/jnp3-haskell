@@ -305,8 +305,6 @@ class Monad obliczenie where
 
 ![image](monad.jpg)
 
-### Klasa Monad
-
 Jeżeli kolejne obliczenie nie korzysta z wyniku (a tylko z efektu)
 poprzedniego, możemy użyć operatora `(>>)`
 
@@ -318,6 +316,20 @@ Ponadto czasami wygodniej jest zapisywać złożenie obliczeń w kolejności
 analogicznej do złożenia funkcji:
 
     f =<< o = o >>= f
+
+### `Monad` jest podklasą `Applicative` (w nowszych wersjach)
+
+```haskell
+class Applicative m => Monad m where ...
+```
+
+Dlatego żeby stworzyć instancję `Monad` wymagana jest instancja `Applicative`.
+Zauważmy jendak, że
+
+```haskell
+ap :: Monad m => m (a -> b) -> m a -> m b
+ap mf ma = do { f <- mf; a <- ma; return (f a) }
+```
 
 ### Najprostszy efekt: brak efektu
 
@@ -331,6 +343,29 @@ instance Monad Identity where
   return a = Identity a     -- return = id
   (Identity x) >>= f = f x  -- x >>= f = f x
 ```
+
+### `Monad` jest podklasą `Applicative` (w nowszych wersjach)
+
+```haskell
+class Applicative m => Monad m where ...
+```
+
+Dlatego żeby stworzyć instancję `Monad` wymagana jest instancja `Applicative` (a zatem także Functor). Dlatego możemy zobaczyć błąd
+
+```
+Code/monad/Identity.hs:5:10: error:
+    • No instance for (Applicative Identity)
+        arising from the superclasses of an instance declaration
+    • In the instance declaration for ‘Monad Identity’
+```
+
+Zauważmy jednak, że
+
+```haskell
+ap :: Monad m => m (a -> b) -> m a -> m b
+ap mf ma = do { f <- mf; a <- ma; return (f a) }
+```
+:pencil: Napisz instancje `Functor`, `Applicative` dla Identity.
 
 ### Trzy prawa monadyki
 
@@ -451,29 +486,6 @@ void(forM [1..7] print)
 forM_ ['1'..'7'] putChar >> putStrLn ""
 liftM2 (+) (readMaybe "40") (readMaybe "2")
 ```
-
-### `Monad` jest podklasą `Applicative` (od niedawna)
-
-```haskell
-class Applicative m => Monad m where ...
-```
-Zauważmy że
-
-```haskell
-ap :: Monad m => m (a -> b) -> m a -> m b
-ap mf ma = do { f <- mf; a <- ma; return (f a) }
-```
-
-stąd w nowszych wersjach GHC możemy zobaczyć komunikat typu
-
-```
-Warning:
-‘Parser’ is an instance of Monad but not Applicative
-    - this will become an error in GHC 7.10,
-    under the Applicative-Monad Proposal.
-```
-
-### Ćwiczenia
 
 :pencil: Napisz własną implementację funkcji
 
