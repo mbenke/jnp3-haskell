@@ -1,6 +1,6 @@
 # Lenistwo
 
-Haskell jest językiem *leniwym* (lazy, non-strict). Co to oznacza? 
+Haskell jest językiem *leniwym* (lazy, non-strict). Co to oznacza?
 Przed omówieniem leniwej ewaluacji warto poświęcić chwilę na omówienie jej przeciwieństwa,
 jakim jest ewaluacja *gorliwa* (eager, strict).
 
@@ -29,7 +29,7 @@ Praca ta zostanie wykonana na darmo, albowiem `k` nie uzywa swojego drugiego arg
 
 ## Leniwa ewaluacja
 
-Alternatywą dla gorliwej ewaluacji jest *leniwa ewaluacja* - wartości argumentów są obliczane kiedy (i o ile w ogóle są potrzebne). 
+Alternatywą dla gorliwej ewaluacji jest *leniwa ewaluacja* - wartości argumentów są obliczane kiedy (i o ile w ogóle są potrzebne).
 W Haskellu obowiązuje taki własnie paradygmat. Dlaczego jednak wszystkie języki go nie używają? Przyczyny są dwojakiego rodzaju:
 
 - Implementacja leniwej ewaluacji jest trudniejsza - do funkcji nie przekazujemy wartości, ale domknięcie, które pozwoli ją obliczyć.
@@ -40,7 +40,7 @@ W Haskellu obowiązuje taki własnie paradygmat. Dlaczego jednak wszystkie języ
 main = f (print 1) (print 2)
 ```
 
-W przypadku gorliwej ewaluacji możemy się spodziewać że przed wywołaniem `f` wypisane zostanie 1 i 2 (chociaż nie każdy język zagwarantuje nam kolejność). 
+W przypadku gorliwej ewaluacji możemy się spodziewać że przed wywołaniem `f` wypisane zostanie 1 i 2 (chociaż nie każdy język zagwarantuje nam kolejność).
 W przypadku leniwej ewaluacji nie wiemy kiedy i czy w ogóle cokolwiek zostanie wypisane.
 
 Wyzwaniem jakie stanęło przed twórcami Haskella było więc wymyślenie sposobu włączenia do języka efektów ubocznych w sposób uporządkowany tak aby programista mógł je kontrolować i nie naruszały one zasadniczej czystości języka. Po kilku iteracjach (strumienie? kontynuacje? monady!) znaleźli rozwiązanie: poznany przez nas niedawno typ IO. Przy okazji okazało się, że monady pozwalają na dokładniejszą kontrolę efektów niż "wszystko albo nic".
@@ -76,7 +76,7 @@ Potem możemy wybrać ze strumienia  tylko parzyste:
 :pencil: Zaproponuj inny sposób zdefiniowania strumieni liczb parzystych/nieparzystych
 
 Leniwa ewaluacja oznacza, że argumenty wyliczane są tylko kiedy są potrzebne i tylko w takim stopniu w jakim są potrzebne.
-W praktyce, ewaluacja jest sterowana przez dopasowanie wzorca. W naszym przykładzie oznacza to, że lista obliczona zostanie 
+W praktyce, ewaluacja jest sterowana przez dopasowanie wzorca. W naszym przykładzie oznacza to, że lista obliczona zostanie
 dopiero gdy dopasowanie wzorca w funkcji `take` sprawdzi czy mamy do czynienia z listą pustą czy niepustą:
 
 ```
@@ -135,7 +135,7 @@ x -/ p = x `mod` p > 0
 
 primes1 :: [Integer]
 primes1 = sieve [2..] where
-  sieve (p:xs) = p : sieve [x | x<-xs, x -/ p]  
+  sieve (p:xs) = p : sieve [x | x<-xs, x -/ p]
 ```
 
 mozna ją usprawnić...
@@ -156,7 +156,7 @@ tak by sprawdzać tylko dzielniki `x` nie większe od pierwiastka `x` (ale używ
 
 ## Lenistwo, `reverse`,`foldr` i `foldl`
 
-Z oczywistych względów do strumieni nie możemy stosować `reverse`. Z podobnych powodów, nie możemy stosować `foldl`, 
+Z oczywistych względów do strumieni nie możemy stosować `reverse`. Z podobnych powodów, nie możemy stosować `foldl`,
 który "moralnie" odwraca listę:
 
 ```
@@ -172,40 +172,3 @@ Mozemy za to z powodzeniem stosować `foldr` (z leniwą operacją):
 ```
 
 W ogólności, przy leniwych operacjach zwykle lepiej stosowac `foldl` zaś przy gorliwych - `foldl'`, który jest gorliwą wersją `foldl`.
-
-# Wskazówka do zadania - listy różnicowe
-
-Reprezentacja list pozwalająca na efektywniejszą konkatenację: listę `xs :: [T]` reprezentujemy jako funkcję `f :: [T] -> [T]`
-taką, że `f ys = xs ++ ys`; patrz np. `Data.DList` w pakiecie `dlist`:
-
-``` haskell
-newtype DList a = DL { unDL :: [a] -> [a] }
-
--- | Convert a list to a dlist
-fromList    :: [a] -> DList a
-fromList    = DL . (++)
-
--- | Convert a dlist to a list
-toList      :: DList a -> [a]
-toList      = ($[]) . unDL
-
-empty :: DList
-empty = DL id
-```
-:pencil: napisz funkcje `cons` i `snoc`  (doklejenie elementu na początku i końcu) oraz `append`
-
-``` haskell
-cons :: a -> DList a -> DList a
-snoc :: DList a -> a -> DList a
-append :: DList a -> DList a -> DList a
-```
-
-Ponieważ przy rysowaniu często uzywamy składania obrazów, podobną szuczkę możemy zastosować w zadaniu:
-
-``` haskell 
-type DrawFun = Integer -> Integer -> Char
-type Picture = DrawFun -> DrawFun
-blank = id
-(&) = (.)
-```
-

@@ -1,20 +1,3 @@
-# Zaszłości
-
-* `isGraphClosed` - https://gist.github.com/mbenke/eb7b2e515633540ec0f60de218b21e1c
-* `nth` przy użyciu `foldr` - https://github.com/mbenke/jnp3-haskell/blob/master/Code/fold/fold-nth.hs
-
-## `foldl` i `foldr`
-
-```
-foldr f z (x:xs) = f x (foldr f z xs)
-foldl f z (x:xs) = foldl (f z x) xs
-```
-
-W ML czesto preferowany jest `foldl` (jako ogonowy); w Haskellu raczej używamy `foldr`.
-
-Więcej: [https://wiki.haskell.org/Foldr_Foldl_Foldl'](https://wiki.haskell.org/Foldr_Foldl_Foldl') (ale to raczej po zajęciach o leniwej ewaluacji).
-
-
 # I/O - co jest pod maską?
 
 Rozwiązanie problemu I/O jest oparte na typach i klasach. Musimy powiedzieć o nich coś więcej, do I/O wrócimy za chwilę.
@@ -477,4 +460,58 @@ liftM2 (+) (readMaybe "40") (readMaybe "2")
 sequence :: Monad m => [m a] -> m [a]
 mapM :: Monad m => (a -> m b) -> [a] -> m [b]
 forM :: Monad m => [a] -> (a -> m b) -> m [b]
+```
+
+# Zaszłości
+
+<!--
+* `isGraphClosed` - https://gist.github.com/mbenke/eb7b2e515633540ec0f60de218b21e1c
+* `nth` przy użyciu `foldr` - https://github.com/mbenke/jnp3-haskell/blob/master/Code/fold/fold-nth.hs
+-->
+
+## `foldl` i `foldr`
+
+```
+foldr f z (x:xs) = f x (foldr f z xs)
+foldl f z (x:xs) = foldl (f z x) xs
+```
+
+W ML czesto preferowany jest `foldl` (jako ogonowy); w Haskellu raczej używamy `foldr`.
+
+Więcej: [https://wiki.haskell.org/Foldr_Foldl_Foldl'](https://wiki.haskell.org/Foldr_Foldl_Foldl') (ale to raczej po zajęciach o leniwej ewaluacji).
+
+# Wskazówka do zadania - listy różnicowe
+
+Reprezentacja list pozwalająca na efektywniejszą konkatenację: listę `xs :: [T]` reprezentujemy jako funkcję `f :: [T] -> [T]`
+taką, że `f ys = xs ++ ys`; patrz np. `Data.DList` w pakiecie `dlist`:
+
+``` haskell
+newtype DList a = DL { unDL :: [a] -> [a] }
+
+-- | Convert a list to a dlist
+fromList    :: [a] -> DList a
+fromList    = DL . (++)
+
+-- | Convert a dlist to a list
+toList      :: DList a -> [a]
+toList      = ($[]) . unDL
+
+empty :: DList
+empty = DL id
+```
+:pencil: napisz funkcje `cons` i `snoc`  (doklejenie elementu na początku i końcu) oraz `append`
+
+``` haskell
+cons :: a -> DList a -> DList a
+snoc :: DList a -> a -> DList a
+append :: DList a -> DList a -> DList a
+```
+
+Ponieważ przy rysowaniu często uzywamy składania obrazów, podobną szuczkę możemy zastosować w zadaniu:
+
+``` haskell
+type DrawFun = Integer -> Integer -> Char
+type Picture = DrawFun -> DrawFun
+blank = id
+(&) = (.)
 ```
