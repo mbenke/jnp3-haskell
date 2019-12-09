@@ -229,8 +229,6 @@ teraz:
     *Applicative> (+) <$> Just 2 <*> Just 3
     Just 5
 
-Do klasy `Applicative` jeszcze wrócimy później.
-
 ### Ćwiczenia
 
 :pencil: Rozważmy trochę iny typ drzew:
@@ -316,20 +314,6 @@ Ponadto czasami wygodniej jest zapisywać złożenie obliczeń w kolejności
 analogicznej do złożenia funkcji:
 
     f =<< o = o >>= f
-
-### `Monad` jest podklasą `Applicative` (w nowszych wersjach)
-
-```haskell
-class Applicative m => Monad m where ...
-```
-
-Dlatego żeby stworzyć instancję `Monad` wymagana jest instancja `Applicative`.
-Zauważmy jendak, że
-
-```haskell
-ap :: Monad m => m (a -> b) -> m a -> m b
-ap mf ma = do { f <- mf; a <- ma; return (f a) }
-```
 
 ### Najprostszy efekt: brak efektu
 
