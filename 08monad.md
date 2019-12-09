@@ -63,7 +63,7 @@ Czasem przydatne jest wprowadzenie własnej nazwy (synonimu) dla jakiegoś typu.
 ```haskell
     type Name = String
     type Possibly = Either Name
-    
+
     safeHead3 :: [a] -> Possibly a
     safeHead3 [] = Left "Empty list"
     safeHead3 (x:xs) = Right x
@@ -91,9 +91,9 @@ Definicja **pointx** jest “oczywista”; możemy krócej:
 W jednej linii definiujemy typ **Point**, konstruktor **Pt**
 oraz funkcje **pointx** i **pointy**.
 
-Na przyklad zamiast 
+Na przyklad zamiast
 ``` haskell
--- typ świata  gracz kierunek  boxy    mapa    xDim      yDim      lvlNum  movNum 
+-- typ świata  gracz kierunek  boxy    mapa    xDim      yDim      lvlNum  movNum
 data State = S Coord Direction [Coord] MazeMap [Integer] [Integer] Integer Integer
 ```
 
@@ -135,7 +135,7 @@ foo s = s { stDir = D, stMove = stMove s + 1  }
 Jeśli chcemy opakować istniejacy typ w nowy konstruktor typu, mozemy uzyć konstrukcji **newtype**:
 
 ```haskell
-    newtype Identity a = Identity { runIdentity :: a } 
+    newtype Identity a = Identity { runIdentity :: a }
       deriving (Eq, Show)
 ```
 
@@ -146,7 +146,7 @@ Jeśli chcemy opakować istniejacy typ w nowy konstruktor typu, mozemy uzyć kon
     "Ala"
 ```
 
-**newtype** działa niemal identycznie jak **data** z jednym konstruktorem(ale efektywniej; 
+**newtype** działa niemal identycznie jak **data** z jednym konstruktorem(ale efektywniej;
 pakowanie/odpakowywanie odbywa się w czasie kompilacji a nie wykonania).
 
 ### Klasy konstruktorowe
@@ -154,7 +154,7 @@ pakowanie/odpakowywanie odbywa się w czasie kompilacji a nie wykonania).
 Typy polimorficzne jak **\[a\]** czy **Tree a** mogą być instancjami klas (przeważnie pod warunkiem, ze **a** jest też instancją odpowiedniej klasy)…
 
 ```haskell
-    data Tree a = Leaf a | Branch (Tree a) (Tree a) 
+    data Tree a = Leaf a | Branch (Tree a) (Tree a)
       deriving Show
 
     instance Eq a => Eq (Tree a) where
@@ -211,7 +211,7 @@ Chcemy dodać dwie liczby opakowane w **Maybe**
 
     *Applicative> :t (+1) <$> Just 5
     (+1) <$> Just 5 :: Num b => Maybe b
-    *Applicative> :t (+) <$> Just 5 
+    *Applicative> :t (+) <$> Just 5
     (+) <$> Just 5 :: Num a => Maybe (a -> a)
 
 czyli nie możemy napisać `(+) <$> Just 2 <$> Just 3`
@@ -256,7 +256,7 @@ Zdefiniuj dla nich odpowiednie instancje `Functor`.
 :pencil:  Zdefiniuj klasę Pointed (funkcyjnych pojemników z singletonem)
 ```haskell
 class Functor f => Pointed f where
-  pure :: a -> f a
+ ppure :: a -> f a
 ```
 
 i jej instancje dla list, `Maybe`, `Tree`:
@@ -285,8 +285,8 @@ Mechanizm wykonywania obliczeń (“interpreter”, maszyna wirtualna)
 ### Klasa Monad czyli programowalny średnik
 
 ```haskell
-class Monad obliczenie where 
-  return :: a -> obliczenie a 
+class Monad obliczenie where
+  return :: a -> obliczenie a
   (>>=) :: obliczenie a -> (a -> obliczenie b) -> obliczenie b
 ```
 
@@ -327,7 +327,7 @@ Najprostsza monadą jest **Identity**
 ```haskell
 newtype Identity a = Identity { runIdentity :: a }
 
-instance Monad Identity where 
+instance Monad Identity where
   return a = Identity a     -- return = id
   (Identity x) >>= f = f x  -- x >>= f = f x
 ```
@@ -362,9 +362,9 @@ Podobnie jak zapis `a+b+c` jest jednoznaczny dzięki łączności dodawania.
 **Środek:** monada `Maybe`
 
 ```haskell
-instance Monad Maybe where 
-  return = Just 
-  Nothing >>= k = Nothing 
+instance Monad Maybe where
+  return = Just
+  Nothing >>= k = Nothing
   Just x >>= k = k x
 ```
 
@@ -391,9 +391,9 @@ Możemy oczywiście korzystać z **Maybe** bez mechanizmu monad:
 
 ```haskell
 case obliczenie1 of
-  Nothing -> Nothing 
+  Nothing -> Nothing
   Just x -> case obliczenie2 of
-    Nothing -> Nothing 
+    Nothing -> Nothing
     Just y -> obliczenie3
 ```
 
@@ -417,9 +417,9 @@ obliczenie zawiodło: komunikat o błedzie.
 Możemy do tego wykorzystać typ **Either**:
 
 ```haskell
-instance Monad (Either error) where 
-  return = Right 
-  (Left e)  >>= _ = Left e 
+instance Monad (Either error) where
+  return = Right
+  (Left e)  >>= _ = Left e
   (Right x) >>= k = k x
 ```
 
@@ -433,8 +433,8 @@ instance Monad (Either error) where
 Możemy też abstrakcyjnie zdefiniować protokół obsługi błędów:
 
 ```haskell
-class (Monad m) => MonadError e m | m -> e where 
-  throwError :: e -> m a 
+class (Monad m) => MonadError e m | m -> e where
+  throwError :: e -> m a
   catchError :: m a -> (e -> m a) -> m a
 
 instance MonadError e (Either e) ...
@@ -472,7 +472,7 @@ to się niestety nie skompiluje (co to jest “`e`” w Collection?)
 
 ```haskell
 {-# LANGUAGE MultiParamTypeClasses #-}
-{-# LANGUAGE FlexibleInstances #-} 
+{-# LANGUAGE FlexibleInstances #-}
 class Collection c e where
   insert :: e -> c -> c
   member :: e -> c -> Bool
@@ -496,7 +496,7 @@ class Collection c e | c -> e where
   insert :: e -> c -> c
   member :: e -> c -> Bool
 ```
-  
+
 Skojarzenie z bazami danych jest słuszne.
 
 Inny przykład
@@ -523,17 +523,17 @@ class Mul a b where
 ###  **MonadError** — przykład i ćwiczenie
 
 ```haskell
-data ParseError = Err { location::Int, reason::String} 
-instance Error ParseError ... 
-type ParseMonad = Either ParseError 
-parseHexDigit :: Char -> Int -> ParseMonad Integer 
-parseHex :: String -> ParseMonad Integer 
+data ParseError = Err { location::Int, reason::String}
+instance Error ParseError ...
+type ParseMonad = Either ParseError
+parseHexDigit :: Char -> Int -> ParseMonad Integer
+parseHex :: String -> ParseMonad Integer
 toString :: Integer -> ParseMonad String
 
 -- zamień notację szesnastkową na dziesietną
-convert :: String -> String 
-convert s = str where 
-  (Right str) = tryParse s ‘catchError‘ printError 
+convert :: String -> String
+convert s = str where
+  (Right str) = tryParse s ‘catchError‘ printError
   tryParse s = parseHex s >>= toString
   printError (Err loc msg) = return (concat ["At index ",show loc,":",msg])
 ```
@@ -552,8 +552,8 @@ forM_ :: Monad m => [a] -> (a -> m b) -> m ()
 sequence :: Monad m => [m a] -> m [a]
 sequence_ :: Monad m => [m a] -> m ()
 liftM :: Monad m => (a1->r) -> m a1 -> m r -- fmap
-liftM2 :: Monad m => (a1->a2->r) 
-                  -> m a1 -> m a2 -> m r 
+liftM2 :: Monad m => (a1->a2->r)
+                  -> m a1 -> m a2 -> m r
 ```
 
 na przykład:
@@ -580,8 +580,8 @@ stąd w nowszych wersjach GHC możemy zobaczyć komunikat typu
 
 ```
 Warning:
-‘Parser’ is an instance of Monad but not Applicative 
-    - this will become an error in GHC 7.10, 
+‘Parser’ is an instance of Monad but not Applicative
+    - this will become an error in GHC 7.10,
     under the Applicative-Monad Proposal.
 ```
 
@@ -590,7 +590,7 @@ Warning:
 :pencil: Napisz własną implementację funkcji
 
 ```haskell
-sequence :: Monad m => [m a] -> m [a] 
+sequence :: Monad m => [m a] -> m [a]
 mapM :: Monad m => (a -> m b) -> [a] -> m [b]
 forM :: Monad m => [a] -> (a -> m b) -> m [b]
 ```
