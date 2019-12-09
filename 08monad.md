@@ -39,6 +39,7 @@ Dwa przydatne typy (predefiniowane w Prelude):
     safeHead2 (x:xs) = Right x
 ```
 
+<!--
 ### Synonimy
 
 Czasem przydatne jest wprowadzenie własnej nazwy (synonimu) dla jakiegoś typu.
@@ -53,6 +54,7 @@ Czasem przydatne jest wprowadzenie własnej nazwy (synonimu) dla jakiegoś typu.
 ```
 
 Synonim **nie jest** konstruktorem typu; jest identyczny z nazywanym typem.
+-->
 
 ### Etykiety pól
 
