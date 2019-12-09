@@ -1,6 +1,6 @@
 # Zaszłości
 
-* `isGraphClosed` - https://gist.github.com
+* `isGraphClosed` - https://gist.github.com/mbenke/eb7b2e515633540ec0f60de218b21e1c
 * `nth` przy użyciu `foldr` - https://github.com/mbenke/jnp3-haskell/blob/master/Code/fold/fold-nth.hs
 
 ## `foldl` i `foldr`
