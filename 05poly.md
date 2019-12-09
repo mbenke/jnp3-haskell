@@ -54,7 +54,7 @@ startScreen :: Picture
 startScreen = scaled 3 3 (lettering "Sokoban!")
 ```
 
-Musimy wiedzieć czy jestesmy na ekranie startowym czy też gra już się toczy.  Najprościej zapamiętać tę informację w stanie
+Musimy wiedzieć czy jesteśmy na ekranie startowym czy też gra już się toczy.  Najprościej zapamiętać tę informację w stanie
 
 ```haskell
 data SSState = StartScreen | Running world
@@ -102,7 +102,7 @@ resettableActivityOf ::
     IO ()
 ```
 
-tak, aby nacisnięcie `ESC` wracało do ekranu startowego. Ale nie możemy - obie te funkcje daja wynik typu `IO()` a nie biorą argumentów takiego typu. Musimy spróbowac innego podejścia.
+tak, aby naciśnięcie `ESC` wracało do ekranu startowego. Ale nie możemy - obie te funkcje dają wynik typu `IO()` a nie biorą argumentów takiego typu. Musimy spróbować innego podejścia.
 
 Gdybyśmy mieli typ `Activity`, opisujący interakcje, oraz funkcje
 
@@ -119,7 +119,7 @@ runActivity :: Activity -> IO ()
 
 Jak możemy zdefiniować taki typ `Activity` ? 
 
-Na razie obrazek, zeby zasugerować rozwiązanie, ale jeszcze go nie zdradzać:
+Na razie obrazek, żeby zasugerować rozwiązanie, ale jeszcze go nie zdradzać:
 
 ![Cat in a box with a cat in a box](https://i.redd.it/k5mjhyewkxdz.jpg)
 
@@ -144,7 +144,7 @@ resettable (Activity state0 handle draw)
         handle' e s = handle e s
 ```
 
-Implementacja (a co najmniej zapisanie typu) funkcji `withStartScreen` wymaga chwili namysłu. Zauważmy, że funkcjonalność tę osiagnęliśmy przez rozszerzenie stanu świata:
+Implementacja (a co najmniej zapisanie typu) funkcji `withStartScreen` wymaga chwili namysłu. Zauważmy, że funkcjonalność tę osiągnęliśmy przez rozszerzenie stanu świata:
 
 ```haskell
 data SSState world = StartScreen | Running world

@@ -227,7 +227,7 @@ program = drawingOf(coordinatePlane)
 ```
 
 Punkty reprezentowane są jako pary współrzędnych ‒ na przykład `(5,5)`.
-Łamaną mozemy skonstruować przy pomocy funkcji `polyline` z listą punktów jako argumentem.
+Łamaną możemy skonstruować przy pomocy funkcji `polyline` z listą punktów jako argumentem.
 
 ```haskell
 program = drawingOf(zigzag)
@@ -261,7 +261,7 @@ Każda wartość i wyrażenie ma swój typ. Typy pojawiają się przede wszystki
 * `Number` jest typem liczb (w dorosłym Haskellu używamy trochę dokładniejszych typów, jak `Int` i `Double`),
 * `Color` jest typem kolorów.
 
-Generalnie nazwy typów zaczynają sie z wielkiej litery, zmienych ‒ z małej.
+Generalnie nazwy typów zaczynają się z wielkiej litery, zmiennych ‒ z małej.
 
 Wskazania typu możemy dokonać przy pomocy `::` na przykład
 
@@ -274,7 +274,7 @@ size = 4
 ```
 W większości wypadków deklaracje typów nie są konieczne ‒ kompilator potrafi sam wywnioskować typy.
 Deklaracje mają jednak co najmniej dwie zalety:
-* Są cenną dokumentacją kodu (lepszą niz komentarze ‒ bo sprawdzaną przez kompilator).
+* Są cenną dokumentacją kodu (lepszą niż komentarze ‒ bo sprawdzaną przez kompilator).
 * Czasem pozwalają na dokładniejsze komunikaty o błędach.
 
 ### Typy listowe
@@ -460,9 +460,9 @@ tire      = circle(1) & solidRectangle(0.1, 2)
 
 https://github.com
 
-Na tych zajęciach będziemy wykorzystywać GitHub. Jeśli jeszcze nia masz konta ‒ załóż.
+Na tych zajęciach będziemy wykorzystywać GitHub. Jeśli jeszcze nie masz konta ‒ załóż.
 
-Materiały są dostepne w repozytorium `https://github.com/mbenke/jnp3-haskell/` (dostęp możliwy bez zakładania konta, ale konto przyda się za chwilę).
+Materiały są dostępne w repozytorium `https://github.com/mbenke/jnp3-haskell/` (dostęp możliwy bez zakładania konta, ale konto przyda się za chwilę).
 
 
 W notatkach są błędy, takie jak literówki (niektóre umyślne). Wykonaj [fork](https://help.github.com/articles/fork-a-repo/) tego repo na swoim koncie, popraw jakiś błąd (albo zaproponuj ulepszenie) i zgłoś [pull request](https://help.github.com/articles/creating-a-pull-request-from-a-fork/).
@@ -471,6 +471,6 @@ Zadania należy oddawać poprzez GitHub Classroom. Na rozgrzewkę, programy z dz
 
 # Zastrzeżenia prawne
 
-Niektóre przyklady i opisy pochodzą z dokumentacji CodeWorld: https://code.world/doc.html?shelf=help/codeworld.shelf
+Niektóre przykłady i opisy pochodzą z dokumentacji CodeWorld: https://code.world/doc.html?shelf=help/codeworld.shelf
 
 CodeWorld jest dostępny na licencji Apache: https://github.com/google/codeworld/blob/master/LICENSE.

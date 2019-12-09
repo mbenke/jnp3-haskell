@@ -17,7 +17,7 @@ Zdefiniuj typ stanu gry `State`, przechowujący
 
 Ostatni punkt jest nieco kontrowersyjny, ale możemy założyć, że poziom, jak poprzednio mieści się w zakresie współrzędnych `[-10..10]`.
 
-Obliczoną wartość `initialBoxes` mozna przetestować np. tak:
+Obliczoną wartość `initialBoxes` można przetestować np. tak:
 
 ```haskell
 main = drawingOf (pictureOfBoxes initialBoxes)
@@ -70,10 +70,10 @@ Zdefiniuj
 handleEvent :: Event -> State -> State
 ```
 
-Reaguj tylko na klawisze strzałek oznaczające ruchy. Ruch moze się powieść lub nie.
-Ruch jest udany jeśli w kierunku ruchu jest `Ground`, `Storage` lub `Box` - w tym ostatnim wypadku jesli za skrzynią jest dostępne miejsce. Udany ruch skutkuje odpowiednią zmianą stanu.
+Reaguj tylko na klawisze strzałek oznaczające ruchy. Ruch może się powieść lub nie.
+Ruch jest udany jeśli w kierunku ruchu jest `Ground`, `Storage` lub `Box` - w tym ostatnim wypadku jeśli za skrzynią jest dostępne miejsce. Udany ruch skutkuje odpowiednią zmianą stanu.
 
-Do obsługi listy skrzyń moze być pomocna standardowa funkcja
+Do obsługi listy skrzyń może być pomocna standardowa funkcja
 
 ```haskell
 map :: (a->b) -> [a] -> [b]

@@ -2,7 +2,7 @@
 
 ## Etap 1
 
-Stwórz kilka poziomów. Mozna pomóc sobie http://sokobano.de/wiki
+Stwórz kilka poziomów. Można pomóc sobie http://sokobano.de/wiki
 
 ```haskell
 data Maze = Maze Coord (Coord -> Tile)
@@ -64,7 +64,7 @@ allReachable :: Eq a => [a] -> a -> (a -> [a]) -> Bool
 allReachable vs initial neighbours = ...
 ```
 
-dajacą `True` wtw gdy wszystkie wierzchołki z listy `vs` są osiagalne z `initial`. W tej funkcji nie używaj rekurencji, a tylko innych funkcji zdefiniowanych wcześniej.
+dającą `True` wtw gdy wszystkie wierzchołki z listy `vs` są osiągalne z `initial`. W tej funkcji nie używaj rekurencji, a tylko innych funkcji zdefiniowanych wcześniej.
 
 ## Etap 4 - sprawdzanie poziomów
 
@@ -78,7 +78,7 @@ isSane :: Maze -> Bool
 * `isClosed` - pozycja startowa `Ground` lub `Storage`, żadna osiągalna (z pozycji startowej) nie jest `Blank`
 * `isSane` - liczba osiągalnych `Storage` jest niemniejsza od liczby osiągalnych skrzyń.
 
-Sprawdź, które poziomy z list `mazes` oraz `badMazes` sa zamknięte i rozsądne. Do wizualizacji mozna uzyć następującej funkcji
+Sprawdź, które poziomy z list `mazes` oraz `badMazes` są zamknięte i rozsądne. Do wizualizacji można użyć następującej funkcji
 
 ```haskell
 pictureOfBools :: [Bool] -> Picture
@@ -105,7 +105,7 @@ Zdefiniuj `etap4 :: Picture`  jako wizualizację wyników dla wszystkich poziom�
 
 ## Etap 5 - wieleopoziomowy Sokoban
 
-Przerób funkcje wyszukujące skrzynie i `isWinning` z poprzedniego etapu tak aby używarły osiągalnych skrzyń.
+Przerób funkcje wyszukujące skrzynie i `isWinning` z poprzedniego etapu tak aby używały osiągalnych skrzyń.
 Odpowiednio przerób funkcję rysującą - w ten sposób będzie można rysować poziomy różnych rozmiarów.
 
 Przerób swoją grę z poprzedniego zadania tak aby gra składała się z kolejnych poziomów z listy `mazes`, rozdzielonych ekranami 'Poziom ukończony, liczba ruchów: N'
