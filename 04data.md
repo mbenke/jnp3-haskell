@@ -216,6 +216,65 @@ someCoord = moveCoords [U, U, L] initialCoord
 * typ o więcej niż jednym konstruktorze nazywamy *typem sumarycznym* (ang. *sum type*) jest izomorficzny z sumą rozłączną odpowiednich typów
 * typ bez konstruktorów (tak, to możliwe i czasem użyteczne!) nazywamy *typem pustym* (ang. *empty type*, nie mylić z `()`)
 
+### Etykiety pól
+
+Spójrzmy na definicje
+
+```haskell
+    data Point = Pt Float Float
+    pointx                  :: Point -> Float
+    pointx (Pt x _)         =  x
+    pointy ...
+```
+
+Definicja **pointx** jest “oczywista”; możemy krócej:
+
+```haskell
+    data Point = Pt {pointx, pointy :: Float}
+```
+
+W jednej linii definiujemy typ **Point**, konstruktor **Pt**
+oraz funkcje **pointx** i **pointy**.
+
+Na przyklad zamiast
+``` haskell
+-- typ świata  gracz kierunek  boxy    mapa    xDim      yDim      lvlNum  movNum
+data State = S Coord Direction [Coord] MazeMap [Integer] [Integer] Integer Integer
+```
+
+można
+
+``` haskell
+data State = S {
+  stPlayer :: Pos,
+  stDir    :: Direction,
+  stBoxes  :: [Coord],
+  stMap    :: MazeMap,
+  stXdim   :: [Integer],
+  stYdim   :: [Integer],
+  stLevel  :: Integer,
+  stMove   :: Integer
+}
+```
+
+Oprócz wartościowej dokumentacji uzyskujemy też funkcje pozwalające wyłuskiwać poszczególne składowe, np.
+
+``` haskell
+stPlayer :: State -> Pos
+```
+
+oraz możliwość łatwiejszego zapisywania modyfikacji składowych, np. zamiast
+
+``` haskell
+foo s@(S c _ b mm xd yd n mn) = S c D b mm xd yd n (mn+1)
+```
+
+wystarczy
+
+``` haskell
+foo s = s { stDir = D, stMove = stMove s + 1  }
+```
+
 # Czysta interakcja
 
 Pora uczynić naszą grę interaktywną. Chcemy aby po uruchomieniu programu, poziom był wyśrodkowany,
