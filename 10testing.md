@@ -268,4 +268,4 @@ gdzie `orderedList` jest generatorem dającym tylko listy uporządkowane.
 
 # Zadanie
 
-Zadanie podsumowujące: https://classroom.github.com/a/FsdSHep3
+Zadanie podsumowujące: https://classroom.github.com/a/5K8g_ihD
