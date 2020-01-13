@@ -64,12 +64,8 @@ i sprawdza, czy dla wszystkich własność jest spełniona;
 quickCheck  :: Testable a => a -> IO ()
 quickCheck   = check quick
 
-
 check :: Testable a => Config -> a -> IO ()
 quick :: Config
-
-class Testable a where
-  property :: a -> Property
 
 instance Testable Bool where...
 
@@ -81,6 +77,17 @@ class Arbitrary a where
   shrink    :: a -> [a]
 
 instance Monad Gen where ...
+
+class Testable a where
+  property :: a -> Property
+
+newtype Property
+  = Prop (Gen Result)
+
+data Result = Result { ok :: Maybe Bool, arguments :: [String] }
+
+nothing :: Result
+nothing = Result{ ok = Nothing,  arguments = [] }
 ```
 
 ## Dygresja - generacja liczb losowych
