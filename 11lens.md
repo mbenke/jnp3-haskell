@@ -17,6 +17,7 @@ odczytanie współrzednej atomu jest proste:
 ``` haskell
 getAtomX :: Atom -> Double
 getAtomX = _x . _point
+-- getAtomX atom = _x(_point atom)
 ```
 
 ### Zapis
@@ -24,10 +25,10 @@ natomiast ustawienie wartości jest  bardziej skomplikowana:
 
 ``` haskell
 setPoint :: Point -> Atom -> Atom
-setPoint p a = a { _point = p }
+setPoint p atom = atom { _point = p }
 
 setElement :: String -> Atom -> Atom
-setElement e a = a { _element = e }
+setElement e atom = atom { _element = e }
 
 setX, setY:: Double -> Point -> Point
 setX x p = p { _x = x }
