@@ -1,3 +1,4 @@
+> Costate Comonad Coalgebra is equivalent of Java&#39;s member variable update technology for Haskell &mdash; [@PLT_Borat](https://twitter.com/PLT_Borat/status/228009057670291456)
 
 # Soczewki (lenses)
 
