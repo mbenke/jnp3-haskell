@@ -212,7 +212,7 @@ dla innych monad, albo wręcz konstruktorów, które monadami nie są.
 
 Jeśli przyjrzymy się bliżej `overIO`, możemy zauważyć,
 że występuje w nim schemat `m >>= (\x -> return $ g x)`,
-który możemy zastąpić przez równoważne (a ogólniejsze) `g <$> m`,
+który możemy zastąpić przez równoważne (a ogólniejsze) `g <$> m` (czyli `fmap g m`),
 które nie wymaga monady a tylko funktora:
 
 ``` haskell
