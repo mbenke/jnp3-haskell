@@ -53,7 +53,7 @@ data Lens a b = Lens { view :: a -> b
 
 oraz konkretne soczewki dla naszych typów:
 
-``` haskell 
+``` haskell
 point :: Lens Atom Point
 point = Lens _point setPoint
 
@@ -309,6 +309,14 @@ comp :: Lens a b -> Lens b c -> Lens a c
 comp l1 l2 = l1 . l2
 ```
 
+Przy odpowiednich (prostych) definicjach operatorów infiksowych
+możemy teraz pisać na przykład
+
+``` haskell
+atom2 = atom0 & point . x %~ (+1)
+newx = atom2 ^. point . x
+```
+
 :pencil: Wypróbuj opisane tu definicje soczewek na typach `Atom` i `Point` (albo innych, np. typach stanu z Sokobana).
 
 ## Costate Comonad Coalgebra
@@ -328,7 +336,7 @@ duplicate :: w a -> w (w a)
 
 Przypomnijmy sobie monadę `State`:
 
-```haskell 
+```haskell
 newtype State s a = State a -> (a, s)
 ```
 
