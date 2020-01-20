@@ -310,3 +310,45 @@ comp l1 l2 = l1 . l2
 ```
 
 :pencil: Wypróbuj opisane tu definicje soczewek na typach `Atom` i `Point` (albo innych, np. typach stanu z Sokobana).
+
+## Costate Comonad Coalgebra
+Alternatywna definicja monady:
+
+```haskell
+return   :: a -> m a
+join     :: m (m a) -> m a
+```
+
+`Comonad` to pojęcie dualne:
+
+```haskell
+extract   :: w a -> a
+duplicate :: w a -> w (w a)
+```
+
+Przypomnijmy sobie monadę `State`:
+
+```haskell 
+newtype State s a = State a -> (a, s)
+```
+
+`Store` jest (prawie) dualną komonadą:
+
+```haskell
+-- State ~ (a -> (a ,  s))
+-- Store ~ (a ,  (a -> s))
+-- Store ~ Costate
+data Store a s = Store a (a -> s)
+
+instance Comonad (Store a) where
+  extract (Store a f) = f a
+  duplicate (Store a f) = Store a (\b -> Store b f)
+```
+
+Koalgebra
+
+```haskell
+type Coalg f a = a -> f a
+
+-- Coalg (Store a) s ~ s -> Store a s ~ Lens s a
+```
