@@ -467,7 +467,7 @@ Materiały są dostepne w repozytorium `https://github.com/mbenke/jnp3-haskell/`
 
 W notatkach są błędy, takie jak literówki (niektóre umyślne). Wykonaj [fork](https://help.github.com/articles/fork-a-repo/) tego repo na swoim koncie, popraw jakiś błąd (albo zaproponuj ulepszenie) i zgłoś [pull request](https://help.github.com/articles/creating-a-pull-request-from-a-fork/).
 
-Zadania należy oddawać poprzez GitHub Classroom. Na rozgrzewkę, programy z dzisiejszych zajęć należy oddać poprzez link https://classroom.github.com/a/H7U7sS42
+Zadania należy oddawać poprzez GitHub Classroom. Na rozgrzewkę, programy z dzisiejszych zajęć należy oddać poprzez link https://classroom.github.com/a/PQO-Ng1w (termin: 24.10 godz. 9:00)
 
 # Zastrzeżenia prawne
 
