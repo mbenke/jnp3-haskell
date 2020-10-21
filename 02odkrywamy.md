@@ -10,7 +10,7 @@ Christopher Allen, Julie Moronuki, *Haskell Programming from first Principles*, 
 Haskell zasadniczo kompilowany (standardowy kompilator nazywa się GHC - *Glasgow Haskell Compiler* albo *Glorious Haskell Compiler*), ale też interpreter: **ghci**
 
     $ ghci
-    GHCi, version 7.6.2: http://www.haskell.org/ghc/  
+    GHCi, version 7.6.2: http://www.haskell.org/ghc/
                                               :? for help
 
     Prelude> 2 ^ 100
@@ -130,12 +130,12 @@ teraz
 
 ### Program obowiązkowy: silnia
 
-    fact1 n = if(n <= 0) then 
-                1 
-              else 
+    fact1 n = if(n <= 0) then
+                1
+              else
                 n*fact1(n-1)
 
-W Haskellu mozemy to zapisać także tak:
+W Haskellu możemy to zapisać także tak:
 
     fact2 n | n <= 1 = 1
             | otherwise = n*fact2(n-1)
@@ -161,12 +161,12 @@ Także silnię możemy zdefiniować w ten sposób:
 
     fact3 0 = 1
     fact3 n = n * fact3 (n-1)
-    
+
 :pencil: Napisz funkcję obliczającą iloczyn listy będącej jej argumentem. Wyraź silnię w kategoriach tej funkcji.
 ### Typy
 
 Każda wartość ma swój typ
-(intuicyjnie możemy mysleć o typach jako o zbiorach wartości), np:
+(intuicyjnie możemy myśleć o typach jako o zbiorach wartości), np:
 
          True :: Bool
             5 :: Int
@@ -234,7 +234,7 @@ Podstawowe rodzaje wyrażeń w Haskellu to:
 
 -   wyrażenie λ (funkcja anonimowa).
 
--   konstruktory (na kolejnycyh zajęciach)
+-   konstruktory (na kolejnych zajęciach)
 
 ### Wyrażenie case
 
@@ -306,18 +306,18 @@ innych konstrukcjach, takich jak **let**, **do**, **where**, itp.
     120
     *Main> g 5
     *** Exception: stack overflow
-    *Main> 
+    *Main>
 
 ### Dopasowywanie wzorców
 
-Wzorce moga być bardziej złożone, np
+Wzorce mogą być bardziej złożone, np
 
     third :: [a] -> a
     third (x:y:z:_) = z
 
 (podkreślenie oznacza “cokolwiek”)
 
-Równanie moze też wymagać dopasowania więcej niż jednego argumentu:
+Równanie może też wymagać dopasowania więcej niż jednego argumentu:
 
     myzip :: [a] -> [b] -> [(a,b)]
     myzip (x:xs) (y:ys) = (x,y):myzip xs ys
@@ -330,14 +330,14 @@ tylko jedno wyrażenie.
 ### Wyrażenie **let**
 
 Wyrażenie **let** pozwala nam na użycie lokalnych definicji pomocniczych
-dla obliczenia jakiegoś wyrazenia:
+dla obliczenia jakiegoś wyrażenia:
 
       let { definicja1; ...; definicja_n } in e
 
-Tak jak przy **case** możemy uzyć wcięć zamiast nawiasów i średników,
+Tak jak przy **case** możemy użyć wcięć zamiast nawiasów i średników,
 np.
 
-      let 
+      let
         x = 1
         y = 2
       in x + y
@@ -354,7 +354,7 @@ poziomie).
 W wyrażeniu **let** możemy definiować funkcje, używać rekurencji
 i dopasowań:
 
-    f xs = let 
+    f xs = let
         len [] = 0
         len (x:xs) = 1 + len xs
       in len xs
@@ -368,7 +368,7 @@ Uwaga: reguły wcinania wymagają aby w tym wypadku:
 
 -   **in** było wcięte mniej niż len, ale bardziej niż f
 
-(oczywiście jeśli uzywamy `{ ; }` mozemy wcinać dowolnie).
+(oczywiście jeśli używamy `{ ; }` możemy wcinać dowolnie).
 
 ### Wyrażenie λ
 
@@ -401,26 +401,26 @@ Zadanie: podzielić listę na dwie: elementy ≤n oraz >n
     splitBy n (x:xs) = let (ys,zs) = splitBy n xs in
       if x<= n then (x:ys,zs) else  (ys,x:zs)
 
-Drugi przypadek naturalnie dzieli sie na dwa podprzypadki; nie możemy
+Drugi przypadek naturalnie dzieli się na dwa podprzypadki; nie możemy
 tego zapisać przez wzorce, ale możemy tak:
 
-    splitBy' n (x:xs) 
+    splitBy' n (x:xs)
       | x<=n = let (ys,zs)=splitBy' n xs in (x:ys,zs)
       | x>n  = let (ys,zs)=splitBy' n xs in (ys,x:zs)
 
 ### Klauzula **where**
 
-    splitBy' n (x:xs) 
+    splitBy' n (x:xs)
       | x<=n = let (ys,zs)=splitBy' n xs in (x:ys,zs)
       | x>n  = let (ys,zs)=splitBy' n xs in (ys,x:zs)
 
 W obu przypadkach powtarza się ta sama definicja, możemy to krócej
 zapisać:
 
-    splitBy'' n (x:xs) 
+    splitBy'' n (x:xs)
       | x<=n = (x:ys,zs)
       | otherwise = (ys,x:zs)
-      where (ys,zs) = splitBy'' n xs 
+      where (ys,zs) = splitBy'' n xs
 
 **where** jest poniekąd podobne do **let**, ale
 
@@ -476,13 +476,13 @@ zapisać:
 
         length ( show ( foldl (*) 1 [1..1000] ))
 
-    ...chociaż prawdopoodobnie ta druga notacja jest dle wielu osób
+    ...chociaż prawdopodobnie ta druga notacja jest dla wielu osób
     czytelniejsza; Haskell kładzie jednak nacisk na zwięzłość.
 
 ### Przekroje
 
 Operatory infiksowe są z natury swej dwuargumentowe. Podając operatorowi
-jeden z argumentów mozemy uzyskać funkcję jednoargumentową.
+jeden z argumentów możemy uzyskać funkcję jednoargumentową.
 
 Konstrukcja taka nazywa się *przekrojem* (section) operatora.
 
@@ -518,16 +518,16 @@ Prelude> drop 5 [1..10]
 :pencil: 2. Napisz funkcję `inits`, która dla danej listy da listę wszystkich jej odcinków początkowych, np.
 
     inits [1,2] == [[],[1],[1,2]]
-   
 
-:pencil: 3. Napisz funkcje `partitions`, która dla danej listy `xs` da listę wszystkich par `(ys,zs)` takich, że  
+
+:pencil: 3. Napisz funkcje `partitions`, która dla danej listy `xs` da listę wszystkich par `(ys,zs)` takich, że
 
     xs == ys ++ zs
-    
-:pencil: 4. Napisz funkcję `permutations`, która dla danej listy da listę wszystkich jej permutacji (dla unikniecia niejasności mozemy założyć, ze wszystkie elementy listy wejściowej sa różne)
+
+:pencil: 4. Napisz funkcję `permutations`, która dla danej listy da listę wszystkich jej permutacji (dla uniknięcia niejasności możemy założyć, ze wszystkie elementy listy wejściowej są różne)
 
 :pencil: 5. Napisz funkcję `nub`, która usunie z listy wszystkie duplikaty, np
 
     nub [1,2,1,3,1,2,1,4] == [1,2,3,4]
 
-Możliwe jest wiele rozwiazań, ale przyjmijmy, że funkcja `nub` pozostawia pierwsze wystąpienie danej wartości, a usuwa powtórzenia.
+Możliwe jest wiele rozwiązań, ale przyjmijmy, że funkcja `nub` pozostawia pierwsze wystąpienie danej wartości, a usuwa powtórzenia.

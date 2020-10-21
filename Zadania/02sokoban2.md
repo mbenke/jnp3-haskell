@@ -10,7 +10,7 @@ Zdefiniuj `walk1 :: IO ()` wykorzystujące `activityOf` aby:
 * klawisze strzałek przesuwały obraz gracza (obraz poziomu ma pozostać nieruchomy);
 * gracz przesuwał się tylko  na pola `Ground` lub `Storage` (nie wchodzimy na ściany ani pudła).
 
-Zwróć uwagę na kolejnosc elementów w `&` bądź `pictures`:
+Zwróć uwagę na kolejność elementów w `&` bądź `pictures`:
 
 ```haskell
 design, square, circ :: Picture
@@ -32,7 +32,7 @@ Rozszerz kod z Etapu 1, definiując `walk2 :: IO()` tak, aby figurka gracza był
 ## Etap3: reset
 
 W trakcie gry przydatna będzie możliwość rozpoczęcia poziomu od początku.
-Ta funkcjonalność jest w gruncie rzeczy niezależna od gry, zatem zaimplemntujmy ją ogólnie. Napisz funkcję
+Ta funkcjonalność jest w gruncie rzeczy niezależna od gry, zatem zaimplementujmy ją ogólnie. Napisz funkcję
 
 ```haskell
 resettableActivityOf ::

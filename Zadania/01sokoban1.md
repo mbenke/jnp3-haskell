@@ -9,7 +9,7 @@ https://pl.wikipedia.org/wiki/Sokoban):
 > Dozorca może pchać tylko jedną paczkę, nie można ich ciągnąć, ani przez nie przechodzić. 
 > Poziomy skomplikowania gry zaczynają się od bardzo łatwych, a kończą na bardzo trudnych.
 
-W tym tygodniu wykonamy kilka czynnosci przygotowawczych, w szczególności potrzebujemy rysunków różnych pól:
+W tym tygodniu wykonamy kilka czynności przygotowawczych, w szczególności potrzebujemy rysunków różnych pól:
 
 1. Ścian (wall)
 2. Pustych pól (ground)
@@ -22,7 +22,7 @@ Zdefiniuj funkcje `wall,ground, storage, box :: Picture`, tworzące obrazy odpow
 
 Zdefiniuj funkcję 
 `drawTile :: Integer -> Picture` taką że `drawTile n` daje obraz pola numeru n według listy powyżej.
-Funkcja powinna zachowywac się sensownie również dla argumentów spoza zakresu.
+Funkcja powinna zachowywać się sensownie również dla argumentów spoza zakresu.
 
 Poziom możemy reprezentować jako funkcję typu `Integer -> Integer -> Integer`,
 która otrzymawszy dwie współrzędne daje rodzaj pola, które znajduje się w podanym miejscu.
@@ -42,4 +42,4 @@ maze x y
 ```
 
 Zdefiniuj obraz `pictureOfMaze :: Picture`, który rysuje powyższy poziom dla współrzędnych x,y z zakresu `[-10..10]`,
-wykorzystujac obrazy dane przez funkcję `drawTile` przesunięte w odpowiednie miejsca.
+wykorzystując obrazy dane przez funkcję `drawTile` przesunięte w odpowiednie miejsca.

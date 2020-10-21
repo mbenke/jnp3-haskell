@@ -18,7 +18,7 @@ drawTileAt :: Integer -> Integer -> Picture
 drawTileAt = …
 ```
 
-Zauważmy, że `drawRows` i `drawCols ` są podobne: robia 21 razy coś zależnego od licznika. Różnice:
+Zauważmy, że `drawRows` i `drawCols ` są podobne: robią 21 razy coś zależnego od licznika. Różnice:
 
 * `coś` jest różne - dla `drawRows` jest to `drawCols`, z kolei dla `drawCols` jest to `drawTileAt`;
 * w `drawCols` funkcja `coś` bierze dodatkowy argument.
@@ -37,7 +37,7 @@ drawCol = drawTileAt ? ?
 ```
 
 Mamy tu drobny problem: w definicji `drawCol` musimy znać numer wiersza i kolumny.
-Możemy poczuć pokusę aby użyć `n`, ale nie jest ono w zasięgu (jest lokalne w fukcji `helper`).
+Możemy poczuć pokusę aby użyć `n`, ale nie jest ono w zasięgu (jest lokalne w funkcji `helper`).
 
 Zatem `helper` musi przekazać bieżące `n` do `something`. Podobnie `drawRow` musi poinformować `drawRow`, w którym wierszu ma rysować:
 
@@ -81,20 +81,20 @@ Typ `drawCol` możemy zapisać jako
 drawCol :: Integer -> (Integer -> Picture)
 ```
 
-Czyli w istocie jest to funkcja jednoargumentowa o typie wyniku pasującym do typu argumentu `draw21times` (strzałka wiąze w prawo, więc nawiasy są tylko dla ilustracji).  Mechanizm zastosowania funkcji do niepełnej liczby argumentów nazywamy *częściową aplikacją*  i jest to również ważny element budowania abstrakcji w programowaniu funkcyjnym (często w połaczeniu z funkcjami wyższego rzędu).
+Czyli w istocie jest to funkcja jednoargumentowa o typie wyniku pasującym do typu argumentu `draw21times` (strzałka wiąże w prawo, więc nawiasy są tylko dla ilustracji).  Mechanizm zastosowania funkcji do niepełnej liczby argumentów nazywamy *częściową aplikacją*  i jest to również ważny element budowania abstrakcji w programowaniu funkcyjnym (często w połączeniu z funkcjami wyższego rzędu).
 
 # Typy danych
 
 Przypomnijmy sobie funkcję `drawTile :: Integer -> Picture` tworzącą obraz pola na podstawie numeru jego rodzaju.
-Kod byłby czytelniejszy i mniej podatny na błędy, gdyby zamiast numerów stosowac nazwy symboliczne.
+Kod byłby czytelniejszy i mniej podatny na błędy, gdyby zamiast numerów stosować nazwy symboliczne.
 W innych językach stosujemy konstrukcje takie jak `#define` albo `enum`, w Haskellu zaś konstrukcję `data`:
 
 ```
 data Tile = Wall | Ground | Storage | Box | Blank
 ```
 
-W ogólności `data` daje o wiele większe możliwosci, ale w swojej najprostszej postaci pozwala zdeinifować typ poprzez wyliczenie
-konstruktorów jego wartości. Wartościami typu `Tile` są dokładnie te wyliczone konstruktory; nie ma problemu jak funkcja `drawTile ` ma zachowac się np. dla wartości `-1`.
+W ogólności `data` daje o wiele większe możliwości, ale w swojej najprostszej postaci pozwala zdefiniować typ poprzez wyliczenie
+konstruktorów jego wartości. Wartościami typu `Tile` są dokładnie te wyliczone konstruktory; nie ma problemu jak funkcja `drawTile ` ma zachować się np. dla wartości `-1`.
 
 NB nazwy konstruktorów powinny zaczynać się od wielkiej litery (bądź dwukropka dla nazw infiksowych, złożonych z symboli)
 
@@ -137,7 +137,7 @@ Podobnie operatory takie jak `(&&)` nie są wbudowane, ale każdy mógłby je zd
 
 Naszym celem jest rozszerzenie animacji o interakcję z użytkownikiem. Zacznijmy od potrzebnych typów.
 
-Piewszą rzecza, którą moglibyśmy chcieć zrobić jest przesuwanie planszy (np. gdy jest większa niż nasze okno).
+Pierwszą rzeczą, którą moglibyśmy chcieć zrobić jest przesuwanie planszy (np. gdy jest większa niż nasze okno).
 Potem może chcielibyśmy przesuwać gracza po planszy. Potrzebujemy typu reprezentującego kierunki:
 
 ```haskell
@@ -153,7 +153,7 @@ data Coord = C Integer Integer
 
 (moglibyśmy użyć też pary `(Integer, Integer)`, ale dedykowane typy dają lepsze komunikaty o błędach).
 
-Konstruktor `C` (poza tym, że może wystapić we wzorcach) zachowuje się jak funkcja typu
+Konstruktor `C` (poza tym, że może wystąpić we wzorcach) zachowuje się jak funkcja typu
 `Integer -> Integer -> Coord`, oto przykład:
 
 ```haskell
@@ -169,13 +169,13 @@ atCoord :: Coord -> Picture -> Picture
 atCoord (C x y) pic = translated (fromIntegral x) (fromIntegral y) pic
 ```
 
-`translated` bierze argumenty typu `Double`, dlatego musimy uzyć `fromIntegral`.
+`translated` bierze argumenty typu `Double`, dlatego musimy użyć `fromIntegral`.
 
 :pencil:
 
-Napisz funkcję `adjacentCoord :: Direction -> Coord -> Coord` dającą współrzędne przesuniete o 1 w podanym kierunku.
+Napisz funkcję `adjacentCoord :: Direction -> Coord -> Coord` dającą współrzędne przesunięte o 1 w podanym kierunku.
 
-Możesz ją przetestować w `ghci`. Aby móc wypisywac elementy swojego typu, warto dodać do jego definicji klauzulę
+Możesz ją przetestować w `ghci`. Aby móc wypisywać elementy swojego typu, warto dodać do jego definicji klauzulę
 `deriving Show`, np.
 
 ```haskell
@@ -291,7 +291,7 @@ activityOf :: world ->
               IO ()
 ```
 
-Występujacy w tym typie typ świata `world` jest zmienną typową - możemy użyć w jej miejsce dowolnego typu (szerzej powiemy sobie o tym później. Jeżeli chcemy tyliko przesuwać poziom, na początek możemy użyć `Coord`.
+Występujący w tym typie typ świata `world` jest zmienną typową - możemy użyć w jej miejsce dowolnego typu (szerzej powiemy sobie o tym później. Jeżeli chcemy tylko przesuwać poziom, na początek możemy użyć `Coord`.
 
 Funkcja `activityOf` bierze 3 argumenty:
 
@@ -360,11 +360,11 @@ Stwórz definicję `player1 :: Picture` reprezentującą figurkę gracza.
 
 Zdefiniuj `walk1 :: IO ()` wykorzystujące `activityOf` aby:
 * postać gracza była rysowana na obrazie poziomu;
-* początkowa pozycja gracza wypadała na pustym polu (można uzyć ustalonych współrzędnych, nie trzeba szukać pustego pola w programie);
+* początkowa pozycja gracza wypadała na pustym polu (można użyć ustalonych współrzędnych, nie trzeba szukać pustego pola w programie);
 * klawisze strzałek przesuwały obraz gracza (obraz poziomu ma pozostać nieruchomy);
 * gracz przesuwał się tylko  na pola `Ground` lub `Storage` (nie wchodzimy na ściany ani pudła).
 
-Zwróć uwagę na kolejnosc elementów w `&` bądź `pictures`:
+Zwróć uwagę na kolejność elementów w `&` bądź `pictures`:
 
 ```haskell
 design, square, circ :: Picture
@@ -385,8 +385,8 @@ Rozszerz kod z Etapu 1, definiując `walk2 :: IO()` tak, aby figurka gracze był
 
 ## Etap3: reset
 
-W trakcie gry przydatna będzie mozliwość rozpoczęcia poziomu od początku.
-Ta funkcjonalność jest w gruncie rzeczy niezależna od gry, zatem zaimplemntujmy ją ogólnie. Napisz funkcję
+W trakcie gry przydatna będzie możliwość rozpoczęcia poziomu od początku.
+Ta funkcjonalność jest w gruncie rzeczy niezależna od gry, zatem zaimplementujmy ją ogólnie. Napisz funkcję
 
 ```haskell
 resettableActivityOf ::

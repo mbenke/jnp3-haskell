@@ -73,8 +73,8 @@ Otóż równość ma typ
 (==) :: forall a.Eq a => a -> a -> Bool
 ```
 
-co nalezy rozumieć jako `a -> a -> Bool` dla wszystkich typów `a` należących do klasy `Eq`.
-Warto zauważyć, że nie jest to polimorfizm parametryczny: równość nie działa dla wszystkich typów tak samo (czasami mówi się w tym wypadku o polimorfiźmie *ad hoc*
+co należy rozumieć jako `a -> a -> Bool` dla wszystkich typów `a` należących do klasy `Eq`.
+Warto zauważyć, że nie jest to polimorfizm parametryczny: równość nie działa dla wszystkich typów tak samo (czasami mówi się w tym wypadku o polimorfizmie *ad hoc*
 
 Klasę należy tu rozumieć jako zbiór typów (dokładniej relację na typach, w tym wypadku jednoargumentową).
 
@@ -100,7 +100,7 @@ Klasa `Eq` ma dwie metody: `(==))` i `(/=)`. Aby typ przynależał do tej klasy,
 Ponieważ każdą można łatwo wyrazić przez negację drugiej, wystarczy podać jedną z nich.
 
 Metody dla standardowych typów są zdefiniowane w Prelude (bibliotece standardowej, zawsze domyślnie importowanej).
-Czasami te implementacje są warunkowe: np. równość na parach jest definiowana pod warunkiem istnienia równosci na argumentach.
+Czasami te implementacje są warunkowe: np. równość na parach jest definiowana pod warunkiem istnienia równości na argumentach.
 
 
 ### instance Eq Coord
@@ -114,7 +114,7 @@ instance Eq Coord where
 
 ### Domyślne implementacje
 
-Klasa `Eq` ma dwie metody: `(==))` i `(/=)`. Ponieważ każdą mozna łatwo wyrazić przez negację drugiej, wystarczy podać jedną z nich.
+Klasa `Eq` ma dwie metody: `(==))` i `(/=)`. Ponieważ każdą można łatwo wyrazić przez negację drugiej, wystarczy podać jedną z nich.
 
 Definiując klasę możemy podać domyślną implementację
 
@@ -173,14 +173,14 @@ error:
       from the context: Eq world
 ```
 
-Oczywiście możemy zdefiniować funkcję, która nie będzie prawdziwą równoscia, np
+Oczywiście możemy zdefiniować funkcję, która nie będzie prawdziwą równością, np
 
 ```haskell
 instance Eq Interaction where
   _ == _ = False
 ```
 
-Niekoniecznie jest to jednak dobry pomysł; zwykle zakładamy, że równość ma pewne własności, np. że jest co najmniej relacją równoważnosci.
+Niekoniecznie jest to jednak dobry pomysł; zwykle zakładamy, że równość ma pewne własności, np. że jest co najmniej relacją równoważności.
 
 ## Zalety klas
 
@@ -368,7 +368,7 @@ Termin:
 
 ## Etap 1
 
-Stwórz kilka poziomów. Mozna pomóc sobie http://sokobano.de/wiki
+Stwórz kilka poziomów. Można pomóc sobie http://sokobano.de/wiki
 
 ```haskell
 data Maze = Maze Coord (Coord -> Tile)
@@ -380,7 +380,7 @@ badMazes = …
 
 `mazes` powinno zawierać "dobre" poziomy, `badMazes` - nierozwiązywalne (np. miejsce docelowe całkowicie otoczone ścianami)
 
-Aby szybciej uzyskać większą liczbe poziomów, mozesz też wymienić się poziomami z innymi bądź dodać swoje poziomy jako pull request.
+Aby szybciej uzyskać większą liczbę poziomów, możesz też wymienić się poziomami z innymi bądź dodać swoje poziomy jako pull request.
 
 ## Etap 2 - funkcje polimorficzne
 
@@ -430,7 +430,7 @@ allReachable :: Eq a => [a] -> a -> (a -> [a]) -> Bool
 allReachable vs initial neighbours = ...
 ```
 
-dajacą `True` wtw gdy wszystkie wierzchołki z listy `vs` są osiagalne z `initial`. W tej funkcji nie używaj rekurencji, a tylko innych funkcji zdefiniowanych wcześniej.
+dającą `True` wtw gdy wszystkie wierzchołki z listy `vs` są osiągalne z `initial`. W tej funkcji nie używaj rekurencji, a tylko innych funkcji zdefiniowanych wcześniej.
 
 ## Etap 4 - sprawdzanie poziomów
 
@@ -444,7 +444,7 @@ isSane :: Maze -> Bool
 * `isClosed` - pozycja startowa `Ground` lub `Storage`, żadna osiągalna (z pozycji startowej) nie jest `Blank`
 * `isSane` - liczba osiągalnych `Storage` jest niemniejsza od liczby osiągalnych skrzyń.
 
-Sprawdź, które poziomy z list `mazes` oraz `badMazes` sa zamknięte i rozsądne. Do wizualizacji mozna uzyć następującej funkcji
+Sprawdź, które poziomy z list `mazes` oraz `badMazes` są zamknięte i rozsądne. Do wizualizacji można użyć następującej funkcji
 
 ```haskell
 pictureOfBools :: [Bool] -> Picture
@@ -472,7 +472,7 @@ Zdefiniuj `etap4 :: Picture`  jako wizualizację wyników dla wszystkich poziom�
 ## Etap 5 - wieleopoziomowy Sokoban
 
 Przerób funkcje wyszukujące skrzynie i `isWinning` z poprzedniego etapu tak aby używały osiągalnych skrzyń.
-Odpowiednio przerób funkcję rysującą - w ten sposób będzie mozna rysować poziomy różnych rozmiarów.
+Odpowiednio przerób funkcję rysującą - w ten sposób będzie można rysować poziomy różnych rozmiarów.
 
 Przerób swoją grę z poprzedniego zadania tak aby gra składała się z kolejnych poziomów z listy `mazes`, rozdzielonych ekranami 'Poziom ukończony, liczba ruchów: N'
 
