@@ -37,7 +37,7 @@ center :: Point
 center = (0,0)
 ```
 
-Jesli funkcja potrzebuje wielu argumentów, możemy je przekazać jako krotkę.
+Jesli funkcja potrzebuje wielu argumentów, moglibyśmy je przekazać jako krotkę (podobnie jak w "dziecinnym" CodeWorld).
 Ale idiomatyczny w Haskellu jest inny sposób - przekazywanie argumentów "jeden po drugim", np
 
 ```haskell
@@ -51,8 +51,8 @@ i wyniku typu (funkcyjnego) `Double -> Picture`. Funkcje mogą być wynikami (ja
 Zaletą takiego podejścia, jest to, że nie musimy podawac wszystkich argumentów od razu, na przykład
 
 ```
--- thickRectangle :: Double -> Double -> Double
-myRectangle ::  Double -> Double
+-- thickRectangle :: Double -> Double -> Double -> Picture
+myRectangle ::  Double -> Double -> Picture
 myRectangle = thickRectangle 0.2
 ```
 
@@ -167,7 +167,7 @@ pi^2
 * Dzielenie całkowite z resztą to `div` i `mod` (oraz `quot` i `rem`)
 * Dla typów zmiennoprzecinkowych działa potęgowanie `(**)` oraz operacje takie jak `sin`, `cos`,`tan`,` sqrt`.
 
-Większość operacji binarnych wymaga aby argumenty były tego samego typu; `i*pi` nie zadziała jesli i jest typu `Int`.
+Większość operacji binarnych wymaga aby argumenty były tego samego typu; `i*pi` nie zadziała jesli `i` jest typu `Int`.
 Konwersje typów musimy wykonywac explicite:
 
 * `fromIntegral` konwertuje z typów całkowitych do dowolnego typu liczbowego
@@ -207,7 +207,7 @@ Zdefiniuj funkcje `wall,ground, storage, box :: Picture`, tworzące obrazy odpow
 
 Zdefiniuj funkcję 
 `drawTile :: Integer -> Picture` taką że `drawTile n` daje obraz pola numeru n według listy powyżej.
-Funkcja powinna zachowywac się sensownie również dla argumentów spoza zakresu.
+Funkcja powinna zachowywać się sensownie również dla argumentów spoza zakresu.
 
 Poziom możemy reprezentować jako funkcję typu `Integer -> Integer -> Integer`,
 która otrzymawszy dwie współrzędne daje rodzaj pola, które znajduje się w podanym miejscu.
