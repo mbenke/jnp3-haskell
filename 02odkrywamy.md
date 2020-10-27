@@ -9,9 +9,8 @@ Christopher Allen, Julie Moronuki, *Haskell Programming from first Principles*, 
 ### GHCi
 Haskell zasadniczo kompilowany (standardowy kompilator nazywa się GHC - *Glasgow Haskell Compiler* albo *Glorious Haskell Compiler*), ale też interpreter: **ghci**
 
-    $ ghci
-    GHCi, version 7.6.2: http://www.haskell.org/ghc/  
-                                              :? for help
+    ben@students:~$ ghci
+    GHCi, version 8.4.4: http://www.haskell.org/ghc/  :? for help
 
     Prelude> 2 ^ 100
     1267650600228229401496703205376
@@ -29,8 +28,6 @@ Na własnym laptopie najlepiej skorzystać z narzędzia `stack`: http://haskells
 stack setup
 stack ghci
 ```
-
-Na **students** też można korzystać ze stack (jest zainstalowany), ale zwykle boli quota.
 
 Na Macu warto używać Haskell For Mac: http://haskellformac.com/
 
