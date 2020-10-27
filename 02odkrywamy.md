@@ -215,7 +215,7 @@ W większości wypadków Haskell potrafi sprawdzić poprawność typów bez
 
 Podstawowe rodzaje wyrażeń w Haskellu to:
 
--   literały, np. `42` , `Foo`;
+-   literały, np. `42` , `'a'`, `"napis"`;
 
 -   zmienne, np. `x` (muszą być z małej litery);
 
