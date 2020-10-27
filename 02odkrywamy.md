@@ -121,6 +121,8 @@ teraz
     *Main> area 2
     12.566370614359172
 
+:exclamation: Jesli jestesmy już w `ghci`, możemy załadować ten plik używając `:load e01.hs`
+
 :exclamation: Krótkie definicje możemy pisać w ghci w postaci `let triple x = 3 * x` (a w GHCi 8 również bez `let`), ale jest tu wiele pułapek, także lepiej tego nie używać dopóki nie wie się dobrze co się robi.
 
 :pencil: używając wycinanki z poprzedniego ćwiczenia, napisz funkcję taką, że `triples n` da trójki pitagorejskie o składowych do `n`.
