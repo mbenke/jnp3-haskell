@@ -22,9 +22,10 @@ Haskell zasadniczo kompilowany (standardowy kompilator nazywa się GHC - *Glasgo
 
 :pencil: Wypróbuj powyższe wyrażenia w ghci. Wypróbowuj też kolejne.
 
-Na własnym laptopie najlepiej skorzystać z narzędzia `stack`: http://haskellstack.org
+Na własnym laptopie najlepiej skorzystać z narzędzia `stack`: http://haskellstack.org np.
 
 ```
+curl -sSL https://get.haskellstack.org/ | sh
 stack setup
 stack ghci
 ```
