@@ -140,7 +140,7 @@ W Haskellu mozemy to zapisać także tak:
     fact2 n | n <= 1 = 1
             | otherwise = n*fact2(n-1)
 
-[Silnia na N sposobów](tinyurl.com/silniaN)
+Silnia na N sposobów: http://tinyurl.com/silniaN
 
 ### Definicje przez przypadki (dopasowanie)
 
