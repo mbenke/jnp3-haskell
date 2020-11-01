@@ -19,7 +19,7 @@
 ## Programy zaliczeniowe
 
 1. CodeWorld (21.10) - termin 24.10
-2. Sokoban 1 (04.11) - termin 14.11
+2. Sokoban 1 (04.11) - termin 11.11
 3. Sokoban 2 (12.11) - termin 21.11
 4. Sokoban 3 (18.11) - termin 28.11
 5. Sokoban 4 (25.11) - termin 12.12
