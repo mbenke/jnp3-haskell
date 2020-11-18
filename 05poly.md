@@ -139,7 +139,7 @@ przy pomocy dopasowania wzorca:
 ```haskell
 resettable :: Activity s -> Activity s
 resettable (Activity state0 handle draw)
-  = Interaction state0 handle' draw
+  = Activity state0 handle' draw
   where handle' (KeyPress key) _ | key == "Esc" = state0
         handle' e s = handle e s
 ```
