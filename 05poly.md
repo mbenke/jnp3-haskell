@@ -71,6 +71,7 @@ Teraz możemy zaimplementować:
 
 ```haskell
 startScreenActivityOf ::
+    world ->
     (Event -> world -> world) -> 
     (world -> Picture) ->
     IO ()
