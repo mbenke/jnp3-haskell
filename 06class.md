@@ -176,7 +176,7 @@ error:
 Oczywiście możemy zdefiniować funkcję, która nie będzie prawdziwą równoscia, np
 
 ```haskell
-instance Eq Interaction where
+instance Eq Activity where
   _ == _ = False
 ```
 
