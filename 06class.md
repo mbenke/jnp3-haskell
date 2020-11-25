@@ -222,7 +222,7 @@ Powiedzmy, że chcemy dodać do gry możliwość wycofania ruchu (np. przy dojś
 data WithUndo a = WithUndo a [a]
 
 withUndo :: Activity a -> Activity (WithUndo a)
-withUndo (Activity state0 step handle draw) = Activity state0' handle' draw' where
+withUndo (Activity state0 handle draw) = Activity state0' handle' draw' where
     state0' = WithUndo state0 []
     handle' (KeyPress key) (WithUndo s stack) | key == "U"
       = case stack of s':stack' -> WithUndo s' stack'
