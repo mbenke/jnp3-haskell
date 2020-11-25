@@ -368,7 +368,7 @@ Termin:
 
 ## Etap 1
 
-Stwórz kilka poziomów. Mozna pomóc sobie http://sokobano.de/wiki
+Stwórz kilka (prostych) poziomów. Mozna pomóc sobie np http://sokobano.de/wiki i http://www.sneezingtiger.com/sokoban/levels.html
 
 ```haskell
 data Maze = Maze Coord (Coord -> Tile)
