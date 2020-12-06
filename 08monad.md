@@ -170,6 +170,14 @@ data Tree a = Empty | Node a (Tree a) (Tree a)
 ```
 Stwórz dla niego instancje klas `Eq`, `Show`, `Functor` (bez używania `deriving`).
 
+Klasa `Show` zawiera metody służące do reprezentacji wartości jako `String`.
+W uproszczeniu mozemy ja traktować jakby wyglądała tak:
+
+```haskell
+class Show a where
+    show :: a -> String
+```
+
 :pencil: Rozważmy typy
 ```haskell
 data TypeA a b
