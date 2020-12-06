@@ -194,7 +194,7 @@ Zdefiniuj dla nich odpowiednie instancje `Functor`.
 :pencil:  Zdefiniuj klasę Pointed (funkcyjnych pojemników z singletonem)
 ```haskell
 class Functor f => Pointed f where
- ppure :: a -> f a
+ singleton :: a -> f a
 ```
 
 i jej instancje dla list, `Maybe`, `Tree`:
