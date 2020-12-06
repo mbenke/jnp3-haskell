@@ -56,65 +56,6 @@ Czasem przydatne jest wprowadzenie własnej nazwy (synonimu) dla jakiegoś typu.
 Synonim **nie jest** konstruktorem typu; jest identyczny z nazywanym typem.
 -->
 
-### Etykiety pól
-
-Spójrzmy na definicje
-
-```haskell
-    data Point = Pt Float Float
-    pointx                  :: Point -> Float
-    pointx (Pt x _)         =  x
-    pointy ...
-```
-
-Definicja **pointx** jest “oczywista”; możemy krócej:
-
-```haskell
-    data Point = Pt {pointx, pointy :: Float}
-```
-
-W jednej linii definiujemy typ **Point**, konstruktor **Pt**
-oraz funkcje **pointx** i **pointy**.
-
-Na przyklad zamiast
-``` haskell
--- typ świata  gracz kierunek  boxy    mapa    xDim      yDim      lvlNum  movNum
-data State = S Coord Direction [Coord] MazeMap [Integer] [Integer] Integer Integer
-```
-
-można
-
-``` haskell
-data State = S {
-  stPlayer :: Pos,
-  stDir    :: Direction,
-  stBoxes  :: [Coord],
-  stMap    :: MazeMap,
-  stXdim   :: [Integer],
-  stYdim   :: [Integer],
-  stLevel  :: Integer,
-  stMove   :: Integer
-}
-```
-
-Oprócz wartościowej dokumentacji uzyskujemy też funkcje pozwalające wyłuskiwać poszczególne składowe, np.
-
-``` haskell
-stPlayer :: State -> Pos
-```
-
-oraz możliwość łatwiejszego zapisywania modyfikacji składowych, np. zamiast
-
-``` haskell
-foo s@(S c _ b mm xd yd n mn) = S c D b mm xd yd n (mn+1)
-```
-
-wystarczy
-
-``` haskell
-foo s = s { stDir = D, stMove = stMove s + 1  }
-```
-
 ### Opakowywanie typów: **newtype**
 
 Jeśli chcemy opakować istniejacy typ w nowy konstruktor typu, mozemy uzyć konstrukcji **newtype**:
@@ -123,17 +64,23 @@ Jeśli chcemy opakować istniejacy typ w nowy konstruktor typu, mozemy uzyć kon
     newtype Identity a = Identity { runIdentity :: a }
       deriving (Eq, Show)
 ```
+**newtype** działa niemal identycznie jak **data** z jednym konstruktorem(ale efektywniej;
+pakowanie/odpakowywanie odbywa się w czasie kompilacji a nie wykonania).
 
+przypomnienie: `runIdentity` jest etykietą pola - automatycznie definiuje funkcję wyłuskująca to pole:
+
+```
+runIdentity :: Identity a -> a
+runIdentity (Identity a) = a
+```
+
+Spróbujmy w `ghci`:
 ```
     *Newtype> Identity "Ala"
     Identity {runIdentity = "Ala"}
     *Newtype> runIdentity it
     "Ala"
 ```
-
-**newtype** działa niemal identycznie jak **data** z jednym konstruktorem(ale efektywniej;
-pakowanie/odpakowywanie odbywa się w czasie kompilacji a nie wykonania).
-
 ### Klasy konstruktorowe
 
 Typy polimorficzne jak **\[a\]** czy **Tree a** mogą być instancjami klas (przeważnie pod warunkiem, ze **a** jest też instancją odpowiedniej klasy)…
