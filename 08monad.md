@@ -92,6 +92,7 @@ Typy polimorficzne jak **\[a\]** czy **Tree a** mogą być instancjami klas (prz
     instance Eq a => Eq (Tree a) where
       Leaf x == Leaf y = x == y
       Branch l r == Branch l' r' = (l==l')&&(r==r')
+      _ == _ = False
 ```
 
 …ale są też klasy, których instancjami są nie typy, a *konstruktory typów*. Na przykład funkcję **map** możemy uogólnić na inne pojemniki:
