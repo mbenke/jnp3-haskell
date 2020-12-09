@@ -359,7 +359,7 @@ do { x <- obliczenie1; y <- obliczenie2; obliczenie3 }
 
 ```
 foldr f z (x:xs) = f x (foldr f z xs)
-foldl f z (x:xs) = foldl (f z x) xs
+foldl f z (x:xs) = foldl f (f z x) xs
 ```
 
 W ML czesto preferowany jest `foldl` (jako ogonowy); w Haskellu raczej używamy `foldr`.
