@@ -63,7 +63,7 @@ get :: Supply s s
 pureSupply :: a -> Supply s a
 ```
 
-(obliczenie czyste, które ie korzysta ze strumienia)
+(obliczenie czyste, które nie korzysta ze strumienia)
 
 Dla zdefiniowania instancji
 
