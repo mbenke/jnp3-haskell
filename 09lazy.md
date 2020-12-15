@@ -167,3 +167,7 @@ Mozemy za to z powodzeniem stosować `foldr` (z leniwą operacją):
 ```
 
 W ogólności, przy leniwych operacjach zwykle lepiej stosowac `foldl` zaś przy gorliwych - `foldl'`, który jest gorliwą wersją `foldl`.
+
+# Zadanie
+
+Zadanie podsumowujące: https://classroom.github.com/a/QPH7mm-j termin: 23.01 godz. 9:00
