@@ -47,11 +47,6 @@ Wyzwaniem jakie stanęło przed twórcami Haskella było więc wymyślenie sposo
 
 ## Strumienie
 
-**Uwaga:** używamy GHC w wersji co najmniej 8.2, np.
-```
-/home/students/inf/PUBLIC/MRJP/ghc-8.2.2/bin/ghci
-```
-
 Jedną z ciekawych możliwości, jakie daje leniwa ewaluacja jest programowanie z (potencjalnie) nieskończonymi strukturami danych. Jedną z takich struktur są strumienie, czyli leniwe listy.
 
 Możemy na przykład zdefiniować strumień wszystkich liczb naturalnych:
