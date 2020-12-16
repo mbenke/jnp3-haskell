@@ -166,7 +166,7 @@ Mozemy za to z powodzeniem stosować `foldr` (z leniwą operacją):
 [1,2,3,4,5]
 ```
 
-W ogólności, przy leniwych operacjach zwykle lepiej stosowac `foldl` zaś przy gorliwych - `foldl'`, który jest gorliwą wersją `foldl`.
+W ogólności, przy leniwych operacjach zwykle lepiej stosowac `foldr` zaś przy gorliwych - `foldl'`, który jest gorliwą wersją `foldl`.
 
 # Zadanie
 
