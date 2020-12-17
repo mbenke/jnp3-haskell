@@ -269,6 +269,85 @@ No instance for (Eq State) arising from a use of ‘withUndo’
 
 :pencil: Zdefiniuj wszystkie potrzebne instancje `Eq` (być może przy pomocy deriving) i uruchom kod używający `withUndo`.
 
+## Klasa Show
+Klasa `Show` zawiera funkcje dające tekstową reprezentację wartości. W skrócie
+
+``` haskell
+class Show a where
+  show :: a -> String
+  ...
+```
+
+Przykład: wyrażenia
+``` haskell
+  data Exp = N Int | Add Exp Exp | Mul Exp Exp
+
+  f :: Exp -> String
+  f (Add e1 e2) = show e1 ++ " + " ++ show e2
+```
+
+Konkatenacja kosztuje, ale można to zrobić sprytniej używając kontynuacji
+``` haskell
+  -- type ShowS = String -> String
+  g :: Exp -> ShowS
+  g (Add e1 e2) =
+    shows e1 . showString " + " . shows e2
+  f = g ""
+```
+Pełniejsza definicja klasy `Show`
+``` haskell
+class Show a where
+  showsPrec :: Int -> a -> ShowS
+  show :: a -> String
+  showList :: [a] -> ShowS
+
+shows = showsPrec 0
+```
+Metoda `showsPrec` słuzy do inteligentniejszego wypisywania wyrażeń z priorytetami operatorów, np
+
+``` haskell
+infixl 6 :+
+infixl 7 :*
+-- showParen :: Bool -> ShowS -> ShowS
+
+instance Show Exp where
+ showsPrec p (x :+ y) =
+   showParen(p>6)(showsPrec 6 x.(" + "++).showsPrec 7 y)
+ showsPrec p (x :* y) =
+   showParen(p>7)(showsPrec 7 x.(" * "++).showsPrec 8 y)
+ showsPrec p (N n) = showParen (p>10) (showsPrec 11 n)
+
+exp1 = (N 2 :+ N 3) :* N 4
+exp2 = N 2 :+ N 3 :+ N 4
+
+-- > exp1
+-- (2 + 3) * 4
+-- > exp2
+-- 2 + 3 + 4
+```
+
+## Klasa Read
+
+## Klasa IsString
+
+``` haskell
+-- | Class for string-like datastructures; used by the overloaded string
+--   extension (-XOverloadedStrings in GHC).
+class IsString a where
+    fromString :: String -> a
+```
+
+Przykład użycia:
+
+``` haskell
+import CodeWorld
+import Data.String
+
+picture :: (Show a) => a -> Picture
+picture = lettering . fromString . show
+main = drawingOf (picture 42)
+```
+
 ## Inne ważne klasy
 
 ```haskell
