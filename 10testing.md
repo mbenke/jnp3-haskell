@@ -72,6 +72,8 @@ instance Testable Bool where...
 instance (Arbitrary a, Show a, Testable b) => Testable (a -> b) where
   property f = forAll arbitrary f
 
+forAll :: (Show a, Testable prop) => Gen a -> (a -> prop) -> Property
+
 class Arbitrary a where
   arbitrary :: Gen a
   shrink    :: a -> [a]
