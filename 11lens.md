@@ -1,5 +1,6 @@
+<!--
 > Costate Comonad Coalgebra is equivalent of Java&#39;s member variable update technology for Haskell &mdash; [@PLT_Borat](https://twitter.com/PLT_Borat/status/228009057670291456)
-
+-->
 # Soczewki (lenses)
 
 Soczewki są mechanizmem ułatwiającym skupienie się na wybranym fragmencie danych.
@@ -319,6 +320,7 @@ newx = atom2 ^. point . x
 
 :pencil: Wypróbuj opisane tu definicje soczewek na typach `Atom` i `Point` (albo innych, np. typach stanu z Sokobana).
 
+<!--
 ## Costate Comonad Coalgebra
 Alternatywna definicja monady:
 
@@ -360,3 +362,4 @@ type Coalg f a = a -> f a
 
 -- Coalg (Store a) s ~ s -> Store a s ~ Lens s a
 ```
+-->
