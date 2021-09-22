@@ -11,12 +11,13 @@
 5. Polimorfizm (3.11)
 6. Typy z klasą - (10.11)
 7. I/O - (17.11)
-8. Funktory, monady - (18.11)
-9. Lenistwo (25.11)
-10. Testowanie (1.12)
-11. Soczewki (8.12)
-12. Wnioskowanie o programach (15.12)
-13. Rozmowy o programach zaliczeniowych (22.12)
+8. Funktory, monady - (24.11)
+9. Lenistwo (1.12)
+10. Testowanie (8.12)
+11. Wnioskowanie o programach (15.12)
+12. Rozmowy o programach zaliczeniowych (22.12)
+13. Wnioskowanie o programach II (12.1)
+14. Soczewki (19.1)
 
 ## Zasady zaliczania
 
