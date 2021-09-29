@@ -22,7 +22,13 @@ Haskell zasadniczo kompilowany (standardowy kompilator nazywa się GHC - *Glasgo
 
 :pencil: Wypróbuj powyższe wyrażenia w ghci. Wypróbowuj też kolejne.
 
-Na własnym laptopie najlepiej skorzystać z narzędzia `stack`: http://haskellstack.org np.
+Na własnym laptopie można zainstalować GHC(i) korzystając z narzędzia `ghcup`: https://www.haskell.org/ghcup/ np.
+
+```
+curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
+```
+
+Alternatywą jest `stack`: http://haskellstack.org np.
 
 ```
 curl -sSL https://get.haskellstack.org/ | sh
@@ -30,7 +36,7 @@ stack setup
 stack ghci
 ```
 
-Na Macu warto używać Haskell For Mac: http://haskellformac.com/
+Na Macu można też używać IDE Haskell For Mac: http://haskellformac.com/
 
 ### Polecenia GHCi
 
