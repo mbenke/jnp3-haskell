@@ -186,6 +186,5 @@ withStartScreen (Activity state0 handle draw)
 
 https://github.com/jnp3-haskell-2018/sokoban-3
 
-Oddawanie przez [https://classroom.github.com/a/m2fsewf6](https://classroom.github.com/a/m2fsewf6)
-
-Termin: 28.11.2020 09:00 UTC+0100
+Oddawanie przez https://classroom.github.com/a/NNvaTu9a 
+Termin: 10.11.2020 18:00 
