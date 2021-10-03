@@ -440,10 +440,10 @@ class  (Eq a, Show a) => Num a  where
 
 # Zadanie: Sokoban 4
 
-https://classroom.github.com/a/VUsyDBcH
+https://classroom.github.com/a/TpQtaObY
 
 Termin:
-12.12.2020 09:00 UTC+1
+17.11.2020 18:00 UTC+1
 
 ## Etap 1
 
