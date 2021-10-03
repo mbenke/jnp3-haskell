@@ -465,9 +465,11 @@ Na tych zajęciach będziemy wykorzystywać GitHub. Jeśli jeszcze nia masz kont
 Materiały są dostepne w repozytorium `https://github.com/mbenke/jnp3-haskell/` (dostęp możliwy bez zakładania konta, ale konto przyda się za chwilę).
 
 
-W notatkach są błędy, takie jak literówki (niektóre umyślne). Wykonaj [fork](https://help.github.com/articles/fork-a-repo/) tego repo na swoim koncie, popraw jakiś błąd (albo zaproponuj ulepszenie) i zgłoś [pull request](https://help.github.com/articles/creating-a-pull-request-from-a-fork/).
+W notatkach mogą znaleźć się błędy, takie jak literówki (niektóre umyślne). Jesli chcesz ulepszyć notatki, wykonaj [fork](https://help.github.com/articles/fork-a-repo/) tego repo na swoim koncie, popraw jakiś błąd (albo zaproponuj ulepszenie) i zgłoś [pull request](https://help.github.com/articles/creating-a-pull-request-from-a-fork/).
 
-Zadania należy oddawać poprzez GitHub Classroom. Na rozgrzewkę, programy z dzisiejszych zajęć należy oddać poprzez link https://classroom.github.com/a/PQO-Ng1w (termin: 24.10 godz. 9:00)
+Zadania należy oddawać poprzez GitHub Classroom. Rozwiązania należy umieszczać w osobnej gałęzi (branch) a w celu oddania stworzyć pull request i oznaczyć prowadzącego (użytkownik `mbenke`) jako recenzenta (reviewer).
+
+Na rozgrzewkę, programy z dzisiejszych zajęć należy oddać poprzez link https://classroom.github.com/a/VVERFjvf (termin: 10.10 godz. 18:00).
 
 # Zastrzeżenia prawne
 
