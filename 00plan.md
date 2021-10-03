@@ -26,11 +26,11 @@
 
 ### Programy zaliczeniowe
 
-1. CodeWorld (6.10) - termin 13.10 (rozgrzewka, bez punktów)
+1. CodeWorld (06.10) - termin 13.10 (rozgrzewka, bez punktów)
 2. Sokoban 1 (20.10) - termin 27.10 (3p)
 3. Sokoban 2 (27.10) - termin 3.11 (4p)
-4. Sokoban 3 (27.10) - termin 10.11 (12p)
-5. Sokoban 4 (3.11) - termin 17.11 (16p)
+4. Sokoban 3 (03.11) - termin 10.11 (12p)
+5. Sokoban 4 (10.11) - termin 17.11 (16p)
 6. Sokoban 5 (17.11) - termin 1.12 (15p)
 7. Supply (1.12) - termin 15.12 (10p)
 
