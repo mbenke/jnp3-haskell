@@ -469,7 +469,7 @@ W notatkach mogą znaleźć się błędy, takie jak literówki (niektóre umyśl
 
 Zadania należy oddawać poprzez GitHub Classroom. Rozwiązania należy umieszczać w osobnej gałęzi (branch) a w celu oddania stworzyć pull request i oznaczyć prowadzącego (użytkownik `mbenke`) jako recenzenta (reviewer).
 
-Na rozgrzewkę, programy z dzisiejszych zajęć należy oddać poprzez link https://classroom.github.com/a/VVERFjvf (termin: 10.10 godz. 18:00).
+Na rozgrzewkę, programy z dzisiejszych zajęć należy oddać poprzez link https://classroom.github.com/a/VVERFjvf (termin: 13.10 godz. 18:00).
 
 # Zastrzeżenia prawne
 
