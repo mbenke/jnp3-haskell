@@ -443,7 +443,7 @@ class  (Eq a, Show a) => Num a  where
 https://classroom.github.com/a/TpQtaObY
 
 Termin:
-17.11.2020 18:00 UTC+1
+17.11.2021 18:00 UTC+1
 
 ## Etap 1
 
