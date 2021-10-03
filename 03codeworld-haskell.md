@@ -229,6 +229,6 @@ maze x y
 Zdefiniuj obraz `pictureOfMaze :: Picture`, który rysuje powyższy poziom dla współrzędnych x,y z zakresu `[-10..10]`,
 wykorzystujac obrazy dane przez funkcję `drawTile` przesunięte w odpowiednie miejsca.
 
-Oddawanie zadania poprzez GitHub Classroom: https://classroom.github.com/a/CsE-c-Z2 termin: 11.11 godz. 9:00
+Oddawanie zadania poprzez GitHub Classroom: https://classroom.github.com/a/4ofV1t4 termin: 20.10 godz. 18:00
 
-**UWAGA:** rozwiązanie należy stworzyć w nowej gałęzi (branch), a po zakończeniu stworzyć pull request. Taki tryb postepowania znacznie ułatwia ocenianie.
+**UWAGA:** rozwiązanie należy stworzyć w nowej gałęzi (branch), a po zakończeniu stworzyć pull request i oznaczyć prowadzącego (mbenke) jako jego recenzenta. Taki tryb postepowania znacznie ułatwia ocenianie.
