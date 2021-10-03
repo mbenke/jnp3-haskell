@@ -277,4 +277,4 @@ gdzie `orderedList` jest generatorem dającym tylko listy uporządkowane.
 
 # Zadanie
 
-Zadanie podsumowujące: https://classroom.github.com/a/QPH7mm-j termin: 23.01 godz. 9:00
+Zadanie podsumowujące: https://classroom.github.com/a/35iuKMtk termin: 15.12 godz. 18:00
