@@ -1,5 +1,7 @@
 # Odkrywamy Haskell
 
+![Ten reasons to use Haskell](https://i.imgur.com/i0wTFSO.png)
+
 ## Literatura
 
 Christopher Allen, Julie Moronuki, *Haskell Programming from first Principles*, http://haskellbook.com/
