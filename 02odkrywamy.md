@@ -24,6 +24,8 @@ Haskell zasadniczo kompilowany (standardowy kompilator nazywa się GHC - *Glasgo
 
 :pencil: Wypróbuj powyższe wyrażenia w ghci. Wypróbowuj też kolejne.
 
+:point_right: w Code world pisaliśmy `f(x)`, natomiast w prawdziwym Haskellu nawiasy nie zawsze są potrzebne - można pisać `f x` chyba że argument jest wyrażeniem złożonym, czyli np. `f(2+2)`.
+
 Na własnym laptopie można zainstalować GHC(i) korzystając z narzędzia `ghcup`: https://www.haskell.org/ghcup/ np.
 
 ```
@@ -75,6 +77,8 @@ Prelude> [1,3..10]
 Prelude> take 4 [0..9]
 [0,1,2,3]
 ```
+
+:point_right: w Code World pisaliśmy `f(x, y)`, natomiastw Haskellu piszemy raczej `f x y` - wrócimy jeszcze do tego, bo to nie jest tylko kosmetyczna róznica.
 
 ### Napisy
 
@@ -130,7 +134,7 @@ teraz
     *Main> area 2
     12.566370614359172
 
-:exclamation: Jesli jestesmy już w `ghci`, możemy załadować ten plik używając `:load e01.hs`
+:point_right: Jesli jestesmy już w `ghci`, możemy załadować ten plik używając `:load e01.hs`
 
 :exclamation: Krótkie definicje możemy pisać w ghci w postaci `let triple x = 3 * x` (a w GHCi 8 również bez `let`), ale jest tu wiele pułapek, także lepiej tego nie używać dopóki nie wie się dobrze co się robi.
 
@@ -171,6 +175,7 @@ Także silnię możemy zdefiniować w ten sposób:
     fact3 n = n * fact3 (n-1)
     
 :pencil: Napisz funkcję obliczającą iloczyn listy będącej jej argumentem. Wyraź silnię w kategoriach tej funkcji.
+
 ### Typy
 
 Każda wartość ma swój typ
