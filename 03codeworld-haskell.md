@@ -143,6 +143,8 @@ reallyBig = 2^2^2^2^2 -- potęgowanie wiąże w prawo: 2^(2^(2^(2^2)))
 
 numDigits :: Int
 numDigits = length (show reallyBig)
+
+main = print numDigits
 ```
 
 * `Double` to 64-bitowe liczby zmiennoprzecinkowe (jest też typ `Float`, rzadko używany).
