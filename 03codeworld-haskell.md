@@ -206,19 +206,19 @@ W tym tygodniu wykonamy kilka czynnosci przygotowawczych, w szczególności potr
 
 Wynikiem tego ćwiczenia będzie kod niezbędny do narysowania poziomu gry.
 
-Zdefiniuj funkcje `wall,ground, storage, box :: Picture`, tworzące obrazy odpowiednich pól rozmiaru 1 wyśrodkowane na środku obrazu. 
+Zdefiniuj funkcje `wall, ground, storage, box :: Picture`, tworzące obrazy odpowiednich pól rozmiaru 1 wyśrodkowane na środku obrazu. 
 
 Zdefiniuj funkcję 
-`drawTile :: Integer -> Picture` taką że `drawTile n` daje obraz pola numeru n według listy powyżej.
+`drawTile :: Int -> Picture` taką że `drawTile n` daje obraz pola numeru n według listy powyżej.
 Funkcja powinna zachowywać się sensownie również dla argumentów spoza zakresu.
 
-Poziom możemy reprezentować jako funkcję typu `Integer -> Integer -> Integer`,
+Poziom możemy reprezentować jako funkcję typu `Int -> Int -> Int`,
 która otrzymawszy dwie współrzędne daje rodzaj pola, które znajduje się w podanym miejscu.
 
 Przykładowy poziom:
 
 ```
-maze :: Integer -> Integer -> Integer
+maze :: Int -> Int -> Int
 maze x y
   | abs x > 4  || abs y > 4  = 0  -- blank
   | abs x == 4 || abs y == 4 = 1  -- wall
