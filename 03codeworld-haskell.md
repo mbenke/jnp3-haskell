@@ -179,7 +179,10 @@ Do porównań na wszelkich typach liczbowych (i nie tylko) możemy uzywać `==`,
 
 :pencil: Napisz funkcję `lights :: Integer -> Picture` taką, że `lights n` narysuje n sygnalizatorów obok siebie.
 
-:pencil: Napisz funkcję `squares :: Double -> Picture`, taką, że `squares d` narysuje obok siebie prostokąty o łacznym polu `d` przy czym wszystkie oprócz być może ostatniego będą kwadratami o boku  1.
+:pencil: Napisz funkcję `squares :: Double -> Picture`, taką, że `squares d` narysuje obok siebie prostokąty o łacznym polu `d` przy czym wszystkie oprócz być może ostatniego będą kwadratami o boku 1. Na przykład `squares 3.14` da
+
+![obraz](https://user-images.githubusercontent.com/202086/137954791-e3531476-d01c-4223-b97f-9ccbb9a5cbd7.png)
+
 
 :question: Jak Twoje funkcje zachowują się dla argumentów ujemnych?
 
