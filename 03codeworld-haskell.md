@@ -215,12 +215,12 @@ Przykładowy poziom:
 ```
 maze :: Integer -> Integer -> Integer
 maze x y
-  | abs x > 4  || abs y > 4  = 0
-  | abs x == 4 || abs y == 4 = 1
-  | x ==  2 && y <= 0        = 1
-  | x ==  3 && y <= 0        = 3
-  | x >= -2 && y == 0        = 4
-  | otherwise                = 2
+  | abs x > 4  || abs y > 4  = 0  -- blank
+  | abs x == 4 || abs y == 4 = 1  -- wall
+  | x ==  2 && y <= 0        = 1  -- wall
+  | x ==  3 && y <= 0        = 3  -- storage
+  | x >= -2 && y == 0        = 4  -- box
+  | otherwise                = 2  -- ground
 
 ```
 
