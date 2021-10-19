@@ -125,8 +125,6 @@ main :: IO ()
 main = animationOf trafficController
 ```
 
-:pencil: Czy potrafisz zapisać to zwięźlej, eliminując powtórzenia (`...trafficLight True ...trafficLight False`)
-
 :pencil: Dodaj do animacji sygnalizatora krótką fazę żółtą.
 
 ### Typy numeryczne
