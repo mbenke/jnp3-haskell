@@ -87,9 +87,7 @@ atCoord (C x y) pic = translated (fromIntegral x) (fromIntegral y) pic
 
 `translated` bierze argumenty typu `Double`, dlatego musimy uzyć `fromIntegral`.
 
-:pencil:
-
-Napisz funkcję `adjacentCoord :: Direction -> Coord -> Coord` dającą współrzędne przesuniete o 1 w podanym kierunku.
+:pencil: Napisz funkcję `adjacentCoord :: Direction -> Coord -> Coord` dającą współrzędne przesuniete o 1 w podanym kierunku.
 
 Możesz ją przetestować w `ghci`. Aby móc wypisywac elementy swojego typu, warto dodać do jego definicji klauzulę
 `deriving Show`, np.
