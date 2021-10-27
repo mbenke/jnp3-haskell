@@ -256,6 +256,7 @@ handleEvent (KeyPress key) c
     | key == "Down"  = adjacentCoord D c
 handleEvent _ c      = c
 ```
+:pencil: dodaj obsługę klawiszy WASD
 
 :exclamation: **Uwaga**: Aby używać stałych typu `Text` musimy w pierwszej linii programu dodać zaklęcie (pragmę)
 
@@ -265,6 +266,7 @@ handleEvent _ c      = c
 
 Sekwencja `{- ... -}` oznacza komentarz blokowy. Sekwencja  `{-# ... #-}` oznacza pragmę, czyli wskazówkę dla kompilatora.
 W tym wypadku pragma `LANGUAGE OverloadedStrings` oznacza rozszerzenie języka, w którym literały napisowe są przeciążone i (podobnie jak literały liczbowe) dopasowują się do oczekiwanego typu - domyślnie są typu `String`, ale tutaj chcemy ich użyć w typie `Text`.
+
 
 # :pencil: Sokoban 2
 
