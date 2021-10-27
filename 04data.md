@@ -229,7 +229,7 @@ drawState c = atCoord c pictureOfMaze
 
 Nawiasem mówiąc, w starszych wersjach CodeWorld występowała funkcja `interactionOf`, biorąca jako dodatkowy parametr funkcję opisującą zmiany stanu z upływem czasu, typu `Double -> world -> world`. Obecnie upływ czasu traktowany jest jako jedno ze zdarzeń.
 
-To ...coś robi. Ale gdy tylko najedziemy muszą na obraz, on ucieka ... Dlaczego? Przy każdym zdarzeniu obraz przesuwa się do góry. A ruchy myszy też są zdarzeniami.
+To ...coś robi. Ale gdy tylko najedziemy muszą na obraz, on ucieka ... Dlaczego? Przy każdym zdarzeniu obraz przesuwa się do góry. A ruchy myszy i upływ czasu też są zdarzeniami.
 
 ## Zdarzenia
 
