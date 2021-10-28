@@ -28,6 +28,7 @@ Poziom możemy reprezentować jako funkcję typu `Integer -> Integer -> Integer`
 która otrzymawszy dwie współrzędne daje rodzaj pola, które znajduje się w podanym miejscu.
 Przykładowy poziom:
 
+```
 maze :: Integer -> Integer -> Integer
 maze x y
   | abs x > 4  || abs y > 4  = 0  -- blank
@@ -36,5 +37,6 @@ maze x y
   | x ==  3 && y <= 0        = 3  -- storage
   | x >= -2 && y == 0        = 4  -- box
   | otherwise                = 2  -- ground
+```
 
-Zdefiniuj obraz pictureOfMaze :: Picture, który rysuje powyższy poziom dla współrzędnych x,y z zakresu [-10..10], wykorzystujac obrazy dane przez funkcję drawTile przesunięte w odpowiednie miejsca. Program główny powinien pokazywać ten rysunek.
+Zdefiniuj obraz `pictureOfMaze :: Picture`, który rysuje powyższy poziom dla współrzędnych x,y z zakresu [-10..10], wykorzystujac obrazy dane przez funkcję drawTile przesunięte w odpowiednie miejsca. Program główny powinien pokazywać ten rysunek.
