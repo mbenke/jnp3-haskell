@@ -553,7 +553,9 @@ Zdefiniuj `etap4 :: Picture`  jako wizualizację wyników dla wszystkich poziom�
 Przerób funkcje wyszukujące skrzynie i `isWinning` z poprzedniego etapu tak aby używały osiągalnych skrzyń.
 Odpowiednio przerób funkcję rysującą - w ten sposób będzie mozna rysować poziomy różnych rozmiarów.
 
-Przerób swoją grę z poprzedniego zadania tak aby gra składała się z kolejnych poziomów z listy `mazes`, rozdzielonych ekranami 'Poziom ukończony, liczba ruchów: N'
+Przerób swoją grę z poprzedniego zadania tak aby gra składała się z kolejnych poziomów z listy `mazes`, rozdzielonych ekranami 'Poziom ukończony, liczba ruchów: X' (gdzie X oznacza liczbę ruchów wykonaną przez gracza przy rozwiązywaniu tego poziomu).
+
+Jeżeli gracz chce w trakcie gry pominąc dany poziom, powinien móc to zrobic naciskając klawisz `N`
 
 ```haskell
 etap5 :: IO()
