@@ -103,12 +103,14 @@ main = drawingOf(pictureOfBools (map even [1..49::Int]))
 
 Zdefiniuj `etap4 :: Picture`  jako wizualizację wyników dla wszystkich poziomów. Użyj tej wizualizacji jako ekranu startowego w kolejnym etapie.
 
-## Etap 5 - wieleopoziomowy Sokoban
+## Etap 5 - wielopoziomowy Sokoban
 
 Przerób funkcje wyszukujące skrzynie i `isWinning` z poprzedniego etapu tak aby używarły osiągalnych skrzyń.
 Odpowiednio przerób funkcję rysującą - w ten sposób będzie można rysować poziomy różnych rozmiarów.
 
-Przerób swoją grę z poprzedniego zadania tak aby gra składała się z kolejnych poziomów z listy `mazes`, rozdzielonych ekranami 'Poziom ukończony, liczba ruchów: N'
+Przerób swoją grę z poprzedniego zadania tak aby gra składała się z kolejnych poziomów z listy `mazes`, rozdzielonych ekranami 'Poziom ukończony, liczba ruchów: X' (gdzie X oznacza liczbę ruchów wykonaną przez gracza przy rozwiązywaniu tego poziomu).
+
+Jeżeli gracz chce w trqakcie gry pominąc dany poziom, powinien móc to zrobic naciskając klawisz `N`
 
 ```haskell
 etap5 :: IO()
