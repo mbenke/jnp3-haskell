@@ -127,10 +127,11 @@ Na razie obrazek, zeby zasugerować rozwiązanie, ale jeszcze go nie zdradzać:
 Musimy opakować argumenty funkcji `activityOf` wewnątrz typu `Activity`:
 
 ```haskell
-data Activity world = Activity
-        world
-	(Event -> world -> world)
-	(world -> Picture)
+data Activity world = Activity {
+        actState  :: world,
+	actHandle :: (Event -> world -> world),
+	actDraw   ::(world -> Picture)
+	}
 ```
 Zwróćmy uwagę, że dla pełnej ogólności typ świata `world` musi być parametrem typu `Activity`.
 
