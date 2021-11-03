@@ -42,6 +42,25 @@ ile różnych implementacji potrafisz napisać?
 (a -> a) -> a -> a
 ```
 
+### Równość (nie) dla wszystkich
+
+Czy da się zdefiniować uniwersalną równość, czyli parametryczną funkcję typu `eq :: a -> a -> Bool`? 
+Możemy podejrzewać, że nie, ale "darmowe twierdzenie" dla tego typu mówi że dla dowolnych typów A,B  i funkcji 
+
+```haskell
+f :: A -> B
+```
+
+mamy
+
+```
+(eq x y) = (eq (f x) (f y))
+```
+
+co pokazuje, że `eq` jest funkcją stałą, czyli nie jest zbyt użyteczna jako równość (chyba, że w sensie "wszyscy są równi").
+
+O tym jak poradzić sobie z tym problemem porozmawiamy na kolejnych zajęciach.
+
 ## Polimorficzne typy danych
 
 Polimorficzne mogą być nie tylko funkcje, ale i typy danych. W poprzednim tygodniu pisaliśmy wariant funkcji `activityOf`
