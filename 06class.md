@@ -326,8 +326,6 @@ exp2 = N 2 :+ N 3 :+ N 4
 -- 2 + 3 + 4
 ```
 
-## Klasa Read
-
 ## Klasa IsString
 
 ``` haskell
@@ -376,39 +374,6 @@ class  (Eq a) => Ord a  where
     min x y
          | x <= y    =  x
          | otherwise =  y
-
--- Enumeration and Bounded classes
-
-
-class  Enum a  where
-    succ, pred       :: a -> a
-    toEnum           :: Int -> a
-    fromEnum         :: a -> Int
-    enumFrom         :: a -> [a]             -- [n..]
-    enumFromThen     :: a -> a -> [a]        -- [n,n'..]
-    enumFromTo       :: a -> a -> [a]        -- [n..m]
-    enumFromThenTo   :: a -> a -> a -> [a]   -- [n,n'..m]
-
-        -- Minimal complete definition:
-        --      toEnum, fromEnum
---
--- NOTE: these default methods only make sense for types
--- 	 that map injectively into Int using fromEnum
---	 and toEnum.
-    succ             =  toEnum . (+1) . fromEnum
-    pred             =  toEnum . (subtract 1) . fromEnum
-    enumFrom x       =  map toEnum [fromEnum x ..]
-    enumFromTo x y   =  map toEnum [fromEnum x .. fromEnum y]
-    enumFromThen x y =  map toEnum [fromEnum x, fromEnum y ..]
-    enumFromThenTo x y z =
-                        map toEnum [fromEnum x, fromEnum y .. fromEnum z]
-
-
-class  Bounded a  where
-    minBound         :: a
-    maxBound         :: a
-
--- Numeric classes
 
 
 class  (Eq a, Show a) => Num a  where
