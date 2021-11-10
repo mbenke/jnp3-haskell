@@ -401,6 +401,11 @@ class  (Eq a, Show a) => Num a  where
     n `mod` d        =  r  where (q,r) = divMod n d
     divMod n d       =  if signum r == - signum d then (q-1, r+d) else qr
                         where qr@(q,r) = quotRem n d
+
+class Num a => Fractional a where
+  (/) :: a -> a -> a
+  recip :: a -> a
+  fromRational :: Rational -> a			
 ```
 
 # Zadanie: Sokoban 4
