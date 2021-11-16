@@ -356,13 +356,23 @@ do { x <- obliczenie1; y <- obliczenie2; obliczenie3 }
 -->
 
 ## `foldl` i `foldr`
+Są dwa naturalne sposoby implementacji `fold` na listach:
 
-```
+``` haskell
 foldr f z (x:xs) = f x (foldr f z xs)
 foldl f z (x:xs) = foldl f (f z x) xs
 ```
 
-W ML czesto preferowany jest `foldl` (jako ogonowy); w Haskellu raczej używamy `foldr`.
+W ML czesto preferowany jest `foldl` (jako ogonowy); w Haskellu raczej używamy `foldr`. 
+
+**Ciekawostka:** ten ostatni jest też ogólniejszy: można zdefiniować `foldl` przy pomocy `foldr`:
+
+``` haskell
+foldLeft :: (b->a->b) -> b -> [a] -> b
+foldLeft f v xs = fold (\x g -> (\a -> g (f a x) ) ) id xs v
+```
+
+...ale nie na odwrót.
 
 Więcej: [https://wiki.haskell.org/Foldr_Foldl_Foldl'](https://wiki.haskell.org/Foldr_Foldl_Foldl') (ale to raczej po zajęciach o leniwej ewaluacji).
 
