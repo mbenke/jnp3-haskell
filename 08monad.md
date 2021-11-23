@@ -162,6 +162,14 @@ teraz:
     *Applicative> (+) <$> Just 2 <*> Just 3
     Just 5
 
+Definicja `Applicative` dla `Maybe` jest dość naturalna:
+
+``` haskell
+instance Applicative Maybe where
+  pure = Just
+  Just f <*> Just x = Just (f x)
+```
+
 ### Ćwiczenia
 
 :pencil: Rozważmy trochę iny typ drzew:
@@ -221,7 +229,7 @@ class Monad obliczenie where
 -   Gdy **m** jest instancja **Monad**, to **m a** jest typem obliczeń o
     wyniku typu **a**.
 
--   **return x** jest czystym obliczeniem dającym wynik **x**
+-   **return x** jest czystym obliczeniem dającym wynik **x** (alternatywnie możemy używać **pure x**)
 
 -   Operator `(>>=)` (zwany “bind”) sekwencjonuje obliczenia
     (“programowalny średnik”)
@@ -271,7 +279,7 @@ Code/monad/Identity.hs:5:10: error:
     • In the instance declaration for ‘Monad Identity’
 ```
 
-Zauważmy jednak, że
+Zauważmy jednak, że `<*>` możemy odtworzyć przy pomocy metod klasy `Monad` 
 
 ```haskell
 ap :: Monad m => m (a -> b) -> m a -> m b
