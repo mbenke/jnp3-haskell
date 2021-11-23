@@ -179,19 +179,6 @@ class Show a where
     show :: a -> String
 ```
 
-:pencil: Rozważmy typy
-```haskell
-data TypeA a b
-    = C1 a b
-    | C2 [Maybe (a -> b)]
-
-data TypeB f g a b
-    = C3 (f a)
-    | C4 (g b)
-    | C5 (g (g [b]))
-```
-Zdefiniuj dla nich odpowiednie instancje `Functor`.
-
 :pencil:  Zdefiniuj klasę Pointed (funkcyjnych pojemników z singletonem)
 ```haskell
 class Functor f => Pointed f where
