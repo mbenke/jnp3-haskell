@@ -168,6 +168,7 @@ Definicja `Applicative` dla `Maybe` jest dość naturalna:
 instance Applicative Maybe where
   pure = Just
   Just f <*> Just x = Just (f x)
+  _ <*> _ = Nothing
 ```
 
 ### Ćwiczenia
