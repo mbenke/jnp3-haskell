@@ -110,6 +110,8 @@ evalSupply p s = fst $ runSupply p s
 --
 -- >>> evalSupply (get >> get >> get) nats
 -- 2
+-- >>> evalSupply (do { x <- get; y <- get; return (x,y)}) nats
+-- (0,1)
 
 data Tree a = Branch (Tree a) (Tree a) | Leaf a deriving (Eq, Show)
 

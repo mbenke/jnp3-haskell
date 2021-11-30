@@ -1,5 +1,7 @@
 # Zadanie 6 - podsumowanie
 
+W pliku `SupplySkeleton.hs` znajdziesz szkielet rozwiązania. Skopiuj go do pliku `Supply.hs` i uzupełnij brakujące elementy zgodnie z poniższym opisem.
+
 ## Strumienie
 
 Typ list pozwala definiować zarówno listy skończone jak i nieskończone.
@@ -27,6 +29,10 @@ instance Show a => Show (Stream  a) where
 
 ``` haskell
 rep :: a -> Stream a
+-- | Example:
+--
+-- >>> rep 0
+-- 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,...
 ```
 
 taką, że `rep a` daje strumień złozony z samych `a`
@@ -35,9 +41,29 @@ taką, że `rep a` daje strumień złozony z samych `a`
 
 ``` haskell
 nats :: Stream Integer
+-- | Example:
+--
+-- >>> nats
+-- 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,...
 ```
 
-* Zdefiniuj instancje `Functor` i `Applicative` dla `Stream`
+* Zdefiniuj instancje `Functor` i `Applicative` dla `Stream`. Upewnij się że `show (pure (*2) <*> nats) == show (fmap (*2) nats)`
+
+``` haskell
+-- >>> fmap (+1) nats
+-- 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,...
+-- >>> pure (+1) <*> nats
+-- 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,...
+--- >>> show (pure (*2) <*> nats) == show (fmap (*2) nats)
+-- True
+```
+
+* Bonus: zdefiniuj funkcję `zipStreamsWith :: (a->b->c) -> Stream a -> Stream b -> Stream c`. Czy potrafisz zdefiniować `(<*>)` w terminach tej funkcji?
+
+``` haskell
+-- >>> zipStreamsWith (+) nats nats
+-- 0,2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,...
+```
 
 ## Supply
 
@@ -51,16 +77,31 @@ newtype Supply s a = S { runSupply :: Stream s -> (a, Stream s) }
 
 typ ten modeluje obliczenie, które używa elementów strumienia `s` i daje wynik obliczenia `a` oraz niewykorzystaną resztę strumienia
 
+Będziemy potrzebowali wyłuskać wynik obliczenia korzystającego z zasobu; zdefiniujmy
+
+``` haskell
+evalSupply :: Supply s a -> Stream s -> a
+evalSupply p s = fst $ runSupply p s
+```
+
 Zaimplementuj funkcje
 
 ``` haskell
 get :: Supply s s
+-- | Example:
+--
+-- >>> evalSupply get nats
+-- 0
 ```
 
 (obliczenie, które wyjmuje element ze strumienia i daje go w wyniku)
 
 ``` haskell
 pureSupply :: a -> Supply s a
+-- | Example:
+--
+-- >>> evalSupply (pure 42) nats
+-- 42
 ```
 
 (obliczenie czyste, które nie korzysta ze strumienia)
@@ -83,15 +124,20 @@ potrzebujemy funkcji
 
 ``` haskell
 mapSupply :: (a->b) -> Supply s a -> Supply s b
+-- >>> evalSupply (mapSupply (+1) get) nats
+-- 1
 mapSupply2 :: (a->b->c) -> Supply s a -> Supply s b -> Supply s c
 bindSupply :: Supply s a -> (a->Supply s b) -> Supply s b
 ```
 
-Wreszcie, będziemy potrzebowali wyłuskać wynik obliczenia korzystającego z zasobu; zdefiniuj
+Przy czym `fmap f x` używa tych samych zasobów co `x`, 
+natomiast `x <*> y` i  `x >> y` używa takich zasobów jak kolejno `x` i `y`.
 
-
-``` haskell
-evalSupply :: Supply s a -> Stream s -> a
+```
+-- >>> evalSupply (get >> get >> get) nats
+-- 2
+-- >>> evalSupply (do { x <- get; y <- get; return (x,y)}) nats
+-- (0,1)
 ```
 
 Użyj tak zdefiniowanej monady `Supply` do ponumerowania lisci drzewa od lewej do prawej:
