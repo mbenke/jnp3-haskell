@@ -1,5 +1,31 @@
 # Testowanie
 
+# doctest
+
+Przykłady w dokumentacji mogą być użyte jako testy regresji
+
+``` {.haskell }
+module DoctestExamples where
+-- | Expect success
+-- >>> 2 + 2
+-- 4
+
+-- | Expect failure
+-- >>> 2 + 2
+-- 5
+
+```
+(NB dla wykonania w VS Code wystarczy samo `-- >>>`, natomiast `doctest` wymaga także `-- |` powyżej, które jest elementem składni narzędzia dokumentacji [Haddock](https://haskell-haddock.readthedocs.io/en/latest/))
+
+```
+$ cabal install doctest
+$ doctest DoctestExamples.hs
+### Failure in DoctestExamples.hs:7: expression `2 + 2'
+expected: 5
+ but got: 4
+Examples: 2  Tried: 2  Errors: 0  Failures: 1
+```
+
 ## QuickCheck
 Oprócz podobnych jak w innych językach bibliotek do testów jednostkowych (np. doctest, HUnit), 
 Haskell posiada specyficzną, opartą na typach bibliotekę QuickCheck
