@@ -209,7 +209,7 @@ instance Arbitrary a => Arbitrary (Tree a) where
     where tree' 0 = Leaf <$> arbitrary
           tree' n | n>0 =
                     oneof [Leaf <$> arbitrary,
-                           Branch <$> subtree <*> subtree]
+                           Branch <$> subtree <*> subtree]  -- do { l <-subtree; r <- subtree; return (Branch l r) }
                     where subtree = tree' (n `div` 2)
   shrink (Leaf _) = []
   shrink (Branch l r) = [l, r] ++ [Branch l' r' | (l', r') <- shrink (l, r)]
