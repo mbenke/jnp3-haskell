@@ -168,7 +168,7 @@ instance Arbitrary Colour where
     arbitrary = oneof [return Red, return Green, return Blue]
 
 instance Arbitrary a => Arbitrary [a] where
-    arbitrary = oneof [return [], liftM2 (:) arbitrary arbitrary]
+    arbitrary = oneof [return [], (:) <$> arbitrary <*> arbitrary]
     -- NB to nie jest najlepszy generator dla list - jaka jest oczekiwana długość listy?
 
 -- | `sized` tworzy generator z rodziny generatorów indeksowanej rozmiarem
