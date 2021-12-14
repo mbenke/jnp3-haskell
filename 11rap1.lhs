@@ -1,0 +1,171 @@
+= Wnioskowanie o programach
+
+Dzięki zasadzie przejrzystości i typom, rozumowanie o programach w Haskellu
+często jest łatwiejsze niż w innych językach.
+
+Własności przeważnie mają postać równości, np
+
+``` haskell
+reverse (xs++ys) = reverse ys ++ reverse xs
+
+fmap id x = x
+fmap (f . g) x = (fmap f . fmap g) x
+```
+
+== Zasady wnioskowania równościowego
+
+Symetria: `(x = y) → (y = x)`
+
+Przechodniość: `(x = y) ∧ (y = z) → (x = z)`
+
+Zasada Leibniza: `P(x) ∧ (x = y) → P(y)`
+
+Kongruencja (szczególny przypadek): `(x = y) → (f x = f y)`
+
+Z definicji: jeśli w programie mamy definicję `f x = e`
+to dla dowolnego `y` (odpowiedniego typu) `f y = e[x := y]`
+
+ale uwaga na definicje, w której przypadki nie są ściśle rozłączne, np
+
+```
+isZero 0 = True
+isZero n = False
+```
+
+tu nie możemy wnioskować, że `isZero y = False` dla dowolnego `y`.
+Dlatego tutaj posługujemy się tylko definicjami o ściśle rozłącznych przypadkach.
+
+== Rozgrzewka: liczby naturalne
+
+> import Test.QuickCheck
+> data Nat = Z | S Nat deriving(Eq,Show)
+
+=== Indukcja na liczbach naturalnych
+
+```
+P(Z)      ∀n.P(n) → P(S n)
+———————————————————————————
+        ∀n.P(n)
+```
+
+=== Dodawanie
+
+> add Z y     = y           {- add1 -}
+> add (S x) y = S(add x y)  {- add2 -}
+
+Notacja: `x + y = add x y`
+
+Lemat (addZ): `∀x.x + Z = x`
+
+> addZ :: Nat -> Bool
+> addZ x = add x Z == x
+
+Dowód przez indukcję po x dla `P(x) ≡ x + Z = x`
+
+1. `Z + Z ={ add1[y := Z] }= Z`
+2. Załóżmy `IH: x + Z = x`. Chcemy wykazać, że `S x + Z = S x`
+
+```
+S x + Z   ={ add2 }=
+S(x + Z)  ={ S(IH) }=
+S x       □
+```
+
+Lemat (addS): `∀ x y.x + S y = S(x+y)`
+
+1. `Z + S y = S(Z+y)`
+
+```
+Z + S y   ={ add1 }=
+S y       ={ S(add1←) }=
+S(Z+y)	  □
+```
+2. `(IH: x + S y = S(x+y)) → (S x + S y = S(S x + y))`
+
+```
+S x + S y   ={ add1 }=
+S(x + S y)  ={ S(IH) }=
+S(S(x+y))   ={ S(add2←) =}
+S(S x + y)  □
+```
+
+Ćwiczenie: ∀ x y. x + y = y + x
+
+Ćwiczenie: ∀ x y t. x + (y + t) = (x + y) + t
+
+== Listy
+
+``` haskell
+data [a] = [] | a : [a]
+```
+
+=== Indukcja na listach
+
+```
+P([])    ∀ x xs.P(xs) → P(x:xs)
+————————————————————————————————
+           ∀ xs.P(xs)
+```
+
+```
+(++) :: [a] -> [a] -> [a]
+[]     ++ ys = ys          {- append1 -}
+(x:xs) ++ ys = x:(xs++ys)  {- append2 -}
+```
+
+Lemat(appendNil): `∀ xs. xs ++ [] = xs`
+
+Dowód: jak addZ (ćwiczenie)
+
+> appendNil :: [Int] -> Bool
+> appendNil xs = xs ++ [] == xs
+
+> rev :: [a] -> [a]
+> rev [] = []
+> rev (x:xs) = rev xs ++ [x]
+
+Lemat(revAppend): rev(xs++ys) = rev ys ++ rev xs
+
+> revAppend :: [Int] -> [Int] -> Bool
+> revAppend xs ys = rev(xs++ys) == rev ys ++ rev xs
+
+**Dowód:** ćwiczenie
+
+
+Twierdzenie: `∀ xs. rev(rev xs) = xs`
+
+1. `rev(rev []) = rev [] = []  □`
+2. `(IH: rev(rev xs) = xs) → rev(rev(x:xs)) = x:xs`
+
+```
+rev(rev(x:xs))    ={ rev1 =}
+rev(rev xs++[x])  ={ revAppend =}
+rev[x] ++ rev(rev xs) ={ IH }=
+rev[x] ++ xs          ={ rev }=
+[x] ++ xs 	      ={ append }=
+x:xs   		      □
+```
+
+Wolno płynące napisy końcowe:
+
+> main = do
+>  writeln "addZ"
+>  qc addZ
+>  writeln "appendNil"
+>  qc appendNil
+>  writeln "revAppend"
+>  qc revAppend
+
+> writeln = putStrLn
+> qc :: Testable prop => prop -> IO ()
+> qc = quickCheck
+
+
+> nat :: Int -> Nat
+> nat 0 = Z
+> nat n | n > 0 = S(nat(n-1))
+>       | otherwise = error "nat: negative argument"
+
+
+> instance Arbitrary Nat where
+>   arbitrary = sized $ \n -> nat <$> choose(0,n)
