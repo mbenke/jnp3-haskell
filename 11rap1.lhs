@@ -50,6 +50,7 @@ P(Z)      ∀n.P(n) → P(S n)
 
 === Dodawanie
 
+> add :: Nat -> Nat -> Nat
 > add Z y     = y           {- add1 -}
 > add (S x) y = S(add x y)  {- add2 -}
 
@@ -138,7 +139,7 @@ Twierdzenie: `∀ xs. rev(rev xs) = xs`
 2. `(IH: rev(rev xs) = xs) → rev(rev(x:xs)) = x:xs`
 
 ```
-rev(rev(x:xs))    ={ rev1 =}
+rev(rev(x:xs))    ={ rev2 =}
 rev(rev xs++[x])  ={ revAppend =}
 rev[x] ++ rev(rev xs) ={ IH }=
 rev[x] ++ xs          ={ rev }=
