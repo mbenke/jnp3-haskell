@@ -318,6 +318,20 @@ atom2 = atom0 & point . x %~ (+1)
 newx = atom2 ^. point . x
 ```
 
+te operatory to
+
+```
+infixr 4 %~
+(%~) :: Lens a b -> (b -> b) -> (a -> a)
+lens %~ f =  lens `over` f
+
+infixl 8 ^.
+(^.) :: a -> Lens a b -> b
+a ^. lens  = view lens a
+
+infixl 1 &
+x & f = f x
+```
 :pencil: Wypróbuj opisane tu definicje soczewek na typach `Atom` i `Point` (albo innych, np. typach stanu z Sokobana).
 
 ## Prawa dla soczewek
