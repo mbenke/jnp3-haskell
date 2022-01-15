@@ -320,6 +320,31 @@ newx = atom2 ^. point . x
 
 :pencil: Wypróbuj opisane tu definicje soczewek na typach `Atom` i `Point` (albo innych, np. typach stanu z Sokobana).
 
+## Prawa dla soczewek
+
+Soczewki spełniają trzy (dość oczywiste) własności:
+
+1. Odczytują to co zapisane:
+
+```
+view l (set l v s)  ≡ v
+```
+
+2. Zapisanie tego co odczytane nic nie zmienia:
+
+```
+set l (view l s) s  ≡ s
+```
+
+3. Dwukrotny zapis jest równoważny jednokrotnemu
+
+```
+set l v' (set l v s) ≡ set l v' s
+```
+
+NB to nie wynika z pierwszego prawa.
+
+
 <!--
 ## Costate Comonad Coalgebra
 Alternatywna definicja monady:
