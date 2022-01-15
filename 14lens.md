@@ -12,6 +12,22 @@ data Atom = Atom { _element :: String, _point :: Point }
 data Point = Point { _x :: Double, _y :: Double }
 ```
 
+W innych językach (Java, Python) dostęp do składowych moglibyśmy zapisać mniej więcej tak:
+
+```
+atom.point.x += 1
+print(atom.point.x)
+```
+
+Czy coś podobnego można zrobić w Haskellu? Tak!
+
+```
+atom&point.x +~ 1
+print(atom^.point.x)
+```
+
+A jak? Zobaczmy...
+
 ### Odczyt
 
 odczytanie współrzednej atomu jest proste:
@@ -314,7 +330,8 @@ Przy odpowiednich (prostych) definicjach operatorów infiksowych
 możemy teraz pisać na przykład
 
 ``` haskell
-atom2 = atom0 & point . x %~ (+1)
+atom1 = atom0 & point . x %~ (+1)
+atom2 = atom0 & point . x +~ 1
 newx = atom2 ^. point . x
 ```
 
@@ -323,11 +340,15 @@ te operatory to
 ```
 infixr 4 %~
 (%~) :: Lens a b -> (b -> b) -> (a -> a)
-lens %~ f =  lens `over` f
+lens %~ f = over lens f
+
+infixr 4 +~
+(+~) :: Num b => Lens a b -> b -> (a -> a)
+lens +~ n = over lens (+n)
 
 infixl 8 ^.
 (^.) :: a -> Lens a b -> b
-a ^. lens  = view lens a
+a ^. lens = view lens a
 
 infixl 1 &
 x & f = f x
