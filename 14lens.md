@@ -310,6 +310,19 @@ view :: Lens a b -> a -> b
 view l a = unK $ overF l K a
 ```
 
+Uzasadnienie: z definicji `overF` mamy
+
+```
+overF l f a = (\b' -> set l b' a) <$> f (view l a)
+```
+
+Zauważmy jednak że `fmap` dla funktora stałego ignoruje swój pierwszy argument, zatem
+
+```
+overF l K a = K (view l a)
+unK (overF l K a) = view l a
+```
+
 Po wyeliminowaniu z `Lens` składowych `over` i `view` pozostała tam
 tylko jedna składowa: `overF`.
 Zatem typ `Lens a b` jest izomorficzny z typem `overF`, to jest
