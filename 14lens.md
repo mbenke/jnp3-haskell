@@ -54,6 +54,11 @@ setY y p = p { _y = y }
 
 setAtomX :: Double -> Atom -> Atom
 setAtomX x a = setPoint (setX x (_point a)) a
+
+-- Modify X coordinate with a function, e.g.
+-- overAtomx (+1) atom
+overAtomX :: Double -> Double -> Atom -> Atom
+overAtomX f a = setPoint (setX (f $ _x p) p) a where p = _point a
 ```
 
 Zauważmy, że `setAtomX` oprócz setterów, korzysta także z gettera `_point`;
