@@ -6,13 +6,13 @@
 
 1. ELI5 czyli Haskell w podstawówce: https://code.world/ (5.10, 7.10)
 2. Odkrywamy Haskell (19.10, 21.10)
-3. CodeWorld/Haskell (26.10, 28.10)
-4. Typy algebraiczne (2.11, 4.11)
-5. Polimorfizm (9.11, ?)
-6. Typy z klasą - (16.11, 18.11)
-7. I/O - (23.11, 25.11)
+3. CodeWorld/Haskell (26.10, 28.10), Zadanie Sokoban 1
+4. Typy algebraiczne (2.11, 4.11), Zadanie Sokoban 2
+5. Polimorfizm (9.11, ?), Zadanie Sokoban 3
+6. Typy z klasą - (16.11, 18.11) Zadanie Sokoban 4
+7. I/O - (23.11, 25.11) Zadanie Sokoban 5
 8. Funktory, monady - (30.11, 2.12)
-9. Lenistwo (7.12, 9.12)
+9. Lenistwo (7.12, 9.12), Zadanie Supply
 10. Testowanie (14.12, 16.12)
 11. Rozmowy o programach zaliczeniowych (21.12)
 12. Wnioskowanie o programach (11.1, 13.1)
@@ -26,15 +26,15 @@
 
 ### Programy zaliczeniowe
 
-1. CodeWorld (06.10) - termin 13.10 (rozgrzewka, bez punktów)
-2. Sokoban 1 (20.10) - termin 27.10 (3p)
-3. Sokoban 2 (27.10) - termin 3.11 (4p)
-4. Sokoban 3 (03.11) - termin 10.11 (12p)
-5. Sokoban 4 (10.11) - termin 17.11 (16p)
-6. Sokoban 5 (17.11) - termin 1.12 (15p)
-7. Supply (1.12) - termin 15.12 (10p)
+1. CodeWorld (07.10) - termin 13.10 (rozgrzewka, bez punktów)
+2. Sokoban 1 (28.10) - termin 5.11 (3p)
+3. Sokoban 2 (27.10) - termin 12.11 (4p)
+4. Sokoban 3 (10.11) - termin ?26.11? (12p)
+5. Sokoban 4 (18.11) - termin ?3.12? (16p)
+6. Sokoban 5 (17.11) - termin ?10.12? (15p)
+7. Supply (1.12) - termin ?23.12? (10p)
 
-Spóźnienia: do 24h kara 1p, powyżej 24h 3p za każdy rozpoczety tydzień
+Spóźnienia: do 24h kara 1p, powyżej 24h 3p za każdy rozpoczęty tydzień
 
 ## Literatura
 
