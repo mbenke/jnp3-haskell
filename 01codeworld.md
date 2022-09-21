@@ -261,7 +261,7 @@ Każda wartość i wyrażenie ma swój typ. Typy pojawiają się przede wszystki
 * `Number` jest typem liczb (w dorosłym Haskellu używamy trochę dokładniejszych typów, jak `Int` i `Double`),
 * `Color` jest typem kolorów.
 
-Generalnie nazwy typów zaczynają sie z wielkiej litery, zmienych ‒ z małej.
+Generalnie nazwy (konkretnych) typów zaczynają sie z wielkiej litery, zmienych/funkcji ‒ z małej.
 
 Wskazania typu możemy dokonać przy pomocy `::` na przykład
 
