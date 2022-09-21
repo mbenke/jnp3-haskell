@@ -201,13 +201,13 @@ na przykład `[1,3..9]`. Trochę więcej myślenia wymaga `[0,2..9]`.
 
 ```haskell
 program = drawingOf(target)
-target  = pictures([ circle(r) | r <- [1, 2, 3, 4, 5] ])
+target  = pictures([ circle(r) | r <- [1..5] ])
 ```
 
-Wyrażenie `[ circle(r) | r <- [1, 2, 3, 4, 5] ]` nazywamy ‒ nawiązując do aksjomatu wycinania w teorii mnogości ‒ *wycinanką* (list comprehension) ‒ skojarzenie: ![comprehension](https://latex.codecogs.com/gif.latex?%5C%7Bcircle%28r%29%20%5Cmid%20r%5Cin%5C%7B1%2C2%2C3%2C4%2C5%5C%7D%5C%7D).
+Wyrażenie `[ circle(r) | r <- [1..5] ]` nazywamy ‒ nawiązując do aksjomatu wycinania w teorii mnogości ‒ *wycinanką* (list comprehension) ‒ skojarzenie:  $ ![comprehension](https://latex.codecogs.com/gif.latex?%5C%7Bcircle%28r%29%20%5Cmid%20r%5Cin%5C%7B1%2C2%2C3%2C4%2C5%5C%7D%5C%7D).
 Wartość tego wyrażenia jest  taka sama jak `[ circle(1), circle(2), circle(3), circle(4), circle(5) ]`.
 
-:question: Jak myślisz, co oznacza wyrażenie `[ circle(r) | r <- [1, 2, 3, 4, 5], even r ]`?
+:question: Jak myślisz, co oznacza wyrażenie `[ circle(r) | r <- [1..5], even r ]`?
 
 Możemy również oprzeć wycinankę na kilku listach źródłowych:
 
