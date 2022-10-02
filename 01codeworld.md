@@ -433,6 +433,19 @@ fractal(n) = stem
 stem = polyline([(0, -10), (0, 10)])
 ```
 
+Albo [zobacz](https://code.world/#PYJcuzTLmZrLmcaCM7A2idg)
+
+```
+forest  = stepForest (5)
+stepForest(0) = tree
+stepForest(n) = tree
+            & translated(sub, -5, 5)
+            & translated(sub,  5,-5)
+            & translated(sub,  5, 5)
+            & translated(sub, -5,-5)
+        where sub = dilated(stepForest(n-1), 1/2)
+```
+
 :pencil: Narysuj inne fraktale ‒ dywan Sierpińskiego, płatek Kocha, ...
 
 ## Animacje
