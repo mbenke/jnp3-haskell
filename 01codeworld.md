@@ -133,6 +133,10 @@ oval    = scaled(base, 2, 0.5)
 base    = solidCircle(4)
 ```
 
+Jeżeli obie skale są równe, możemy użyć funkcji `dilated`:
+
+`dilated(obraz, s) = scaled(obraz, s,s)`
+
 :pencil: Narysuj symbol atomu (koło jako jądro i elipsy jako orbity elektronów).
 
 ## Wyrażenia
