@@ -15,7 +15,7 @@ Zasadniczo cała potrzebna wiedza jest w tych notatkach, ale gdyby ktoś chciał
 Haskell zasadniczo kompilowany (standardowy kompilator nazywa się GHC - *Glasgow Haskell Compiler* albo *Glorious Haskell Compiler*), ale też interpreter: **ghci**
 
     ben@students:~$ ghci
-    GHCi, version 8.4.4: http://www.haskell.org/ghc/  :? for help
+    GHCi, version 8.8.4: http://www.haskell.org/ghc/  :? for help
 
     Prelude> 2 ^ 100
     1267650600228229401496703205376
@@ -81,7 +81,7 @@ Prelude> take 4 [0..9]
 [0,1,2,3]
 ```
 
-:point_right: w Code World pisaliśmy `f(x, y)`, natomiastw Haskellu piszemy raczej `f x y` - wrócimy jeszcze do tego, bo to nie jest tylko kosmetyczna róznica.
+:point_right: w Code World pisaliśmy `f(x, y)`, natomiast w Haskellu piszemy raczej `f x y` - wrócimy jeszcze do tego, bo to nie jest tylko kosmetyczna róznica.
 
 ### Napisy
 
