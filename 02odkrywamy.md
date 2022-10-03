@@ -4,7 +4,10 @@
 
 ## Literatura
 
-Christopher Allen, Julie Moronuki, *Haskell Programming from first Principles*, http://haskellbook.com/
+Zasadniczo cała potrzebna wiedza jest w tych notatkach, ale gdyby ktoś chciał coś więcej poczytać, to polecam:
+
+* Christopher Allen, Julie Moronuki, *Haskell Programming from first Principles*, http://haskellbook.com/
+* Graham Hutton, *Programming in Haskell, 2nd Ed.*, http://www.cs.nott.ac.uk/~pszgmh/pih.html
 
 ## Odkrywamy
 
