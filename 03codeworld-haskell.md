@@ -86,6 +86,12 @@ W Haskellu pracujemy raczej na całych strukturach danych i napiszemy po prostu
 sum (map (\x -> x * x) lst)
 ```
 
+albo wręcz
+
+```
+sum . map square
+```
+
 W nowszych bibliotekach do C++ czy Javy znajedziemy podobne mechanizmy, ale wywodzą się one z programowania funkcyjnego.
 
 ## Animacje i typy numeryczne
