@@ -45,6 +45,8 @@ stack ghci
 
 Na Macu można też używać IDE Haskell For Mac: http://haskellformac.com/
 
+Do edytowania programów w Haskellu można użyć VS Code z rozszerzeniem Haskell, ale trzeba uważać z autouzupełnianiem.
+
 ### Polecenia GHCi
 
 (wystarczy jednoznaczny prefiks, często pierwsza litera, np `:h`, `:l`; sam `:` powtarza ostatnie polecenie)
