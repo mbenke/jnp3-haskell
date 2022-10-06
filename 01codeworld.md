@@ -295,7 +295,6 @@ circles = pictures[ circle(r) | r <- sizes ]
 sizes :: [Number]
 sizes = [ 1, 2, 3, 4 ]
 ```
-:question: Jakiego typu jest zmienna `circles` powyżej?
 
 ### Punkty i krotki
 
@@ -378,45 +377,20 @@ thing(n)
   | otherwise = circle(n)
 ```
 
-### Dopasowanie
-Czasem chcemy zdefiniować osobne zachowania dla listy pustej, jednoelementowej i innych. Na przykład:
-
-```haskell
-f :: [Number] -> Number
-f([]   ) = 42
-f([a]  ) = a + 1
-f(other) = sum(other)
-```
-
-Uwaga, pułapka:
-
-```haskell
-f(pi   ) = 1
-f(other) = 2
-```
-
-:question: jaka jest wartość `f(0)`?
-
-### Rekurencja
+### Dopasowania, rekurencja
 
 Klasycznym przykładem definicji rekurencyjnej jest silnia:
 
 ```haskell
 factorial :: Number -> Number
 factorial(0) = 1
-factorial(n) = n * factorial(n - 1)
-```
+factorial(n) = n * factorial(n-1)
 
-Suma listy ‒ przykład rekurencyjnej funkcji na listach:
-
-```
 program = drawNumber(r)
-r = suma([1,2,3])
-suma([]) = 0
-suma(x:xs) = x + suma(xs)
-
 drawNumber(n) = drawingOf(lettering(printed(n)))
 ```
+
+Podobnie jak wcześniej, równanie dla `factorial(n)` będzie wykorzystane tylko gdy `n` różne od 0.
 
 W grafice klasycznym przykładem rekurencji są fraktale:
 
@@ -443,7 +417,7 @@ stepForest(n) = tree
             & translated(sub,  5,-5)
             & translated(sub,  5, 5)
             & translated(sub, -5,-5)
-        where sub = dilated(stepForest(n-1), 1/2)
+        where sub = dilated(stepForest(n-1), 1/https://github.com/mbenke/jnp3-haskel2)
 ```
 
 :pencil: Narysuj inne fraktale ‒ dywan Sierpińskiego, płatek Kocha, ...
