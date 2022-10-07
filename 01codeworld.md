@@ -386,7 +386,7 @@ factorial :: Number -> Number
 factorial(0) = 1
 factorial(n) = n * factorial(n-1)
 
-program = drawNumber(r)
+program = drawNumber(factorial(5))
 drawNumber(n) = drawingOf(lettering(printed(n)))
 ```
 
@@ -410,6 +410,7 @@ stem = polyline([(0, -10), (0, 10)])
 Albo [zobacz](https://code.world/#PYJcuzTLmZrLmcaCM7A2idg)
 
 ```
+program = drawingOf(forest)
 forest  = stepForest (5)
 stepForest(0) = tree
 stepForest(n) = tree
@@ -417,7 +418,10 @@ stepForest(n) = tree
             & translated(sub,  5,-5)
             & translated(sub,  5, 5)
             & translated(sub, -5,-5)
-        where sub = dilated(stepForest(n-1), 1/https://github.com/mbenke/jnp3-haskel2)
+        where sub = dilated(stepForest(n-1), 1/2)
+tree    = colored(leaves, green) & colored(trunk, brown)
+leaves  = sector(0, 180, 2)
+trunk   = solidRectangle(1, 3)
 ```
 
 :pencil: Narysuj inne fraktale ‒ dywan Sierpińskiego, płatek Kocha, ...
