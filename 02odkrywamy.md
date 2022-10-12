@@ -306,23 +306,27 @@ innych konstrukcjach, takich jak **let**, **do**, **where**, itp.
     także tych zdefiniowanych niżej.
 
 <!-- -->
-
+``` haskell
     f :: Int -> Int
     f 0 = 1
     f n = n * g(n-1)
 
-    g n = n * f(n-1)
     g 0 = 1
+    g n = n * f(n-1)
+```
 
 ### Kolejność równań
 
+``` haskell
     f :: Int -> Int
     f 0 = 1
     f n = n * f(n-1)
 
     g n = n * g(n-1)
     g 0 = 1
+```
 
+```
     kolejnoscRownan.hs:5:0:
         Warning: Pattern match(es) are overlapped
                  In the definition of `g': g 0 = ...
@@ -332,6 +336,7 @@ innych konstrukcjach, takich jak **let**, **do**, **where**, itp.
     *Main> g 5
     *** Exception: stack overflow
     *Main> 
+```
 
 ### Dopasowywanie wzorców
 
