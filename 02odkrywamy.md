@@ -29,6 +29,13 @@ Haskell zasadniczo kompilowany (standardowy kompilator nazywa się GHC - *Glasgo
 
 :point_right: w Code world pisaliśmy `f(x)`, natomiast w prawdziwym Haskellu nawiasy nie zawsze są potrzebne - można pisać `f x` chyba że argument jest wyrażeniem złożonym, czyli np. `f(2+2)`.
 
+```
+λ> even(2+2)
+True
+λ> even 1
+False
+```
+
 Na własnym laptopie można zainstalować GHC(i) korzystając z narzędzia `ghcup`: https://www.haskell.org/ghcup/ np.
 
 ```
