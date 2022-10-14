@@ -190,8 +190,7 @@ Także silnię możemy zdefiniować w ten sposób:
 
 ### Typy
 
-Każda wartość ma swój typ
-(intuicyjnie możemy mysleć o typach jako o zbiorach wartości), np:
+O typach mozna mysleć jak o zbiorach wartości, przynależność do typu oznaczamy symbolem `::`
 
          True :: Bool
             5 :: Int
@@ -207,7 +206,9 @@ Funkcje oczywiście też mają typy:
     isdivby x y = mod x y == 0
 ```
 W większości wypadków Haskell potrafi sprawdzić poprawność typów bez
-żadnych deklaracji (rekonstruuje typy)
+żadnych deklaracji (rekonstruuje typy).
+
+Jak zobaczymy jedna wartość może przynależeć do wielu typów (na przykład `[]`)
 
 ### Podstawowe typy
 
