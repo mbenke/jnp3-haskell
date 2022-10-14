@@ -221,7 +221,13 @@ Jak zobaczymy jedna wartość może przynależeć do wielu typów (na przykład 
 -   `String` — napisy (listy znaków Unicode), są też wydajne typy `Text`
     oraz `ByteString`
 
--   `Maybe`:
+-   Listy: `[a]` jest listą elementów typu `a`
+
+    -   `[]::[a]`
+
+    -   jeśli `x::a` oraz `xs::[a]`, to `(x:xs)::[a]`
+
+-   `Maybe` (wartosć opcjonalna):
 
     -   jeśli a jest typem, to `Maybe a` jest typem
 
@@ -229,16 +235,25 @@ Jak zobaczymy jedna wartość może przynależeć do wielu typów (na przykład 
 
     -   jeśli `x::a` to `(Just x)::Maybe a`
 
--   Listy: `[a]` jest listą elementów typu `a`
-
-    -   `[]::[a]`
-
-    -   jeśli `x::a` oraz `xs::[a]`, to `(x:xs)::[a]`
-
 -   `(a_1,...,a_n)` jest produktem kartezjańskim typów
     `a_1,...,a_n`
 
 -   W szczególności `()` jest typem zawierającym jeden element: `()::()`
+
+Funkcje działające na `Maybe` i krotkach możemy definiowac podobnie jak dla list, np
+
+
+``` haskell
+maybeToList :: Maybe a -> [a]
+maybeToList Nothing = []
+maybeToList (Just x) = [x]
+
+firstOf3 :: (a, b, c) -> a
+firstOf3  (x, _, _) = x
+
+secondOf3 :: (a, b, c) -> b
+secondOf3 (_, y, _) = y
+```
 
 ### Wyrażenia
 
