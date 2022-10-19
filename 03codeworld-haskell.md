@@ -5,6 +5,7 @@ https://code.world/haskell
 Dokumentacja modułu CodeWorld: https://code.world/doc-haskell/CodeWorld.html
 
 ```haskell
+{-# LANGUAGE OverloadedStrings #-}
 import CodeWorld
 type Program = IO () -- program wykonuje IO i nie daje wartości 
 
@@ -18,7 +19,7 @@ design :: Picture
 design = circle 2
 ```
 
-Pierwsze cztery linie możemy na razie potraktować jako "program obowiązkowy".
+Pierwsze pięc linii możemy na razie potraktować jako "stały fragment gry".
 
 Wskazywanie typów nie jest obowiązkowe, ale jest dobra praktyką - w tej wersji przy braku  sygnatury otrzymamy ostrzeżenie postaci
 
