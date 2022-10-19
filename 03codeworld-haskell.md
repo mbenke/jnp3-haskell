@@ -6,9 +6,10 @@ Dokumentacja modułu CodeWorld: https://code.world/doc-haskell/CodeWorld.html
 
 ```haskell
 import CodeWorld
+type Program = IO () -- program wykonuje IO i nie daje wartości 
+
 main :: Program
 main = program       -- dorośli używają main jako głównej funkcji
-type Program = IO () -- program wykonuje IO i nie daje wartości 
 
 program :: Program
 program = drawingOf design
