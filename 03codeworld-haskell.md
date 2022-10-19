@@ -102,11 +102,14 @@ Przypomnijmy sobie rysunek sygnalizatora ulicznego. Możemy zapisac go np. tak:
 ```haskell
 import CodeWorld
 
-botCircleGreen, topCircleRed, frame, trafficLight :: Picture
-botCircleGreen = colored green (translated 0 (-1.5) (solidCircle 1))
-topCircleRed   = colored red   (translated 0   1.5  (solidCircle 1))
+botCircle, topCircle :: Color -> Picture
+botCircle c = colored c (translated 0 (-1.5) (solidCircle 1))
+topCircle c = colored c (translated 0   1.5  (solidCircle 1))
+
+frame, trafficLight :: Picture
+
 frame = rectangle 2.5 5.5
-trafficLight = botCircleGreen & topCircleRed & frame
+trafficLight = botCircle green & topCircle red & frame
 
 ourPicture :: Picture
 ourPicture = trafficLight
