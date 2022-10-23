@@ -126,7 +126,7 @@ someCoord = moveCoords [U, U, L] initialCoord
 ## Terminologia
 
 * typ, w którym żaden z konstruktorów nie ma argumentów nazywamy *typem wyliczeniowym* (ang. *enumeration type*);
-* typ o jednym konstruktorze nazywamy *typem produktowym* (ang. *product type*) - jest izomorficzny z produktem argumentów konstruktora, np `C Integer Integer ~ (Integer, Integer)`
+* typ o jednym konstruktorze nazywamy *typem produktowym* (ang. *product type*) - jest izomorficzny z produktem argumentów konstruktora, np `Coord = C Int Int ~ (Int, Int)`
 * typ o więcej niż jednym konstruktorze nazywamy *typem sumarycznym* (ang. *sum type*) jest izomorficzny z sumą rozłączną odpowiednich typów
 * typ bez konstruktorów (tak, to możliwe i czasem użyteczne!) nazywamy *typem pustym* (ang. *empty type*, nie mylić z `()`)
 
