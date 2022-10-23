@@ -25,7 +25,7 @@ drawTile Storage = storage
 drawTile Box     = box
 drawTile Blank   = blank
 
-maze :: Integer -> Integer -> Tile
+maze :: Int -> Int -> Tile
 maze x y
   | abs x > 4  || abs y > 4  = Blank
   | abs x == 4 || abs y == 4 = Wall
@@ -64,13 +64,13 @@ Potrzebujemy też typu reprezentującego pozycję. Tutaj typ wyliczeniowy już n
 musimy też przechowywać wartości współrzędnych. Możemy to osiągnąć przez konstruktory z parametrami, np.
 
 ```haskell
-data Coord = C Integer Integer
+data Coord = C Int Int
 ```
 
-(moglibyśmy użyć też pary `(Integer, Integer)`, ale dedykowane typy dają lepsze komunikaty o błędach).
+(moglibyśmy użyć też pary `(Int, Int)`, ale dedykowane typy dają lepsze komunikaty o błędach).
 
 Konstruktor `C` (poza tym, że może wystapić we wzorcach) zachowuje się jak funkcja typu
-`Integer -> Integer -> Coord`, oto przykład:
+`Int -> Int -> Coord`, oto przykład:
 
 ```haskell
 initialCoord :: Coord
@@ -93,7 +93,7 @@ Możesz ją przetestować w `ghci`. Aby móc wypisywac elementy swojego typu, wa
 `deriving Show`, np.
 
 ```haskell
-data Coord = C Integer Integer deriving Show
+data Coord = C Int Int deriving Show
 ```
 
 Jeśli chcesz skłonić CodeWorld aby coś wypisał możesz użyć funkcji `print` w `main`, np.
