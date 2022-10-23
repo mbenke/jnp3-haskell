@@ -215,7 +215,7 @@ Funkcja `activityOf` bierze 3 argumenty:
 
 Takie podejście jest zbliżony do paradygmatu Model-View-Controller, ale nie używa efektów ubocznych, a tylko czystych funkcji.
 
-Prosta próba użycia `activityOf` może wyglądać np. tak [(zobacz na CodeWorld)](https://code.world/haskell#PeuoT_5CFDf2ZHNCQksMcHQ):
+Prosta próba użycia `activityOf` może wyglądać np. tak [(zobacz na CodeWorld)](https://code.world/haskell#PvgoznUthiI0XhBafNMwwkQ):
 
 ```haskell
 main = activityOf initial handleEvent drawState
