@@ -318,6 +318,6 @@ Zastanów się co powinno się dziać dla zdarzenia odpowiadającego puszczeniu 
 
 Zdefiniuj `walk3 :: IO ()` jako wariant `walk2` używający `resettableActivityOf`.
 
-Termin: 3.11.2021 godzina 18:00
+Termin: 3.11.2022 godzina 18:00
 
-Oddawanie przez GitHub Classroom: https://classroom.github.com/a/peSxUjcm
+Oddawanie przez GitHub Classroom: https://classroom.github.com/a/gVrstMmS
