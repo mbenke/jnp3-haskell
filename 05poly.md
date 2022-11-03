@@ -45,7 +45,10 @@ ile różnych implementacji potrafisz napisać?
 ### Równość (nie) dla wszystkich
 
 Czy da się zdefiniować uniwersalną równość, czyli parametryczną funkcję typu `eq :: a -> a -> Bool`? 
-Możemy podejrzewać, że nie, ale "darmowe twierdzenie" dla tego typu mówi że dla dowolnych typów A,B  i funkcji 
+
+Możemy podejrzewać, że nie, ale jak to udowodnić?
+
+Otóż "darmowe twierdzenie" dla tego typu mówi że dla dowolnych typów A,B  i funkcji 
 
 ```haskell
 f :: A -> B
