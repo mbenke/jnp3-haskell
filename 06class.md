@@ -1,3 +1,4 @@
+<!--
 # Don't Repeat Yourself
 
 https://en.wikipedia.org/wiki/Don%27t_repeat_yourself
@@ -46,6 +47,7 @@ handleEvent (KeyPress key) (State dir (C x y) boxList) --(State pict (C x y) _)
        empty :: (Coord -> Tile) -> Coord -> Bool
        empty lvl c = if ((comp (lvl c) Ground) || ((comp (lvl c) Storage))) then True else False
  ```
+-->
 
 # Typy z klasą
 
@@ -85,13 +87,10 @@ Prelude> :info Eq
 class Eq a where
   (==) :: a -> a -> Bool
   (/=) :: a -> a -> Bool
-	-- Defined in ‘GHC.Classes’
+
+instance Eq Int  
 instance Eq Integer
-  -- Defined in ‘integer-gmp-1.0.0.0:GHC.Integer.Type’
-instance (Eq a, Eq b) => Eq (Either a b)
-  -- Defined in ‘Data.Either’
-instance Eq a => Eq [a] -- Defined in ‘GHC.Classes’
-instance Eq Word -- Defined in ‘GHC.Classes’
+instance Eq a => Eq [a]
 …
 ```
 
