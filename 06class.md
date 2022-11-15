@@ -409,10 +409,10 @@ class Num a => Fractional a where
 
 # Zadanie: Sokoban 4
 
-https://classroom.github.com/a/TpQtaObY
+[https://classroom.github.com/a/TpQtaObY](https://classroom.github.com/a/GtqtPihD)
 
 Termin:
-17.11.2021 18:00 UTC+1
+30.11.2021 18:00 UTC+1
 
 ## Etap 1
 
