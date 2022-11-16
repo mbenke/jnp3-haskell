@@ -412,7 +412,7 @@ class Num a => Fractional a where
 [https://classroom.github.com/a/TpQtaObY](https://classroom.github.com/a/GtqtPihD)
 
 Termin:
-30.11.2021 18:00 UTC+1
+30.11.2022 18:00 UTC+1
 
 ## Etap 1
 
