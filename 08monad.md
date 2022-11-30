@@ -343,6 +343,9 @@ albo
 do { x <- obliczenie1; y <- obliczenie2; obliczenie3 }
 ```
 
+:pencil: Zdefiniuj funkcję `addMaybe :: Maybe Int -> Maybe Int -> Maybe Int`, dodającą dwie liczby opakowane w `Maybe`
+* przy pomocy `Applicative`
+* przy pomocy `Monad`
 
 # Zaszłości
 
