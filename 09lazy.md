@@ -168,6 +168,8 @@ Mozemy za to z powodzeniem stosować `foldr` (z leniwą operacją):
 
 W ogólności, przy leniwych operacjach zwykle lepiej stosowac `foldr` zaś przy gorliwych - `foldl'`, który jest gorliwą wersją `foldl`.
 
+Więcej: https://wiki.haskell.org/Foldr_Foldl_Foldl' 
+
 # Zadanie
 
 Zadanie podsumowujące: https://classroom.github.com/a/x_-O2VIw termin: 20.12 godz. 18:00
