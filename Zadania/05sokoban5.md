@@ -6,9 +6,9 @@ Frazę `import codeWorld` należy usunąć.
 
 Elementami rozwiązania powinny być co najmniej:
 
-* Zmiana typu `Interaction` na odpowiedni dla wyjscia tekstowego
+* Zmiana typu `Activity` na odpowiedni dla wyjscia tekstowego
 ```haskell
-data Interaction world = Interaction
+data Activity world = Activity
     world
     (Event -> world -> world)
     (world -> Screen)
@@ -40,7 +40,7 @@ NB funkcja `translated` przy takiej reprezentacji będzie wymagała dwukrotnej z
 * Stworzenie funkcji 
 
 ```
-runInteraction :: Interaction s -> IO ()
+runActivity :: Activity s -> IO ()
 ```
 W pierwszej kolejności należy wyłączyć buforowanie tak, aby informacja o naciśniętych klawiszach trafiała do programu natychmiast 
 a nie dopiero po `Enter`:
