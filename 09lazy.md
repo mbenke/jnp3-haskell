@@ -170,4 +170,4 @@ W ogólności, przy leniwych operacjach zwykle lepiej stosowac `foldr` zaś przy
 
 # Zadanie
 
-Zadanie podsumowujące: https://classroom.github.com/a/35iuKMtk termin: 15.12 godz. 18:00
+Zadanie podsumowujące: https://classroom.github.com/a/x_-O2VIw termin: 20.12 godz. 18:00
