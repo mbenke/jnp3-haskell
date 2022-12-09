@@ -117,6 +117,8 @@ take 20 fibs
 > take 5 (merge evens odds)
 [0,1,2,3,4]
 ```
+:pencil:
+Zdefiniuj funkcję `inGrowing :: Integer -> [Integer] -> Bool`, która dla danej liczby i rosnącego strumienia liczb rozstrzygnie czy dana liczba wystepuje w strumieniu.
 
 :pencil:
 Zdefiniuj funkcję `union`, która dla dwóch rosnących strumieni da ich sumę teoriomnogościową. Czy zadziała też dla strumieni niemalejących?
