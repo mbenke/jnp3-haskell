@@ -39,7 +39,7 @@ Haskell posiada specyficzną, opartą na typach bibliotekę QuickCheck
 ### Instalacja
 
 ```
-cabal install --lib QuickCheck
+cabal update && cabal install --lib QuickCheck
 ```
 
 lub
