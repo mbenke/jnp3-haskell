@@ -264,6 +264,22 @@ musimy użyć rozszerzenia
 ``` haskell
 {-# LANGUAGE Rank2Types #-}
 ```
+Wynika to z faktu, że konstruktor `Lens` ma typ z zagnieżdżonym kwantyfikatorek
+
+``` haskell
+Lens :: forall a b.
+{- view  -} (a -> b) ->
+{- over  -} ((b -> b) -> (a -> a)) -> 
+{- overF -} (forall t. Functor t => (b -> t b) -> (a -> t a)) ->
+            Lens a b
+ ```
+ 
+podczas, gdy w "standardowym" Haskellu kwantyfikatory wystepują tylko na najwyzszym poziomie, np
+
+``` haskell
+Branch :: forall a. a -> Tree a -> Tree a
+fmap :: forall f a.Functor f => (a -> b) -> f a -> f b
+```
 
 Jest to istotnie pewna komplikacja, zwłaszcza pojęciowa,
 jednak pozwala nam na dalsze uproszczenia.
