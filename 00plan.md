@@ -4,20 +4,20 @@
 
 ## Laboratoria
 
-1. ELI5 czyli Haskell w podstawówce (5-7.10), Zadanie 0
-2. Odkrywamy Haskell (12-14.10)
-3. CodeWorld/Haskell (19-21.10), Zadanie 1
-4. Typy algebraiczne (26-28.10), Zadanie 2
-5. Polimorfizm (4.11,9.11), Zadanie 3
-6. Typy z klasą - (16-18.11), Zadanie 4
-7. I/O - (23-25.11), Zadanie 5
-8. Funktory, monady - (30.11,2.12)
-9. Lenistwo (7-9.12), Zadanie 6
-10. Testowanie (14-16.12)
-12. Rozmowy o programach zaliczeniowych (21-22.12)
-11. Wnioskowanie o programach (11-13.1)
-13. Wnioskowanie o programach II (18-20.1)
-14. Soczewki (25-27.1)
+1. ELI5 czyli Haskell w podstawówce (4.10), Zadanie 0
+2. Odkrywamy Haskell (11.10)
+3. CodeWorld/Haskell (18.10), Zadanie 1
+4. Typy algebraiczne (25.10), Zadanie 2
+5. Polimorfizm (8.11), Zadanie 3
+6. Typy z klasą - (15.11), Zadanie 4
+7. I/O - (22.11), Zadanie 5
+8. Funktory, monady - (29.11,1.12)
+9. Lenistwo (6.12), Zadanie 6
+10. Testowanie (13.12)
+12. Rozmowy o programach zaliczeniowych (20.12)
+11. Wnioskowanie o programach (10.1)
+13. Wnioskowanie o programach II (17.1)
+14. Soczewki (24.1)
 
 ## Zasady zaliczania
 
