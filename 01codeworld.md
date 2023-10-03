@@ -467,6 +467,15 @@ Zadania należy oddawać poprzez GitHub Classroom. Rozwiązania należy umieszcz
 
 Na rozgrzewkę, programy z dzisiejszych zajęć należy oddać poprzez link https://classroom.github.com/a/qfoiFncB  (termin: 10.10 godz. 18:00).
 
+# W następnym odcinku
+
+Na następnych zajęciach będziemy korzystali z "prawdziwego" GHC. Osoby korzystające z własnego laptopa mogą je zainstalować korzystając z narzędzia `ghcup`: https://www.haskell.org/ghcup/ np.
+
+```
+curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
+```
+(oczywiście nie jest to obowiazkowe, można korzystać z GHC zainstalowanego w laboratorium).
+
 # Zastrzeżenia prawne
 
 Niektóre przyklady i opisy pochodzą z dokumentacji CodeWorld: https://code.world/doc.html?shelf=help/codeworld.shelf
