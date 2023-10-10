@@ -358,16 +358,20 @@ innych konstrukcjach, takich jak **let**, **do**, **where**, itp.
 
 Wzorce moga być bardziej złożone, np
 
+``` haskell
     third :: [a] -> a
     third (x:y:z:_) = z
+```
 
 (podkreślenie oznacza “cokolwiek”)
 
 Równanie moze też wymagać dopasowania więcej niż jednego argumentu:
 
+``` haskell
     myzip :: [a] -> [b] -> [(a,b)]
     myzip (x:xs) (y:ys) = (x,y):myzip xs ys
     myzip _ _ = []
+```
 
 Dopasowanie wzorców działa w równaniach podobnie jak w **case**
 (i innych miejscach), poza tym, że w **case** oczywiście dopasowujemy
@@ -383,10 +387,12 @@ dla obliczenia jakiegoś wyrazenia:
 Tak jak przy **case** możemy uzyć wcięć zamiast nawiasów i średników,
 np.
 
+``` haskell
       let 
         x = 1
         y = 2
       in x + y
+```
 
 a nawet
 
@@ -400,10 +406,12 @@ poziomie).
 W wyrażeniu **let** możemy definiować funkcje, używać rekurencji
 i dopasowań:
 
+``` haskell
     f xs = let 
         len [] = 0
         len (x:xs) = 1 + len xs
       in len xs
+```
 
 Uwaga: reguły wcinania wymagają aby w tym wypadku:
 
@@ -438,35 +446,53 @@ Uwaga: reguły wcinania wymagają aby w tym wypadku:
 
         (\x -> (\y -> x)) 1 2
 
+Na marginesie: przy użyciu rozszserzenia `LambdaCase` możemy uzywac lambd z bardziej złożonymi dopasowaniami, np.
+
+``` haskell
+> :set -XLambdaCase
+> (\case { [] -> "Empty"; _ -> "Not Empty" }) "Empty"
+"Not Empty"
+```
+
 ### Podprzypadki
 
 Zadanie: podzielić listę na dwie: elementy ≤n oraz >n
 
+``` haskell
     splitBy :: Int -> [Int] -> ([Int],[Int])
     splitBy n [] = ([],[])
     splitBy n (x:xs) = let (ys,zs) = splitBy n xs in
       if x<= n then (x:ys,zs) else  (ys,x:zs)
+```
 
 Drugi przypadek naturalnie dzieli sie na dwa podprzypadki; nie możemy
 tego zapisać przez wzorce, ale możemy tak:
 
+``` haskell
     splitBy' n (x:xs) 
       | x<=n = let (ys,zs)=splitBy' n xs in (x:ys,zs)
       | x>n  = let (ys,zs)=splitBy' n xs in (ys,x:zs)
+```
 
 ### Klauzula **where**
 
+``` haskell
     splitBy' n (x:xs) 
       | x<=n = let (ys,zs)=splitBy' n xs in (x:ys,zs)
       | x>n  = let (ys,zs)=splitBy' n xs in (ys,x:zs)
+```
 
 W obu przypadkach powtarza się ta sama definicja, możemy to krócej
 zapisać:
+> (\case { [] -> "Empty"; _ -> "Not Empty" }) "Empty"
+"Not Empty"
 
+``` haskell
     splitBy'' n (x:xs) 
       | x<=n = (x:ys,zs)
       | otherwise = (ys,x:zs)
       where (ys,zs) = splitBy'' n xs 
+```
 
 **where** jest poniekąd podobne do **let**, ale
 
