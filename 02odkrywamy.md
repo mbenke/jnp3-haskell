@@ -484,8 +484,6 @@ tego zapisać przez wzorce, ale możemy tak:
 
 W obu przypadkach powtarza się ta sama definicja, możemy to krócej
 zapisać:
-> (\case { [] -> "Empty"; _ -> "Not Empty" }) "Empty"
-"Not Empty"
 
 ``` haskell
     splitBy'' n (x:xs) 
