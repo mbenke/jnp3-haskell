@@ -11,7 +11,7 @@
 5. Polimorfizm (8.11), Zadanie 3
 6. Typy z klasą - (15.11), Zadanie 4
 7. I/O - (22.11), Zadanie 5
-8. Funktory, monady - (29.11,1.12)
+8. Funktory, monady - (29.11)
 9. Lenistwo (6.12), Zadanie 6
 10. Testowanie (13.12)
 12. Rozmowy o programach zaliczeniowych (20.12)
