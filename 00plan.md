@@ -29,9 +29,9 @@
 0. CodeWorld (04.10) - termin 10.10 (rozgrzewka, bez punktów)
 1. Sokoban 1 (18.10) - termin 24.10 (3p)
 2. Sokoban 2 (25.10) - termin 3.11 (4p)
-3. Sokoban 3 (08.11) - termin 17.11 (12p)
+3. Sokoban 3 (08.11) - termin 14.11 (12p)
 4. Sokoban 4 (15.11) - termin 24.11 (16p)
-5. Sokoban 5 (22.11) - termin 1.12 (15p)
+5. Sokoban 5 (22.11) - termin 2.12 (15p)
 6. Supply (9.12) - termin 19.12 (10p)
 
 Spóźnienia: do 24h kara 1p, powyżej 24h 3p za każdy rozpoczety tydzień
