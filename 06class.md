@@ -409,14 +409,14 @@ class Num a => Fractional a where
 
 # Zadanie: Sokoban 4
 
-[https://classroom.github.com/a/TpQtaObY](https://classroom.github.com/a/GtqtPihD)
+[https://classroom.github.com/a/zJQQKdWu](https://classroom.github.com/a/zJQQKdWu)
 
 Termin:
-30.11.2022 18:00 UTC+1
+24.11.2023 18:00 UTC+1
 
 ## Etap 1
 
-Stwórz kilka (prostych) poziomów. Mozna pomóc sobie np http://sokobano.de/wiki i http://www.sneezingtiger.com/sokoban/levels.html
+Stwórz kilka (prostych) poziomów. Można pomóc sobie np http://sokobano.de/wiki i http://www.sneezingtiger.com/sokoban/levels.html
 
 ```haskell
 data Maze = Maze Coord (Coord -> Tile)
