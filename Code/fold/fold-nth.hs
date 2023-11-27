@@ -22,7 +22,7 @@ fromJust (Just a) = a
 -- >>> nth [1,2,3] 1
 -- 2
 
-unsafe_nth :: [a] -> Int -> a -- b ~ (Int -> Maybe a)
+unsafe_nth :: [a] -> Int -> a -- b ~ (Int -> a)
 unsafe_nth = foldr f z where
   z :: Int -> a
   z _ = error "Index out of range"
