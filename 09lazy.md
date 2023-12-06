@@ -174,4 +174,4 @@ Więcej: https://wiki.haskell.org/Foldr_Foldl_Foldl'
 
 # Zadanie
 
-Zadanie podsumowujące: https://classroom.github.com/a/x_-O2VIw termin: 20.12 godz. 18:00
+Zadanie podsumowujące: https://classroom.github.com/a/m2RedLQ6 termin: 19.12 godz. 18:00
