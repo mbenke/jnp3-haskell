@@ -67,10 +67,10 @@ prop_fadd_assoc a b c = (a + b) + c  == a + (b + c)
 λ> quickCheckWith stdArgs {maxSuccess = 1000} prop_fadd_comm
 +++ OK, passed 1000 tests.
 λ> quickCheck prop_fadd_assoc
-*** Failed! Falsifiable (after 3 tests and 1 shrink): 
--2.4964767
-1.7917264
-2.8828287
+*** Failed! Falsified (after 6 tests and 6 shrinks):
+1.0
+-1.95
+-2.06
 ```
 
 Ogólna zasada: 
