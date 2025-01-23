@@ -18,7 +18,7 @@ moveAtom :: Atom -> Atom
 moveAtom = over (point `comp` x) (+1)
 -- moveAtom a = a & point . x %~ (+1)
 
-atom2 = atom0 & point . x %~ (+1)
+atom2 = atom0 & point . x +~ 1
 
 -- view (point . x) atom2
 newx = atom2 ^. point . x

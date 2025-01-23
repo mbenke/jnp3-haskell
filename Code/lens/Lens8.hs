@@ -36,6 +36,11 @@ infixr 4 %~
 (%~) :: Lens a b -> (b -> b) -> (a -> a)
 lens %~ f =  lens `over` f
 
+infixr 4 +~
+(+~) :: Num b => Lens a b -> b -> (a -> a)
+lens +~ n =  lens `over` (+n)
+
+
 infixl 8 ^.
 (^.) :: a -> Lens a b -> b
 a ^. lens  = view lens a
